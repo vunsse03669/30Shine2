@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="UTM Alexander.ttf">
+            <string>UTM-Alexander</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OtherServicesCell" rowHeight="147" id="KGk-i7-Jjw" userLabel="ShineComboCell" customClass="OtherServicesCell" customModule="_0Shine" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="364" height="147"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="364" height="146"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6zA-EV-jdg">
+                        <rect key="frame" x="8" y="4" width="348" height="138"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="girl3" translatesAutoresizingMaskIntoConstraints="NO" id="qhl-J8-KX5">
+                                <rect key="frame" x="0.0" y="0.0" width="348" height="138"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" alpha="0.45000000000000001" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="labelBackground" translatesAutoresizingMaskIntoConstraints="NO" id="FnL-aF-3bK">
+                                <rect key="frame" x="0.0" y="110" width="348" height="28"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5BV-Sf-5Ko">
+                                <rect key="frame" x="4" y="110" width="348" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="FBG-oI-2dR"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="UTM-Alexander" family="UTM Alexander" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="FBG-oI-2dR"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="qhl-J8-KX5" firstAttribute="leading" secondItem="6zA-EV-jdg" secondAttribute="leading" id="8Nm-FJ-3l4"/>
+                            <constraint firstAttribute="trailing" secondItem="qhl-J8-KX5" secondAttribute="trailing" id="8rb-5o-E9I"/>
+                            <constraint firstItem="5BV-Sf-5Ko" firstAttribute="width" relation="lessThanOrEqual" secondItem="6zA-EV-jdg" secondAttribute="width" id="DoT-4W-a42"/>
+                            <constraint firstItem="FnL-aF-3bK" firstAttribute="centerY" secondItem="5BV-Sf-5Ko" secondAttribute="centerY" id="KfF-Do-OfK"/>
+                            <constraint firstItem="FnL-aF-3bK" firstAttribute="width" secondItem="5BV-Sf-5Ko" secondAttribute="width" id="N6S-jT-Oq8"/>
+                            <constraint firstItem="5BV-Sf-5Ko" firstAttribute="leading" secondItem="6zA-EV-jdg" secondAttribute="leading" constant="4" id="OnS-de-27J"/>
+                            <constraint firstItem="FnL-aF-3bK" firstAttribute="leading" secondItem="6zA-EV-jdg" secondAttribute="leading" id="TcF-HW-tOp"/>
+                            <constraint firstItem="qhl-J8-KX5" firstAttribute="top" secondItem="6zA-EV-jdg" secondAttribute="top" id="cfq-rt-ZzB"/>
+                            <constraint firstItem="5BV-Sf-5Ko" firstAttribute="height" secondItem="6zA-EV-jdg" secondAttribute="height" multiplier="0.2" id="d2Q-4u-lel"/>
+                            <constraint firstAttribute="bottom" secondItem="5BV-Sf-5Ko" secondAttribute="bottom" id="dn5-Y7-Z18"/>
+                            <constraint firstItem="FnL-aF-3bK" firstAttribute="height" secondItem="5BV-Sf-5Ko" secondAttribute="height" id="gYR-wr-JHF"/>
+                            <constraint firstItem="FnL-aF-3bK" firstAttribute="centerX" secondItem="5BV-Sf-5Ko" secondAttribute="centerX" id="m49-ZR-wyy"/>
+                            <constraint firstAttribute="bottom" secondItem="qhl-J8-KX5" secondAttribute="bottom" id="nNo-Tn-PQp"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="m49-ZR-wyy"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="6zA-EV-jdg" secondAttribute="trailing" constant="8" id="9wr-EJ-2jy"/>
+                    <constraint firstItem="6zA-EV-jdg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="DjX-kT-v12"/>
+                    <constraint firstAttribute="bottom" secondItem="6zA-EV-jdg" secondAttribute="bottom" constant="4" id="qrh-Is-OJb"/>
+                    <constraint firstItem="6zA-EV-jdg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="znu-uf-QZ5"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="btnPrice" destination="5BV-Sf-5Ko" id="2Nm-e0-XhP"/>
+                <outlet property="imvBackground" destination="qhl-J8-KX5" id="Rrd-Dk-7E0"/>
+            </connections>
+            <point key="canvasLocation" x="339" y="353.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="girl3" width="500" height="313"/>
+        <image name="labelBackground" width="855" height="86"/>
+    </resources>
+</document>
