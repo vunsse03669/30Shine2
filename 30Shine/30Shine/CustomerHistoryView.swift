@@ -49,11 +49,11 @@ class CustomerHistoryView: UIView {
         
         _ = self.historyVar.asObservable().bindTo(self.tbvHistory.rx_itemsWithCellIdentifier("CustomerHistoryCell", cellType: CustomerHistoryCell.self)) {
             row,data,cell in
-            cell.lblDay.text = "\(data.createTime)"
+            cell.lblDay.text = "\(self.format(self.getDay(data.createTime)))"
+            cell.lblHour.text = "\(self.getHour(data.createTime))"
             cell.lblRate.text = "\(data.rating)"
             cell.lblStylist.text = "\(data.stylistName)"
             cell.lblService.text = "\(data.service)"
-            
         }
         
         _ = self.tbvHistory.rx_itemSelected.subscribeNext {
@@ -62,6 +62,66 @@ class CustomerHistoryView: UIView {
         }
     }
     
+    func getHour(hour : String) -> String {
+        var str = ""
+        for c in hour.characters {
+            str.append(c)
+            if c == " " {
+                break
+            }
+        }
+        let id = hour.stringByReplacingOccurrencesOfString(str, withString: "")
+        return id
+    }
+    
+    func getDay(day : String) -> String {
+        var str = ""
+        for c in day.characters {
+            str.append(c)
+            if c == " " {
+                break
+            }
+        }
+        
+        return str
+    }
+    
+    func format(str : String) -> String {
+        var day = ""
+        var month = ""
+        var year = ""
+        var count = 0
+        
+        print("ccc \(str)")
+        for c in str.characters {
+            if c == " " {
+                break
+            }
+            if c == "-" {
+                count += 1
+            }
+            
+            switch count {
+            case 0:
+                year.append(c)
+            case 1:
+                month.append(c)
+            case 2:
+                day.append(c)
+            default:
+                print("xxx")
+            }
+            
+            
+            
+            
+        }
+        day = day.stringByReplacingOccurrencesOfString("-", withString: "")
+        month = month.stringByReplacingOccurrencesOfString("-", withString: "")
+        year = year.stringByReplacingOccurrencesOfString("-", withString: "")
+        return "\(day)-\(month)-\(year)"
+    }
+
     //MARK: data
     func parseJSON(complete: ()->()) {
         let parameter = ["Id" : 1000]
@@ -78,7 +138,6 @@ class CustomerHistoryView: UIView {
                         }
                         else {
                             self.historyVar.value.append(CustomerHistory.getCustomerHistoryByTime(history.billCreatedTime))
-                                print(CustomerHistory.getCustomerHistoryByTime(history.billCreatedTime).service)
                         }
                     }
                    complete()
