@@ -72,16 +72,22 @@
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wwX-cb-bTw">
                     <rect key="frame" x="4" y="326" width="592" height="180"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="maps-bottom" translatesAutoresizingMaskIntoConstraints="NO" id="C4w-Aq-hCN">
-                            <rect key="frame" x="0.0" y="0.0" width="1040" height="435"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="maps-bottom" translatesAutoresizingMaskIntoConstraints="NO" id="C4w-Aq-hCN">
+                            <rect key="frame" x="0.0" y="0.0" width="592" height="180"/>
                         </imageView>
                     </subviews>
+                    <color key="backgroundColor" red="0.95294117647058818" green="0.94509803921568625" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstItem="C4w-Aq-hCN" firstAttribute="leading" secondItem="wwX-cb-bTw" secondAttribute="leading" id="7Cd-3q-MbB"/>
-                        <constraint firstAttribute="trailing" secondItem="C4w-Aq-hCN" secondAttribute="trailing" id="80m-tS-EkP"/>
-                        <constraint firstAttribute="bottom" secondItem="C4w-Aq-hCN" secondAttribute="bottom" id="8qE-fA-iNR"/>
-                        <constraint firstItem="C4w-Aq-hCN" firstAttribute="top" secondItem="wwX-cb-bTw" secondAttribute="top" id="trH-q8-oTZ"/>
+                        <constraint firstAttribute="bottom" secondItem="C4w-Aq-hCN" secondAttribute="bottom" id="6jT-zg-e5o"/>
+                        <constraint firstItem="C4w-Aq-hCN" firstAttribute="centerY" secondItem="wwX-cb-bTw" secondAttribute="centerY" id="7Cm-qh-RoM"/>
+                        <constraint firstItem="C4w-Aq-hCN" firstAttribute="centerX" secondItem="wwX-cb-bTw" secondAttribute="centerX" id="AgD-ow-9cK"/>
+                        <constraint firstAttribute="trailing" secondItem="C4w-Aq-hCN" secondAttribute="trailing" id="N1s-F5-J7l"/>
+                        <constraint firstItem="C4w-Aq-hCN" firstAttribute="leading" secondItem="wwX-cb-bTw" secondAttribute="leading" id="tds-DM-ReM"/>
+                        <constraint firstItem="C4w-Aq-hCN" firstAttribute="top" secondItem="wwX-cb-bTw" secondAttribute="top" id="vaB-3w-oNs"/>
                     </constraints>
+                    <connections>
+                        <outlet property="delegate" destination="iN0-l3-epB" id="u5f-II-EcC"/>
+                    </connections>
                 </scrollView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BmP-FB-Xac" userLabel="View button">
                     <rect key="frame" x="4" y="510" width="592" height="86"/>
@@ -268,10 +274,11 @@
                 <constraint firstItem="gF9-bP-rkR" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="cVJ-CI-cUs"/>
                 <constraint firstItem="3U3-fw-EA7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ccA-ad-Eoi"/>
                 <constraint firstItem="3U3-fw-EA7" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="cdz-cp-XDZ"/>
-                <constraint firstItem="wwX-cb-bTw" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ddF-JU-YL1"/>
                 <constraint firstItem="4RJ-v5-2Go" firstAttribute="top" secondItem="gF9-bP-rkR" secondAttribute="bottom" constant="4" id="dte-Lj-jKc"/>
                 <constraint firstItem="gF9-bP-rkR" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.25" id="h93-To-Xu1"/>
                 <constraint firstItem="gF9-bP-rkR" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" constant="-8" id="mQM-N3-XyQ"/>
+                <constraint firstItem="wwX-cb-bTw" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="nm4-3z-wwz"/>
+                <constraint firstItem="wwX-cb-bTw" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="4" id="nvw-yZ-NcF"/>
                 <constraint firstItem="3U3-fw-EA7" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="oG4-qr-O2n"/>
                 <constraint firstItem="BmP-FB-Xac" firstAttribute="top" secondItem="wwX-cb-bTw" secondAttribute="bottom" constant="4" id="rNL-nT-Icm"/>
             </constraints>
@@ -279,6 +286,7 @@
                 <mask key="constraints">
                     <exclude reference="oG4-qr-O2n"/>
                     <exclude reference="0kR-5g-X0W"/>
+                    <exclude reference="nvw-yZ-NcF"/>
                 </mask>
             </variation>
             <connections>
@@ -293,7 +301,7 @@
                 <outlet property="lblAddress" destination="BNS-LG-8ER" id="xTp-Z5-O9i"/>
                 <outlet property="scrollView" destination="wwX-cb-bTw" id="I7R-hi-ZwA"/>
             </connections>
-            <point key="canvasLocation" x="477" y="-1"/>
+            <point key="canvasLocation" x="474" y="-2"/>
         </view>
     </objects>
     <resources>

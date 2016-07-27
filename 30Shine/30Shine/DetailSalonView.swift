@@ -38,11 +38,9 @@ class DetailSalonView: UIView , UIScrollViewDelegate{
         UIView .animateWithDuration(0.2) {
             detailSalonView.alpha = 1
         }
-        detailSalonView.scrollView.minimumZoomScale = 1
-        detailSalonView.scrollView.maximumZoomScale = 5
         detailSalonView.setupContent(contentSalon)
         detailSalonView.setupButtons()
-        
+        detailSalonView.setupPichImageMap()
         
         
         return detailSalonView
@@ -50,7 +48,7 @@ class DetailSalonView: UIView , UIScrollViewDelegate{
     
     func setupButtons(){
         self.setupImageTap()
-    
+        
         _=btnHotLine.rx_tap.subscribeNext({
             print("hotline")
             UIApplication.sharedApplication().openURL(NSURL(string: "tel://0989740361")!)
@@ -133,8 +131,12 @@ class DetailSalonView: UIView , UIScrollViewDelegate{
         }
     }
     
+    func setupPichImageMap(){
+        self.scrollView.minimumZoomScale = 1.0;
+        self.scrollView.maximumZoomScale = 10.0;
+    }
+    
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
         return self.imvMap
     }
-    
 }
