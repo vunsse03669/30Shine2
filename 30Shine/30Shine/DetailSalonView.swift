@@ -9,6 +9,8 @@
 import UIKit
 import RxCocoa
 import RxSwift
+import Alamofire
+import RealmSwift
 
 class DetailSalonView: UIView , UIScrollViewDelegate{
     
@@ -24,8 +26,11 @@ class DetailSalonView: UIView , UIScrollViewDelegate{
     @IBOutlet weak var btnBooking: UIButton!
     @IBOutlet weak var btnFanpage: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var clvTabs: UICollectionView!
     
+    var salonVariable  : Variable<[Salon]> = Variable([])
     var salon : Salon = Salon()
+    var currentIndex :Variable<Int> = Variable(0)
     var currentImgID = 0
     
     static func createInView(view: UIView, contentSalon: Salon) -> DetailSalonView{
@@ -38,11 +43,10 @@ class DetailSalonView: UIView , UIScrollViewDelegate{
         UIView .animateWithDuration(0.2) {
             detailSalonView.alpha = 1
         }
-        detailSalonView.setupContent(contentSalon)
+        
         detailSalonView.setupButtons()
         detailSalonView.setupPichImageMap()
-        
-        
+        detailSalonView.initData()
         return detailSalonView
     }
     
@@ -118,9 +122,80 @@ class DetailSalonView: UIView , UIScrollViewDelegate{
         }
     }
     
-    func setupContent(salon: Salon){
-        self.salon = salon
-        self.lblAddress.text = salon.name
+    //    func setupContent(salon: Salon){
+    //        self.salon = salon
+    //        //self.lblAddress.text = salon.name
+    //        if(salon.listImages.count >= 4){
+    //            print("\(salon.listImages[3].thumb)")
+    //            LazyImage.showForImageView(imvSelected, url: salon.listImages[0].url)
+    //            LazyImage.showForImageView(imvSalon1, url: salon.listImages[0].thumb)
+    //            LazyImage.showForImageView(imvSalon2, url: salon.listImages[1].thumb)
+    //            LazyImage.showForImageView(imvSalon3, url: salon.listImages[2].thumb)
+    //            LazyImage.showForImageView(imvMap, url: salon.listImages[3].url)
+    //        }
+    //    }
+    
+    func setupPichImageMap(){
+        self.scrollView.minimumZoomScale = 1.0;
+        self.scrollView.maximumZoomScale = 10.0;
+    }
+    
+    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+        return self.imvMap
+    }
+    
+    func initData(){
+        parseJsonSalonSystem {
+            () in
+            self.bindingData()
+            self.setupCollectionView()
+        }
+    }
+    
+    func setupCollectionView(){
+        self.clvTabs.registerNib(UINib.init(nibName: "AddressTabCell", bundle: nil), forCellWithReuseIdentifier: "AddressTabCell")
+        
+        //config layout
+        let flowLayout: UICollectionViewFlowLayout! = UICollectionViewFlowLayout()
+        flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 4)
+        let width = self.clvTabs.frame.width/3
+        let height = self.clvTabs.frame.height - 4
+        flowLayout.itemSize = CGSizeMake(width, height)
+        flowLayout.minimumLineSpacing = 0
+        flowLayout.minimumInteritemSpacing = 4
+        flowLayout.scrollDirection = .Horizontal
+        self.clvTabs.setCollectionViewLayout(flowLayout, animated: false)
+        
+        //datasource
+        dispatch_async(dispatch_get_main_queue()){
+            _ = self.salonVariable.asObservable().bindTo(self.clvTabs.rx_itemsWithCellIdentifier("AddressTabCell", cellType: AddressTabCell.self)){
+                row, data, cell in
+                //selected cell
+                _ = self.currentIndex.asObservable().subscribeNext {
+                    index in
+                    if data.name == self.salonVariable.value[index].name {
+                        cell.lblAddress.font = UIFont.boldSystemFontOfSize(13)
+                    }
+                    else {
+                        if #available(iOS 8.2, *) {
+                            cell.lblAddress.font = UIFont.systemFontOfSize(13, weight: UIFontWeightThin)
+                        }
+                    }
+                }
+                
+                cell.lblAddress.text = data.name
+            }
+        }
+        _ = self.clvTabs.rx_itemSelected.subscribeNext {
+            indexPath in
+            self.currentIndex.value = indexPath.row
+            self.bindingData()
+        }
+    }
+    
+    func bindingData(){
+        self.salon = salonVariable.value[currentIndex.value]
+        //self.lblAddress.text = salon.name
         if(salon.listImages.count >= 4){
             print("\(salon.listImages[3].thumb)")
             LazyImage.showForImageView(imvSelected, url: salon.listImages[0].url)
@@ -131,12 +206,26 @@ class DetailSalonView: UIView , UIScrollViewDelegate{
         }
     }
     
-    func setupPichImageMap(){
-        self.scrollView.minimumZoomScale = 1.0;
-        self.scrollView.maximumZoomScale = 10.0;
-    }
-    
-    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
-        return self.imvMap
+    func parseJsonSalonSystem(complete:()->()){
+        
+        dispatch_async(dispatch_get_global_queue(0, 0)) {
+            let parameter = ["Id": 2]
+            Alamofire.request(.POST, SALON_LIST_API,parameters: parameter,encoding: .JSON).responseJASON { response in
+                if let json = response.result.value {
+                    let salons = json["d"].map(SalonNetwork.init)
+                    for salon in salons {
+                        
+                        let listImages : List<ImageObject> = List<ImageObject>()
+                        for salonIN in salon.images {
+                            let newSalonImage:ImageObject = ImageObject.create(salonIN.url, thumb: salonIN.thumb, title: salonIN.title, img_description: salonIN.img_description)
+                            listImages.append(newSalonImage)
+                        }
+                        let newSalon : Salon = Salon.create(salon.ID, name: salon.name, phone: salon.phone, managerName: salon.managerName, fanpage: salon.fanpage, listImages: listImages)
+                        self.salonVariable.value.append(newSalon)
+                    }
+                    complete()
+                }
+            }
+        }
     }
 }

@@ -70,6 +70,8 @@
 		9942999F1D476FB100D053B2 /* OtherServiceNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9942999C1D476FB100D053B2 /* OtherServiceNetwork.swift */; };
 		998965861D488C48006DEDF5 /* YoutubeVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998965851D488C48006DEDF5 /* YoutubeVideo.swift */; };
 		9989658A1D488E0B006DEDF5 /* YoutubeNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998965891D488E0B006DEDF5 /* YoutubeNetwork.swift */; };
+		E80CDBF41D491F7800B09385 /* AddressTabCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80CDBF21D491F7800B09385 /* AddressTabCell.swift */; };
+		E80CDBF51D491F7800B09385 /* AddressTabCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E80CDBF31D491F7800B09385 /* AddressTabCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -139,6 +141,8 @@
 		9942999C1D476FB100D053B2 /* OtherServiceNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherServiceNetwork.swift; sourceTree = "<group>"; };
 		998965851D488C48006DEDF5 /* YoutubeVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeVideo.swift; sourceTree = "<group>"; };
 		998965891D488E0B006DEDF5 /* YoutubeNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeNetwork.swift; sourceTree = "<group>"; };
+		E80CDBF21D491F7800B09385 /* AddressTabCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressTabCell.swift; sourceTree = "<group>"; };
+		E80CDBF31D491F7800B09385 /* AddressTabCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressTabCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -259,6 +263,8 @@
 				994299121D4769BF00D053B2 /* ServiceView.xib */,
 				994299131D4769BF00D053B2 /* ShineComboView.swift */,
 				994299141D4769BF00D053B2 /* ShineComboView.xib */,
+				E80CDBF21D491F7800B09385 /* AddressTabCell.swift */,
+				E80CDBF31D491F7800B09385 /* AddressTabCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -372,7 +378,7 @@
 				TargetAttributes = {
 					994298851D47675E00D053B2 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 56YJ3N6KSG;
+						DevelopmentTeam = YCJNEHP2D6;
 					};
 				};
 			};
@@ -399,6 +405,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E80CDBF51D491F7800B09385 /* AddressTabCell.xib in Resources */,
 				994299641D4769BF00D053B2 /* CustomerHistoryCell.xib in Resources */,
 				994299201D4769BF00D053B2 /* Main.storyboard in Resources */,
 				994299711D4769BF00D053B2 /* Info.plist in Resources */,
@@ -500,6 +507,7 @@
 				9942997C1D4769BF00D053B2 /* OtherServicesCell.swift in Sources */,
 				9942996C1D4769BF00D053B2 /* HairNetwork.swift in Sources */,
 				9942995D1D4769BF00D053B2 /* ChainSystemViewController.swift in Sources */,
+				E80CDBF41D491F7800B09385 /* AddressTabCell.swift in Sources */,
 				994299621D4769BF00D053B2 /* CustomerHistory.swift in Sources */,
 				994299721D4769BF00D053B2 /* JASON+Alamofire.swift in Sources */,
 				994299211D4769BF00D053B2 /* BookingViewController.swift in Sources */,
@@ -634,11 +642,14 @@
 			baseConfigurationReference = 658D836581C6627968E42D24 /* Pods-30Shine.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = 30Shine/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "vu.-0Shine";
+				PRODUCT_BUNDLE_IDENTIFIER = vu.30Shine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -647,11 +658,14 @@
 			baseConfigurationReference = 07F489400F76D4BC5F1DC920 /* Pods-30Shine.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = 30Shine/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "vu.-0Shine";
+				PRODUCT_BUNDLE_IDENTIFIER = vu.30Shine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
