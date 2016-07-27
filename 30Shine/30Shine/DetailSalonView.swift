@@ -26,6 +26,7 @@ class DetailSalonView: UIView , UIScrollViewDelegate{
     @IBOutlet weak var scrollView: UIScrollView!
     
     var salon : Salon = Salon()
+    var currentImgID = 0
     
     static func createInView(view: UIView, contentSalon: Salon) -> DetailSalonView{
         let detailSalonView = NSBundle.mainBundle().loadNibNamed("DetailSalonView", owner: self, options: nil) [0] as! DetailSalonView
@@ -48,6 +49,8 @@ class DetailSalonView: UIView , UIScrollViewDelegate{
     }
     
     func setupButtons(){
+        self.setupImageTap()
+    
         _=btnHotLine.rx_tap.subscribeNext({
             print("hotline")
             UIApplication.sharedApplication().openURL(NSURL(string: "tel://0989740361")!)
@@ -59,20 +62,62 @@ class DetailSalonView: UIView , UIScrollViewDelegate{
         
         _=btnFanpage.rx_tap.subscribeNext({
             print("fanpage")
-//            if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"fb://"]]) {
-//                // Safe to launch the facebook app
-//                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"fb://profile/200538917420"]];
-//            }
+            //            if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"fb://"]]) {
+            //                // Safe to launch the facebook app
+            //                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"fb://profile/200538917420"]];
+            //            }
             if(UIApplication .sharedApplication().canOpenURL(NSURL(string:"fb://")!)){
-            
+                
             }
-//            } else
-//            
-//            if let url = NSURL(string: "https://www.hackingwithswift.com") {
-//                UIApplication.sharedApplication().openURL(url)
-//            }
+            //            } else
+            //
+            //            if let url = NSURL(string: "https://www.hackingwithswift.com") {
+            //                UIApplication.sharedApplication().openURL(url)
+            //            }
         })
         
+    }
+    
+    func setupImageTap(){
+        
+        self.imvSalon1.tag = 1000
+        self.imvSalon2.tag = 2000
+        self.imvSalon3.tag = 3000
+        
+        let tapGestureRecognizer1 = UITapGestureRecognizer(target:self, action:#selector(imageTapped))
+        self.imvSalon1.userInteractionEnabled = true
+        self.imvSalon1.addGestureRecognizer(tapGestureRecognizer1)
+        
+        let tapGestureRecognizer2 = UITapGestureRecognizer(target:self, action:#selector(imageTapped))
+        self.imvSalon2.userInteractionEnabled = true
+        self.imvSalon2.addGestureRecognizer(tapGestureRecognizer2)
+        
+        let tapGestureRecognizer3 = UITapGestureRecognizer(target:self, action:#selector(imageTapped))
+        self.imvSalon3.userInteractionEnabled = true
+        self.imvSalon3.addGestureRecognizer(tapGestureRecognizer3)
+    }
+    
+    func imageTapped(gesture:UIGestureRecognizer)
+    {
+        
+        if(salon.listImages.count >= 4){
+            switch gesture.view!.tag {
+            case 1000:
+                self.currentImgID = 0
+                break
+            case 2000:
+                self.currentImgID = 1
+                break
+            case 3000:
+                self.currentImgID = 2
+                break
+            default:
+                self.currentImgID = 0
+                break
+            }
+            print("current id \(self.currentImgID)")
+            LazyImage.showForImageView(imvSelected, url: salon.listImages[self.currentImgID].url)
+        }
     }
     
     func setupContent(salon: Salon){
@@ -86,7 +131,6 @@ class DetailSalonView: UIView , UIScrollViewDelegate{
             LazyImage.showForImageView(imvSalon3, url: salon.listImages[2].thumb)
             LazyImage.showForImageView(imvMap, url: salon.listImages[3].url)
         }
-        
     }
     
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
