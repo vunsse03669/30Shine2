@@ -68,6 +68,8 @@
 		9942999D1D476FB100D053B2 /* ComboNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9942999A1D476FB100D053B2 /* ComboNetwork.swift */; };
 		9942999E1D476FB100D053B2 /* OtherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9942999B1D476FB100D053B2 /* OtherService.swift */; };
 		9942999F1D476FB100D053B2 /* OtherServiceNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9942999C1D476FB100D053B2 /* OtherServiceNetwork.swift */; };
+		998965861D488C48006DEDF5 /* YoutubeVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998965851D488C48006DEDF5 /* YoutubeVideo.swift */; };
+		9989658A1D488E0B006DEDF5 /* YoutubeNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998965891D488E0B006DEDF5 /* YoutubeNetwork.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -135,6 +137,8 @@
 		9942999A1D476FB100D053B2 /* ComboNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComboNetwork.swift; sourceTree = "<group>"; };
 		9942999B1D476FB100D053B2 /* OtherService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherService.swift; sourceTree = "<group>"; };
 		9942999C1D476FB100D053B2 /* OtherServiceNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherServiceNetwork.swift; sourceTree = "<group>"; };
+		998965851D488C48006DEDF5 /* YoutubeVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeVideo.swift; sourceTree = "<group>"; };
+		998965891D488E0B006DEDF5 /* YoutubeNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeNetwork.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +211,7 @@
 		994299921D476BB000D053B2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				998965821D488BA2006DEDF5 /* Video */,
 				994299961D476C2200D053B2 /* History */,
 				994299951D476BE900D053B2 /* Hair */,
 				994299941D476BE100D053B2 /* Home */,
@@ -312,6 +317,15 @@
 				994298FF1D4769BF00D053B2 /* LazyImage.swift */,
 			);
 			name = Vendor;
+			sourceTree = "<group>";
+		};
+		998965821D488BA2006DEDF5 /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				998965851D488C48006DEDF5 /* YoutubeVideo.swift */,
+				998965891D488E0B006DEDF5 /* YoutubeNetwork.swift */,
+			);
+			name = Video;
 			sourceTree = "<group>";
 		};
 		CEC2990FCF7D8F4BF553EFC9 /* Pods */ = {
@@ -459,6 +473,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				994299691D4769BF00D053B2 /* DetailSalonView.swift in Sources */,
+				9989658A1D488E0B006DEDF5 /* YoutubeNetwork.swift in Sources */,
 				994299841D4769BF00D053B2 /* SalonTableCell.swift in Sources */,
 				9942997E1D4769BF00D053B2 /* OtherServicesView.swift in Sources */,
 				9942995F1D4769BF00D053B2 /* ComboCell.swift in Sources */,
@@ -475,6 +490,7 @@
 				994299681D4769BF00D053B2 /* DetailHairViewController.swift in Sources */,
 				9942997A1D4769BF00D053B2 /* MenuNetwork.swift in Sources */,
 				9942991D1D4769BF00D053B2 /* AppDelegate.swift in Sources */,
+				998965861D488C48006DEDF5 /* YoutubeVideo.swift in Sources */,
 				994299801D4769BF00D053B2 /* ProfileViewController.swift in Sources */,
 				994299861D4769BF00D053B2 /* ServiceView.swift in Sources */,
 				9942998E1D4769BF00D053B2 /* Video.swift in Sources */,

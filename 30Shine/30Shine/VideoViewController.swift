@@ -11,6 +11,7 @@ import RxCocoa
 import RxSwift
 import MediaPlayer
 import youtube_parser
+import Alamofire
 
 class VideoViewController: UIViewController {
     
@@ -19,7 +20,7 @@ class VideoViewController: UIViewController {
     
     var moviePlayer : MPMoviePlayerController!
     
-    var videoVariable : Variable<[Video]> = Variable([])
+    var videoVariable : Variable<[YoutubeVideo]> = Variable([])
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,14 +48,16 @@ class VideoViewController: UIViewController {
         _ = self.videoVariable.asObservable().bindTo(self.tbvVideo.rx_itemsWithCellIdentifier("VideoCell", cellType: VideoCell.self)) {
             row,data,cell in
             cell.lblTitle.text = "\(data.title)"
-            LazyImage.showForImageView(cell.imvThumnail, url: self.getVideoId(data.thumnailUrl))
+            LazyImage.showForImageView(cell.imvThumnail, url: data.thumb)
+            print(data.thumb)
         }
         
         _ = self.tbvVideo.rx_itemSelected.subscribeNext {
             indexPath in
             self.tbvVideo.deselectRowAtIndexPath(indexPath, animated: false)
-            let url = self.videoVariable.value[indexPath.row].thumnailUrl
-            self.playVideo(url)
+            let url = self.videoVariable.value[indexPath.row].link
+            let urlPlay = self.getVideo(url)
+            self.playVideo(urlPlay)
         }
     }
     
@@ -98,6 +101,12 @@ class VideoViewController: UIViewController {
         })
     }
     
+    func getVideo(url : String) -> String {
+        let mask = "watch/"
+        let newMask = "watch?v="
+        return url.stringByReplacingOccurrencesOfString(mask, withString: newMask)
+    }
+    
     func doneButtonClick(sender:NSNotification?){
         let value = UIInterfaceOrientation.Portrait.rawValue
         UIDevice.currentDevice().setValue(value, forKey: "orientation")
@@ -116,11 +125,35 @@ class VideoViewController: UIViewController {
 
     //MARK:Dump data
     func initData() {
-        self.videoVariable.value.append(Video.init(title: "Cắt tạo kiểu Side Part | Phong cách Chanyeol (EXO) | Minh Phụng ", thumb: "https://www.youtube.com/watch?v=Q4to0oI2N-A"))
-        self.videoVariable.value.append(Video.init(title: "Cắt tạo kiểu Side Swept | Hồ Gia Hùng - HKT Band ", thumb: "https://www.youtube.com/watch?v=VgNELJELfDE"))
-        self.videoVariable.value.append(Video.init(title: "Cắt tạo kiểu Side Part | Phong cách TAO (EXO) | Ubin-G ", thumb: "https://www.youtube.com/watch?v=AX2HSXMNAGA"))
-        self.videoVariable.value.append(Video.init(title: "Cắt tạo kiểu Undercut Quiff | Phong cách Marco Reus | Hoàng Giang ", thumb: "https://www.youtube.com/watch?v=nHognIn1my8"))
-        self.videoVariable.value.append(Video.init(title: " Cắt tạo kiểu Layer | Phong cách Luhan (EXO) | Quang Hưng ", thumb: "https://www.youtube.com/watch?v=AgnFqNt_lfQ"))
+        self.parseJson { 
+            () in
+        }
+    }
+    
+    func parseJson(complete: ()->()) {
+        /*
+         {
+         SalonId: 3
+         }
+         */
+        let parameter = ["SalonId": 3]
+        dispatch_async(dispatch_get_global_queue(0, 0)) { 
+            Alamofire.request(.POST,VIDEO_YOUTUBE_API,parameters: parameter, encoding: .JSON)
+                .responseJASON { response in
+                    if let json = response.result.value {
+                        let videos = json["d"].map(YoutubeNetwork.init)
+                        for video in videos {
+                            if YoutubeVideo.getVideoById(video.id) == nil {
+                                let v = YoutubeVideo.create(video.id, title: video.title, link: video.link, thumb: video.thumb, viewCount: video.viewCount) 
+                                self.videoVariable.value.append(v)
+                            }
+                            else {
+                                self.videoVariable.value.append(YoutubeVideo.getVideoById(video.id))
+                            }
+                        }
+                    }
+            }
+        }
     }
     
 }

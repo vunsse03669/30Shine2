@@ -40,5 +40,12 @@ extension JSONKeys {
     // hair colletion
     static let images = JSONKey<JSON>("Images")
     static let title = JSONKey<String>("Title")
+    
+    // Video Youtube
+    static let youtube_id = JSONKey<Int>("Id")
+    static let youtube_title = JSONKey<String>("Title")
+    static let youtube_link = JSONKey<String>("Link")
+    static let youtube_viewCount = JSONKey<Int>("ViewCount")
+    static let youtube_thumb = JSONKey<String>("Thumb")
 
 }
