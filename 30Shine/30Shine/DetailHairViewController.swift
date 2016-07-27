@@ -16,6 +16,7 @@ class DetailHairViewController: UIViewController {
     @IBOutlet weak var lblOther: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
     @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var imvSmallImage4: UIImageView!
     @IBOutlet weak var imvSmallImage3: UIImageView!
     @IBOutlet weak var imvSmallImage2: UIImageView!
     @IBOutlet weak var imvSmallImage1: UIImageView!
@@ -39,6 +40,8 @@ class DetailHairViewController: UIViewController {
             .subscribeNext {
             self.navigationController?.popViewControllerAnimated(true)
         }
+        
+
     }
     
     //MARK: UI
@@ -58,16 +61,16 @@ class DetailHairViewController: UIViewController {
             _ = self.index.asObservable().subscribeNext {
                 index in
                 if data.title == self.menuVar.value[index].title {
-                    cell.lblTitle.font = UIFont.boldSystemFontOfSize(13)
+                    cell.lblTitle.font = UIFont.boldSystemFontOfSize(8)
                 }
                 else {
                     if #available(iOS 8.2, *) {
-                        cell.lblTitle.font = UIFont.systemFontOfSize(13, weight: UIFontWeightThin)
+                        cell.lblTitle.font = UIFont.systemFontOfSize(8, weight: UIFontWeightThin)
                     }
                 }
             }
             
-            cell.lblTitle.text = "\(data.title)"
+            cell.lblTitle.text = "\(data.title.uppercaseString)"
         }
         
         _ = self.clvMenu.rx_itemSelected.subscribeNext {
@@ -79,16 +82,22 @@ class DetailHairViewController: UIViewController {
         _ = self.otherHairVar.asObservable().bindTo(self.clvOtherHair.rx_itemsWithCellIdentifier("OtherHairCollectionViewCell", cellType: OtherHairCollectionViewCell.self)) {row,data,cell in
             LazyImage.showForImageView(cell.imvHair, url: data.imageUrl)
         }
+        
+        _ = self.clvOtherHair.rx_itemSelected.subscribeNext {
+            indexPath in
+            LazyImage.showForImageView(self.imvBigImage, url: self.otherHairVar.value[indexPath.row].imageUrl)
+        }
     }
     
     func configCollectionLayout() {
         self.view.layoutIfNeeded()
+        self.clvMenu.layoutIfNeeded()
         let layout : UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 0
-        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 2
+        layout.minimumInteritemSpacing = 2
         layout.sectionInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
         let width = self.view.bounds.width/3
-        let height = self.clvMenu.bounds.height
+        let height = self.clvMenu.bounds.height - 10
         layout.itemSize = CGSizeMake(width, height)
         layout.scrollDirection = .Horizontal
         self.clvMenu.setCollectionViewLayout(layout, animated: true)
@@ -96,9 +105,9 @@ class DetailHairViewController: UIViewController {
         let layoutHair : UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layoutHair.minimumLineSpacing = 2
         layoutHair.minimumInteritemSpacing = 2
-        layoutHair.sectionInset = UIEdgeInsets(top: 0, left: 2, bottom: 0, right: 2)
+        layoutHair.sectionInset = UIEdgeInsets(top: 0, left: 4, bottom: 0, right: 4)
         let w = self.view.bounds.width/4
-        let h = self.clvOtherHair.bounds.height
+        let h = self.clvOtherHair.bounds.height - 10
         layoutHair.itemSize = CGSizeMake(w, h)
         layoutHair.scrollDirection = .Horizontal
         self.clvOtherHair.setCollectionViewLayout(layoutHair, animated: true)
@@ -111,15 +120,21 @@ class DetailHairViewController: UIViewController {
         self.lblOther.text = "Các biến thể kiểu tóc \(self.menuVar.value[index.value].title)"
         
         let bigImageUrl = self.menuVar.value[index.value].images[0].imageUrl
-        let smallImage1Url = self.menuVar.value[index.value].images[1].imageUrl
-        let smallImage2Url = self.menuVar.value[index.value].images[2].imageUrl
-        let smallImage3Url = self.menuVar.value[index.value].images[3].imageUrl
+        let smallImage1Url = self.menuVar.value[index.value].images[0].imageUrl
+        let smallImage2Url = self.menuVar.value[index.value].images[1].imageUrl
+        let smallImage3Url = self.menuVar.value[index.value].images[2].imageUrl
+        let smallImage4Url = self.menuVar.value[index.value].images[3].imageUrl
         LazyImage.showForImageView(self.imvBigImage, url: bigImageUrl)
         LazyImage.showForImageView(self.imvSmallImage1, url: smallImage1Url)
         LazyImage.showForImageView(self.imvSmallImage2, url: smallImage2Url)
         LazyImage.showForImageView(self.imvSmallImage3, url: smallImage3Url)
+        LazyImage.showForImageView(self.imvSmallImage4, url: smallImage4Url)
         
         self.matchingDataForOtherHair(self.index.value)
+        self.tapOnImage(self.imvSmallImage1, url: smallImage1Url)
+        self.tapOnImage(self.imvSmallImage2, url: smallImage2Url)
+        self.tapOnImage(self.imvSmallImage3, url: smallImage3Url)
+        self.tapOnImage(self.imvSmallImage4, url: smallImage4Url)
     }
     
     func matchingDataForOtherHair(index : Int) {
@@ -131,5 +146,16 @@ class DetailHairViewController: UIViewController {
             }
             count += 1
         }
+    }
+    
+    //MARK: tap on image
+    func tapOnImage(image : UIImageView, url : String) {
+        image.userInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer.init()
+        _ = tapGesture.rx_event.subscribeNext {
+            gesture in
+            LazyImage.showForImageView(self.imvBigImage, url: url)
+        }
+        image.addGestureRecognizer(tapGesture)
     }
 }

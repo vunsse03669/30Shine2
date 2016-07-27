@@ -28,7 +28,7 @@ class VideoViewController: UIViewController {
         self.configUI()
 
         //back to home
-        self.configTableView()
+        //self.configTableView()
         _ = btnHome.rx_tap.subscribeNext {
             self.navigationController?.popViewControllerAnimated(true)
         }
@@ -127,6 +127,7 @@ class VideoViewController: UIViewController {
     func initData() {
         self.parseJson { 
             () in
+            self.configTableView()
         }
     }
     
