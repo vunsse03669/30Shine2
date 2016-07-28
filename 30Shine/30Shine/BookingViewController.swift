@@ -48,7 +48,12 @@ class BookingViewController: UIViewController {
         
         _ = btnHome.rx_tap
             .subscribeNext {
-                self.navigationController?.popViewControllerAnimated(true)
+                //let vc = self.storyboard?.instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
+                self.navigationController?.pop()
+        }
+        _ = btnProfile.rx_tap.subscribeNext {
+            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController") as! ProfileViewController
+            self.navigationController?.push(vc, animated: true)
         }
     }
     

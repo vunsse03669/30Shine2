@@ -28,11 +28,6 @@ class NetworkSender{
     static let sharedInstance = NetworkSender()
     
     func sendBooking(customerName: String, phone: String, salonID: String, dateBook: String, StylistId : String, hourId : String){
-   
-        let url = NSURL(string: BOOKING_API)
-        let request = NSMutableURLRequest(URL: url!)
-        request.HTTPMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let parameters = [
             "CustomerName" : customerName,
@@ -43,7 +38,7 @@ class NetworkSender{
             "HourId" : hourId
         ]
         
-        Alamofire.request(.POST, "http://api.30shine.com/booking/insert", parameters: parameters, encoding: .JSON)
+        Alamofire.request(.POST, BOOKING_API, parameters: parameters, encoding: .JSON)
             .responseJSON{
                 response in
                 switch response.result {
@@ -54,5 +49,25 @@ class NetworkSender{
                 }
         }
         
+    }
+}
+
+extension UINavigationController{
+    func push(viewController : UIViewController, animated : Bool){
+        //        let animation = CATransition()
+        //        animation.duration = 0.45
+        //        animation.type = kCATransitionPush
+        //        animation.subtype = kCATransitionFromRight
+        //        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+        //        viewController.view.layer.addAnimation(animation, forKey: "")
+        self.pushViewController(viewController, animated: true)
+    }
+    
+    func pop(){
+        
+        let viewControllers: [UIViewController] = self.viewControllers as [UIViewController];
+        for vc in viewControllers {
+            self.popToViewController(vc, animated: true)
+        }
     }
 }

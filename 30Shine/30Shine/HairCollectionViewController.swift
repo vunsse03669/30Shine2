@@ -25,8 +25,15 @@ class HairCollectionViewController: UIViewController {
         self.configUI()
         self.initData()
         //back to home
-        _ = btnHome.rx_tap.subscribeNext {
-            self.navigationController?.popViewControllerAnimated(true)
+        _ = btnHome.rx_tap
+            .subscribeNext {
+               // let vc = self.storyboard?.instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
+                self.navigationController?.pop()
+        }
+        //Click btnProfile
+        _ = btnProfile.rx_tap.subscribeNext {
+            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController") as! ProfileViewController
+            self.navigationController?.push(vc, animated: true)
         }
     }
     

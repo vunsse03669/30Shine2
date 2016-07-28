@@ -17,6 +17,7 @@ class VideoViewController: UIViewController {
     
     @IBOutlet weak var tbvVideo: UITableView!
     @IBOutlet weak var btnHome: UIButton!
+    @IBOutlet weak var btnProfile: UIButton!
     
     var moviePlayer : MPMoviePlayerController!
     
@@ -29,8 +30,15 @@ class VideoViewController: UIViewController {
 
         //back to home
         //self.configTableView()
-        _ = btnHome.rx_tap.subscribeNext {
-            self.navigationController?.popViewControllerAnimated(true)
+        _ = btnHome.rx_tap
+            .subscribeNext {
+                //let vc = self.storyboard?.instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
+                self.navigationController?.pop()
+        }
+        //Click btnProfile
+        _ = btnProfile.rx_tap.subscribeNext {
+            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController") as! ProfileViewController
+            self.navigationController?.push(vc, animated: true)
         }
     }
     
