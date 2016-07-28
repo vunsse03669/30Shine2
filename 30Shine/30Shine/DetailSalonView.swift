@@ -157,14 +157,16 @@ class DetailSalonView: UIView , UIScrollViewDelegate, UIGestureRecognizerDelegat
     }
     
     func doubleTapToZoom(gesture : UIGestureRecognizer){
-        print("asdasdas")
+        
         if(self.currentImgID != 3){
             return
         }
         if(self.scrollView.zoomScale == 1){
+            print("Zoom in")
             self.scrollView.setZoomScale(2, animated: true)
         }
         else{
+            print("Zoom out")
             self.scrollView.setZoomScale(1, animated: true)
         }
     }

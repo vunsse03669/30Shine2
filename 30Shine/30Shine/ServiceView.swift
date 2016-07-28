@@ -40,10 +40,16 @@ class ServiceView: UIView {
     func setupButton(){
         configUI()
         _ = btnShineCombo.rx_tap.subscribeNext({
+            if(self.currentIndex == 0){
+                return
+            }
             self.currentIndex = 0
             self.updateUI()
         })
         _ = btnOtherServices.rx_tap.subscribeNext({
+            if(self.currentIndex == 1){
+                return
+            }
             self.currentIndex = 1
             self.updateUI()
         })
@@ -72,7 +78,7 @@ class ServiceView: UIView {
         
     }
     func configUI(){
-        self.btnShineCombo.titleLabel?.font = UIFont(name: "UTM-Alexander", size: 17)
+        self.btnShineCombo.titleLabel?.font = UIFont(name: "UTM-Alexander", size: 14)
         self.btnOtherServices.titleLabel?.font = self.btnShineCombo.titleLabel?.font
         
         self.btnShineCombo.setTitle("Shine Combo", forState: UIControlState.Normal)

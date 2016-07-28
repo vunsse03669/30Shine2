@@ -22,19 +22,19 @@
                     <rect key="frame" x="4" y="4" width="592" height="592"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B01-0z-btj">
-                            <rect key="frame" x="0.0" y="0.0" width="592" height="240"/>
+                            <rect key="frame" x="0.0" y="0.0" width="592" height="320"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LNp-gH-Ad6">
-                                    <rect key="frame" x="0.0" y="0.0" width="592" height="240"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="592" height="320"/>
                                 </imageView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MDJ-fE-L1b">
-                                    <rect key="frame" x="0.0" y="0.0" width="592" height="240"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="592" height="320"/>
                                     <connections>
                                         <action selector="btnPlayDidTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="iLJ-VS-E3O"/>
                                     </connections>
                                 </button>
                                 <imageView userInteractionEnabled="NO" alpha="0.55000000000000004" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="YouTubePlay" translatesAutoresizingMaskIntoConstraints="NO" id="NXa-BI-ZOc">
-                                    <rect key="frame" x="237" y="96" width="118" height="48"/>
+                                    <rect key="frame" x="237" y="128" width="118" height="64"/>
                                 </imageView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -48,20 +48,20 @@
                                 <constraint firstAttribute="bottom" secondItem="LNp-gH-Ad6" secondAttribute="bottom" id="dqp-Vo-Drz"/>
                                 <constraint firstAttribute="bottom" secondItem="MDJ-fE-L1b" secondAttribute="bottom" id="mCb-KE-9J4"/>
                                 <constraint firstItem="NXa-BI-ZOc" firstAttribute="centerX" secondItem="B01-0z-btj" secondAttribute="centerX" id="ma5-6l-ZvK"/>
-                                <constraint firstAttribute="width" secondItem="B01-0z-btj" secondAttribute="height" multiplier="37:15" id="odN-8v-roO"/>
+                                <constraint firstAttribute="width" secondItem="B01-0z-btj" secondAttribute="height" multiplier="37:20" id="odN-8v-roO"/>
                                 <constraint firstItem="NXa-BI-ZOc" firstAttribute="centerY" secondItem="B01-0z-btj" secondAttribute="centerY" id="pnn-WO-Ejf"/>
                                 <constraint firstItem="NXa-BI-ZOc" firstAttribute="height" secondItem="B01-0z-btj" secondAttribute="height" multiplier="0.2" id="pzb-8h-X2u"/>
                                 <constraint firstItem="MDJ-fE-L1b" firstAttribute="leading" secondItem="B01-0z-btj" secondAttribute="leading" id="xJq-5P-x7T"/>
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello world" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="xaJ-zS-pmS">
-                            <rect key="frame" x="0.0" y="240" width="592" height="80"/>
+                            <rect key="frame" x="0.0" y="320" width="592" height="107"/>
                             <fontDescription key="fontDescription" name="UTM-Alexander" family="UTM Alexander" pointSize="15"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="uYH-Br-OFW">
-                            <rect key="frame" x="0.0" y="320" width="592" height="272"/>
+                            <rect key="frame" x="0.0" y="427" width="592" height="165"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Lc3-Kv-Mz5">
                                 <size key="itemSize" width="50" height="50"/>

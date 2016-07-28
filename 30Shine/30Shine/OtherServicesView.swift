@@ -30,7 +30,7 @@ class OtherServicesView: UIView ,UITableViewDelegate{
         UIView .animateWithDuration(0.2) {
             otherServicesView.alpha = 1
         }
-       otherServicesView.setupContent()
+        otherServicesView.setupContent()
         return otherServicesView
     }
     
@@ -52,6 +52,11 @@ class OtherServicesView: UIView ,UITableViewDelegate{
                     cell.btnPrice.text = data.listImages[0].title
                     LazyImage.showForImageView(cell.imvBackground, url: data.listImages[0].url)
                 }
+            }
+            
+            _ = self.tbvListCombo.rx_itemSelected.subscribeNext{
+                indexPath in
+                self.tbvListCombo.deselectRowAtIndexPath(indexPath, animated: false)
             }
         }
     }

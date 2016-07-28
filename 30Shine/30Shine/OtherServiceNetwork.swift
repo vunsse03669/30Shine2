@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Alamofire
 import JASON
 struct  OtherServiceNetwork {
     let ID           : Int
@@ -18,5 +19,40 @@ struct  OtherServiceNetwork {
         name = json[.name]
         images = json[.salon_images].map(ImageNetWork.init)
         videos = json[.salon_videos].map(VideoNetwork.init)
+    }
+}
+
+let sNetworkSender = NetworkSender.sharedInstance
+class NetworkSender{
+    
+    static let sharedInstance = NetworkSender()
+    
+    func sendBooking(customerName: String, phone: String, salonID: String, dateBook: String, StylistId : String, hourId : String){
+   
+        let url = NSURL(string: BOOKING_API)
+        let request = NSMutableURLRequest(URL: url!)
+        request.HTTPMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let parameters = [
+            "CustomerName" : customerName,
+            "CustomerPhone" : phone,
+            "SalonId" : salonID,
+            "DateBook" : dateBook,
+            "StylistId" : StylistId,
+            "HourId" : hourId
+        ]
+        
+        Alamofire.request(.POST, "http://api.30shine.com/booking/insert", parameters: parameters, encoding: .JSON)
+            .responseJSON{
+                response in
+                switch response.result {
+                case .Failure(let error):
+                    print(error)
+                case .Success(let responseObject):
+                    print(responseObject)
+                }
+        }
+        
     }
 }

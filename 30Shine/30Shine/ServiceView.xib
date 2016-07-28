@@ -13,26 +13,26 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kid-LV-zan">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="30"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="|" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gSA-n3-LcO">
-                            <rect key="frame" x="298" y="4" width="4" height="36"/>
+                            <rect key="frame" x="298" y="4" width="4" height="22"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S12-1C-YoJ">
-                            <rect key="frame" x="298" y="15" width="4" height="14"/>
+                            <rect key="frame" x="298" y="11" width="4" height="9"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="4" id="whb-Qa-N0N"/>
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RYy-wS-9vB">
-                            <rect key="frame" x="4" y="4" width="290" height="36"/>
+                            <rect key="frame" x="4" y="4" width="290" height="22"/>
                             <state key="normal" title="Shine combo"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qFS-sH-jpE">
-                            <rect key="frame" x="306" y="4" width="290" height="36"/>
+                            <rect key="frame" x="306" y="4" width="290" height="22"/>
                             <state key="normal" title="Dich vu khac"/>
                         </button>
                     </subviews>
@@ -42,7 +42,7 @@
                         <constraint firstItem="gSA-n3-LcO" firstAttribute="width" secondItem="S12-1C-YoJ" secondAttribute="width" id="5K7-wb-bbv"/>
                         <constraint firstItem="S12-1C-YoJ" firstAttribute="leading" secondItem="RYy-wS-9vB" secondAttribute="trailing" constant="4" id="6k8-NS-5fd"/>
                         <constraint firstItem="RYy-wS-9vB" firstAttribute="leading" secondItem="kid-LV-zan" secondAttribute="leading" constant="4" id="8zl-v8-RzF"/>
-                        <constraint firstAttribute="height" constant="44" id="FkZ-xY-xjv"/>
+                        <constraint firstAttribute="height" constant="30" id="FkZ-xY-xjv"/>
                         <constraint firstItem="gSA-n3-LcO" firstAttribute="top" secondItem="kid-LV-zan" secondAttribute="top" constant="4" id="V5V-Ab-KYI"/>
                         <constraint firstAttribute="bottom" secondItem="RYy-wS-9vB" secondAttribute="bottom" constant="4" id="XxI-wS-5Gl"/>
                         <constraint firstItem="qFS-sH-jpE" firstAttribute="top" secondItem="kid-LV-zan" secondAttribute="top" constant="4" id="Y8h-64-eQX"/>
@@ -65,7 +65,7 @@
                     </variation>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cMs-o3-bqG">
-                    <rect key="frame" x="0.0" y="44" width="600" height="556"/>
+                    <rect key="frame" x="0.0" y="30" width="600" height="570"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
             </subviews>
