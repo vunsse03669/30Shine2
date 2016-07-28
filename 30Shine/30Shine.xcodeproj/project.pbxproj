@@ -68,6 +68,16 @@
 		9942999D1D476FB100D053B2 /* ComboNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9942999A1D476FB100D053B2 /* ComboNetwork.swift */; };
 		9942999E1D476FB100D053B2 /* OtherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9942999B1D476FB100D053B2 /* OtherService.swift */; };
 		9942999F1D476FB100D053B2 /* OtherServiceNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9942999C1D476FB100D053B2 /* OtherServiceNetwork.swift */; };
+		99876EFF1D4A58030094EF12 /* UIDropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99876EFC1D4A58030094EF12 /* UIDropDown.swift */; };
+		99876F001D4A58030094EF12 /* UIDropDownStylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99876EFD1D4A58030094EF12 /* UIDropDownStylist.swift */; };
+		99876F011D4A58030094EF12 /* UIDropDownTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99876EFE1D4A58030094EF12 /* UIDropDownTime.swift */; };
+		99876F041D4A58260094EF12 /* Ionicons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99876F021D4A58260094EF12 /* Ionicons.swift */; };
+		99876F051D4A58260094EF12 /* ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 99876F031D4A58260094EF12 /* ionicons.ttf */; };
+		99876F071D4A5E8E0094EF12 /* BookingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99876F061D4A5E8E0094EF12 /* BookingCell.swift */; };
+		99876F0A1D4A5F780094EF12 /* BookingNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99876F091D4A5F780094EF12 /* BookingNetwork.swift */; };
+		99876F0C1D4A5FAB0094EF12 /* Booking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99876F0B1D4A5FAB0094EF12 /* Booking.swift */; };
+		99876F0E1D4A5FC10094EF12 /* StylistNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99876F0D1D4A5FC10094EF12 /* StylistNetwork.swift */; };
+		99876F101D4A5FD40094EF12 /* Stylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99876F0F1D4A5FD40094EF12 /* Stylist.swift */; };
 		998965861D488C48006DEDF5 /* YoutubeVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998965851D488C48006DEDF5 /* YoutubeVideo.swift */; };
 		9989658A1D488E0B006DEDF5 /* YoutubeNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998965891D488E0B006DEDF5 /* YoutubeNetwork.swift */; };
 		E80CDBF41D491F7800B09385 /* AddressTabCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80CDBF21D491F7800B09385 /* AddressTabCell.swift */; };
@@ -140,6 +150,16 @@
 		9942999A1D476FB100D053B2 /* ComboNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComboNetwork.swift; sourceTree = "<group>"; };
 		9942999B1D476FB100D053B2 /* OtherService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherService.swift; sourceTree = "<group>"; };
 		9942999C1D476FB100D053B2 /* OtherServiceNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherServiceNetwork.swift; sourceTree = "<group>"; };
+		99876EFC1D4A58030094EF12 /* UIDropDown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDropDown.swift; sourceTree = "<group>"; };
+		99876EFD1D4A58030094EF12 /* UIDropDownStylist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDropDownStylist.swift; sourceTree = "<group>"; };
+		99876EFE1D4A58030094EF12 /* UIDropDownTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDropDownTime.swift; sourceTree = "<group>"; };
+		99876F021D4A58260094EF12 /* Ionicons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ionicons.swift; sourceTree = "<group>"; };
+		99876F031D4A58260094EF12 /* ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ionicons.ttf; sourceTree = "<group>"; };
+		99876F061D4A5E8E0094EF12 /* BookingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingCell.swift; sourceTree = "<group>"; };
+		99876F091D4A5F780094EF12 /* BookingNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingNetwork.swift; sourceTree = "<group>"; };
+		99876F0B1D4A5FAB0094EF12 /* Booking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Booking.swift; sourceTree = "<group>"; };
+		99876F0D1D4A5FC10094EF12 /* StylistNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StylistNetwork.swift; sourceTree = "<group>"; };
+		99876F0F1D4A5FD40094EF12 /* Stylist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stylist.swift; sourceTree = "<group>"; };
 		998965851D488C48006DEDF5 /* YoutubeVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeVideo.swift; sourceTree = "<group>"; };
 		998965891D488E0B006DEDF5 /* YoutubeNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeNetwork.swift; sourceTree = "<group>"; };
 		E80CDBF21D491F7800B09385 /* AddressTabCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressTabCell.swift; sourceTree = "<group>"; };
@@ -217,6 +237,7 @@
 		994299921D476BB000D053B2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				99876F081D4A5F160094EF12 /* Booking */,
 				998965821D488BA2006DEDF5 /* Video */,
 				994299961D476C2200D053B2 /* History */,
 				994299951D476BE900D053B2 /* Hair */,
@@ -239,6 +260,7 @@
 				9942989E1D4769BF00D053B2 /* Assets.xcassets */,
 				9942989F1D4769BF00D053B2 /* LaunchScreen.storyboard */,
 				994298A11D4769BF00D053B2 /* Main.storyboard */,
+				99876F061D4A5E8E0094EF12 /* BookingCell.swift */,
 				994299031D4769BF00D053B2 /* MenuCell.swift */,
 				994299061D4769BF00D053B2 /* OtherHairCollectionViewCell.swift */,
 				994299041D4769BF00D053B2 /* MenuCollectionViewCell.swift */,
@@ -321,11 +343,35 @@
 		994299991D476C7A00D053B2 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				99876EFB1D4A57AD0094EF12 /* DropDownList */,
 				994298FD1D4769BF00D053B2 /* JASON+Alamofire.swift */,
 				994298FE1D4769BF00D053B2 /* JSONKEYsExtension.swift */,
 				994298FF1D4769BF00D053B2 /* LazyImage.swift */,
 			);
 			name = Vendor;
+			sourceTree = "<group>";
+		};
+		99876EFB1D4A57AD0094EF12 /* DropDownList */ = {
+			isa = PBXGroup;
+			children = (
+				99876F021D4A58260094EF12 /* Ionicons.swift */,
+				99876F031D4A58260094EF12 /* ionicons.ttf */,
+				99876EFC1D4A58030094EF12 /* UIDropDown.swift */,
+				99876EFD1D4A58030094EF12 /* UIDropDownStylist.swift */,
+				99876EFE1D4A58030094EF12 /* UIDropDownTime.swift */,
+			);
+			name = DropDownList;
+			sourceTree = "<group>";
+		};
+		99876F081D4A5F160094EF12 /* Booking */ = {
+			isa = PBXGroup;
+			children = (
+				99876F091D4A5F780094EF12 /* BookingNetwork.swift */,
+				99876F0B1D4A5FAB0094EF12 /* Booking.swift */,
+				99876F0D1D4A5FC10094EF12 /* StylistNetwork.swift */,
+				99876F0F1D4A5FD40094EF12 /* Stylist.swift */,
+			);
+			name = Booking;
 			sourceTree = "<group>";
 		};
 		998965821D488BA2006DEDF5 /* Video */ = {
@@ -414,6 +460,7 @@
 				994299711D4769BF00D053B2 /* Info.plist in Resources */,
 				994299761D4769BF00D053B2 /* ListSalonView.xib in Resources */,
 				9942991E1D4769BF00D053B2 /* Assets.xcassets in Resources */,
+				99876F051D4A58260094EF12 /* ionicons.ttf in Resources */,
 				9942991F1D4769BF00D053B2 /* LaunchScreen.storyboard in Resources */,
 				994299891D4769BF00D053B2 /* ShineComboView.xib in Resources */,
 				9942997F1D4769BF00D053B2 /* OtherServicesView.xib in Resources */,
@@ -486,15 +533,19 @@
 				994299691D4769BF00D053B2 /* DetailSalonView.swift in Sources */,
 				9989658A1D488E0B006DEDF5 /* YoutubeNetwork.swift in Sources */,
 				994299841D4769BF00D053B2 /* SalonTableCell.swift in Sources */,
+				99876F041D4A58260094EF12 /* Ionicons.swift in Sources */,
 				9942997E1D4769BF00D053B2 /* OtherServicesView.swift in Sources */,
 				9942995F1D4769BF00D053B2 /* ComboCell.swift in Sources */,
 				9942998A1D4769BF00D053B2 /* SlideNetwork.swift in Sources */,
 				994299811D4769BF00D053B2 /* Salon.swift in Sources */,
 				994299701D4769BF00D053B2 /* HomeViewController.swift in Sources */,
 				994299741D4769BF00D053B2 /* LazyImage.swift in Sources */,
+				99876F0A1D4A5F780094EF12 /* BookingNetwork.swift in Sources */,
 				994299901D4769BF00D053B2 /* VideoViewController.swift in Sources */,
+				99876F071D4A5E8E0094EF12 /* BookingCell.swift in Sources */,
 				994299821D4769BF00D053B2 /* SalonCell.swift in Sources */,
 				994299671D4769BF00D053B2 /* DB.swift in Sources */,
+				99876F101D4A5FD40094EF12 /* Stylist.swift in Sources */,
 				994299651D4769BF00D053B2 /* CustomerHistoryView.swift in Sources */,
 				9942996B1D4769BF00D053B2 /* HairCollectionViewController.swift in Sources */,
 				9942996F1D4769BF00D053B2 /* HistoryNetwork.swift in Sources */,
@@ -510,9 +561,11 @@
 				9942996E1D4769BF00D053B2 /* HairTypeCell.swift in Sources */,
 				9942997C1D4769BF00D053B2 /* OtherServicesCell.swift in Sources */,
 				9942996C1D4769BF00D053B2 /* HairNetwork.swift in Sources */,
+				99876F001D4A58030094EF12 /* UIDropDownStylist.swift in Sources */,
 				9942995D1D4769BF00D053B2 /* ChainSystemViewController.swift in Sources */,
 				E80CDBF41D491F7800B09385 /* AddressTabCell.swift in Sources */,
 				994299621D4769BF00D053B2 /* CustomerHistory.swift in Sources */,
+				99876F0C1D4A5FAB0094EF12 /* Booking.swift in Sources */,
 				994299721D4769BF00D053B2 /* JASON+Alamofire.swift in Sources */,
 				994299211D4769BF00D053B2 /* BookingViewController.swift in Sources */,
 				994299791D4769BF00D053B2 /* MenuCollectionViewCell.swift in Sources */,
@@ -524,11 +577,14 @@
 				994299881D4769BF00D053B2 /* ShineComboView.swift in Sources */,
 				9942998B1D4769BF00D053B2 /* UIColorExtension.swift in Sources */,
 				9942995E1D4769BF00D053B2 /* Combo.swift in Sources */,
+				99876F011D4A58030094EF12 /* UIDropDownTime.swift in Sources */,
 				9942999D1D476FB100D053B2 /* ComboNetwork.swift in Sources */,
 				9942997B1D4769BF00D053B2 /* OtherHairCollectionViewCell.swift in Sources */,
 				9942999F1D476FB100D053B2 /* OtherServiceNetwork.swift in Sources */,
 				994299781D4769BF00D053B2 /* MenuCell.swift in Sources */,
+				99876EFF1D4A58030094EF12 /* UIDropDown.swift in Sources */,
 				994299751D4769BF00D053B2 /* ListSalonView.swift in Sources */,
+				99876F0E1D4A5FC10094EF12 /* StylistNetwork.swift in Sources */,
 				994299631D4769BF00D053B2 /* CustomerHistoryCell.swift in Sources */,
 				9942996D1D4769BF00D053B2 /* HairType.swift in Sources */,
 			);
