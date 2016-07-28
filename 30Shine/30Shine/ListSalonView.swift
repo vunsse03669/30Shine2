@@ -73,7 +73,7 @@ class ListSalonView: UIView, UITableViewDelegate {
     }
     
     func showDetail(salon:Salon){
-        self.detailSalonView = DetailSalonView.createInView(self, contentSalon: salon)
+        //self.detailSalonView = DetailSalonView.createInView(self, contentSalon: salon)
     }
     
     func disappearDetail(){

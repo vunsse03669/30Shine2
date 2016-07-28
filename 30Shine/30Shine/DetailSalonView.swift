@@ -33,7 +33,7 @@ class DetailSalonView: UIView , UIScrollViewDelegate{
     var currentIndex :Variable<Int> = Variable(0)
     var currentImgID = 0
     
-    static func createInView(view: UIView, contentSalon: Salon) -> DetailSalonView{
+    static func createInView(view: UIView) -> DetailSalonView{
         let detailSalonView = NSBundle.mainBundle().loadNibNamed("DetailSalonView", owner: self, options: nil) [0] as! DetailSalonView
         view.layoutIfNeeded()
         detailSalonView.frame = CGRectMake(0, 0, view.frame.size.width, view.frame.size.height)
@@ -158,7 +158,7 @@ class DetailSalonView: UIView , UIScrollViewDelegate{
         //config layout
         let flowLayout: UICollectionViewFlowLayout! = UICollectionViewFlowLayout()
         flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 4)
-        let width = self.clvTabs.frame.width/3
+        let width = self.clvTabs.frame.width/2.5
         let height = self.clvTabs.frame.height - 4
         flowLayout.itemSize = CGSizeMake(width, height)
         flowLayout.minimumLineSpacing = 0

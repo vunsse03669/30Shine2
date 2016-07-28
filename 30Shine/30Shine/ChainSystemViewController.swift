@@ -18,7 +18,8 @@ class ChainSystemViewController: UIViewController {
     @IBOutlet weak var selector: NPSegmentedControl!
     
     
-    var listSalonView : ListSalonView!
+    //var listSalonView : ListSalonView!
+    var detailView : DetailSalonView!
     var serviceView : ServiceView!
     
     @IBOutlet weak var btnHome: UIButton!
@@ -77,7 +78,8 @@ class ChainSystemViewController: UIViewController {
     }
     
     func setupContent(){
-        listSalonView = ListSalonView.createInView(contentView)
+        //listSalonView = ListSalonView.createInView(contentView)
+        detailView = DetailSalonView.createInView(contentView)
         serviceView = ServiceView.createInView(contentView)
     }
     
@@ -85,22 +87,22 @@ class ChainSystemViewController: UIViewController {
         if(selector.selectedIndex() == 0){
             print("Dich vu")
             UIView .animateWithDuration(0.2, animations: {
-                self.listSalonView.alpha = 0
+                self.detailView.alpha = 0
                 self.serviceView.alpha = 1
             })
-            if(listSalonView.detailSalonView != nil){
-                self.listSalonView.disappearDetail()
-            }
+//            if(detailView != nil){
+//                self.detailView.disappearDetail()
+//            }
         }
         else{
             print("He thong")
             UIView .animateWithDuration(0.2, animations: {
-                self.listSalonView.alpha = 1
+                self.detailView.alpha = 1
                 self.serviceView.alpha = 0
             })
-            if(listSalonView.detailSalonView != nil){
-                self.listSalonView.disappearDetail()
-            }
+//            if(detailView.detailSalonView != nil){
+//                self.detailView.disappearDetail()
+//            }
         }
     }
     
