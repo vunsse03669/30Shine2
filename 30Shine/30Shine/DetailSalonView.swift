@@ -12,8 +12,7 @@ import RxSwift
 import Alamofire
 import RealmSwift
 
-class DetailSalonView: UIView , UIScrollViewDelegate{
-    
+class DetailSalonView: UIView , UIScrollViewDelegate, UIGestureRecognizerDelegate{
     @IBOutlet weak var lblAddress: UILabel!
     
     @IBOutlet weak var imvSelected: UIImageView!
@@ -106,6 +105,11 @@ class DetailSalonView: UIView , UIScrollViewDelegate{
         let tapGestureRecognizer4 = UITapGestureRecognizer(target:self, action:#selector(imageTapped))
         self.imvMap.userInteractionEnabled = true
         self.imvMap.addGestureRecognizer(tapGestureRecognizer4)
+        
+        let doubleTapZoom = UITapGestureRecognizer(target: self, action: #selector(doubleTapToZoom))
+        doubleTapZoom.numberOfTapsRequired = 2
+        self.imvSelected.userInteractionEnabled = true
+        self.imvSelected.addGestureRecognizer(doubleTapZoom)
     }
     
     func imageTapped(gesture:UIGestureRecognizer)
@@ -130,15 +134,15 @@ class DetailSalonView: UIView , UIScrollViewDelegate{
                 break
             }
             if(self.currentImgID < 3 && self.currentImgID >= 0){
-                print("f")
+                // print("f")
                 self.scrollView.zoomScale = 1
                 self.scrollView.userInteractionEnabled = false
             }
             else{
-                print("t")
+                //   print("t")
                 self.scrollView.userInteractionEnabled = true
             }
-            print("current id \(self.currentImgID)")
+            // print("current id \(self.currentImgID)")
             LazyImage.showForImageView(imvSelected, url: salon.listImages[self.currentImgID].url)
         }
     }
@@ -150,6 +154,19 @@ class DetailSalonView: UIView , UIScrollViewDelegate{
     
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
         return self.imvSelected
+    }
+    
+    func doubleTapToZoom(gesture : UIGestureRecognizer){
+        print("asdasdas")
+        if(self.currentImgID != 3){
+            return
+        }
+        if(self.scrollView.zoomScale == 1){
+            self.scrollView.setZoomScale(2, animated: true)
+        }
+        else{
+            self.scrollView.setZoomScale(1, animated: true)
+        }
     }
     
     func initData(){
