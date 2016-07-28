@@ -52,6 +52,10 @@ class DetailSalonView: UIView , UIScrollViewDelegate{
     
     func setupButtons(){
         self.setupImageTap()
+        //btn.imageView.setContentMode:UIViewContentModeScaleAspectFit;
+        btnBooking.imageView?.contentMode = .ScaleAspectFit
+        btnFanpage.imageView?.contentMode = .ScaleAspectFit
+        btnHotLine.imageView?.contentMode = .ScaleAspectFit
         
         _=btnHotLine.rx_tap.subscribeNext({
             print("hotline")
@@ -85,6 +89,7 @@ class DetailSalonView: UIView , UIScrollViewDelegate{
         self.imvSalon1.tag = 1000
         self.imvSalon2.tag = 2000
         self.imvSalon3.tag = 3000
+        self.imvMap   .tag = 4000
         
         let tapGestureRecognizer1 = UITapGestureRecognizer(target:self, action:#selector(imageTapped))
         self.imvSalon1.userInteractionEnabled = true
@@ -97,6 +102,10 @@ class DetailSalonView: UIView , UIScrollViewDelegate{
         let tapGestureRecognizer3 = UITapGestureRecognizer(target:self, action:#selector(imageTapped))
         self.imvSalon3.userInteractionEnabled = true
         self.imvSalon3.addGestureRecognizer(tapGestureRecognizer3)
+        
+        let tapGestureRecognizer4 = UITapGestureRecognizer(target:self, action:#selector(imageTapped))
+        self.imvMap.userInteractionEnabled = true
+        self.imvMap.addGestureRecognizer(tapGestureRecognizer4)
     }
     
     func imageTapped(gesture:UIGestureRecognizer)
@@ -113,35 +122,34 @@ class DetailSalonView: UIView , UIScrollViewDelegate{
             case 3000:
                 self.currentImgID = 2
                 break
+            case 4000:
+                self.currentImgID = 3
+                break
             default:
                 self.currentImgID = 0
                 break
+            }
+            if(self.currentImgID < 3 && self.currentImgID >= 0){
+                print("f")
+                self.scrollView.zoomScale = 1
+                self.scrollView.userInteractionEnabled = false
+            }
+            else{
+                print("t")
+                self.scrollView.userInteractionEnabled = true
             }
             print("current id \(self.currentImgID)")
             LazyImage.showForImageView(imvSelected, url: salon.listImages[self.currentImgID].url)
         }
     }
     
-    //    func setupContent(salon: Salon){
-    //        self.salon = salon
-    //        //self.lblAddress.text = salon.name
-    //        if(salon.listImages.count >= 4){
-    //            print("\(salon.listImages[3].thumb)")
-    //            LazyImage.showForImageView(imvSelected, url: salon.listImages[0].url)
-    //            LazyImage.showForImageView(imvSalon1, url: salon.listImages[0].thumb)
-    //            LazyImage.showForImageView(imvSalon2, url: salon.listImages[1].thumb)
-    //            LazyImage.showForImageView(imvSalon3, url: salon.listImages[2].thumb)
-    //            LazyImage.showForImageView(imvMap, url: salon.listImages[3].url)
-    //        }
-    //    }
-    
     func setupPichImageMap(){
         self.scrollView.minimumZoomScale = 1.0;
-        self.scrollView.maximumZoomScale = 10.0;
+        self.scrollView.maximumZoomScale = 5.0;
     }
     
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
-        return self.imvMap
+        return self.imvSelected
     }
     
     func initData(){
