@@ -92,7 +92,7 @@
                             <subviews>
                                 <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rWb-p9-4Tc">
                                     <rect key="frame" x="4" y="0.0" width="32" height="40"/>
-                                    <state key="normal" image="logo-facebook"/>
+                                    <state key="normal" image="Phone"/>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -224,6 +224,7 @@
         </view>
     </objects>
     <resources>
+        <image name="Phone" width="30" height="30"/>
         <image name="ic_book_black_24dp" width="95" height="119"/>
         <image name="khamthien1" width="332" height="249"/>
         <image name="khamthien2" width="332" height="250"/>

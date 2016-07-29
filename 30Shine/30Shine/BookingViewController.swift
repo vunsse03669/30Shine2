@@ -181,6 +181,8 @@ class BookingViewController: UIViewController {
         
         self.configCollectionViewLayout()
         
+        self.txtName.text = "Nguyen Van A"
+        self.txtPhone.text = "0123456789"
     }
     
     //MARK: CollectionView
