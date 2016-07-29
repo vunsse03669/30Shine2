@@ -11,6 +11,7 @@ import UIKit
 class BookingCell: UICollectionViewCell {
     @IBOutlet weak var lblTime: UILabel!
     @IBOutlet weak var lblStatus: UILabel!
+    var canBooking = false
     
     override func awakeFromNib() {
         super.awakeFromNib()
