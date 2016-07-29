@@ -21,7 +21,7 @@ class CustomerHistoryView: UIView, UITableViewDelegate {
         self.parseJSON { 
             () in
             self.configTableView()
-            let frame = CGRectMake(50, 20, 5, CGFloat(self.historyVar.value.count)*120 - 50)
+            let frame = CGRectMake(50, 20, 2, CGFloat(self.historyVar.value.count)*120 - 50)
             let lineView = UIView(frame: frame)
             lineView.backgroundColor = UIColor(netHex: 0xD8D9DB)
             self.tbvHistory.addSubview(lineView)
