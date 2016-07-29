@@ -28,7 +28,7 @@ class NetworkSender{
     static let sharedInstance = NetworkSender()
     
     func sendBooking(customerName: String, phone: String, salonID: String, dateBook: String, StylistId : String, hourId : String){
-    
+        
         let parameters = [
             "CustomerName" : customerName,
             "CustomerPhone" : phone,
@@ -49,5 +49,25 @@ class NetworkSender{
                 }
         }
         
+    }
+}
+
+extension UINavigationController{
+    func push(viewController : UIViewController, animated : Bool){
+        //        let animation = CATransition()
+        //        animation.duration = 0.45
+        //        animation.type = kCATransitionPush
+        //        animation.subtype = kCATransitionFromRight
+        //        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+        //        viewController.view.layer.addAnimation(animation, forKey: "")
+        self.pushViewController(viewController, animated: true)
+    }
+    
+    func pop(){
+        
+        let viewControllers: [UIViewController] = self.viewControllers as [UIViewController];
+        for vc in viewControllers {
+            self.popToViewController(vc, animated: true)
+        }
     }
 }

@@ -30,18 +30,30 @@ class DetailHairViewController: UIViewController {
     var otherHairVar : Variable<[Imagee]> = Variable([])
     var index : Variable<Int> = Variable(0)
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+         gotoIndex(index.value)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configUI()
         self.configCollectionView()
+       
         self.bindingData()
-
+        
         _ = btnHome.rx_tap
             .subscribeNext {
-            self.navigationController?.popViewControllerAnimated(true)
+                //let vc = self.storyboard?.instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
+                self.navigationController?.pop()
+        }
+        //Click btnProfile
+        _ = btnProfile.rx_tap.subscribeNext {
+            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController") as! ProfileViewController
+            self.navigationController?.push(vc, animated: true)
         }
         
-
+        
     }
     
     //MARK: UI
@@ -157,5 +169,12 @@ class DetailHairViewController: UIViewController {
             LazyImage.showForImageView(self.imvBigImage, url: url)
         }
         image.addGestureRecognizer(tapGesture)
+    }
+    
+    func gotoIndex(index : Int){
+        print("asdasdas")
+        self.clvMenu.layoutIfNeeded()
+        let indexPath = NSIndexPath(forRow: index, inSection: 0)
+        self.clvMenu .scrollToItemAtIndexPath(indexPath, atScrollPosition: .CenteredHorizontally, animated: true)
     }
 }

@@ -25,8 +25,10 @@ class ProfileViewController: UIViewController {
         //self.configContent()
         self.configSelector()
         //back to home
-        _ = btnHome.rx_tap.subscribeNext {
-            self.navigationController?.popViewControllerAnimated(true)
+        _ = btnHome.rx_tap
+            .subscribeNext {
+                //let vc = self.storyboard?.instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
+                self.navigationController?.pop()
         }
     }
     
@@ -67,7 +69,7 @@ class ProfileViewController: UIViewController {
     @IBAction func selectorValueChange(sender: AnyObject) {
         if(self.vSelector.selectedIndex() == 0 && self.currentTab != 0){
             self.currentTab = 0
-            print("Dich vu")
+            //print("Dich vu")
 //            UIView .animateWithDuration(0.2, animations: {
 //                self.listSalonView.alpha = 0
 //                self.serviceView.alpha = 1
