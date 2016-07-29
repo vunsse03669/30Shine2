@@ -29,7 +29,7 @@ class VideoViewController: UIViewController {
         self.configUI()
 
         //back to home
-        //self.configTableView()
+        self.configTableView()
         _ = btnHome.rx_tap
             .subscribeNext {
                 //let vc = self.storyboard?.instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
@@ -56,6 +56,7 @@ class VideoViewController: UIViewController {
         _ = self.videoVariable.asObservable().bindTo(self.tbvVideo.rx_itemsWithCellIdentifier("VideoCell", cellType: VideoCell.self)) {
             row,data,cell in
             cell.lblTitle.text = "\(data.title)"
+            print("\(data.title)")
             LazyImage.showForImageView(cell.imvThumnail, url: data.thumb)
             print(data.thumb)
         }

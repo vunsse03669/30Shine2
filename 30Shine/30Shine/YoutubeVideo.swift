@@ -23,6 +23,7 @@ class YoutubeVideo: Object {
         video.link = link
         video.thumb = thumb
         video.viewCount = viewCount
+        print("\(video.title)")
         self.createVideo(video)
         return video
     }
