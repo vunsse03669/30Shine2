@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 import Alamofire
 import JASON
 struct  OtherServiceNetwork {
@@ -27,7 +28,22 @@ class NetworkSender{
     
     static let sharedInstance = NetworkSender()
     
-    func sendBooking(customerName: String, phone: String, salonID: String, dateBook: String, StylistId : String, hourId : String){
+    func checkAvailable(key: String, inJson: JSON) -> Bool{
+        
+        if let _ = (inJson.dictionary!.indexOf { (dict) -> Bool in
+            inJson.dictionary![key] != nil
+            })
+        {
+            //print("Key Found \(index))")
+            return true
+        } else {
+            //print("Key not Found")
+            return false
+        }
+        
+    }
+    
+    func sendBooking(customerName: String, phone: String, salonID: String, dateBook: String, StylistId : String, hourId : String, completion:(Bool)->Bool){
         
         let parameters = [
             "CustomerName" : customerName,
@@ -39,28 +55,41 @@ class NetworkSender{
         ]
         
         Alamofire.request(.POST, BOOKING_API, parameters: parameters, encoding: .JSON)
-            .responseJSON{
+            .responseJASON{
                 response in
                 switch response.result {
                 case .Failure(let error):
                     print(error)
+<<<<<<< HEAD
+                case .Success/*(let responseObject)*/:
+                   // print(responseObject)
+                    if let json = response.result.value{
+                        if(self.checkAvailable("d", inJson: json)){
+                            completion(true)
+                        }else{
+                            completion(false)
+                        }
+                    }
+=======
                 case .Success(let responseObject):
                     print(responseObject)
                     print("Booking DONE!")
+>>>>>>> 0d3b705d09a1b31a96d43c1a63cbb76953d38576
                 }
         }
-        
+    }
+}
+
+
+struct  MessageBooking {
+    let name         : String
+    init(_ json : JSON){
+        name = json["Message"].string!
     }
 }
 
 extension UINavigationController{
     func push(viewController : UIViewController, animated : Bool){
-        //        let animation = CATransition()
-        //        animation.duration = 0.45
-        //        animation.type = kCATransitionPush
-        //        animation.subtype = kCATransitionFromRight
-        //        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
-        //        viewController.view.layer.addAnimation(animation, forKey: "")
         self.pushViewController(viewController, animated: true)
     }
     
