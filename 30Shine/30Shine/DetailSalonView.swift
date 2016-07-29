@@ -233,6 +233,7 @@ class DetailSalonView: UIView , UIScrollViewDelegate, UIGestureRecognizerDelegat
         }
     }
     
+    
     func parseJsonSalonSystem(complete:()->()){
         
         dispatch_async(dispatch_get_global_queue(0, 0)) {

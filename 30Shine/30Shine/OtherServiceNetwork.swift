@@ -60,9 +60,8 @@ class NetworkSender{
                 switch response.result {
                 case .Failure(let error):
                     print(error)
-<<<<<<< HEAD
                 case .Success/*(let responseObject)*/:
-                   // print(responseObject)
+                    // print(responseObject)
                     if let json = response.result.value{
                         if(self.checkAvailable("d", inJson: json)){
                             completion(true)
@@ -70,11 +69,6 @@ class NetworkSender{
                             completion(false)
                         }
                     }
-=======
-                case .Success(let responseObject):
-                    print(responseObject)
-                    print("Booking DONE!")
->>>>>>> 0d3b705d09a1b31a96d43c1a63cbb76953d38576
                 }
         }
     }
