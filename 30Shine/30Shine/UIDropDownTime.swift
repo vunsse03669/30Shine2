@@ -74,7 +74,7 @@ class UIDropDownTime: UIControl, UITableViewDataSource, UITableViewDelegate {
         
         arrow = UILabel(frame: CGRect(x: CGRectGetMaxX(title.frame), y: 0, width: 30, height: CGRectGetHeight(self.frame)))
         arrow.textAlignment = .Center
-        arrow.font = UIFont.ioniconOfSize(20)
+        arrow.font = UIFont.ioniconOfSize(13)
         arrow.text = String.ioniconWithName(.IosArrowDown)
         arrow.backgroundColor = .clearColor()
         self.addSubview(arrow)

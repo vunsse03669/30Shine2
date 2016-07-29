@@ -55,7 +55,7 @@ public extension UIFont {
             }
         }
         
-        return UIFont(name: name, size: fontSize)!
+        return UIFont(name: name, size: 13)!
     }
 }
 

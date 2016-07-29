@@ -18,6 +18,7 @@ class Booking: NSObject {
     var salonId : Int!
     var currentSlot : Int!
     var stylistCurrentSlot : Int!
+    var canBooking = false
     
     
     init(id : Int, hour : String, status : String, slot : Int, hourFrame : String, salonId : Int, currentSlot : Int, stylistCurrentSlot : Int) {

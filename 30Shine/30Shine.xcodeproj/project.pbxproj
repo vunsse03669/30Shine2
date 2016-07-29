@@ -427,7 +427,7 @@
 				TargetAttributes = {
 					994298851D47675E00D053B2 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = YCJNEHP2D6;
+						DevelopmentTeam = 56YJ3N6KSG;
 					};
 				};
 			};
@@ -707,7 +707,7 @@
 				INFOPLIST_FILE = 30Shine/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = vu.30Shine;
+				PRODUCT_BUNDLE_IDENTIFIER = vuu.30Shine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -723,7 +723,7 @@
 				INFOPLIST_FILE = 30Shine/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = vu.30Shine;
+				PRODUCT_BUNDLE_IDENTIFIER = vuu.30Shine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="nCv-O6-zhf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="nCv-O6-zhf">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -856,7 +856,7 @@
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BTu-E7-WI6">
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  Vd: 0914709101" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BTu-E7-WI6">
                                                         <rect key="frame" x="60" y="93" width="530" height="30"/>
                                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
@@ -865,7 +865,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5GF-vM-DeF">
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  Vd: Thành" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5GF-vM-DeF">
                                                         <rect key="frame" x="60" y="39" width="530" height="30"/>
                                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
@@ -884,7 +884,7 @@
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stylist" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UA9-Fz-Ngb">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stylist:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UA9-Fz-Ngb">
                                                         <rect key="frame" x="0.0" y="252" width="50" height="21"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="50" id="Bdk-FZ-UZL"/>
@@ -904,6 +904,16 @@
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Giờ hẹn:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FKN-4E-Bwe">
+                                                        <rect key="frame" x="0.0" y="303" width="60" height="21"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="60" id="6NH-aw-dv5"/>
+                                                            <constraint firstAttribute="height" constant="21" id="G19-wU-bbP"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                 </subviews>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
@@ -915,6 +925,7 @@
                                                     <constraint firstItem="rUH-UV-Wi4" firstAttribute="centerY" secondItem="3Dm-PG-MOH" secondAttribute="centerY" id="Q6k-u3-Ifs"/>
                                                     <constraint firstAttribute="trailing" secondItem="BTu-E7-WI6" secondAttribute="trailing" constant="10" id="YFr-oJ-gsA"/>
                                                     <constraint firstItem="rUH-UV-Wi4" firstAttribute="leading" secondItem="3Dm-PG-MOH" secondAttribute="leading" id="dWY-hU-o9d"/>
+                                                    <constraint firstItem="FKN-4E-Bwe" firstAttribute="leading" secondItem="3Dm-PG-MOH" secondAttribute="leading" id="e4k-4I-glY"/>
                                                     <constraint firstItem="ClP-6R-Xzn" firstAttribute="leading" secondItem="3Dm-PG-MOH" secondAttribute="leading" id="heK-Vs-eWm"/>
                                                     <constraint firstItem="3gb-6b-oP3" firstAttribute="top" secondItem="ClP-6R-Xzn" secondAttribute="bottom" constant="30" id="iI5-oT-cVG"/>
                                                     <constraint firstItem="5GF-vM-DeF" firstAttribute="bottom" secondItem="ClP-6R-Xzn" secondAttribute="bottom" id="iW2-pw-WQn"/>
@@ -922,6 +933,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="5GF-vM-DeF" secondAttribute="trailing" constant="10" id="mHG-nh-ZK7"/>
                                                     <constraint firstItem="uOk-8k-Paf" firstAttribute="leading" secondItem="3Dm-PG-MOH" secondAttribute="leading" id="oji-YG-UJe"/>
                                                     <constraint firstItem="UA9-Fz-Ngb" firstAttribute="leading" secondItem="3Dm-PG-MOH" secondAttribute="leading" id="ryx-eR-2S0"/>
+                                                    <constraint firstItem="FKN-4E-Bwe" firstAttribute="top" secondItem="UA9-Fz-Ngb" secondAttribute="bottom" constant="30" id="ty5-25-y2N"/>
                                                     <constraint firstItem="uOk-8k-Paf" firstAttribute="top" secondItem="rUH-UV-Wi4" secondAttribute="bottom" constant="30" id="wsg-0F-Hy1"/>
                                                 </constraints>
                                             </view>

@@ -31,7 +31,11 @@ class BookingViewController: UIViewController {
                                 "82 Trần Đại Nghĩa",
                                 "235 Đội Cấn",
                                 "702 Đường Láng"]
+    var salontCount = 0
+    var dateCount = 0
+    var stylistCount = 0
     
+    var bookingTimeId : Variable<Int> = Variable(0)
     var dataVar : Variable<[Booking]> = Variable([])
     var stylistVar : Variable<[Stylist]> = Variable([])
     var statusDate : Variable<Double> = Variable(0)
@@ -55,6 +59,35 @@ class BookingViewController: UIViewController {
             let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController") as! ProfileViewController
             self.navigationController?.push(vc, animated: true)
         }
+        
+        _ = btnSubmit.rx_tap.subscribeNext {
+            print("Name : \(self.txtName.text)")
+            print("Phone: \(self.txtPhone.text)")
+            print("Salon id: \(self.statusSalonId.value)")
+            print("Date : \(self.toDate(self.statusDate.value))")
+            print("Stylist id : \(self.stylistId[self.statusStylistIndex.value])")
+            print("HourId : \(self.bookingTimeId.value)")
+            
+            let name = self.txtName.text!
+            let phone = self.txtPhone.text!
+            let salonId = String(self.statusSalonId.value)
+            let date = self.toDate(self.statusDate.value)
+            let stylistId = String(self.stylistId[self.statusStylistIndex.value])
+            let hourId = String(self.bookingTimeId.value)
+            if name != "" && phone != "" && date != "" && hourId != "0" {
+                print("booking")
+                if self.choseStylist {
+                    sNetworkSender.sendBooking(name, phone: phone, salonID: salonId, dateBook: date, StylistId: stylistId, hourId: hourId)
+                }
+                else {
+                    sNetworkSender.sendBooking(name, phone: phone, salonID: salonId, dateBook: date, StylistId: "0", hourId: hourId)
+                }
+                
+            }
+            else {
+                
+            }
+        }
     }
     
     //MARK: UI
@@ -66,6 +99,8 @@ class BookingViewController: UIViewController {
         self.navigationItem.titleView = imageView
         self.scrollView.bringSubviewToFront(self.vContainer)
         self.clvBooking.layer.zPosition = -1000
+        self.clvBooking.layer.borderWidth = 0.5
+        self.clvBooking.layer.borderColor = UIColor.blackColor().CGColor
         
         self.txtPhone.layer.cornerRadius = 5.0
         self.txtPhone.layer.borderColor = UIColor.blackColor().CGColor
@@ -95,7 +130,7 @@ class BookingViewController: UIViewController {
         
         dropStylist.placeholder = "Chọn stylist(không bắt buộc)"
         dropSalon.options = self.salonList
-        dropTime.options = ["Hôm nay \(self.format(self.getDate(self.getTime(0))))",
+        dropTime.options = ["Hôm nay \(self.format(self.getDate(self.getTime(0.0))))",
                             "Ngày mai \(self.format(self.getDate(self.getTime(1))))",
                             "Ngày kia \(self.format(self.getDate(self.getTime(2))))"]
         
@@ -126,27 +161,47 @@ class BookingViewController: UIViewController {
             
             _ = self.statusDate.asObservable().subscribeNext {
                 status in
-        
+    
                 if self.checkDate(self.getDay(status), month: self.getMonth(status), year: self.getYear(status), hour: self.getHour(data.hour), minute: self.getMinute(data.hour)) {
-                    cell.backgroundColor = UIColor.greenColor()
+                    cell.backgroundColor = UIColor(netHex: 0x008040)
                     cell.lblTime.textColor = UIColor.whiteColor()
                     cell.lblStatus.textColor = UIColor.whiteColor()
                     cell.lblStatus.text = "Còn chỗ"
+                    data.canBooking = true
+                    
                 }
                 else if data.currentSlot == data.slot {
-                    cell.backgroundColor = UIColor.redColor()
+                    cell.backgroundColor = UIColor(netHex: 0xFF5E3A)
                     cell.lblTime.textColor = UIColor.whiteColor()
                     cell.lblStatus.textColor = UIColor.whiteColor()
                     cell.lblStatus.text = "Hết chỗ"
+                    data.canBooking = false
                 }
                 else {
-                    cell.backgroundColor = UIColor.grayColor()
+                    cell.backgroundColor = UIColor(netHex: 0xDBDDDE)
+                    cell.lblStatus.textColor = UIColor.blackColor()
+                    cell.lblTime.textColor = UIColor.blackColor()
                     cell.lblStatus.text = "Nghỉ"
+                    data.canBooking = false
                 }
             }
 
             cell.layer.cornerRadius = 5.0
             cell.clipsToBounds = true
+        }
+        
+        _ = self.clvBooking.rx_itemSelected.subscribeNext {
+            indexPath in
+            let cell = self.dataVar.value[indexPath.row]
+            if cell.canBooking {
+                self.bookingTimeId.value = cell.id
+                for cell in self.clvBooking.visibleCells() {
+                    cell.layer.borderWidth = 0.0
+                }
+                self.clvBooking.cellForItemAtIndexPath(indexPath)?.layer.borderColor = UIColor.blackColor().CGColor
+                self.clvBooking.cellForItemAtIndexPath(indexPath)?.layer.borderWidth = 1.0
+            }
+            
         }
     }
     
@@ -169,7 +224,7 @@ class BookingViewController: UIViewController {
 extension BookingViewController {
     func getTime(time : Double) -> String {
         let today = NSDate()
-        let date = today.dateByAddingTimeInterval((1 + time)*24 * 60 * 60)
+        let date = today.dateByAddingTimeInterval((time)*24 * 60 * 60)
 
         return String(date)
     }
@@ -208,7 +263,6 @@ extension BookingViewController {
             default:
                 print("")
             }
-            
         }
         day = day.stringByReplacingOccurrencesOfString("-", withString: "")
         month = month.stringByReplacingOccurrencesOfString("-", withString: "")
@@ -218,7 +272,7 @@ extension BookingViewController {
     
     func getDay(time : Double) -> Int {
         let today = NSDate()
-        let date = today.dateByAddingTimeInterval((1 + time)*24 * 60 * 60)
+        let date = today.dateByAddingTimeInterval((time)*24 * 60 * 60)
         let unitFlags: NSCalendarUnit = [.Hour, .Day, .Month, .Year]
         let components = NSCalendar.currentCalendar().components(unitFlags, fromDate: date)
         return components.day
@@ -226,7 +280,8 @@ extension BookingViewController {
     
     func getMonth(time : Double) -> Int {
         let today = NSDate()
-        let date = today.dateByAddingTimeInterval((1 + time)*24 * 60 * 60)
+        let date = today.dateByAddingTimeInterval((time)*24 * 60 * 60)
+
         let unitFlags: NSCalendarUnit = [.Hour, .Day, .Month, .Year]
         let components = NSCalendar.currentCalendar().components(unitFlags, fromDate: date)
         return components.month
@@ -234,7 +289,7 @@ extension BookingViewController {
     
     func getYear(time : Double) -> Int {
         let today = NSDate()
-        let date = today.dateByAddingTimeInterval((1 + time)*24 * 60 * 60)
+        let date = today.dateByAddingTimeInterval((time)*24 * 60 * 60)
         let unitFlags: NSCalendarUnit = [.Hour, .Day, .Month, .Year]
         let components = NSCalendar.currentCalendar().components(unitFlags, fromDate: date)
         return components.year
@@ -273,13 +328,12 @@ extension BookingViewController {
     func checkTime(hour : Int, minute : Int) -> Bool {
         let h = NSCalendar.currentCalendar().component(NSCalendarUnit.Hour, fromDate: NSDate())
         let m = NSCalendar.currentCalendar().component(NSCalendarUnit.Minute, fromDate: NSDate())
-        print(h)
-        print(m)
-        if hour > h + 1 || (hour == h + 1 && 60 - m + minute >= 30) {
+        
+        if hour > h + 1 || (hour == h + 1 && 60 - m + minute >= 15) {
             return true
         }
         else if h == hour {
-            if minute - m >= 30 {
+            if minute - m >= 15 {
                 return true
             }
         }
@@ -314,8 +368,6 @@ extension BookingViewController {
         return false
     }
 
-
-
 }
 
 extension BookingViewController : UIDropDownDelegate {
@@ -337,37 +389,45 @@ extension BookingViewController : UIDropDownDelegate {
 
 extension BookingViewController : UIDropDownTimeDelegate {
     func dropDownTime(dropDown: UIDropDownTime, didSelectOption option: String, atIndex index: Int){
-        self.statusDate.value = Double(index)
-        if choseStylist {
-            self.parseSchedule(self.statusSalonId.value, workDate: self.toDate(self.statusDate.value), stylistId: self.stylistId[self.statusStylistIndex.value]) {
-                () in
-                print(self.statusDate.value)
-                print("salonId \(self.statusSalonId.value)")
-                print("workDate \(self.toDate(self.statusDate.value))")
-                print("stylistId \(self.stylistId[self.statusStylistIndex.value])")
+        if self.dateCount > 0 {
+            self.statusDate.value = Double(index)
+            if choseStylist {
+                self.parseSchedule(self.statusSalonId.value, workDate: self.toDate(self.statusDate.value), stylistId: self.stylistId[self.statusStylistIndex.value]) {
+                    () in
+                    print(self.statusDate.value)
+                    print("salonId \(self.statusSalonId.value)")
+                    print("workDate \(self.toDate(self.statusDate.value))")
+                    print("stylistId \(self.stylistId[self.statusStylistIndex.value])")
+                    
+                }
+            }
+            else {
+                self.parseSchedule(self.statusSalonId.value, workDate: self.toDate(self.statusDate.value), stylistId: 0) {
+                    () in
+                    print(self.statusDate.value)
+                    print("salonId \(self.statusSalonId.value)")
+                    print("workDate \(self.toDate(self.statusDate.value))")
+                    print("stylistId \(self.stylistId[self.statusStylistIndex.value])")
+                    
+                }
             }
         }
-        else {
-            self.parseSchedule(self.statusSalonId.value, workDate: self.toDate(self.statusDate.value), stylistId: 0) {
-                () in
-                print(self.statusDate.value)
-                print("salonId \(self.statusSalonId.value)")
-                print("workDate \(self.toDate(self.statusDate.value))")
-                print("stylistId \(self.stylistId[self.statusStylistIndex.value])")
-            }
-        }
+       self.dateCount += 1
     }
 }
 
 extension BookingViewController : UIDropDownStylistDelegate {
     func dropDownStylist(dropDown: UIDropDownStylist, didSelectOption option: String, atIndex index: Int){
-        self.statusStylistIndex.value = index
+        if stylistCount > 0 {
+            self.statusStylistIndex.value = index
+        }
+        
         self.choseStylist = true
-        self.parseSchedule(self.statusSalonId.value, workDate: self.toDate(Double(index)), stylistId: stylistId[index]) {
+        self.parseSchedule(self.statusSalonId.value, workDate: self.toDate(self.statusDate.value), stylistId: stylistId[index]) {
             () in
-            
+            self.stylistCount += 1
             print("salonId \(self.statusSalonId.value)")
-            print("workDate \(self.toDate(Double(index)))")
+            print("workDate \(self.toDate(self.statusDate.value))")
             print("stylistId \(self.stylistId[index])")
         }
     }
