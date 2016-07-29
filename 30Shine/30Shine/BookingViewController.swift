@@ -77,10 +77,10 @@ class BookingViewController: UIViewController {
             if name != "" && phone != "" && date != "" && hourId != "0" {
                 print("booking")
                 if self.choseStylist {
-                    sNetworkSender.sendBooking(name, phone: phone, salonID: salonId, dateBook: date, StylistId: stylistId, hourId: hourId)
+//                    sNetworkSender.sendBooking(name, phone: phone, salonID: salonId, dateBook: date, StylistId: stylistId, hourId: hourId)
                 }
                 else {
-                    sNetworkSender.sendBooking(name, phone: phone, salonID: salonId, dateBook: date, StylistId: "0", hourId: hourId)
+//                    sNetworkSender.sendBooking(name, phone: phone, salonID: salonId, dateBook: date, StylistId: "0", hourId: hourId)
                 }
                 
             }

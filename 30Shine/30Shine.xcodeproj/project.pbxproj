@@ -80,6 +80,7 @@
 		99876F101D4A5FD40094EF12 /* Stylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99876F0F1D4A5FD40094EF12 /* Stylist.swift */; };
 		998965861D488C48006DEDF5 /* YoutubeVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998965851D488C48006DEDF5 /* YoutubeVideo.swift */; };
 		9989658A1D488E0B006DEDF5 /* YoutubeNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998965891D488E0B006DEDF5 /* YoutubeNetwork.swift */; };
+		99BC264C1D4B4324006E3ACE /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BC264B1D4B4324006E3ACE /* ViewControllerExtension.swift */; };
 		E80CDBF41D491F7800B09385 /* AddressTabCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80CDBF21D491F7800B09385 /* AddressTabCell.swift */; };
 		E80CDBF51D491F7800B09385 /* AddressTabCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E80CDBF31D491F7800B09385 /* AddressTabCell.xib */; };
 		E8219B341D4A31E5008C6C23 /* DetailSalonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8219B331D4A31E5008C6C23 /* DetailSalonView.xib */; };
@@ -162,6 +163,7 @@
 		99876F0F1D4A5FD40094EF12 /* Stylist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stylist.swift; sourceTree = "<group>"; };
 		998965851D488C48006DEDF5 /* YoutubeVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeVideo.swift; sourceTree = "<group>"; };
 		998965891D488E0B006DEDF5 /* YoutubeNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeNetwork.swift; sourceTree = "<group>"; };
+		99BC264B1D4B4324006E3ACE /* ViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
 		E80CDBF21D491F7800B09385 /* AddressTabCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressTabCell.swift; sourceTree = "<group>"; };
 		E80CDBF31D491F7800B09385 /* AddressTabCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressTabCell.xib; sourceTree = "<group>"; };
 		E8219B331D4A31E5008C6C23 /* DetailSalonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailSalonView.xib; sourceTree = "<group>"; };
@@ -336,6 +338,7 @@
 			children = (
 				994299161D4769BF00D053B2 /* UIColorExtension.swift */,
 				994299171D4769BF00D053B2 /* UIViewExtension.swift */,
+				99BC264B1D4B4324006E3ACE /* ViewControllerExtension.swift */,
 			);
 			name = Apple;
 			sourceTree = "<group>";
@@ -544,6 +547,7 @@
 				994299901D4769BF00D053B2 /* VideoViewController.swift in Sources */,
 				99876F071D4A5E8E0094EF12 /* BookingCell.swift in Sources */,
 				994299821D4769BF00D053B2 /* SalonCell.swift in Sources */,
+				99BC264C1D4B4324006E3ACE /* ViewControllerExtension.swift in Sources */,
 				994299671D4769BF00D053B2 /* DB.swift in Sources */,
 				99876F101D4A5FD40094EF12 /* Stylist.swift in Sources */,
 				994299651D4769BF00D053B2 /* CustomerHistoryView.swift in Sources */,
