@@ -85,7 +85,8 @@ class BookingViewController: UIViewController {
                 
             }
             else {
-                
+                let alert = UIAlertView(title: "", message: "Booking failed. Please fill all field require", delegate: nil, cancelButtonTitle: "Ok")
+                alert.show()
             }
         }
     }

@@ -56,9 +56,7 @@ class VideoViewController: UIViewController {
         _ = self.videoVariable.asObservable().bindTo(self.tbvVideo.rx_itemsWithCellIdentifier("VideoCell", cellType: VideoCell.self)) {
             row,data,cell in
             cell.lblTitle.text = "\(data.title)"
-            print("\(data.title)")
             LazyImage.showForImageView(cell.imvThumnail, url: data.thumb)
-            print(data.thumb)
         }
         
         _ = self.tbvVideo.rx_itemSelected.subscribeNext {
@@ -94,7 +92,8 @@ class VideoViewController: UIViewController {
         self.moviePlayer.fullscreen = true
         let youtubeURL = NSURL(string: url)!
         if youtubeURL.absoluteString != "" {
-            self.moviePlayer.stop()
+            //self.moviePlayer.stop()
+            print(youtubeURL)
              self.playVideoWithYoutubeURL(youtubeURL)
              NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(VideoViewController.doneButtonClick(_:)), name: MPMoviePlayerWillExitFullscreenNotification, object: nil)
         }
@@ -102,9 +101,10 @@ class VideoViewController: UIViewController {
     
     func playVideoWithYoutubeURL(url: NSURL) {
         Youtube.h264videosWithYoutubeURL(url, completion: { (videoInfo, error) -> Void in
+            print("xxx \(url)")
+             print("ccc \(videoInfo?["url"] as? String )")
             if let
-                videoURLString = videoInfo?["url"] as? String,
-                _ = videoInfo?["title"] as? String {
+                videoURLString = videoInfo?["url"] as? String {
                 self.moviePlayer.contentURL = NSURL(string: videoURLString)
             }
         })
