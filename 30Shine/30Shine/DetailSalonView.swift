@@ -67,18 +67,10 @@ class DetailSalonView: UIView , UIScrollViewDelegate, UIGestureRecognizerDelegat
         
         _=btnFanpage.rx_tap.subscribeNext({
             print("fanpage")
-            //            if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"fb://"]]) {
-            //                // Safe to launch the facebook app
-            //                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"fb://profile/200538917420"]];
-            //            }
-            if(UIApplication .sharedApplication().canOpenURL(NSURL(string:"fb://")!)){
-                
+        
+            if let url = NSURL(string: self.salon.fanpage) {
+                UIApplication.sharedApplication().openURL(url)
             }
-            //            } else
-            //
-            //            if let url = NSURL(string: "https://www.hackingwithswift.com") {
-            //                UIApplication.sharedApplication().openURL(url)
-            //            }
         })
         
     }
@@ -232,6 +224,7 @@ class DetailSalonView: UIView , UIScrollViewDelegate, UIGestureRecognizerDelegat
             LazyImage.showForImageView(imvMap, url: salon.listImages[3].url)
         }
     }
+    
     
     func parseJsonSalonSystem(complete:()->()){
         

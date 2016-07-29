@@ -42,7 +42,7 @@ class BookingViewController: UIViewController {
     var statusSalonId : Variable<Int> = Variable(0)
     var statusStylistIndex : Variable<Int> = Variable(0)
     
-     override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         self.configUI()
         self.configCollectionView()
@@ -77,10 +77,39 @@ class BookingViewController: UIViewController {
             if name != "" && phone != "" && date != "" && hourId != "0" {
                 print("booking")
                 if self.choseStylist {
-//                    sNetworkSender.sendBooking(name, phone: phone, salonID: salonId, dateBook: date, StylistId: stylistId, hourId: hourId)
+                    sNetworkSender.sendBooking(name, phone: phone, salonID: salonId, dateBook: date, StylistId: stylistId, hourId: hourId,completion: {
+                        Bool in
+                        if(Bool){
+                            print("DONE")
+                            let alert =  UIAlertView(title: "BOOKING DONE", message: "", delegate: nil, cancelButtonTitle: "Close")
+                            alert.show()
+                        }
+                        else{
+                            let alert =  UIAlertView(title: "BOOKING DONE", message: "", delegate: nil, cancelButtonTitle: "Close")
+                            alert.show()
+                            print("ERROR")
+                        }
+                        return Bool
+                    })
                 }
                 else {
-//                    sNetworkSender.sendBooking(name, phone: phone, salonID: salonId, dateBook: date, StylistId: "0", hourId: hourId)
+                    
+                    sNetworkSender.sendBooking(name, phone: phone, salonID: salonId, dateBook: date, StylistId: "0", hourId: hourId,completion: {
+                        Bool in
+                        if(Bool){
+                            print("DONE")
+                            let alert =  UIAlertView(title: "BOOKING DONE", message: "", delegate: nil, cancelButtonTitle: "Close")
+                            alert.show()
+                        }
+                        else{
+                            let alert =  UIAlertView(title: "BOOKING DONE", message: "", delegate: nil, cancelButtonTitle: "Close")
+                            alert.show()
+                            print("ERROR")
+                        }
+                        return Bool
+                    })
+                    
+                    
                 }
                 
             }
@@ -151,7 +180,9 @@ class BookingViewController: UIViewController {
         dropStylist.hideOptionsWhenSelect = true
         
         self.configCollectionViewLayout()
-
+        
+        self.txtName.text = "Nguyen Van A"
+        self.txtPhone.text = "0123456789"
     }
     
     //MARK: CollectionView
@@ -162,7 +193,7 @@ class BookingViewController: UIViewController {
             
             _ = self.statusDate.asObservable().subscribeNext {
                 status in
-    
+                
                 if self.checkDate(self.getDay(status), month: self.getMonth(status), year: self.getYear(status), hour: self.getHour(data.hour), minute: self.getMinute(data.hour)) {
                     cell.backgroundColor = UIColor(netHex: 0x008040)
                     cell.lblTime.textColor = UIColor.whiteColor()
@@ -186,7 +217,7 @@ class BookingViewController: UIViewController {
                     data.canBooking = false
                 }
             }
-
+            
             cell.layer.cornerRadius = 5.0
             cell.clipsToBounds = true
         }
@@ -218,15 +249,15 @@ class BookingViewController: UIViewController {
         layout.itemSize = CGSizeMake(width, height)
         self.clvBooking.setCollectionViewLayout(layout, animated: true)
     }
-
-
+    
+    
 }
 
 extension BookingViewController {
     func getTime(time : Double) -> String {
         let today = NSDate()
         let date = today.dateByAddingTimeInterval((time)*24 * 60 * 60)
-
+        
         return String(date)
     }
     
@@ -240,7 +271,7 @@ extension BookingViewController {
         }
         return str
     }
-
+    
     func format(str : String) -> String {
         var day = ""
         var month = ""
@@ -282,7 +313,7 @@ extension BookingViewController {
     func getMonth(time : Double) -> Int {
         let today = NSDate()
         let date = today.dateByAddingTimeInterval((time)*24 * 60 * 60)
-
+        
         let unitFlags: NSCalendarUnit = [.Hour, .Day, .Month, .Year]
         let components = NSCalendar.currentCalendar().components(unitFlags, fromDate: date)
         return components.month
@@ -368,7 +399,7 @@ extension BookingViewController {
         
         return false
     }
-
+    
 }
 
 extension BookingViewController : UIDropDownDelegate {
@@ -384,7 +415,7 @@ extension BookingViewController : UIDropDownDelegate {
             }
             
         }
-
+        
     }
 }
 
@@ -413,7 +444,7 @@ extension BookingViewController : UIDropDownTimeDelegate {
                 }
             }
         }
-       self.dateCount += 1
+        self.dateCount += 1
     }
 }
 
