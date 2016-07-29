@@ -73,11 +73,11 @@ class DetailHairViewController: UIViewController {
             _ = self.index.asObservable().subscribeNext {
                 index in
                 if data.title == self.menuVar.value[index].title {
-                    cell.lblTitle.font = UIFont.boldSystemFontOfSize(8)
+                    cell.lblTitle.font = UIFont.boldSystemFontOfSize(11)
                 }
                 else {
                     if #available(iOS 8.2, *) {
-                        cell.lblTitle.font = UIFont.systemFontOfSize(8, weight: UIFontWeightThin)
+                        cell.lblTitle.font = UIFont.systemFontOfSize(11, weight: UIFontWeightThin)
                     }
                 }
             }

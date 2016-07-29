@@ -11,20 +11,21 @@ import RxCocoa
 import RxSwift
 import Alamofire
 
-class CustomerHistoryView: UIView {
+class CustomerHistoryView: UIView, UITableViewDelegate {
 
     @IBOutlet weak var tbvHistory: UITableView!
     var historyVar : Variable<[CustomerHistory]> = Variable([])
     override func awakeFromNib() {
         super.awakeFromNib()
+        tbvHistory.delegate = self
         self.parseJSON { 
             () in
             self.configTableView()
-//            let frame = CGRectMake(50, 20, 5, self.bounds.height)
-//            let lineView = UIView(frame: frame)
-//            lineView.backgroundColor = UIColor(netHex: 0xDBDDDE)
-//            self.addSubview(lineView)
-
+            let frame = CGRectMake(50, 20, 5, CGFloat(self.historyVar.value.count)*120 - 50)
+            let lineView = UIView(frame: frame)
+            lineView.backgroundColor = UIColor(netHex: 0xD8D9DB)
+            self.tbvHistory.addSubview(lineView)
+            lineView.layer.zPosition = -1000
         }
     }
     
@@ -144,6 +145,11 @@ class CustomerHistoryView: UIView {
                 }
             }
         }
+    }
+    
+    //MARK: table delegate
+    func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+        return UITableViewCellEditingStyle.None
     }
     
 }

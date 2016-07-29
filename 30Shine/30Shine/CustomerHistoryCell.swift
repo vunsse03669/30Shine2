@@ -19,7 +19,7 @@ class CustomerHistoryCell: UITableViewCell {
         super.awakeFromNib()
         self.contentView.layer.cornerRadius = 13
         self.contentView.clipsToBounds = true
-        self.contentView.backgroundColor = UIColor(netHex: 0xDBDDDE)
+        self.contentView.backgroundColor = UIColor(netHex: 0xD8D9DB)
     }
     
     override func layoutSubviews() {
