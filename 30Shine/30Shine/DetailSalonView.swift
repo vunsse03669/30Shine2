@@ -72,7 +72,6 @@ class DetailSalonView: UIView , UIScrollViewDelegate, UIGestureRecognizerDelegat
                 UIApplication.sharedApplication().openURL(url)
             }
         })
-        
     }
     
     func setupImageTap(){
@@ -126,12 +125,10 @@ class DetailSalonView: UIView , UIScrollViewDelegate, UIGestureRecognizerDelegat
                 break
             }
             if(self.currentImgID < 3 && self.currentImgID >= 0){
-                // print("f")
                 self.scrollView.zoomScale = 1
                 self.scrollView.userInteractionEnabled = false
             }
             else{
-                //   print("t")
                 self.scrollView.userInteractionEnabled = true
             }
             // print("current id \(self.currentImgID)")
@@ -216,12 +213,14 @@ class DetailSalonView: UIView , UIScrollViewDelegate, UIGestureRecognizerDelegat
         self.salon = salonVariable.value[currentIndex.value]
         //self.lblAddress.text = salon.name
         if(salon.listImages.count >= 4){
-            print("\(salon.listImages[3].thumb)")
             LazyImage.showForImageView(imvSelected, url: salon.listImages[0].url)
             LazyImage.showForImageView(imvSalon1, url: salon.listImages[0].thumb)
             LazyImage.showForImageView(imvSalon2, url: salon.listImages[1].thumb)
             LazyImage.showForImageView(imvSalon3, url: salon.listImages[2].thumb)
             LazyImage.showForImageView(imvMap, url: salon.listImages[3].url)
+            
+            self.scrollView.userInteractionEnabled = false
+            self.scrollView.zoomScale = 1
         }
     }
     
