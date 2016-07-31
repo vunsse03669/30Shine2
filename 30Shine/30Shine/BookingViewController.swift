@@ -61,8 +61,8 @@ class BookingViewController: UIViewController {
         }
         
         _ = btnSubmit.rx_tap.subscribeNext {
-            print("Name : \(self.txtName.text)")
-            print("Phone: \(self.txtPhone.text)")
+            print("Name : \(self.txtName.text!)")
+            print("Phone: \(self.txtPhone.text!)")
             print("Salon id: \(self.statusSalonId.value)")
             print("Date : \(self.toDate(self.statusDate.value))")
             print("Stylist id : \(self.stylistId[self.statusStylistIndex.value])")
@@ -130,16 +130,20 @@ class BookingViewController: UIViewController {
         self.scrollView.bringSubviewToFront(self.vContainer)
         self.clvBooking.layer.zPosition = -1000
         self.clvBooking.layer.borderWidth = 0.5
-        self.clvBooking.layer.borderColor = UIColor.blackColor().CGColor
+        self.clvBooking.layer.borderColor = UIColor(netHex: 0xD7D7D7).CGColor
+        self.clvBooking.layer.cornerRadius = 5.0
         
-        self.txtPhone.layer.cornerRadius = 5.0
-        self.txtPhone.layer.borderColor = UIColor.blackColor().CGColor
+        self.btnSubmit.layer.cornerRadius = 5.0
+        
+        self.txtPhone.layer.borderColor = UIColor(netHex: 0xD7D7D7).CGColor
         self.txtPhone.layer.borderWidth = 1.0
         self.txtPhone.clipsToBounds = true
-        self.txtName.layer.cornerRadius = 5.0
+        self.txtPhone.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
+        
         self.txtName.layer.borderWidth = 1.0
-        self.txtName.layer.borderColor = UIColor.blackColor().CGColor
+        self.txtName.layer.borderColor = UIColor(netHex: 0xD7D7D7).CGColor
         self.txtName.clipsToBounds = true
+        self.txtName.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
         
         self.txtName.layoutIfNeeded()
         self.vContainer.layoutIfNeeded()
@@ -195,25 +199,28 @@ class BookingViewController: UIViewController {
                 status in
                 
                 if self.checkDate(self.getDay(status), month: self.getMonth(status), year: self.getYear(status), hour: self.getHour(data.hour), minute: self.getMinute(data.hour)) {
-                    cell.backgroundColor = UIColor(netHex: 0x008040)
+                    cell.backgroundColor = UIColor(netHex: 0x4FAC4B)
                     cell.lblTime.textColor = UIColor.whiteColor()
                     cell.lblStatus.textColor = UIColor.whiteColor()
                     cell.lblStatus.text = "Còn chỗ"
+                    cell.canBooking = true
                     data.canBooking = true
                     
                 }
                 else if data.currentSlot == data.slot {
-                    cell.backgroundColor = UIColor(netHex: 0xFF5E3A)
+                    cell.backgroundColor = UIColor(netHex: 0xB3322E)
                     cell.lblTime.textColor = UIColor.whiteColor()
                     cell.lblStatus.textColor = UIColor.whiteColor()
                     cell.lblStatus.text = "Hết chỗ"
+                    cell.canBooking = false
                     data.canBooking = false
                 }
                 else {
-                    cell.backgroundColor = UIColor(netHex: 0xDBDDDE)
+                    cell.backgroundColor = UIColor(netHex: 0xC1C1C1)
                     cell.lblStatus.textColor = UIColor.blackColor()
                     cell.lblTime.textColor = UIColor.blackColor()
                     cell.lblStatus.text = "Nghỉ"
+                    cell.canBooking = false
                     data.canBooking = false
                 }
             }
@@ -227,11 +234,13 @@ class BookingViewController: UIViewController {
             let cell = self.dataVar.value[indexPath.row]
             if cell.canBooking {
                 self.bookingTimeId.value = cell.id
-                for cell in self.clvBooking.visibleCells() {
-                    cell.layer.borderWidth = 0.0
+                for cell in self.clvBooking.visibleCells() as! [BookingCell] {
+                    if cell.canBooking {
+                        cell.backgroundColor = UIColor(netHex: 0x4FAC4B)
+                    }
                 }
-                self.clvBooking.cellForItemAtIndexPath(indexPath)?.layer.borderColor = UIColor.blackColor().CGColor
-                self.clvBooking.cellForItemAtIndexPath(indexPath)?.layer.borderWidth = 1.0
+                self.clvBooking.cellForItemAtIndexPath(indexPath)?.backgroundColor = UIColor(netHex: 0x1AD6FD)
+                
             }
             
         }
@@ -245,7 +254,7 @@ class BookingViewController: UIViewController {
         layout.minimumLineSpacing = 5
         layout.minimumInteritemSpacing = 5
         let width = self.vContainer.bounds.width/4 - 12
-        let height = 0.8*width
+        let height = 0.6*width
         layout.itemSize = CGSizeMake(width, height)
         self.clvBooking.setCollectionViewLayout(layout, animated: true)
     }

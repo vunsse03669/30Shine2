@@ -61,20 +61,21 @@ class UIDropDownStylist: UIControl, UITableViewDataSource, UITableViewDelegate {
     
     func setup() {
     
-        self.layer.cornerRadius = 5.0
+        //self.layer.cornerRadius = 5.0
         self.layer.borderWidth = 1.0
-        self.layer.borderColor = UIColor.blackColor().CGColor
+        self.layer.borderColor = UIColor(netHex: 0xD7D7D7).CGColor
         self.backgroundColor = .whiteColor()
         
-        title = UILabel(frame: CGRect(x: 0, y: 0, width: CGRectGetWidth(self.frame)-30, height: CGRectGetHeight(self.frame)))
-        title.textAlignment = .Center
+        title = UILabel(frame: CGRect(x: 5, y: 0, width: CGRectGetWidth(self.frame)-30, height: CGRectGetHeight(self.frame)))
+        title.textAlignment = .Left
         title.backgroundColor = .clearColor()
-        title.font = font
+        title.font = title.font.fontWithSize(13)
+        //title.font = font
         self.addSubview(title)
         
         arrow = UILabel(frame: CGRect(x: CGRectGetMaxX(title.frame), y: 0, width: 30, height: CGRectGetHeight(self.frame)))
         arrow.textAlignment = .Center
-        arrow.font = UIFont.ioniconOfSize(13)
+        arrow.font = UIFont.ioniconOfSize(18)
         arrow.text = String.ioniconWithName(.IosArrowDown)
         arrow.backgroundColor = .clearColor()
         self.addSubview(arrow)
@@ -104,9 +105,9 @@ class UIDropDownStylist: UIControl, UITableViewDataSource, UITableViewDelegate {
         table = UITableView(frame: CGRect(x: CGRectGetMinX(self.frame), y: CGRectGetMinY(self.frame), width: CGRectGetWidth(self.frame), height: CGRectGetHeight(self.frame)))
         table.dataSource = self
         table.delegate = self
-        table.layer.cornerRadius = 5.0
+        //table.layer.cornerRadius = 5.0
         table.layer.borderWidth = 1.0
-        table.layer.borderColor = UIColor.blackColor().CGColor
+        table.layer.borderColor = UIColor(netHex: 0xD7D7D7).CGColor
         table.alpha = 0
         
         self.superview?.insertSubview(table, belowSubview: self)
@@ -214,7 +215,7 @@ class UIDropDownStylist: UIControl, UITableViewDataSource, UITableViewDelegate {
             cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier)
         }
         
-        cell?.textLabel?.font = font
+        cell?.textLabel?.font = cell?.textLabel?.font.fontWithSize(13)
         cell?.textLabel?.text = "\(options[indexPath.row])"
         cell?.accessoryType = indexPath.row == selectedIndex ? .Checkmark : .None
         cell?.selectionStyle = .None
