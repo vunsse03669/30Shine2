@@ -17,6 +17,7 @@ struct BookingNetwork {
     let salonId : Int
     let currentSlot : Int
     let stylistCurrentSlot : Int
+    let statusBooking : Int
     
     init(_ json : JSON) {
         id = json[.id]
@@ -26,5 +27,6 @@ struct BookingNetwork {
         salonId = json[.salonId]
         currentSlot = json[.currentSlot]
         stylistCurrentSlot = json[.stylistCurrentSlot]
+        statusBooking = json[.statusBooking]
     }
 }

@@ -19,9 +19,10 @@ class Booking: NSObject {
     var currentSlot : Int!
     var stylistCurrentSlot : Int!
     var canBooking = false
+    var statusBooking : Int!
     
     
-    init(id : Int, hour : String, status : String, slot : Int, hourFrame : String, salonId : Int, currentSlot : Int, stylistCurrentSlot : Int) {
+    init(id : Int, hour : String, status : String, slot : Int, hourFrame : String, salonId : Int, currentSlot : Int, stylistCurrentSlot : Int, statusBooking: Int) {
         self.hour = hour
         self.status = status
         self.id = id
@@ -30,6 +31,7 @@ class Booking: NSObject {
         self.salonId = salonId
         self.currentSlot = currentSlot
         self.stylistCurrentSlot = stylistCurrentSlot
+        self.statusBooking = statusBooking
     }
     
 }
