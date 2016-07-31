@@ -24,7 +24,7 @@ class BookingViewController: UIViewController {
     var dropSalon : UIDropDown!
     var dropTime : UIDropDownTime!
     var dropStylist : UIDropDownStylist!
-    var choseStylist = false
+    //var choseStylist = false
     var stylistId : [Int] = [0]
     var salonId : [Int] = [2,3,4,5]
     var salonList : [String] = ["346 Khâm Thiên",
@@ -34,13 +34,15 @@ class BookingViewController: UIViewController {
     var salontCount = 0
     var dateCount = 0
     var stylistCount = 0
+    var salonCount = 0
     
     var bookingTimeId : Variable<Int> = Variable(0)
     var dataVar : Variable<[Booking]> = Variable([])
     var stylistVar : Variable<[Stylist]> = Variable([])
     var statusDate : Variable<Double> = Variable(0)
     var statusSalonId : Variable<Int> = Variable(0)
-    var statusStylistIndex : Variable<Int> = Variable(0)
+    //var statusStylistIndex : Variable<Int> = Variable(0)
+    var stylistID : Variable<Int> = Variable(0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +54,6 @@ class BookingViewController: UIViewController {
         
         _ = btnHome.rx_tap
             .subscribeNext {
-                //let vc = self.storyboard?.instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
                 self.navigationController?.pop()
         }
         _ = btnProfile.rx_tap.subscribeNext {
@@ -65,53 +66,31 @@ class BookingViewController: UIViewController {
             print("Phone: \(self.txtPhone.text!)")
             print("Salon id: \(self.statusSalonId.value)")
             print("Date : \(self.toDate(self.statusDate.value))")
-            print("Stylist id : \(self.stylistId[self.statusStylistIndex.value])")
+            print("Stylist id : \(self.stylistID.value)")
             print("HourId : \(self.bookingTimeId.value)")
             
             let name = self.txtName.text!
             let phone = self.txtPhone.text!
             let salonId = String(self.statusSalonId.value)
             let date = self.toDate(self.statusDate.value)
-            let stylistId = String(self.stylistId[self.statusStylistIndex.value])
+            let stylistId = String(self.stylistID.value)
             let hourId = String(self.bookingTimeId.value)
             if name != "" && phone != "" && date != "" && hourId != "0" {
                 print("booking")
-                if self.choseStylist {
-                    sNetworkSender.sendBooking(name, phone: phone, salonID: salonId, dateBook: date, StylistId: stylistId, hourId: hourId,completion: {
-                        Bool in
-                        if(Bool){
-                            print("DONE")
-                            let alert =  UIAlertView(title: "BOOKING DONE", message: "", delegate: nil, cancelButtonTitle: "Close")
-                            alert.show()
-                        }
-                        else{
-                            let alert =  UIAlertView(title: "BOOKING DONE", message: "", delegate: nil, cancelButtonTitle: "Close")
-                            alert.show()
-                            print("ERROR")
-                        }
-                        return Bool
-                    })
-                }
-                else {
-                    
-                    sNetworkSender.sendBooking(name, phone: phone, salonID: salonId, dateBook: date, StylistId: "0", hourId: hourId,completion: {
-                        Bool in
-                        if(Bool){
-                            print("DONE")
-                            let alert =  UIAlertView(title: "BOOKING DONE", message: "", delegate: nil, cancelButtonTitle: "Close")
-                            alert.show()
-                        }
-                        else{
-                            let alert =  UIAlertView(title: "BOOKING DONE", message: "", delegate: nil, cancelButtonTitle: "Close")
-                            alert.show()
-                            print("ERROR")
-                        }
-                        return Bool
-                    })
-                    
-                    
-                }
-                
+                sNetworkSender.sendBooking(name, phone: phone, salonID: salonId, dateBook: date, StylistId: stylistId, hourId: hourId,completion: {
+                    Bool in
+                    if(Bool){
+                        print("DONE")
+                        let alert =  UIAlertView(title: "BOOKING DONE", message: "", delegate: nil, cancelButtonTitle: "Close")
+                        alert.show()
+                    }
+                    else{
+                        let alert =  UIAlertView(title: "BOOKING DONE", message: "", delegate: nil, cancelButtonTitle: "Close")
+                        alert.show()
+                        print("ERROR")
+                    }
+                    return Bool
+                })
             }
             else {
                 let alert = UIAlertView(title: "", message: "Booking failed. Please fill all field require", delegate: nil, cancelButtonTitle: "Ok")
@@ -197,32 +176,41 @@ class BookingViewController: UIViewController {
             
             _ = self.statusDate.asObservable().subscribeNext {
                 status in
-                
-                if self.checkDate(self.getDay(status), month: self.getMonth(status), year: self.getYear(status), hour: self.getHour(data.hour), minute: self.getMinute(data.hour)) {
-                    cell.backgroundColor = UIColor(netHex: 0x4FAC4B)
-                    cell.lblTime.textColor = UIColor.whiteColor()
-                    cell.lblStatus.textColor = UIColor.whiteColor()
-                    cell.lblStatus.text = "Còn chỗ"
-                    cell.canBooking = true
-                    data.canBooking = true
+  //              print("\(self.stylistId[self.statusStylistIndex.value])")
+                if  self.stylistID.value == 0 {
+                    if self.checkDate(self.getDay(status), month: self.getMonth(status), year: self.getYear(status), hour: self.getHour(data.hour), minute: self.getMinute(data.hour)) {
+                        self.haveSlot(cell)
+                        data.canBooking = true
+                        
+                    }
+                    else {
+                        self.desist(cell)
+                        data.canBooking = false
+                    }
                     
-                }
-                else if data.currentSlot == data.slot {
-                    cell.backgroundColor = UIColor(netHex: 0xB3322E)
-                    cell.lblTime.textColor = UIColor.whiteColor()
-                    cell.lblStatus.textColor = UIColor.whiteColor()
-                    cell.lblStatus.text = "Hết chỗ"
-                    cell.canBooking = false
-                    data.canBooking = false
+                    if data.currentSlot >= data.slot {
+                        self.fullSlot(cell)
+                        data.canBooking = false
+                    }
+
                 }
                 else {
-                    cell.backgroundColor = UIColor(netHex: 0xC1C1C1)
-                    cell.lblStatus.textColor = UIColor.blackColor()
-                    cell.lblTime.textColor = UIColor.blackColor()
-                    cell.lblStatus.text = "Nghỉ"
-                    cell.canBooking = false
-                    data.canBooking = false
+                    switch data.statusBooking {
+                    case 0:
+                        self.desist(cell)
+                        data.canBooking = false
+                    case 1:
+                        self.fullSlot(cell)
+                        data.canBooking = false
+                    case 2:
+                        self.haveSlot(cell)
+                        data.canBooking = true
+                    default:
+                        print("failded")
+                    }
                 }
+                
+                
             }
             
             cell.layer.cornerRadius = 5.0
@@ -259,9 +247,35 @@ class BookingViewController: UIViewController {
         self.clvBooking.setCollectionViewLayout(layout, animated: true)
     }
     
+    func haveSlot(cell : BookingCell) {
+        cell.backgroundColor = UIColor(netHex: 0x4FAC4B)
+        cell.lblTime.textColor = UIColor.whiteColor()
+        cell.lblStatus.textColor = UIColor.whiteColor()
+        cell.lblStatus.text = "Còn chỗ"
+        cell.canBooking = true
+    }
+    
+    func fullSlot(cell : BookingCell) {
+        cell.backgroundColor = UIColor(netHex: 0xB3322E)
+        cell.lblTime.textColor = UIColor.whiteColor()
+        cell.lblStatus.textColor = UIColor.whiteColor()
+        cell.lblStatus.text = "Hết chỗ"
+        cell.canBooking = false
+
+    }
+    
+    func desist(cell : BookingCell) {
+        cell.backgroundColor = UIColor(netHex: 0xC1C1C1)
+        cell.lblStatus.textColor = UIColor.blackColor()
+        cell.lblTime.textColor = UIColor.blackColor()
+        cell.lblStatus.text = "Nghỉ"
+        cell.canBooking = false
+    }
+    
     
 }
 
+//MARK: Progress String
 extension BookingViewController {
     func getTime(time : Double) -> String {
         let today = NSDate()
@@ -411,6 +425,7 @@ extension BookingViewController {
     
 }
 
+//MARK : Change text field value
 extension BookingViewController : UIDropDownDelegate {
     func dropDown(dropDown: UIDropDown, didSelectOption option: String, atIndex index: Int) {
         self.statusSalonId.value = self.salonId[index]
@@ -422,9 +437,21 @@ extension BookingViewController : UIDropDownDelegate {
                 self.dropStylist.options.append(stylist.fullName)
                 self.stylistId.append(stylist.id)
             }
-            
+            self.dropStylist.placeholder = "Chọn Stylist( Không bắt buộc)"
+            self.stylistID.value = 0
         }
         
+        if self.salonCount > 0 {
+            self.parseSchedule(self.statusSalonId.value, workDate: self.toDate(self.statusDate.value), stylistId: 0) {
+                () in
+                print(self.statusDate.value)
+                print("salonId \(self.statusSalonId.value)")
+                print("workDate \(self.toDate(self.statusDate.value))")
+                print("stylistId 0)")
+                
+            }
+        }
+        self.salonCount += 1
     }
 }
 
@@ -432,25 +459,13 @@ extension BookingViewController : UIDropDownTimeDelegate {
     func dropDownTime(dropDown: UIDropDownTime, didSelectOption option: String, atIndex index: Int){
         if self.dateCount > 0 {
             self.statusDate.value = Double(index)
-            if choseStylist {
-                self.parseSchedule(self.statusSalonId.value, workDate: self.toDate(self.statusDate.value), stylistId: self.stylistId[self.statusStylistIndex.value]) {
-                    () in
-                    print(self.statusDate.value)
-                    print("salonId \(self.statusSalonId.value)")
-                    print("workDate \(self.toDate(self.statusDate.value))")
-                    print("stylistId \(self.stylistId[self.statusStylistIndex.value])")
-                    
-                }
-            }
-            else {
-                self.parseSchedule(self.statusSalonId.value, workDate: self.toDate(self.statusDate.value), stylistId: 0) {
-                    () in
-                    print(self.statusDate.value)
-                    print("salonId \(self.statusSalonId.value)")
-                    print("workDate \(self.toDate(self.statusDate.value))")
-                    print("stylistId \(self.stylistId[self.statusStylistIndex.value])")
-                    
-                }
+            self.parseSchedule(self.statusSalonId.value, workDate: self.toDate(self.statusDate.value), stylistId: self.stylistID.value) {
+                () in
+                print(self.statusDate.value)
+                print("salonId \(self.statusSalonId.value)")
+                print("workDate \(self.toDate(self.statusDate.value))")
+                print("stylistId \(self.stylistID.value)")
+                
             }
         }
         self.dateCount += 1
@@ -459,28 +474,26 @@ extension BookingViewController : UIDropDownTimeDelegate {
 
 extension BookingViewController : UIDropDownStylistDelegate {
     func dropDownStylist(dropDown: UIDropDownStylist, didSelectOption option: String, atIndex index: Int){
-        if stylistCount > 0 {
-            self.statusStylistIndex.value = index
-        }
-        
-        self.choseStylist = true
-        self.parseSchedule(self.statusSalonId.value, workDate: self.toDate(self.statusDate.value), stylistId: stylistId[index]) {
+
+        self.stylistID.value = self.stylistId[index]
+        self.parseSchedule(self.statusSalonId.value, workDate: self.toDate(self.statusDate.value), stylistId: self.stylistID.value) {
             () in
             self.stylistCount += 1
             print("salonId \(self.statusSalonId.value)")
             print("workDate \(self.toDate(self.statusDate.value))")
-            print("stylistId \(self.stylistId[index])")
+            print("stylistId \(self.stylistID.value)")
         }
     }
 }
 
+//MARK: Parse Json
 extension BookingViewController {
     func parseSchedule(salonId : Int, workDate : String, stylistId : Int, compeletion : () ->()) {
         /*
          SalonId: 3,
          WorkDate: '27-07-2016'
          */
-        let BOOKING_API = "http://api.30shine.com/booking/dsbookhour"
+        let BOOKING_API = "http://api.30shine.com/booking/dsbookhour/stylist"
         let parameter = ["SalonId":salonId,"WorkDate":workDate,"Stylist":stylistId]
         self.dataVar.value = []
         dispatch_async(dispatch_get_global_queue(0, 0)) {
@@ -489,7 +502,8 @@ extension BookingViewController {
                 if let json = response.result.value {
                     let bookings = json["d"].map(BookingNetwork.init)
                     for booking in bookings {
-                        let data = Booking(id: booking.id, hour: booking.hour, status: "", slot: booking.slot, hourFrame: booking.hourFrame, salonId: booking.salonId, currentSlot: booking.currentSlot, stylistCurrentSlot: booking.stylistCurrentSlot)
+                        let data = Booking(id: booking.id, hour: booking.hour, status: "", slot: booking.slot, hourFrame: booking.hourFrame, salonId: booking.salonId, currentSlot: booking.currentSlot, stylistCurrentSlot: booking.stylistCurrentSlot,statusBooking : booking.statusBooking)
+                        print(data.statusBooking)
                         self.dataVar.value.append(data)
                     }
                     compeletion()
