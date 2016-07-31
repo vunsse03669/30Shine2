@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="BookingNotificatioView" customModule="_0Shine" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="543" height="321"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chú ý:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5v5-SR-kx0">
+                    <rect key="frame" x="8" y="8" width="68" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="68" id="dmk-bf-eao"/>
+                        <constraint firstAttribute="height" constant="21" id="fJ2-N7-biB"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- Mỗi lượt dịch vụ chỉ dành cho 1 người. Quý khách có bạn đi cùng vui lòng đặt nhiều lần với đúng sdt từng người." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cLB-wy-l5G">
+                    <rect key="frame" x="8" y="42" width="527" height="45"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="mLg-HF-5pp"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="italicSystem" pointSize="11"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- Quý khách vui lòng đến sớm hoặc muộn không quá 10p so với giờ đặt lịch. Nếu muộn quá 10p vui lòng đặt lịch với lễ tân!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G27-TW-j33">
+                    <rect key="frame" x="8" y="95" width="527" height="45"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="Nvx-Cd-Dkn"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="italicSystem" pointSize="11"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- Khung giờ 17h-20h salon thường rất đông, quý khách nên đặt lịch trong khoảng 8h-16h để được phục vụ tốt nhất!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QCz-Be-bNH">
+                    <rect key="frame" x="8" y="141" width="527" height="43"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="43" id="4XH-6D-mUo"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="italicSystem" pointSize="11"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZM7-bZ-IcW">
+                    <rect key="frame" x="8" y="192" width="44" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="44" id="CRo-9m-UoR"/>
+                        <constraint firstAttribute="height" constant="44" id="w53-MY-9Mj"/>
+                    </constraints>
+                    <state key="normal" image="img-unchecked"/>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Không hiện thông báo này ở lần đặt lịch sau." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xm7-Mk-bmO">
+                    <rect key="frame" x="61" y="203" width="472" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="HR2-Ne-QSy"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eMW-Vo-nzR">
+                    <rect key="frame" x="135" y="244" width="272" height="44"/>
+                    <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="09e-kO-6uu"/>
+                    </constraints>
+                    <state key="normal" title="Xác nhận">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="G27-TW-j33" secondAttribute="trailing" constant="8" id="9nr-Vc-a7P"/>
+                <constraint firstItem="ZM7-bZ-IcW" firstAttribute="top" secondItem="QCz-Be-bNH" secondAttribute="bottom" constant="8" id="KZ6-kY-6lg"/>
+                <constraint firstItem="eMW-Vo-nzR" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.5" id="SMc-Wh-hCe"/>
+                <constraint firstItem="Xm7-Mk-bmO" firstAttribute="leading" secondItem="ZM7-bZ-IcW" secondAttribute="trailing" constant="9" id="Uri-U1-FrP"/>
+                <constraint firstAttribute="trailing" secondItem="QCz-Be-bNH" secondAttribute="trailing" constant="8" id="YTY-Ce-zWU"/>
+                <constraint firstItem="G27-TW-j33" firstAttribute="top" secondItem="cLB-wy-l5G" secondAttribute="bottom" constant="8" id="Zlb-Vf-ncp"/>
+                <constraint firstItem="eMW-Vo-nzR" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="aWw-4h-qRy"/>
+                <constraint firstAttribute="trailing" secondItem="Xm7-Mk-bmO" secondAttribute="trailing" constant="10" id="b5q-pL-7Gb"/>
+                <constraint firstItem="cLB-wy-l5G" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="cGO-Vr-0xU"/>
+                <constraint firstItem="cLB-wy-l5G" firstAttribute="top" secondItem="5v5-SR-kx0" secondAttribute="bottom" constant="13" id="ebl-C3-Psz"/>
+                <constraint firstAttribute="trailing" secondItem="cLB-wy-l5G" secondAttribute="trailing" constant="8" id="fff-vu-q14"/>
+                <constraint firstItem="5v5-SR-kx0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="i8L-at-WR4"/>
+                <constraint firstItem="QCz-Be-bNH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="nLq-wz-v5G"/>
+                <constraint firstItem="ZM7-bZ-IcW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="ora-ja-Ivp"/>
+                <constraint firstItem="5v5-SR-kx0" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="s8I-ZB-Z8W"/>
+                <constraint firstItem="eMW-Vo-nzR" firstAttribute="top" secondItem="Xm7-Mk-bmO" secondAttribute="bottom" constant="20" id="tGm-JO-SfF"/>
+                <constraint firstItem="Xm7-Mk-bmO" firstAttribute="centerY" secondItem="ZM7-bZ-IcW" secondAttribute="centerY" id="ugL-uq-E2K"/>
+                <constraint firstItem="QCz-Be-bNH" firstAttribute="top" secondItem="G27-TW-j33" secondAttribute="bottom" constant="1" id="vHz-Qi-vfb"/>
+                <constraint firstItem="G27-TW-j33" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="wgb-No-Qxt"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="btnCheckBox" destination="ZM7-bZ-IcW" id="hWc-p2-9YY"/>
+                <outlet property="btnConfirm" destination="eMW-Vo-nzR" id="wKf-ha-GDo"/>
+            </connections>
+            <point key="canvasLocation" x="436.5" y="240.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="img-unchecked" width="22" height="22"/>
+    </resources>
+</document>

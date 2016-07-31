@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		6EA532DDAC558DB8D6176D2E /* Pods_30Shine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56C9E657925F9E48A6A343A0 /* Pods_30Shine.framework */; };
+		9917A8961D4E33F400D9D82B /* BookingNotificatioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9917A8951D4E33F400D9D82B /* BookingNotificatioView.swift */; };
+		9917A8981D4E340A00D9D82B /* BookingNotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9917A8971D4E340A00D9D82B /* BookingNotificationView.xib */; };
+		9917A89B1D4E3D5F00D9D82B /* BookingNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9917A89A1D4E3D5F00D9D82B /* BookingNotification.swift */; };
 		9942991C1D4769BF00D053B2 /* AppConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9942989C1D4769BF00D053B2 /* AppConstant.swift */; };
 		9942991D1D4769BF00D053B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9942989D1D4769BF00D053B2 /* AppDelegate.swift */; };
 		9942991E1D4769BF00D053B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9942989E1D4769BF00D053B2 /* Assets.xcassets */; };
@@ -91,6 +94,9 @@
 		07F489400F76D4BC5F1DC920 /* Pods-30Shine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-30Shine.release.xcconfig"; path = "Pods/Target Support Files/Pods-30Shine/Pods-30Shine.release.xcconfig"; sourceTree = "<group>"; };
 		56C9E657925F9E48A6A343A0 /* Pods_30Shine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_30Shine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		658D836581C6627968E42D24 /* Pods-30Shine.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-30Shine.debug.xcconfig"; path = "Pods/Target Support Files/Pods-30Shine/Pods-30Shine.debug.xcconfig"; sourceTree = "<group>"; };
+		9917A8951D4E33F400D9D82B /* BookingNotificatioView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingNotificatioView.swift; sourceTree = "<group>"; };
+		9917A8971D4E340A00D9D82B /* BookingNotificationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookingNotificationView.xib; sourceTree = "<group>"; };
+		9917A89A1D4E3D5F00D9D82B /* BookingNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingNotification.swift; sourceTree = "<group>"; };
 		994298861D47675E00D053B2 /* 30Shine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 30Shine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9942989C1D4769BF00D053B2 /* AppConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConstant.swift; sourceTree = "<group>"; };
 		9942989D1D4769BF00D053B2 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -191,6 +197,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		9917A8991D4E3D3700D9D82B /* BookingNotification */ = {
+			isa = PBXGroup;
+			children = (
+				9917A89A1D4E3D5F00D9D82B /* BookingNotification.swift */,
+			);
+			name = BookingNotification;
+			sourceTree = "<group>";
+		};
 		9942987D1D47675D00D053B2 = {
 			isa = PBXGroup;
 			children = (
@@ -242,6 +256,7 @@
 		994299921D476BB000D053B2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9917A8991D4E3D3700D9D82B /* BookingNotification */,
 				99876F081D4A5F160094EF12 /* Booking */,
 				998965821D488BA2006DEDF5 /* Video */,
 				994299961D476C2200D053B2 /* History */,
@@ -295,6 +310,8 @@
 				994299141D4769BF00D053B2 /* ShineComboView.xib */,
 				E80CDBF21D491F7800B09385 /* AddressTabCell.swift */,
 				E80CDBF31D491F7800B09385 /* AddressTabCell.xib */,
+				9917A8951D4E33F400D9D82B /* BookingNotificatioView.swift */,
+				9917A8971D4E340A00D9D82B /* BookingNotificationView.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -471,6 +488,7 @@
 				994299891D4769BF00D053B2 /* ShineComboView.xib in Resources */,
 				9942997F1D4769BF00D053B2 /* OtherServicesView.xib in Resources */,
 				9942997D1D4769BF00D053B2 /* OtherServicesCell.xib in Resources */,
+				9917A8981D4E340A00D9D82B /* BookingNotificationView.xib in Resources */,
 				E8219B341D4A31E5008C6C23 /* DetailSalonView.xib in Resources */,
 				9942996A1D4769BF00D053B2 /* sDetailSalonView.xib in Resources */,
 				994299851D4769BF00D053B2 /* SalonTableCell.xib in Resources */,
@@ -538,6 +556,7 @@
 			files = (
 				994299691D4769BF00D053B2 /* DetailSalonView.swift in Sources */,
 				9989658A1D488E0B006DEDF5 /* YoutubeNetwork.swift in Sources */,
+				9917A89B1D4E3D5F00D9D82B /* BookingNotification.swift in Sources */,
 				994299841D4769BF00D053B2 /* SalonTableCell.swift in Sources */,
 				99876F041D4A58260094EF12 /* Ionicons.swift in Sources */,
 				9942997E1D4769BF00D053B2 /* OtherServicesView.swift in Sources */,
@@ -564,6 +583,7 @@
 				994299861D4769BF00D053B2 /* ServiceView.swift in Sources */,
 				9942998E1D4769BF00D053B2 /* Video.swift in Sources */,
 				9942999E1D476FB100D053B2 /* OtherService.swift in Sources */,
+				9917A8961D4E33F400D9D82B /* BookingNotificatioView.swift in Sources */,
 				994299831D4769BF00D053B2 /* SalonNetwork.swift in Sources */,
 				9942996E1D4769BF00D053B2 /* HairTypeCell.swift in Sources */,
 				9942997C1D4769BF00D053B2 /* OtherServicesCell.swift in Sources */,

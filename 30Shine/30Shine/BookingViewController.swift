@@ -97,7 +97,22 @@ class BookingViewController: UIViewController {
                 alert.show()
             }
         }
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(BookingViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(BookingViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
+    
+    //MARK: hide keyboard
+    func keyboardWillShow(notification: NSNotification) {
+        self.hideKeyboardWhenTappedAround()
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        for recognizer in view.gestureRecognizers ?? [] {
+            view.removeGestureRecognizer(recognizer)
+        }
+    }
+
     
     //MARK: UI
     func configUI() {
@@ -124,6 +139,16 @@ class BookingViewController: UIViewController {
         self.txtName.clipsToBounds = true
         self.txtName.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
         
+        self.configDropDownList()
+        self.configCollectionViewLayout()
+        //if BookingNotification.getNotificationById(1).showMessage == 1 {
+            BookingNotificatioView.createView(self.view)
+        //}
+        
+
+    }
+    
+    func configDropDownList() {
         self.txtName.layoutIfNeeded()
         self.vContainer.layoutIfNeeded()
         self.txtPhone.layoutIfNeeded()
@@ -162,10 +187,6 @@ class BookingViewController: UIViewController {
         dropSalon.hideOptionsWhenSelect = true
         dropStylist.hideOptionsWhenSelect = true
         
-        self.configCollectionViewLayout()
-        
-        self.txtName.text = "Nguyen Van A"
-        self.txtPhone.text = "0123456789"
     }
     
     //MARK: CollectionView
@@ -176,7 +197,6 @@ class BookingViewController: UIViewController {
             
             _ = self.statusDate.asObservable().subscribeNext {
                 status in
-  //              print("\(self.stylistId[self.statusStylistIndex.value])")
                 if  self.stylistID.value == 0 {
                     if self.checkDate(self.getDay(status), month: self.getMonth(status), year: self.getYear(status), hour: self.getHour(data.hour), minute: self.getMinute(data.hour)) {
                         self.haveSlot(cell)
