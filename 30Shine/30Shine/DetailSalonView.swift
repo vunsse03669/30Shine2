@@ -212,6 +212,7 @@ class DetailSalonView: UIView , UIScrollViewDelegate, UIGestureRecognizerDelegat
             indexPath in
             self.currentIndex.value = indexPath.row
             self.bindingData()
+            self.gotoIndex(indexPath.row)
         }
     }
     
@@ -228,6 +229,11 @@ class DetailSalonView: UIView , UIScrollViewDelegate, UIGestureRecognizerDelegat
             self.scrollView.userInteractionEnabled = false
             self.scrollView.zoomScale = 1
         }
+    }
+    func gotoIndex(index : Int){
+        self.clvTabs.layoutIfNeeded()
+        let indexPath = NSIndexPath(forRow: index, inSection: 0)
+        self.clvTabs.scrollToItemAtIndexPath(indexPath, atScrollPosition: .CenteredHorizontally, animated: true)
     }
     
     

@@ -13,11 +13,11 @@ import Alamofire
 import Spring
 
 class HomeViewController: UIViewController {
-
+    
     @IBOutlet weak var btnProfile: UIButton!
     @IBOutlet weak var clvMenu: UICollectionView!
     @IBOutlet weak var pageControl: UIPageControl!
-   
+    
     @IBOutlet weak var imvSlide: SpringImageView!
     
     var currentPage = 0
@@ -60,7 +60,7 @@ class HomeViewController: UIViewController {
         layout.sectionInset = UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)
         layout.minimumLineSpacing = 1
         layout.minimumInteritemSpacing = 1
-        let width = (self.view.frame.width - 25)/2 
+        let width = (self.view.frame.width - 25)/2
         layout.itemSize = CGSizeMake(width, 1.1*width)
         self.clvMenu.setCollectionViewLayout(layout, animated: true)
     }
@@ -77,25 +77,34 @@ class HomeViewController: UIViewController {
         
         _ = self.clvMenu.rx_itemSelected.subscribeNext {
             indexPath in
-            var vc : UIViewController!
-            switch indexPath.row {
-            case 1 :
-                vc = self.storyboard?.instantiateViewControllerWithIdentifier("HairCollectionViewController") as? HairCollectionViewController
-            case 2 :
-                vc = self.storyboard?.instantiateViewControllerWithIdentifier("BookingViewController") as? BookingViewController
-
-            case 3:
-                vc = self.storyboard?.instantiateViewControllerWithIdentifier("VideoViewController") as? VideoViewController
-            case 5:
-                
-                vc = self.storyboard?.instantiateViewControllerWithIdentifier("ChainSystemViewController") as? ChainSystemViewController
-            default:
-                print("Tap Failed!!!")
-            }
-            if vc != nil {
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
             
+            //trinh
+            let selectedCell : MenuCell = self.clvMenu.cellForItemAtIndexPath(indexPath) as! MenuCell
+            
+            selectedCell.bounceAction({
+                var vc : UIViewController!
+                switch indexPath.row {
+                case 1 :
+                    vc = self.storyboard?.instantiateViewControllerWithIdentifier("HairCollectionViewController") as? HairCollectionViewController
+                case 2 :
+                    vc = self.storyboard?.instantiateViewControllerWithIdentifier("BookingViewController") as? BookingViewController
+                    
+                case 3:
+                    vc = self.storyboard?.instantiateViewControllerWithIdentifier("VideoViewController") as? VideoViewController
+                case 4:
+                    if let url = NSURL(string: PRODUCT_LINK) {
+                        UIApplication.sharedApplication().openURL(url)
+                    }
+                case 5:
+                    
+                    vc = self.storyboard?.instantiateViewControllerWithIdentifier("ChainSystemViewController") as? ChainSystemViewController
+                default:
+                    print("Tap Failed!!!")
+                }
+                if vc != nil {
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            })
         }
     }
     
@@ -122,7 +131,7 @@ class HomeViewController: UIViewController {
         
         self.chageImageForSlider()
         NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: #selector(self.autoNextSlide), userInfo: nil, repeats: true)
-
+        
     }
     
     func chageImageForSlider() {
@@ -208,7 +217,7 @@ class HomeViewController: UIViewController {
                 }
             }
         }
-
+        
     }
-
+    
 }
