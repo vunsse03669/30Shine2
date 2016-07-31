@@ -21,6 +21,14 @@ class BookingViewController: UIViewController {
     @IBOutlet weak var txtPhone: UITextField!
     @IBOutlet weak var vContainer: UIView!
     
+    @IBOutlet weak var lblName: UILabel!
+    @IBOutlet weak var lblPhone: UILabel!
+    @IBOutlet weak var lblSalon: UILabel!
+    @IBOutlet weak var lblStylist: UILabel!
+    @IBOutlet weak var lblDate: UILabel!
+    @IBOutlet weak var lblBookTime: UILabel!
+    
+    
     var dropSalon : UIDropDown!
     var dropTime : UIDropDownTime!
     var dropStylist : UIDropDownStylist!
@@ -138,6 +146,12 @@ class BookingViewController: UIViewController {
         self.txtName.layer.borderColor = UIColor(netHex: 0xD7D7D7).CGColor
         self.txtName.clipsToBounds = true
         self.txtName.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
+        
+        self.lblName.mutiColor("* Họ tên:", startAt: 0, range: 1, color: .redColor())
+        self.lblPhone.mutiColor("* SĐT:", startAt: 0, range: 1, color: .redColor())
+        self.lblSalon.mutiColor("* Salon:", startAt: 0, range: 1, color: .redColor())
+        self.lblDate.mutiColor("* Ngày:", startAt: 0, range: 1, color: .redColor())
+        self.lblBookTime.mutiColor("* Giờ hẹn:", startAt: 0, range: 1, color: .redColor())
         
         self.configDropDownList()
         self.configCollectionViewLayout()
