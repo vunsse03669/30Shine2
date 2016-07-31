@@ -81,17 +81,3 @@ struct  MessageBooking {
         name = json["Message"].string!
     }
 }
-
-extension UINavigationController{
-    func push(viewController : UIViewController, animated : Bool){
-        self.pushViewController(viewController, animated: true)
-    }
-    
-    func pop(){
-        
-        let viewControllers: [UIViewController] = self.viewControllers as [UIViewController];
-        for vc in viewControllers {
-            self.popToViewController(vc, animated: true)
-        }
-    }
-}

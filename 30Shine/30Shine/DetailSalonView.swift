@@ -109,15 +109,19 @@ class DetailSalonView: UIView , UIScrollViewDelegate, UIGestureRecognizerDelegat
         if(salon.listImages.count >= 4){
             switch gesture.view!.tag {
             case 1000:
+                self.imvSalon1.bounceAction({})
                 self.currentImgID = 0
                 break
             case 2000:
+                self.imvSalon2.bounceAction({})
                 self.currentImgID = 1
                 break
             case 3000:
+                self.imvSalon3.bounceAction({})
                 self.currentImgID = 2
                 break
             case 4000:
+                self.imvMap.bounceAction({})
                 self.currentImgID = 3
                 break
             default:
@@ -181,6 +185,8 @@ class DetailSalonView: UIView , UIScrollViewDelegate, UIGestureRecognizerDelegat
         flowLayout.minimumInteritemSpacing = 4
         flowLayout.scrollDirection = .Horizontal
         self.clvTabs.setCollectionViewLayout(flowLayout, animated: false)
+        
+        self.clvTabs.showsHorizontalScrollIndicator = false
         
         //datasource
         dispatch_async(dispatch_get_main_queue()){

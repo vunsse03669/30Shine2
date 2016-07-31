@@ -81,6 +81,7 @@
 		998965861D488C48006DEDF5 /* YoutubeVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998965851D488C48006DEDF5 /* YoutubeVideo.swift */; };
 		9989658A1D488E0B006DEDF5 /* YoutubeNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998965891D488E0B006DEDF5 /* YoutubeNetwork.swift */; };
 		99BC264C1D4B4324006E3ACE /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BC264B1D4B4324006E3ACE /* ViewControllerExtension.swift */; };
+		E800B99F1D4E5C0D003A7031 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E800B99E1D4E5C0D003A7031 /* Extensions.swift */; };
 		E80CDBF41D491F7800B09385 /* AddressTabCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80CDBF21D491F7800B09385 /* AddressTabCell.swift */; };
 		E80CDBF51D491F7800B09385 /* AddressTabCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E80CDBF31D491F7800B09385 /* AddressTabCell.xib */; };
 		E8219B341D4A31E5008C6C23 /* DetailSalonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8219B331D4A31E5008C6C23 /* DetailSalonView.xib */; };
@@ -164,6 +165,7 @@
 		998965851D488C48006DEDF5 /* YoutubeVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeVideo.swift; sourceTree = "<group>"; };
 		998965891D488E0B006DEDF5 /* YoutubeNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeNetwork.swift; sourceTree = "<group>"; };
 		99BC264B1D4B4324006E3ACE /* ViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
+		E800B99E1D4E5C0D003A7031 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E80CDBF21D491F7800B09385 /* AddressTabCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressTabCell.swift; sourceTree = "<group>"; };
 		E80CDBF31D491F7800B09385 /* AddressTabCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressTabCell.xib; sourceTree = "<group>"; };
 		E8219B331D4A31E5008C6C23 /* DetailSalonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailSalonView.xib; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 				994299971D476C6C00D053B2 /* Library */,
 				9942989C1D4769BF00D053B2 /* AppConstant.swift */,
 				9942989D1D4769BF00D053B2 /* AppDelegate.swift */,
+				E800B99E1D4E5C0D003A7031 /* Extensions.swift */,
 				994299921D476BB000D053B2 /* Model */,
 				994299931D476BBC00D053B2 /* View */,
 				994299911D476B9B00D053B2 /* Controller */,
@@ -589,6 +592,7 @@
 				99876EFF1D4A58030094EF12 /* UIDropDown.swift in Sources */,
 				994299751D4769BF00D053B2 /* ListSalonView.swift in Sources */,
 				99876F0E1D4A5FC10094EF12 /* StylistNetwork.swift in Sources */,
+				E800B99F1D4E5C0D003A7031 /* Extensions.swift in Sources */,
 				994299631D4769BF00D053B2 /* CustomerHistoryCell.swift in Sources */,
 				9942996D1D4769BF00D053B2 /* HairType.swift in Sources */,
 			);
