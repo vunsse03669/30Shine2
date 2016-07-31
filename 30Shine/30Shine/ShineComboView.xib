@@ -33,7 +33,7 @@
                                         <action selector="btnPlayDidTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="iLJ-VS-E3O"/>
                                     </connections>
                                 </button>
-                                <imageView userInteractionEnabled="NO" alpha="0.55000000000000004" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="YouTubePlay" translatesAutoresizingMaskIntoConstraints="NO" id="NXa-BI-ZOc">
+                                <imageView userInteractionEnabled="NO" alpha="0.55000000000000004" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="playButton" translatesAutoresizingMaskIntoConstraints="NO" id="NXa-BI-ZOc">
                                     <rect key="frame" x="237" y="128" width="118" height="64"/>
                                 </imageView>
                             </subviews>
@@ -112,6 +112,6 @@
         </view>
     </objects>
     <resources>
-        <image name="YouTubePlay" width="24" height="17"/>
+        <image name="playButton" width="100" height="70"/>
     </resources>
 </document>

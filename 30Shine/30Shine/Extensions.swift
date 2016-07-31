@@ -24,8 +24,8 @@ extension UINavigationController{
 
 extension UIView {
     func bounceAction(completion:()->()){
-    UIView.animateWithDuration(0.1, animations: {
-        self.transform = CGAffineTransformMakeScale(0.95, 0.95)
+        UIView.animateWithDuration(0.1, animations: {
+            self.transform = CGAffineTransformMakeScale(0.95, 0.95)
         }) { (Bool) in
             UIView.animateWithDuration(0.1, animations: {
                 self.transform = CGAffineTransformIdentity
@@ -33,5 +33,18 @@ extension UIView {
                     completion()
             })
         }
+    }
+}
+
+extension UILabel {
+    func mutiColor(originalString : String,startAt:Int, range: Int , color: UIColor){
+        if(startAt >= originalString.length || startAt < 0 || range < 0)
+        {
+            return
+        }
+        let range = NSRange(location:startAt,length:range)
+        let attributedString = NSMutableAttributedString(string: originalString)
+        attributedString.addAttribute(NSForegroundColorAttributeName,value: color, range: range)
+        self.attributedText = attributedString
     }
 }
