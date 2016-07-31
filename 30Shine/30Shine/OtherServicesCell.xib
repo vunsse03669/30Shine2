@@ -23,7 +23,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6zA-EV-jdg">
                         <rect key="frame" x="8" y="4" width="348" height="138"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="girl3" translatesAutoresizingMaskIntoConstraints="NO" id="qhl-J8-KX5">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imag-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="qhl-J8-KX5">
                                 <rect key="frame" x="0.0" y="0.0" width="348" height="138"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" alpha="0.45000000000000001" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="labelBackground" translatesAutoresizingMaskIntoConstraints="NO" id="FnL-aF-3bK">
@@ -82,7 +82,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="girl3" width="500" height="313"/>
+        <image name="imag-placeholder" width="1920" height="1080"/>
         <image name="labelBackground" width="855" height="86"/>
     </resources>
 </document>

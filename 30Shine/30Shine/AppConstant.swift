@@ -18,3 +18,6 @@ let OTHER_SERVICES_API = "http://api.30shine.com/service/foreign"
 let SHINE_COMBO_API    = "http://api.30shine.com/service/primary"
 let VIDEO_YOUTUBE_API = "http://api.30shine.com/video/listing"
 let BOOKING_API = "http://api.30shine.com/booking/insert"
+
+//DEFAULT
+let IMG_DEFAULT = "imag-placeholder"

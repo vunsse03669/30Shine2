@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="362" height="201"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="girl2" translatesAutoresizingMaskIntoConstraints="NO" id="tRF-1C-ZeP">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imag-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="tRF-1C-ZeP">
                         <rect key="frame" x="0.0" y="0.0" width="362" height="201"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="labelBackground-right" translatesAutoresizingMaskIntoConstraints="NO" id="OLE-ed-x29">
@@ -65,7 +65,7 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="girl2" width="640" height="400"/>
+        <image name="imag-placeholder" width="1920" height="1080"/>
         <image name="labelBackground-right" width="855" height="86"/>
     </resources>
 </document>

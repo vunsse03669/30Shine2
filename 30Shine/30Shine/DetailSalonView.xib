@@ -32,7 +32,7 @@
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MvQ-wA-oi6">
                     <rect key="frame" x="4" y="44" width="592" height="240"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="khamthien1" translatesAutoresizingMaskIntoConstraints="NO" id="YQ0-UE-mor">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imag-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="YQ0-UE-mor">
                             <rect key="frame" x="0.0" y="0.0" width="592" height="240"/>
                         </imageView>
                     </subviews>
@@ -51,16 +51,16 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zSJ-5h-6H4" userLabel="ViewThumbnail">
                     <rect key="frame" x="4" y="288" width="592" height="248"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="khamthien1" translatesAutoresizingMaskIntoConstraints="NO" id="tCe-gb-9UQ">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imag-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="tCe-gb-9UQ">
                             <rect key="frame" x="0.0" y="0.0" width="294" height="122"/>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="khamthien1" translatesAutoresizingMaskIntoConstraints="NO" id="XHY-vB-QCW">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imag-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="XHY-vB-QCW">
                             <rect key="frame" x="0.0" y="126" width="294" height="122"/>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="khamthien2" translatesAutoresizingMaskIntoConstraints="NO" id="9Zx-0q-XmH">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imag-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="9Zx-0q-XmH">
                             <rect key="frame" x="298" y="0.0" width="294" height="122"/>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="khamthien1" translatesAutoresizingMaskIntoConstraints="NO" id="MkC-tA-2zt">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imag-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="MkC-tA-2zt">
                             <rect key="frame" x="298" y="126" width="294" height="122"/>
                         </imageView>
                     </subviews>
@@ -224,10 +224,9 @@
         </view>
     </objects>
     <resources>
-        <image name="Phone" width="30" height="30"/>
-        <image name="ic_book_black_24dp" width="95" height="119"/>
-        <image name="khamthien1" width="332" height="249"/>
-        <image name="khamthien2" width="332" height="250"/>
+        <image name="Phone" width="44" height="44"/>
+        <image name="ic_book_black_24dp" width="34" height="42"/>
+        <image name="imag-placeholder" width="1920" height="1080"/>
         <image name="logo-facebook" width="129" height="128"/>
     </resources>
 </document>

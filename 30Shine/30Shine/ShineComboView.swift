@@ -44,7 +44,7 @@ class ShineComboView: UIView {
             self.setupCollectionView()
             self.lblDescription.text = self.comboObject.listVideos[0].img_description
             self.videoUrl = self.comboObject.listVideos[0].url
-            LazyImage.showForImageView(self.imvThumbnail, url: self.getVideoId(self.videoUrl))
+            LazyImage.showForImageView(self.imvThumbnail, url: self.getVideoId(self.videoUrl),defaultImage: IMG_DEFAULT)
             print("\(self.getVideoId(self.videoUrl))")
         }
     }
@@ -68,7 +68,7 @@ class ShineComboView: UIView {
             _ = self.comboSteps.asObservable().bindTo(self.clvSteps.rx_itemsWithCellIdentifier("ComboCell", cellType: ComboCell.self)){
                 row, data, cell in
                 cell.lblTitle.text = ""
-                LazyImage.showForImageView(cell.imvBackground, url: data.thumb)
+                LazyImage.showForImageView(cell.imvBackground, url: data.thumb,defaultImage: IMG_DEFAULT)
             }
         }
     }

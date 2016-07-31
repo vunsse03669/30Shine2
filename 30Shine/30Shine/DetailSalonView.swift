@@ -58,7 +58,7 @@ class DetailSalonView: UIView , UIScrollViewDelegate, UIGestureRecognizerDelegat
         
         _=btnHotLine.rx_tap.subscribeNext({
             print("hotline")
-            UIApplication.sharedApplication().openURL(NSURL(string: "tel://0989740361")!)
+            //UIApplication.sharedApplication().openURL(NSURL(string: "tel://\(self.salon.phone)")!)
         })
         
         _=btnBooking.rx_tap.subscribeNext({
@@ -67,7 +67,7 @@ class DetailSalonView: UIView , UIScrollViewDelegate, UIGestureRecognizerDelegat
         
         _=btnFanpage.rx_tap.subscribeNext({
             print("fanpage")
-        
+            
             if let url = NSURL(string: self.salon.fanpage) {
                 UIApplication.sharedApplication().openURL(url)
             }
@@ -213,11 +213,11 @@ class DetailSalonView: UIView , UIScrollViewDelegate, UIGestureRecognizerDelegat
         self.salon = salonVariable.value[currentIndex.value]
         //self.lblAddress.text = salon.name
         if(salon.listImages.count >= 4){
-            LazyImage.showForImageView(imvSelected, url: salon.listImages[0].url)
-            LazyImage.showForImageView(imvSalon1, url: salon.listImages[0].thumb)
-            LazyImage.showForImageView(imvSalon2, url: salon.listImages[1].thumb)
-            LazyImage.showForImageView(imvSalon3, url: salon.listImages[2].thumb)
-            LazyImage.showForImageView(imvMap, url: salon.listImages[3].url)
+            LazyImage.showForImageView(imvSelected, url: salon.listImages[0].url,defaultImage: IMG_DEFAULT)
+            LazyImage.showForImageView(imvSalon1, url: salon.listImages[0].thumb,defaultImage: IMG_DEFAULT)
+            LazyImage.showForImageView(imvSalon2, url: salon.listImages[1].thumb,defaultImage: IMG_DEFAULT)
+            LazyImage.showForImageView(imvSalon3, url: salon.listImages[2].thumb,defaultImage: IMG_DEFAULT)
+            LazyImage.showForImageView(imvMap, url: salon.listImages[3].url,defaultImage: IMG_DEFAULT)
             
             self.scrollView.userInteractionEnabled = false
             self.scrollView.zoomScale = 1
@@ -234,13 +234,16 @@ class DetailSalonView: UIView , UIScrollViewDelegate, UIGestureRecognizerDelegat
                     let salons = json["d"].map(SalonNetwork.init)
                     for salon in salons {
                         
-                        let listImages : List<ImageObject> = List<ImageObject>()
-                        for salonIN in salon.images {
-                            let newSalonImage:ImageObject = ImageObject.create(salonIN.url, thumb: salonIN.thumb, title: salonIN.title, img_description: salonIN.img_description)
-                            listImages.append(newSalonImage)
+                        if salon.ID != 6 { //hard
+                            
+                            let listImages : List<ImageObject> = List<ImageObject>()
+                            for salonIN in salon.images {
+                                let newSalonImage:ImageObject = ImageObject.create(salonIN.url, thumb: salonIN.thumb, title: salonIN.title, img_description: salonIN.img_description)
+                                listImages.append(newSalonImage)
+                            }
+                            let newSalon : Salon = Salon.create(salon.ID, name: salon.name, phone: salon.phone, managerName: salon.managerName, fanpage: salon.fanpage, listImages: listImages)
+                            self.salonVariable.value.append(newSalon)
                         }
-                        let newSalon : Salon = Salon.create(salon.ID, name: salon.name, phone: salon.phone, managerName: salon.managerName, fanpage: salon.fanpage, listImages: listImages)
-                        self.salonVariable.value.append(newSalon)
                     }
                     complete()
                 }

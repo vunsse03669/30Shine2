@@ -43,7 +43,7 @@ class ListSalonView: UIView, UITableViewDelegate {
         }
         
     }
-//MARK: TableView DataSource
+    //MARK: TableView DataSource
     func configCollectionView() {
         tbvListSalon.registerNib(UINib.init(nibName: "SalonTableCell", bundle: nil), forCellReuseIdentifier: "SalonTableCell")
         tbvListSalon.rowHeight = 120
@@ -56,7 +56,7 @@ class ListSalonView: UIView, UITableViewDelegate {
                 cell.lblFacebookLink.text = data.fanpage
                 print("count iamge \(data.listImages.count)")
                 if(data.listImages.count>0){
-                  LazyImage.showForImageView(cell.imvSalon, url: data.listImages[0].url)
+                    LazyImage.showForImageView(cell.imvSalon, url: data.listImages[0].url)
                 }
             }
         }
@@ -67,7 +67,7 @@ class ListSalonView: UIView, UITableViewDelegate {
             self.showDetail(salon)
         }
     }
-//MARK: TableView Delegate
+    //MARK: TableView Delegate
     func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
         return UITableViewCellEditingStyle.None
     }
@@ -92,7 +92,8 @@ class ListSalonView: UIView, UITableViewDelegate {
                 if let json = response.result.value {
                     let salons = json["d"].map(SalonNetwork.init)
                     for salon in salons {
-                        
+                        if(salon.ID==6){ return}
+                        print(salon.ID)
                         let listImages : List<ImageObject> = List<ImageObject>()
                         for salonIN in salon.images {
                             let newSalonImage:ImageObject = ImageObject.create(salonIN.url, thumb: salonIN.thumb, title: salonIN.title, img_description: salonIN.img_description)
