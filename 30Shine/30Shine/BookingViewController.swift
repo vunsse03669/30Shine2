@@ -89,11 +89,11 @@ class BookingViewController: UIViewController {
                     Bool in
                     if(Bool){
                         print("DONE")
-                        let alert =  UIAlertView(title: "BOOKING DONE", message: "", delegate: nil, cancelButtonTitle: "Close")
+                        let alert =  UIAlertView(title: "", message: "Đặt lịch thành công!", delegate: nil, cancelButtonTitle: "Close")
                         alert.show()
                     }
                     else{
-                        let alert =  UIAlertView(title: "BOOKING DONE", message: "", delegate: nil, cancelButtonTitle: "Close")
+                        let alert =  UIAlertView(title: "", message: "Đặt lịch thành công!", delegate: nil, cancelButtonTitle: "Close")
                         alert.show()
                         print("ERROR")
                     }
@@ -101,7 +101,7 @@ class BookingViewController: UIViewController {
                 })
             }
             else {
-                let alert = UIAlertView(title: "", message: "Booking failed. Please fill all field require", delegate: nil, cancelButtonTitle: "Ok")
+                let alert = UIAlertView(title: "", message: "Đã xảy ra sự cố trong quá trình đặt lịch.Quý khách vui lòng thực hiện lại!", delegate: nil, cancelButtonTitle: "Ok")
                 alert.show()
             }
         }

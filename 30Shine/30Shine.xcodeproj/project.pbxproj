@@ -290,13 +290,13 @@
 				994298EB1D4769BF00D053B2 /* ComboCell.xib */,
 				994298F01D4769BF00D053B2 /* CustomerHistoryView.swift */,
 				994298F11D4769BF00D053B2 /* CustomerHistoryView.xib */,
-				994298EE1D4769BF00D053B2 /* CustomerHistoryCell.swift */,
 				994298EF1D4769BF00D053B2 /* CustomerHistoryCell.xib */,
 				994298F41D4769BF00D053B2 /* DetailSalonView.swift */,
 				E8219B331D4A31E5008C6C23 /* DetailSalonView.xib */,
 				994298F51D4769BF00D053B2 /* sDetailSalonView.xib */,
 				994299001D4769BF00D053B2 /* ListSalonView.swift */,
 				994299011D4769BF00D053B2 /* ListSalonView.xib */,
+				994298EE1D4769BF00D053B2 /* CustomerHistoryCell.swift */,
 				994299071D4769BF00D053B2 /* OtherServicesCell.swift */,
 				994299081D4769BF00D053B2 /* OtherServicesCell.xib */,
 				994299091D4769BF00D053B2 /* OtherServicesView.swift */,
@@ -450,7 +450,7 @@
 				TargetAttributes = {
 					994298851D47675E00D053B2 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = YCJNEHP2D6;
+						DevelopmentTeam = 56YJ3N6KSG;
 					};
 				};
 			};
@@ -735,7 +735,7 @@
 				INFOPLIST_FILE = 30Shine/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = vu.30Shine;
+				PRODUCT_BUNDLE_IDENTIFIER = vuu.30Shine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -752,7 +752,7 @@
 				INFOPLIST_FILE = 30Shine/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = vu.30Shine;
+				PRODUCT_BUNDLE_IDENTIFIER = vuu.30Shine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;

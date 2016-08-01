@@ -195,7 +195,7 @@
                                                     <rect key="frame" x="352" y="8" width="240" height="116"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fBu-6O-8hI">
-                                                    <rect key="frame" x="135" y="100" width="217" height="21"/>
+                                                    <rect key="frame" x="186" y="100" width="166" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="A4p-Y3-v4c"/>
                                                     </constraints>
@@ -204,7 +204,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WEn-FP-Qlu">
-                                                    <rect key="frame" x="8" y="100" width="119" height="21"/>
+                                                    <rect key="frame" x="8" y="100" width="170" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="xAQ-gG-Kqc"/>
                                                     </constraints>
@@ -223,7 +223,7 @@
                                                 <constraint firstItem="Eo3-9Z-X1q" firstAttribute="leading" secondItem="y8f-ZK-dxZ" secondAttribute="trailing" constant="5" id="bg5-ep-46j"/>
                                                 <constraint firstAttribute="bottom" secondItem="WEn-FP-Qlu" secondAttribute="bottom" constant="8" id="dmy-EA-83p"/>
                                                 <constraint firstItem="WEn-FP-Qlu" firstAttribute="leading" secondItem="XtT-Ce-AbK" secondAttribute="leading" constant="8" id="fW2-aW-FnK"/>
-                                                <constraint firstItem="WEn-FP-Qlu" firstAttribute="width" secondItem="y8f-ZK-dxZ" secondAttribute="width" multiplier="0.35" id="lkm-la-Urb"/>
+                                                <constraint firstItem="WEn-FP-Qlu" firstAttribute="width" secondItem="y8f-ZK-dxZ" secondAttribute="width" multiplier="0.5" id="lkm-la-Urb"/>
                                                 <constraint firstAttribute="trailing" secondItem="Eo3-9Z-X1q" secondAttribute="trailing" constant="8" id="oAx-YH-I5H"/>
                                                 <constraint firstItem="Eo3-9Z-X1q" firstAttribute="height" secondItem="XtT-Ce-AbK" secondAttribute="height" multiplier="0.9" id="uOq-uN-5Nw"/>
                                                 <constraint firstItem="WEn-FP-Qlu" firstAttribute="top" secondItem="y8f-ZK-dxZ" secondAttribute="bottom" id="v8v-d5-a5O"/>

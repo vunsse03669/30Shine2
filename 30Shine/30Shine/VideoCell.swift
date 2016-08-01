@@ -26,7 +26,58 @@ class VideoCell: UITableViewCell {
         return String(date)
     }
     
-    func getDate(day : String) -> String {
+    func caculateDeltaTime(year: Int, month: Int, day: Int, hour: Int, minute: Int) -> String {
+        let deltaYear = getYear(0) - year
+        let deltaMonth = getMonth(0) - month
+        let deltaDay = getDay(0) - day
+        let deltaHour = getHour(0) - hour
+        let deltaMinute = getMinute(0) - minute
+        
+        if deltaYear > 1 {
+            return "\(deltaYear) years ago"
+        }
+        else if deltaYear == 1 {
+            return "1 year ago"
+        }
+        else {
+            if deltaMonth > 1 {
+                return "\(deltaMonth) months ago"
+            }
+            else if deltaMonth == 1 {
+                return "1 month ago"
+            }
+            else {
+                if deltaDay > 1 {
+                    return "\(deltaDay) days ago"
+                }
+                else if deltaDay == 1 {
+                    return "1 day ago"
+                }
+                else {
+                    if deltaHour > 1 {
+                        return "\(deltaHour) hours ago"
+                    }
+                    else if deltaHour == 1 {
+                        return "1 hour ago"
+                    }
+                    else {
+                        if deltaMinute > 1 {
+                            return "\(deltaMinute) minutes ago"
+                        }
+                        else if deltaMinute == 1 {
+                            return "1 minute ago"
+                        }
+                        else {
+                            return "Just now"
+                        }
+                    }
+                }
+                
+            }
+        }
+    }
+    
+    func getDateString(day : String) -> String {
         var str = ""
         for c in day.characters {
             str.append(c)
@@ -37,16 +88,23 @@ class VideoCell: UITableViewCell {
         return str
     }
     
-    func format(str : String) -> String {
+    func caculateTime(str : String) -> String {
         var day = ""
         var month = ""
         var year = ""
+        var hour = ""
+        var minute = ""
+        
         var count = 0
         for c in str.characters {
             if c == " " {
-                break
+                count += 1
+                continue
             }
             if c == "-" {
+                count += 1
+            }
+            else if c == ":" {
                 count += 1
             }
             
@@ -57,6 +115,10 @@ class VideoCell: UITableViewCell {
                 month.append(c)
             case 2:
                 day.append(c)
+            case 3:
+                hour.append(c)
+            case 4:
+                minute.append(c)
             default:
                 print("")
             }
@@ -64,7 +126,16 @@ class VideoCell: UITableViewCell {
         day = day.stringByReplacingOccurrencesOfString("-", withString: "")
         month = month.stringByReplacingOccurrencesOfString("-", withString: "")
         year = year.stringByReplacingOccurrencesOfString("-", withString: "")
-        return "\(day)-\(month)-\(year)"
+        hour = hour.stringByReplacingOccurrencesOfString(" ", withString: "")
+        minute = minute.stringByReplacingOccurrencesOfString(" ", withString: "")
+        print("year: \(Int(year))")
+        print("month: \(Int(month))")
+        print("day: \(Int(day))")
+        print("hour: \(Int(hour))")
+        print("minute: \(minute)")
+        
+        return caculateDeltaTime(Int(year)!, month:Int(month)! , day: Int(day)!, hour: Int(hour)!, minute: 10)
+       
     }
     
     func getDay(time : Double) -> Int {
@@ -92,33 +163,23 @@ class VideoCell: UITableViewCell {
         return components.year
     }
     
-    func getHour(time : String) -> Int! {
-        var str = ""
-        for c in time.characters {
-            if c == "h" {
-                break
-            }
-            str.append(c)
-        }
-        return Int(str)
+    func getHour(time : Double) -> Int {
+        let today = NSDate()
+        let date = today.dateByAddingTimeInterval((time)*24 * 60 * 60)
+        let unitFlags: NSCalendarUnit = [.Hour, .Day, .Month, .Year]
+        let components = NSCalendar.currentCalendar().components(unitFlags, fromDate: date)
+        return components.hour
     }
     
-    func getMinute(time : String) -> Int! {
-        var str = ""
-        var status = false
-        for c in time.characters {
-            if c == "h" {
-                status = true
-            }
-            if status {
-                str.append(c)
-            }
-        }
-        
-        return Int(str.stringByReplacingOccurrencesOfString("h", withString: ""))
+    func getMinute(time : Double) -> Int {
+        let today = NSDate()
+        let date = today.dateByAddingTimeInterval((time)*24 * 60 * 60)
+        let unitFlags: NSCalendarUnit = [.Hour, .Day, .Month, .Year]
+        let components = NSCalendar.currentCalendar().components(unitFlags, fromDate: date)
+        return components.minute
     }
     
-    func toDate(time : Double) -> String {
+    func toDateString(time : Double) -> String {
         return "\(self.getDay(time))-\(self.getMonth(time))-\(self.getYear(time))"
     }
 

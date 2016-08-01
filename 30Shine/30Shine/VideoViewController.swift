@@ -13,7 +13,7 @@ import MediaPlayer
 import youtube_parser
 import Alamofire
 
-class VideoViewController: UIViewController {
+class VideoViewController: UIViewController, UITableViewDelegate {
     
     @IBOutlet weak var tbvVideo: UITableView!
     @IBOutlet weak var btnHome: UIButton!
@@ -27,6 +27,7 @@ class VideoViewController: UIViewController {
         super.viewDidLoad()
         self.initData()
         self.configUI()
+        self.tbvVideo.delegate = self
 
         //back to home
         self.configTableView()
@@ -57,7 +58,7 @@ class VideoViewController: UIViewController {
             row,data,cell in
             cell.lblTitle.text = "\(data.title)"
             cell.lblViewCount.text = "\(data.viewCount) views"
-            cell.lblTime.text = "\(data.publishDate)"
+            cell.lblTime.text = "\(cell.caculateTime(data.publishDate))"
             LazyImage.showForImageView(cell.imvThumnail, url: data.thumb)
         }
         
@@ -166,6 +167,11 @@ class VideoViewController: UIViewController {
                     }
             }
         }
+    }
+    
+    //MARK: table delegate
+    func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+        return UITableViewCellEditingStyle.None
     }
     
 }

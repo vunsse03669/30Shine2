@@ -73,7 +73,7 @@ class DetailHairViewController: UIViewController {
             _ = self.index.asObservable().subscribeNext {
                 index in
                 if data.title == self.menuVar.value[index].title {
-                    cell.lblTitle.font = UIFont.boldSystemFontOfSize(10)
+                    cell.lblTitle.font = UIFont.boldSystemFontOfSize(9)
                 }
                 else {
                     if #available(iOS 8.2, *) {
@@ -107,8 +107,8 @@ class DetailHairViewController: UIViewController {
         let layout : UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 2
         layout.minimumInteritemSpacing = 2
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
-        let width = self.view.bounds.width/3
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        let width = self.view.bounds.width/3 - 5
         let height = self.clvMenu.bounds.height - 10
         layout.itemSize = CGSizeMake(width, height)
         layout.scrollDirection = .Horizontal
