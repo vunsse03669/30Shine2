@@ -56,6 +56,8 @@ class VideoViewController: UIViewController {
         _ = self.videoVariable.asObservable().bindTo(self.tbvVideo.rx_itemsWithCellIdentifier("VideoCell", cellType: VideoCell.self)) {
             row,data,cell in
             cell.lblTitle.text = "\(data.title)"
+            cell.lblViewCount.text = "\(data.viewCount) views"
+            cell.lblTime.text = "\(data.publishDate)"
             LazyImage.showForImageView(cell.imvThumnail, url: data.thumb)
         }
         
@@ -154,7 +156,7 @@ class VideoViewController: UIViewController {
                         let videos = json["d"].map(YoutubeNetwork.init)
                         for video in videos {
                             if YoutubeVideo.getVideoById(video.id) == nil {
-                                let v = YoutubeVideo.create(video.id, title: video.title, link: video.link, thumb: video.thumb, viewCount: video.viewCount) 
+                                let v = YoutubeVideo.create(video.id, title: video.title, link: video.link, thumb: video.thumb, viewCount: video.viewCount,publistDate: video.publishDate)
                                 self.videoVariable.value.append(v)
                             }
                             else {

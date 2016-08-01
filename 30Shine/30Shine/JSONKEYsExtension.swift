@@ -47,6 +47,7 @@ extension JSONKeys {
     static let youtube_link = JSONKey<String>("Link")
     static let youtube_viewCount = JSONKey<Int>("ViewCount")
     static let youtube_thumb = JSONKey<String>("Thumb")
+    static let youtube_publishDate = JSONKey<String>("PublishDate")
     
     // Booking
     static let hour = JSONKey<String>("Hour")
