@@ -139,11 +139,10 @@ class HomeViewController: UIViewController {
             slides in
             self.pageControl.numberOfPages = slides.count
             if slides.count > 0 {
-                self.imvSlide.fadeIn(1)
+                self.imvSlide.fadeIn(0.8)
                 LazyImage.showForImageView(self.imvSlide, url: slides[self.pageControl.currentPage])
             }
         }
-        
     }
     
     func handleSwipeRight(gesture: UISwipeGestureRecognizer) {

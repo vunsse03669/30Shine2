@@ -105,7 +105,6 @@ class ShineComboView: UIView {
         }
     }
     
-    
     @IBAction func btnPlayDidTap(sender: AnyObject) {
         if(!videoUrl.isEmpty){
             playVideo(videoUrl)
@@ -138,7 +137,7 @@ class ShineComboView: UIView {
         if youtubeURL.absoluteString != "" {
             self.moviePlayer.stop()
             self.playVideoWithYoutubeURL(youtubeURL)
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(VideoViewController.doneButtonClick(_:)), name: MPMoviePlayerWillExitFullscreenNotification, object: nil)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.doneButtonClick(_:)), name: MPMoviePlayerDidExitFullscreenNotification, object: nil)
         }
     }
     
@@ -155,7 +154,7 @@ class ShineComboView: UIView {
     func doneButtonClick(sender:NSNotification?){
         let value = UIInterfaceOrientation.Portrait.rawValue
         UIDevice.currentDevice().setValue(value, forKey: "orientation")
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: MPMoviePlayerWillExitFullscreenNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: MPMoviePlayerDidExitFullscreenNotification, object: nil)
         self.moviePlayer.stop()
         UIView.animateWithDuration(0.3, animations: {
             self.moviePlayer.stop()
