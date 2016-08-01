@@ -37,35 +37,35 @@ class VideoCell: UITableViewCell {
             return "\(deltaYear) years ago"
         }
         else if deltaYear == 1 {
-            return "1 year ago"
+            return "a year ago"
         }
         else {
             if deltaMonth > 1 {
                 return "\(deltaMonth) months ago"
             }
             else if deltaMonth == 1 {
-                return "1 month ago"
+                return "a month ago"
             }
             else {
                 if deltaDay > 1 {
                     return "\(deltaDay) days ago"
                 }
                 else if deltaDay == 1 {
-                    return "1 day ago"
+                    return "a day ago"
                 }
                 else {
                     if deltaHour > 1 {
                         return "\(deltaHour) hours ago"
                     }
                     else if deltaHour == 1 {
-                        return "1 hour ago"
+                        return "a hour ago"
                     }
                     else {
                         if deltaMinute > 1 {
                             return "\(deltaMinute) minutes ago"
                         }
                         else if deltaMinute == 1 {
-                            return "1 minute ago"
+                            return "a minute ago"
                         }
                         else {
                             return "Just now"
