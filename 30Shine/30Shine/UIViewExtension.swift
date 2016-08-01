@@ -11,16 +11,26 @@ import UIKit
 
 extension UIView {
     func fadeIn(time: NSTimeInterval){
-        self.alpha = 0
-        UIView .animateWithDuration(time) { 
-            self.alpha = 1
+        UIView.animateWithDuration(time/2, animations: {
+            self.alpha = 0
+        }) { (bool) in
+            UIView .animateWithDuration(time/2) {
+                self.alpha = 1
+            }
         }
     }
     
     func fadeOut(time: NSTimeInterval){
-        self.alpha = 1
-        UIView.animateWithDuration(time) { 
-            self.alpha = 0
+        UIView.animateWithDuration(time/2, animations: {
+            self.alpha = 1
+        }) { (bool) in
+            UIView .animateWithDuration(time/2) {
+                self.alpha = 0
+            }
         }
+//        self.alpha = 1
+//        UIView.animateWithDuration(time) {
+//            self.alpha = 0
+//        }
     }
 }

@@ -34,6 +34,43 @@ extension UIView {
             })
         }
     }
+    
+    func flyInLR(completion:()->()){
+        let originnalX = self.frame.origin.x
+        self.frame.origin.x = -400
+        UIView.animateWithDuration(0.3, delay: 0.0, options: .CurveEaseIn, animations: {
+            self.frame.origin.x = originnalX
+        }) { (bool) in
+            completion()
+        }
+    }
+    
+    func flyOutLR(completion:()->()){
+        UIView.animateWithDuration(0.3, delay: 0.0, options: .CurveEaseIn, animations: {
+            self.frame.origin.x = 0
+        }) { (bool) in
+            completion()
+        }
+
+    }
+    
+    func flyInRL(completion:()->()){
+        let originnalX = self.frame.origin.x
+        self.frame.origin.x = 400
+        UIView.animateWithDuration(0.3, delay: 0.0, options: .CurveEaseIn, animations: {
+            self.frame.origin.x = originnalX
+        }) { (bool) in
+            completion()
+        }
+    }
+    
+    func flyOutRL(completion:()->()){
+        UIView.animateWithDuration(0.3, delay: 0.0, options: .CurveEaseIn, animations: {
+            self.frame.origin.x = -400
+        }) { (bool) in
+            completion()
+        }
+    }
 }
 
 extension UILabel {

@@ -130,7 +130,7 @@ class HomeViewController: UIViewController {
         self.imvSlide.addGestureRecognizer(longPress)
         
         self.chageImageForSlider()
-        NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: #selector(self.autoNextSlide), userInfo: nil, repeats: true)
+        NSTimer.scheduledTimerWithTimeInterval(SLIDER_SCHEDULE, target: self, selector: #selector(self.autoNextSlide), userInfo: nil, repeats: true)
         
     }
     
@@ -139,6 +139,7 @@ class HomeViewController: UIViewController {
             slides in
             self.pageControl.numberOfPages = slides.count
             if slides.count > 0 {
+                self.imvSlide.fadeIn(1)
                 LazyImage.showForImageView(self.imvSlide, url: slides[self.pageControl.currentPage])
             }
         }

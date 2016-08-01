@@ -22,3 +22,7 @@ let PRODUCT_LINK = "https://30shine.com/san-pham.html"
 
 //DEFAULT
 let IMG_DEFAULT = "imag-placeholder"
+
+//TIME CONSTANT
+
+let SLIDER_SCHEDULE = 5.0
