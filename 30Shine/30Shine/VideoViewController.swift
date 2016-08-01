@@ -58,7 +58,7 @@ class VideoViewController: UIViewController, UITableViewDelegate {
             row,data,cell in
             cell.lblTitle.text = "\(data.title)"
             cell.lblViewCount.text = "\(data.viewCount) views"
-            cell.lblTime.text = "\(cell.caculateTime(data.publishDate))"
+            cell.lblTime.text = "• \(cell.caculateTime(data.publishDate))"
             LazyImage.showForImageView(cell.imvThumnail, url: data.thumb)
         }
         
@@ -104,8 +104,6 @@ class VideoViewController: UIViewController, UITableViewDelegate {
     
     func playVideoWithYoutubeURL(url: NSURL) {
         Youtube.h264videosWithYoutubeURL(url, completion: { (videoInfo, error) -> Void in
-            print("xxx \(url)")
-             print("ccc \(videoInfo?["url"] as? String )")
             if let
                 videoURLString = videoInfo?["url"] as? String {
                 self.moviePlayer.contentURL = NSURL(string: videoURLString)
