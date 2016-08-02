@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 enum UIDropDownTimeAnimationType : Int {
     case Default
@@ -32,6 +34,7 @@ class UIDropDownTime: UIControl, UITableViewDataSource, UITableViewDelegate {
             title.font = font
         }
     }
+    var isClick = Variable(0)
     var options = [String]()
     var delegate: UIDropDownTimeDelegate!
     var animationType: UIDropDownTimeAnimationType = .Default
@@ -75,7 +78,8 @@ class UIDropDownTime: UIControl, UITableViewDataSource, UITableViewDelegate {
         
         arrow = UILabel(frame: CGRect(x: CGRectGetMaxX(title.frame), y: 0, width: 30, height: CGRectGetHeight(self.frame)))
         arrow.textAlignment = .Center
-        arrow.font = UIFont.ioniconOfSize(18)
+        arrow.font = UIFont.ioniconOfSize(30)
+        arrow.userInteractionEnabled = false
         arrow.text = String.ioniconWithName(.IosArrowDown)
         arrow.backgroundColor = .clearColor()
         self.addSubview(arrow)
@@ -83,7 +87,6 @@ class UIDropDownTime: UIControl, UITableViewDataSource, UITableViewDelegate {
     }
     
     func touch() {
-    
         selected = !selected
         self.userInteractionEnabled = false
         selected ? showTable() : hideTable()
@@ -114,14 +117,14 @@ class UIDropDownTime: UIControl, UITableViewDataSource, UITableViewDelegate {
         UIView.animateWithDuration(0.2) { () -> Void in
             self.arrow.transform = CGAffineTransformMakeRotation((180.0 * CGFloat(M_PI)) / 180.0)
         }
-        
+        isClick.value += 1
         switch animationType {
         
         case .Default:
             
             UIView.animateWithDuration(0.9, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.1, options: .TransitionFlipFromTop, animations: { () -> Void in
                 
-                self.table.frame = CGRect(x: CGRectGetMinX(self.frame), y: CGRectGetMaxY(self.frame)+5, width: CGRectGetWidth(self.frame), height: 100)
+                self.table.frame = CGRect(x: CGRectGetMinX(self.frame), y: CGRectGetMaxY(self.frame)+5, width: CGRectGetWidth(self.frame), height: 150)
                 self.table.alpha = 1
                 
                 }, completion: { (didFinish) -> Void in
@@ -138,7 +141,7 @@ class UIDropDownTime: UIControl, UITableViewDataSource, UITableViewDelegate {
             UIView.animateWithDuration(0.9, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.1, options: .TransitionCurlUp, animations: { () -> Void in
                 
                 self.table.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1)
-                self.table.frame = CGRect(x: CGRectGetMinX(self.frame), y: CGRectGetMaxY(self.frame)+5, width: CGRectGetWidth(self.frame), height: 100)
+                self.table.frame = CGRect(x: CGRectGetMinX(self.frame), y: CGRectGetMaxY(self.frame)+5, width: CGRectGetWidth(self.frame), height: 150)
                 self.table.alpha = 1
                 
                 }, completion: { (didFinish) -> Void in

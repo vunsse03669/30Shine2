@@ -49,7 +49,7 @@ class OtherServicesView: UIView ,UITableViewDelegate{
             _ = self.comboVariables.asObservable().bindTo(self.tbvListCombo.rx_itemsWithCellIdentifier("OtherServicesCell", cellType: OtherServicesCell.self)){
                 row, data, cell in
                 if(data.listImages.count > 0){
-                   // cell.btnPrice.text = data.listImages[0].title
+                    cell.btnPrice.text = data.listImages[0].title
                     LazyImage.showForImageView(cell.imvBackground, url: data.listImages[0].url,defaultImage: IMG_DEFAULT)
                 }
             }

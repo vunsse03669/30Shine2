@@ -32,7 +32,7 @@ class BookingViewController: UIViewController {
     var dropSalon : UIDropDown!
     var dropTime : UIDropDownTime!
     var dropStylist : UIDropDownStylist!
-    //var choseStylist = false
+    
     var stylistId : [Int] = [0]
     var salonId : [Int] = [2,3,4,5]
     var salonList : [String] = ["346 Khâm Thiên",
@@ -49,8 +49,11 @@ class BookingViewController: UIViewController {
     var stylistVar : Variable<[Stylist]> = Variable([])
     var statusDate : Variable<Double> = Variable(0)
     var statusSalonId : Variable<Int> = Variable(0)
-    //var statusStylistIndex : Variable<Int> = Variable(0)
     var stylistID : Variable<Int> = Variable(0)
+    
+    var isClickOnSalon = Variable(0)
+    var isClickOnTime = Variable(0)
+    var isClickOnStylist = Variable(0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -155,11 +158,7 @@ class BookingViewController: UIViewController {
         
         self.configDropDownList()
         self.configCollectionViewLayout()
-        //if BookingNotification.getNotificationById(1).showMessage == 1 {
-            BookingNotificatioView.createView(self.view)
-        //}
-        
-
+        BookingNotificatioView.createView(self.view)
     }
     
     func configDropDownList() {
@@ -201,7 +200,49 @@ class BookingViewController: UIViewController {
         dropSalon.hideOptionsWhenSelect = true
         dropStylist.hideOptionsWhenSelect = true
         
+        self.isClickOnTime = dropTime.isClick
+        self.isClickOnSalon = dropSalon.isClick
+        self.isClickOnStylist = dropStylist.isClick
+        
+        self.hideTableOfDropDown()
     }
+    
+    func hideTableOfDropDown() {
+        _ = self.isClickOnStylist.asObservable().subscribeNext { isClick in
+            if isClick > 0 {
+                if self.dropSalon.selected {
+                    self.dropSalon.hideTable()
+                }
+                if self.dropTime.selected {
+                    self.dropTime.hideTable()
+                }
+            }
+        }
+        
+        _ = self.isClickOnSalon.asObservable().subscribeNext { isClick in
+            if isClick > 0 {
+                if self.dropStylist.selected {
+                    self.dropStylist.hideTable()
+                }
+                if self.dropTime.selected {
+                    self.dropTime.hideTable()
+                }
+            }
+        }
+        
+        _ = self.isClickOnTime.asObservable().subscribeNext { isClick in
+            if isClick > 0 {
+                if self.dropSalon.selected {
+                     self.dropSalon.hideTable()
+                }
+                if self.dropStylist.selected {
+                    self.dropStylist.hideTable()
+                }
+            
+            }
+        }
+    }
+    
     
     //MARK: CollectionView
     func configCollectionView() {

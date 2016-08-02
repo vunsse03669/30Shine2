@@ -58,11 +58,12 @@ class DetailSalonView: UIView , UIScrollViewDelegate, UIGestureRecognizerDelegat
         
         _=btnHotLine.rx_tap.subscribeNext({
             print("hotline")
-            //UIApplication.sharedApplication().openURL(NSURL(string: "tel://\(self.salon.phone)")!)
+            UIApplication.sharedApplication().openURL(NSURL(string: "tel://\(self.salon.phone)")!)
         })
         
         _=btnBooking.rx_tap.subscribeNext({
             print("booking")
+            
         })
         
         _=btnFanpage.rx_tap.subscribeNext({

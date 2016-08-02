@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 enum UIDropDownAnimationType : Int {
     case Default
@@ -42,6 +44,7 @@ class UIDropDown: UIControl, UITableViewDataSource, UITableViewDelegate {
             title.adjustsFontSizeToFitWidth = true
         }
     }
+    var isClick  = Variable(0)
     override var tintColor: UIColor! {
         didSet {
             title.textColor = tintColor
@@ -75,7 +78,8 @@ class UIDropDown: UIControl, UITableViewDataSource, UITableViewDelegate {
         
         arrow = UILabel(frame: CGRect(x: CGRectGetMaxX(title.frame), y: 0, width: 30, height: CGRectGetHeight(self.frame)))
         arrow.textAlignment = .Center
-        arrow.font = UIFont.ioniconOfSize(18)
+        arrow.userInteractionEnabled = false
+        arrow.font = UIFont.ioniconOfSize(30)
         arrow.text = String.ioniconWithName(.IosArrowDown)
         arrow.backgroundColor = .clearColor()
         self.addSubview(arrow)
@@ -83,7 +87,6 @@ class UIDropDown: UIControl, UITableViewDataSource, UITableViewDelegate {
     }
     
     func touch() {
-    
         selected = !selected
         self.userInteractionEnabled = false
         selected ? showTable() : hideTable()
@@ -110,7 +113,7 @@ class UIDropDown: UIControl, UITableViewDataSource, UITableViewDelegate {
         table.alpha = 0
         self.superview?.insertSubview(table, belowSubview: self)
         self.superview?.bringSubviewToFront(table)
-        
+        isClick.value += 1
         UIView.animateWithDuration(0.2) { () -> Void in
             self.arrow.transform = CGAffineTransformMakeRotation((180.0 * CGFloat(M_PI)) / 180.0)
         }
@@ -121,7 +124,7 @@ class UIDropDown: UIControl, UITableViewDataSource, UITableViewDelegate {
             
             UIView.animateWithDuration(0.9, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.1, options: .TransitionFlipFromTop, animations: { () -> Void in
                 
-                self.table.frame = CGRect(x: CGRectGetMinX(self.frame), y: CGRectGetMaxY(self.frame)+5, width: CGRectGetWidth(self.frame), height: 100)
+                self.table.frame = CGRect(x: CGRectGetMinX(self.frame), y: CGRectGetMaxY(self.frame)+5, width: CGRectGetWidth(self.frame), height: 200)
                 self.table.alpha = 1
                 
                 }, completion: { (didFinish) -> Void in
@@ -138,7 +141,7 @@ class UIDropDown: UIControl, UITableViewDataSource, UITableViewDelegate {
             UIView.animateWithDuration(0.9, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.1, options: .TransitionCurlUp, animations: { () -> Void in
                 
                 self.table.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1)
-                self.table.frame = CGRect(x: CGRectGetMinX(self.frame), y: CGRectGetMaxY(self.frame)+5, width: CGRectGetWidth(self.frame), height: 100)
+                self.table.frame = CGRect(x: CGRectGetMinX(self.frame), y: CGRectGetMaxY(self.frame)+5, width: CGRectGetWidth(self.frame), height: 200)
                 self.table.alpha = 1
                 
                 }, completion: { (didFinish) -> Void in
