@@ -10,13 +10,11 @@ import UIKit
 
 class MenuCell: UICollectionViewCell {
     
-    @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var imvMenu: UIImageView!
     
     override func awakeFromNib() {
-        lblTitle.sizeToFit()
-        lblTitle.numberOfLines = 0
-        imvMenu.layer.cornerRadius = 13.0
-        self.imvMenu.clipsToBounds = true
+        
+//        imvMenu.layer.cornerRadius = 13.0
+//        self.imvMenu.clipsToBounds = true
     }
 }

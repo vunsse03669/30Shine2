@@ -62,10 +62,10 @@ class HomeViewController: UIViewController {
         self.view.layoutIfNeeded()
         let layout : UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)
-        layout.minimumLineSpacing = 1
+        layout.minimumLineSpacing = 5
         layout.minimumInteritemSpacing = 1
         let width = (self.view.frame.width - 25)/2
-        layout.itemSize = CGSizeMake(width, 1.1*width)
+        layout.itemSize = CGSizeMake(width, 0.8*width)
         self.clvMenu.setCollectionViewLayout(layout, animated: true)
     }
     
@@ -87,7 +87,6 @@ class HomeViewController: UIViewController {
                 else {
                     cell.imvMenu.image = UIImage(contentsOfFile: self.getImagePathFromDisk("\(data.title).png"))
                 }
-                cell.lblTitle.text = "\(data.title)"
             }
         }
         

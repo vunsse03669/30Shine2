@@ -45,55 +45,44 @@
                                 <color key="pageIndicatorTintColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="currentPageIndicatorTintColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                             </pageControl>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imag-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="yA2-1h-zvy" customClass="SpringImageView" customModule="Spring">
+                                <rect key="frame" x="8" y="72" width="584" height="120"/>
+                            </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="T3F-F6-MfQ">
                                 <rect key="frame" x="8" y="221" width="584" height="371"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="2MS-kc-7gh">
-                                    <size key="itemSize" width="232" height="190"/>
+                                    <size key="itemSize" width="232" height="141"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MenuCell" id="1gG-VA-6Nf" customClass="MenuCell" customModule="_0Shine" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="232" height="190"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="232" height="141"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="232" height="190"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="232" height="141"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imag-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="019-9A-lwj">
-                                                    <rect key="frame" x="0.0" y="0.0" width="232" height="137"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="232" height="141"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0GX-kY-g2d">
-                                                    <rect key="frame" x="0.0" y="137" width="232" height="45"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
                                             <constraint firstItem="019-9A-lwj" firstAttribute="top" secondItem="1gG-VA-6Nf" secondAttribute="top" id="GIz-K7-z4u"/>
-                                            <constraint firstItem="0GX-kY-g2d" firstAttribute="top" secondItem="019-9A-lwj" secondAttribute="bottom" id="Xdx-bx-Buf"/>
-                                            <constraint firstItem="0GX-kY-g2d" firstAttribute="leading" secondItem="1gG-VA-6Nf" secondAttribute="leading" id="aZH-Ej-YC9"/>
                                             <constraint firstItem="019-9A-lwj" firstAttribute="leading" secondItem="1gG-VA-6Nf" secondAttribute="leading" id="nSX-gq-7qQ"/>
-                                            <constraint firstItem="019-9A-lwj" firstAttribute="height" secondItem="1gG-VA-6Nf" secondAttribute="height" multiplier="0.72" id="qD6-QF-76a"/>
-                                            <constraint firstAttribute="trailing" secondItem="0GX-kY-g2d" secondAttribute="trailing" id="qDL-hp-nHK"/>
-                                            <constraint firstAttribute="bottom" secondItem="0GX-kY-g2d" secondAttribute="bottom" constant="8" id="rQx-Kz-RvT"/>
+                                            <constraint firstItem="019-9A-lwj" firstAttribute="height" secondItem="1gG-VA-6Nf" secondAttribute="height" id="qD6-QF-76a"/>
                                             <constraint firstAttribute="trailing" secondItem="019-9A-lwj" secondAttribute="trailing" id="zQy-uX-Ddo"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="imvMenu" destination="019-9A-lwj" id="2VF-KZ-C49"/>
-                                            <outlet property="lblTitle" destination="0GX-kY-g2d" id="MY4-jW-2Ei"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imag-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="yA2-1h-zvy" customClass="SpringImageView" customModule="Spring">
-                                <rect key="frame" x="8" y="72" width="584" height="120"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
