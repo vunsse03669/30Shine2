@@ -97,7 +97,7 @@ class HomeViewController: UIViewController {
                 var vc : UIViewController!
                 switch indexPath.row {
                 case 1 :
-                    vc = self.storyboard?.instantiateViewControllerWithIdentifier("HairCollectionViewController") as? HairCollectionViewController
+                    vc = self.storyboard?.instantiateViewControllerWithIdentifier("DetailHairViewController") as? DetailHairViewController
                 case 2 :
                     vc = self.storyboard?.instantiateViewControllerWithIdentifier("BookingViewController") as? BookingViewController
                     

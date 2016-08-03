@@ -7,9 +7,10 @@
 //
 
 import UIKit
-import Foundation
 import RxSwift
 import RxCocoa
+import Alamofire
+import RealmSwift
 
 class DetailHairViewController: UIViewController {
     
@@ -32,19 +33,16 @@ class DetailHairViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-         gotoIndex(index.value)
+         //gotoIndex(index.value)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configUI()
-        self.configCollectionView()
-       
-        self.bindingData()
+        self.initData()
         
         _ = btnHome.rx_tap
             .subscribeNext {
-                //let vc = self.storyboard?.instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
                 self.navigationController?.pop()
         }
         //Click btnProfile
@@ -52,7 +50,6 @@ class DetailHairViewController: UIViewController {
             let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController") as! ProfileViewController
             self.navigationController?.push(vc, animated: true)
         }
-        
         
     }
     
@@ -127,26 +124,29 @@ class DetailHairViewController: UIViewController {
     
     //MARK: Data
     func bindingData() {
-        self.lblTitle.text = "\(self.menuVar.value[index.value].title)"
-        self.lblDescription.text = "\(self.menuVar.value[index.value].script)"
-        self.lblOther.text = "Các biến thể kiểu tóc \(self.menuVar.value[index.value].title)"
-        
-        let bigImageUrl = self.menuVar.value[index.value].images[0].imageUrl
-        let smallImage1Url = self.menuVar.value[index.value].images[0].imageUrl
-        let smallImage2Url = self.menuVar.value[index.value].images[1].imageUrl
-        let smallImage3Url = self.menuVar.value[index.value].images[2].imageUrl
-        let smallImage4Url = self.menuVar.value[index.value].images[3].imageUrl
-        LazyImage.showForImageView(self.imvBigImage, url: bigImageUrl)
-        LazyImage.showForImageView(self.imvSmallImage1, url: smallImage1Url)
-        LazyImage.showForImageView(self.imvSmallImage2, url: smallImage2Url)
-        LazyImage.showForImageView(self.imvSmallImage3, url: smallImage3Url)
-        LazyImage.showForImageView(self.imvSmallImage4, url: smallImage4Url)
-        
-        self.matchingDataForOtherHair(self.index.value)
-        self.tapOnImage(self.imvSmallImage1, url: smallImage1Url)
-        self.tapOnImage(self.imvSmallImage2, url: smallImage2Url)
-        self.tapOnImage(self.imvSmallImage3, url: smallImage3Url)
-        self.tapOnImage(self.imvSmallImage4, url: smallImage4Url)
+        if menuVar.value.count >= 0 {
+            self.lblTitle.text = "\(self.menuVar.value[index.value].title)"
+            self.lblDescription.text = "\(self.menuVar.value[index.value].script)"
+            self.lblOther.text = "Các biến thể kiểu tóc \(self.menuVar.value[index.value].title)"
+            
+            let bigImageUrl = self.menuVar.value[index.value].images[0].imageUrl
+            let smallImage1Url = self.menuVar.value[index.value].images[0].imageUrl
+            let smallImage2Url = self.menuVar.value[index.value].images[1].imageUrl
+            let smallImage3Url = self.menuVar.value[index.value].images[2].imageUrl
+            let smallImage4Url = self.menuVar.value[index.value].images[3].imageUrl
+            
+            LazyImage.showForImageView(self.imvBigImage, url: bigImageUrl)
+            LazyImage.showForImageView(self.imvSmallImage1, url: smallImage1Url)
+            LazyImage.showForImageView(self.imvSmallImage2, url: smallImage2Url)
+            LazyImage.showForImageView(self.imvSmallImage3, url: smallImage3Url)
+            LazyImage.showForImageView(self.imvSmallImage4, url: smallImage4Url)
+            
+            self.matchingDataForOtherHair(self.index.value)
+            self.tapOnImage(self.imvSmallImage1, url: smallImage1Url)
+            self.tapOnImage(self.imvSmallImage2, url: smallImage2Url)
+            self.tapOnImage(self.imvSmallImage3, url: smallImage3Url)
+            self.tapOnImage(self.imvSmallImage4, url: smallImage4Url)
+        }
     }
     
     func matchingDataForOtherHair(index : Int) {
@@ -171,10 +171,53 @@ class DetailHairViewController: UIViewController {
         image.addGestureRecognizer(tapGesture)
     }
     
-    func gotoIndex(index : Int){
-        print("asdasdas")
-        self.clvMenu.layoutIfNeeded()
-        let indexPath = NSIndexPath(forRow: index, inSection: 0)
-        self.clvMenu .scrollToItemAtIndexPath(indexPath, atScrollPosition: .CenteredHorizontally, animated: true)
+//    func gotoIndex(index : Int){
+//        print("asdasdas")
+//        self.clvMenu.layoutIfNeeded()
+//        let indexPath = NSIndexPath(forRow: index, inSection: 0)
+//        self.clvMenu .scrollToItemAtIndexPath(indexPath, atScrollPosition: .CenteredHorizontally, animated: true)
+//    }
+    
+    //MARK: Dump data
+    func initData() {
+        self.parseJSON {
+            () in
+            self.configCollectionView()
+            self.bindingData()
+
+        }
     }
+    
+    func parseJSON(complete: ()->()) {
+        let HAIRTYPE_API = "http://api.30shine.com/hairstyle/index"
+        let parameter = ["" : ""]
+        dispatch_async(dispatch_get_global_queue(0, 0)) {
+            Alamofire.request(.POST,HAIRTYPE_API,parameters: parameter, encoding: .JSON).responseJASON {
+                response in
+                if let json = response.result.value {
+                    let haiTypes = json["d"].map(HairNetwork.init)
+                    for hairType in haiTypes {
+                        let images = List<Imagee>()
+                        for image in hairType.image {
+                            if Imagee.getImageeByUrl(image.url) == nil {
+                                images.append(Imagee.create(image.url))
+                            }
+                            else {
+                                images.append(Imagee.getImageeByUrl(image.url))
+                            }
+                        }
+                        if HairType.getHairTypeById(hairType.id) == nil {
+                            let h = HairType.create(hairType.id, title: hairType.title, script: hairType.description, imageName: images)
+                            self.menuVar.value.append(h)
+                        }
+                        else {
+                            self.menuVar.value.append(HairType.getHairTypeById(hairType.id))
+                        }
+                    }
+                    complete()
+                }
+            }
+        }
+    }
+
 }

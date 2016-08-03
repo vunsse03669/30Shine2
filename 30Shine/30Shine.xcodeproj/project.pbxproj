@@ -244,6 +244,7 @@
 			children = (
 				994298A31D4769BF00D053B2 /* BookingViewController.swift */,
 				994298E81D4769BF00D053B2 /* ChainSystemViewController.swift */,
+				994298F61D4769BF00D053B2 /* HairCollectionViewController.swift */,
 				994298F31D4769BF00D053B2 /* DetailHairViewController.swift */,
 				994298FB1D4769BF00D053B2 /* HomeViewController.swift */,
 				9942990B1D4769BF00D053B2 /* ProfileViewController.swift */,
@@ -306,7 +307,6 @@
 				994299111D4769BF00D053B2 /* ServiceView.swift */,
 				994299121D4769BF00D053B2 /* ServiceView.xib */,
 				994299131D4769BF00D053B2 /* ShineComboView.swift */,
-				994298F61D4769BF00D053B2 /* HairCollectionViewController.swift */,
 				994299141D4769BF00D053B2 /* ShineComboView.xib */,
 				E80CDBF21D491F7800B09385 /* AddressTabCell.swift */,
 				E80CDBF31D491F7800B09385 /* AddressTabCell.xib */,
