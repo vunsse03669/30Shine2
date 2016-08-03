@@ -20,6 +20,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var imvSlide: SpringImageView!
     var reachability : Reachability?
+    var isConnectInternet = true
     
     var currentPage = 0
     let swipeGestureLeft = UISwipeGestureRecognizer()
@@ -73,14 +74,19 @@ class HomeViewController: UIViewController {
         dispatch_async(dispatch_get_main_queue()) {
             _ = self.menuVariable.asObservable().bindTo(self.clvMenu.rx_itemsWithCellIdentifier("MenuCell", cellType: MenuCell.self)) {
                 row,data,cell in
-                //LazyImage.showForImageView(cell.imvMenu, url: data.imageName)
-                LazyImage.showForImageView(cell.imvMenu, url: data.imageName, completion: { 
-                    if let dataa = UIImagePNGRepresentation(cell.imvMenu.image!) {
-                        let filename = self.getDocumentsDirectory().stringByAppendingPathComponent("\(data.title).png")
-                        dataa.writeToFile(filename, atomically: true)
-                        
-                    }
-                })
+                if self.isConnectInternet {
+                    LazyImage.showForImageView(cell.imvMenu, url: data.imageName, completion: {
+                        if let dataa = UIImagePNGRepresentation(cell.imvMenu.image!) {
+                            let filename = self.getDocumentsDirectory().stringByAppendingPathComponent("\(data.title).png")
+                            dataa.writeToFile(filename, atomically: true)
+                            
+                        }
+                    })
+
+                }
+                else {
+                    cell.imvMenu.image = UIImage(contentsOfFile: self.getImagePathFromDisk("\(data.title).png"))
+                }
                 cell.lblTitle.text = "\(data.title)"
             }
         }
@@ -194,6 +200,7 @@ class HomeViewController: UIViewController {
         }
         reachability!.whenReachable = {
             reachability in
+            self.isConnectInternet = true
             dispatch_async(dispatch_get_main_queue()) {
                 self.menuVariable.value = []
                 self.slideImageVar.value = []
@@ -204,15 +211,14 @@ class HomeViewController: UIViewController {
         }
         reachability!.whenUnreachable = {
             reachability in
+            self.isConnectInternet = false
             dispatch_async(dispatch_get_main_queue()) {
                 self.menuVariable.value = []
                 self.menuVariable.value = Menu.getAllMenu()
-                print(self.menuVariable.value)
             }
         }
         self.configCollectionView()
         try! reachability?.startNotifier()
-
     }
     
     func parseJsonMenu(complete:()->()) {
