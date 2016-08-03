@@ -35,9 +35,6 @@ class HomeViewController: UIViewController {
         self.initData()
         self.configUI()
         self.configSilder()
-        let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,
-                                                           .UserDomainMask, true).first
-        print(dirPaths)
         //Click btnProfile
         _ = btnProfile.rx_tap.subscribeNext {
             let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController") as! ProfileViewController
@@ -54,7 +51,7 @@ class HomeViewController: UIViewController {
         imageView.frame = CGRectMake(0, 0, 64, 40)
         imageView.contentMode = .ScaleAspectFit
         self.navigationItem.titleView = imageView
-        
+        self.navigationController?.navigationBar.translucent = false
         self.configColletionLayout()
     }
     
@@ -65,7 +62,7 @@ class HomeViewController: UIViewController {
         layout.minimumLineSpacing = 5
         layout.minimumInteritemSpacing = 1
         let width = (self.view.frame.width - 25)/2
-        layout.itemSize = CGSizeMake(width, 0.8*width)
+        layout.itemSize = CGSizeMake(width, 0.7*width)
         self.clvMenu.setCollectionViewLayout(layout, animated: true)
     }
     
