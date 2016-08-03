@@ -11,14 +11,15 @@ import RxSwift
 import RxCocoa
 import Alamofire
 import Spring
+import ReachabilitySwift
 
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var btnProfile: UIButton!
     @IBOutlet weak var clvMenu: UICollectionView!
     @IBOutlet weak var pageControl: UIPageControl!
-    
     @IBOutlet weak var imvSlide: SpringImageView!
+    var reachability : Reachability?
     
     var currentPage = 0
     let swipeGestureLeft = UISwipeGestureRecognizer()
@@ -33,7 +34,9 @@ class HomeViewController: UIViewController {
         self.initData()
         self.configUI()
         self.configSilder()
-        
+        let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,
+                                                           .UserDomainMask, true).first
+        print(dirPaths)
         //Click btnProfile
         _ = btnProfile.rx_tap.subscribeNext {
             let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController") as! ProfileViewController
@@ -70,7 +73,14 @@ class HomeViewController: UIViewController {
         dispatch_async(dispatch_get_main_queue()) {
             _ = self.menuVariable.asObservable().bindTo(self.clvMenu.rx_itemsWithCellIdentifier("MenuCell", cellType: MenuCell.self)) {
                 row,data,cell in
-                LazyImage.showForImageView(cell.imvMenu, url: data.imageName)
+                //LazyImage.showForImageView(cell.imvMenu, url: data.imageName)
+                LazyImage.showForImageView(cell.imvMenu, url: data.imageName, completion: { 
+                    if let dataa = UIImagePNGRepresentation(cell.imvMenu.image!) {
+                        let filename = self.getDocumentsDirectory().stringByAppendingPathComponent("\(data.title).png")
+                        dataa.writeToFile(filename, atomically: true)
+                        
+                    }
+                })
                 cell.lblTitle.text = "\(data.title)"
             }
         }
@@ -179,10 +189,29 @@ class HomeViewController: UIViewController {
     
     //MARK: Data
     func initData() {
-        self.parseJsonMenu({() in
-            self.configCollectionView()
-        })
-        self.parseJsonSlide()
+        do {
+            reachability = try! Reachability.reachabilityForInternetConnection()
+        }
+        reachability!.whenReachable = {
+            reachability in
+            dispatch_async(dispatch_get_main_queue()) {
+                self.menuVariable.value = []
+                self.parseJsonMenu({() in
+                })
+                self.parseJsonSlide()
+            }
+        }
+        reachability!.whenUnreachable = {
+            reachability in
+            dispatch_async(dispatch_get_main_queue()) {
+                self.menuVariable.value = []
+                self.menuVariable.value = Menu.getAllMenu()
+                print(self.menuVariable.value)
+            }
+        }
+        self.configCollectionView()
+        try! reachability?.startNotifier()
+
     }
     
     func parseJsonMenu(complete:()->()) {
@@ -220,4 +249,21 @@ class HomeViewController: UIViewController {
         
     }
     
+}
+
+//MARK: Save Image To document
+extension HomeViewController {
+    func getImagePathFromDisk(name : String) -> String {
+        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+        let getImagePath = paths.stringByAppendingString("/\(name)")
+        //self.imv.image = UIImage(contentsOfFile: getImagePath)
+        return getImagePath
+    }
+    
+    func getDocumentsDirectory() -> NSString {
+        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+    }
+ 
 }

@@ -35,7 +35,11 @@ extension Menu {
         return sDB.realm.objects(Menu).filter(predicate).first
     }
     
-    static func getAllMenu() -> Results<Menu> {
-        return sDB.realm.objects(Menu)
+    static func getAllMenu() -> [Menu] {
+        var menus = [Menu]()
+        for menu in sDB.realm.objects(Menu) {
+            menus.append(menu)
+        }
+        return menus
     }
 }
