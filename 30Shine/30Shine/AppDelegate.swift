@@ -8,21 +8,46 @@
 
 import UIKit
 import MediaPlayer
-
+import ReachabilitySwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-    
+    var reachability : Reachability?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
         UINavigationBar.appearance().barTintColor = UIColor.blackColor()
         self.window!.backgroundColor = .whiteColor();
+        self.checkInternet()
         return true
     }
+    
+    func checkInternet() {
+        do {
+            reachability = try! Reachability.reachabilityForInternetConnection()
+        }
+        reachability!.whenUnreachable = {
+            reachability in
+            dispatch_async(dispatch_get_main_queue()) {
+                let message = "Mất kết nối internet. Chương trình sẽ tiếp tục chạy offline."
+                let alert = UIAlertView(title: "", message: message, delegate: nil, cancelButtonTitle: "Xác nhận")
+                alert.show()
+            }
+        }
+        reachability!.whenReachable = {
+            reachability in
+            dispatch_async(dispatch_get_main_queue()){
+                
+            }
+        }
+        
+        try! reachability?.startNotifier()
+        
+    }
+
     
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

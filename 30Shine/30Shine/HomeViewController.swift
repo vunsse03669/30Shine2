@@ -196,6 +196,7 @@ class HomeViewController: UIViewController {
             reachability in
             dispatch_async(dispatch_get_main_queue()) {
                 self.menuVariable.value = []
+                self.slideImageVar.value = []
                 self.parseJsonMenu({() in
                 })
                 self.parseJsonSlide()
