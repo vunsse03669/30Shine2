@@ -20,7 +20,6 @@ class VideoViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var btnProfile: UIButton!
     
     var moviePlayer : MPMoviePlayerController!
-    
     var videoVariable : Variable<[YoutubeVideo]> = Variable([])
     
     override func viewDidLoad() {
@@ -54,7 +53,8 @@ class VideoViewController: UIViewController, UITableViewDelegate {
     
     //MARK: TableView
     func configTableView() {
-        _ = self.videoVariable.asObservable().bindTo(self.tbvVideo.rx_itemsWithCellIdentifier("VideoCell", cellType: VideoCell.self)) {
+        _ = self.videoVariable.asObservable()
+            .bindTo(self.tbvVideo.rx_itemsWithCellIdentifier("VideoCell", cellType: VideoCell.self)) {
             row,data,cell in
             cell.lblTitle.text = "\(data.title)"
             cell.lblViewCount.text = "\(data.viewCount) views"
@@ -137,7 +137,9 @@ class VideoViewController: UIViewController, UITableViewDelegate {
     func initData() {
         self.parseJson { 
             () in
-            self.configTableView()
+            self.videoVariable.value.sortInPlace {
+                return ($0).publishDate > ($1).publishDate
+            }
         }
     }
     
@@ -162,6 +164,7 @@ class VideoViewController: UIViewController, UITableViewDelegate {
                                 self.videoVariable.value.append(YoutubeVideo.getVideoById(video.id))
                             }
                         }
+                        complete()
                     }
             }
         }

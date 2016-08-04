@@ -104,9 +104,10 @@ class HomeViewController: UIViewController {
                 case 3:
                     vc = self.storyboard?.instantiateViewControllerWithIdentifier("VideoViewController") as? VideoViewController
                 case 4:
-                    if let url = NSURL(string: PRODUCT_LINK) {
-                        UIApplication.sharedApplication().openURL(url)
-                    }
+//                    if let url = NSURL(string: PRODUCT_LINK) {
+//                        UIApplication.sharedApplication().openURL(url)
+//                    }
+                     vc = self.storyboard?.instantiateViewControllerWithIdentifier("CosmeticViewController") as? CosmeticViewController
                 case 5:
                     
                     vc = self.storyboard?.instantiateViewControllerWithIdentifier("ChainSystemViewController") as? ChainSystemViewController

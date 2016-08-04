@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
         UINavigationBar.appearance().barTintColor = UIColor.blackColor()
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         self.window!.backgroundColor = .whiteColor();
         self.checkInternet()
         return true

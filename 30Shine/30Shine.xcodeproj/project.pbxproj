@@ -83,6 +83,7 @@
 		99876F101D4A5FD40094EF12 /* Stylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99876F0F1D4A5FD40094EF12 /* Stylist.swift */; };
 		998965861D488C48006DEDF5 /* YoutubeVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998965851D488C48006DEDF5 /* YoutubeVideo.swift */; };
 		9989658A1D488E0B006DEDF5 /* YoutubeNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998965891D488E0B006DEDF5 /* YoutubeNetwork.swift */; };
+		9991DCAD1D531E9F00E97910 /* CosmeticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9991DCAC1D531E9F00E97910 /* CosmeticViewController.swift */; };
 		99BC264C1D4B4324006E3ACE /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BC264B1D4B4324006E3ACE /* ViewControllerExtension.swift */; };
 		E800B99F1D4E5C0D003A7031 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E800B99E1D4E5C0D003A7031 /* Extensions.swift */; };
 		E80CDBF41D491F7800B09385 /* AddressTabCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80CDBF21D491F7800B09385 /* AddressTabCell.swift */; };
@@ -170,6 +171,7 @@
 		99876F0F1D4A5FD40094EF12 /* Stylist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stylist.swift; sourceTree = "<group>"; };
 		998965851D488C48006DEDF5 /* YoutubeVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeVideo.swift; sourceTree = "<group>"; };
 		998965891D488E0B006DEDF5 /* YoutubeNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeNetwork.swift; sourceTree = "<group>"; };
+		9991DCAC1D531E9F00E97910 /* CosmeticViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosmeticViewController.swift; sourceTree = "<group>"; };
 		99BC264B1D4B4324006E3ACE /* ViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
 		E800B99E1D4E5C0D003A7031 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E80CDBF21D491F7800B09385 /* AddressTabCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressTabCell.swift; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 				994298FB1D4769BF00D053B2 /* HomeViewController.swift */,
 				9942990B1D4769BF00D053B2 /* ProfileViewController.swift */,
 				9942991B1D4769BF00D053B2 /* VideoViewController.swift */,
+				9991DCAC1D531E9F00E97910 /* CosmeticViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -613,6 +616,7 @@
 				994299751D4769BF00D053B2 /* ListSalonView.swift in Sources */,
 				99876F0E1D4A5FC10094EF12 /* StylistNetwork.swift in Sources */,
 				E800B99F1D4E5C0D003A7031 /* Extensions.swift in Sources */,
+				9991DCAD1D531E9F00E97910 /* CosmeticViewController.swift in Sources */,
 				994299631D4769BF00D053B2 /* CustomerHistoryCell.swift in Sources */,
 				9942996D1D4769BF00D053B2 /* HairType.swift in Sources */,
 			);
