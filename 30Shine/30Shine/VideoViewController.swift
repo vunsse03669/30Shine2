@@ -12,8 +12,9 @@ import RxSwift
 import MediaPlayer
 import youtube_parser
 import Alamofire
+import ReachabilitySwift
 
-class VideoViewController: UIViewController, UITableViewDelegate {
+class VideoViewController: UIViewController, UITableViewDelegate, UIAlertViewDelegate {
     
     @IBOutlet weak var tbvVideo: UITableView!
     @IBOutlet weak var btnHome: UIButton!
@@ -21,6 +22,7 @@ class VideoViewController: UIViewController, UITableViewDelegate {
     
     var moviePlayer : MPMoviePlayerController!
     var videoVariable : Variable<[YoutubeVideo]> = Variable([])
+    var reachability : Reachability?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -135,12 +137,33 @@ class VideoViewController: UIViewController, UITableViewDelegate {
 
     //MARK:Dump data
     func initData() {
-        self.parseJson { 
-            () in
-            self.videoVariable.value.sortInPlace {
-                return ($0).publishDate > ($1).publishDate
+        
+        do {
+            reachability = try! Reachability.reachabilityForInternetConnection()
+        }
+        reachability!.whenReachable = {
+            reachability in
+            dispatch_async(dispatch_get_main_queue()) {
+                self.videoVariable.value = []
+                self.parseJson {
+                    () in
+                    self.videoVariable.value.sortInPlace {
+                        return ($0).publishDate > ($1).publishDate
+                    }
+                }
+
             }
         }
+        reachability!.whenUnreachable = {
+            reachability in
+            dispatch_async(dispatch_get_main_queue()) {
+                let message = "Hiện tại thiết bị của bạn đang không được kết nối internet. Quý khách muốn dùng chức năng này xin vui lòng kiểm tra lại kết nối internet!"
+                let alert = UIAlertView(title: "", message: message, delegate: self, cancelButtonTitle: "Xác nhận")
+                alert.show()
+            }
+        }
+        try! reachability?.startNotifier()
+        
     }
     
     func parseJson(complete: ()->()) {
@@ -173,6 +196,14 @@ class VideoViewController: UIViewController, UITableViewDelegate {
     //MARK: table delegate
     func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
         return UITableViewCellEditingStyle.None
+    }
+    
+    //MARK: Alertview delegate
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        if buttonIndex == 0 {
+            self.navigationController?.pop()
+        }
+        
     }
     
 }

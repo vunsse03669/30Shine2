@@ -10,8 +10,9 @@ import UIKit
 import Alamofire
 import RxSwift
 import RxCocoa
+import ReachabilitySwift
 
-class BookingViewController: UIViewController {
+class BookingViewController: UIViewController, UIAlertViewDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var clvBooking: UICollectionView!
     @IBOutlet weak var btnSubmit: UIButton!
@@ -43,6 +44,7 @@ class BookingViewController: UIViewController {
     var dateCount = 0
     var stylistCount = 0
     var salonCount = 0
+    var reachability: Reachability?
     
     var bookingTimeId : Variable<Int> = Variable(0)
     var dataVar : Variable<[Booking]> = Variable([])
@@ -55,8 +57,24 @@ class BookingViewController: UIViewController {
     var isClickOnTime = Variable(0)
     var isClickOnStylist = Variable(0)
     
+    func checkInternet() {
+        do {
+            reachability = try! Reachability.reachabilityForInternetConnection()
+        }
+        reachability!.whenUnreachable = {
+            reachability in
+            dispatch_async(dispatch_get_main_queue()) {
+                let message = "Hiện tại thiết bị của bạn đang không được kết nối internet. Quý khách muốn dùng chức năng này xin vui lòng kiểm tra lại kết nối internet!"
+                let alert = UIAlertView(title: "", message: message, delegate: self, cancelButtonTitle: "Xác nhận")
+                alert.show()
+            }
+        }
+        try! reachability?.startNotifier()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.checkInternet()
         self.configUI()
         self.configCollectionView()
         self.parseSchedule(salonId[0], workDate: self.toDate(0), stylistId: 0) {
@@ -603,6 +621,16 @@ extension BookingViewController {
                     completion()
                 }
             }
+        }
+        
+    }
+}
+
+extension BookingViewController {
+    //MARK: Alertview delegate
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        if buttonIndex == 0 {
+            self.navigationController?.pop()
         }
         
     }
