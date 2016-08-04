@@ -47,6 +47,14 @@ extension HairType {
         let predicate = NSPredicate(format: "id = %d", id)
         return sDB.realm.objects(HairType).filter(predicate).first
     }
+    
+    static func getAllHairType() -> [HairType] {
+        var hairs = [HairType]()
+        for hair in sDB.realm.objects(HairType) {
+            hairs.append(hair)
+        }
+        return hairs
+    }
 }
 
 extension Imagee {
@@ -59,5 +67,13 @@ extension Imagee {
     static func getImageeByUrl(url : String) -> Imagee! {
         let predicate = NSPredicate(format: "imageUrl = %@", url)
         return sDB.realm.objects(Imagee).filter(predicate).first
+    }
+    
+    static func getAllImage() -> [Imagee] {
+        var images = [Imagee]()
+        for image in sDB.realm.objects(Imagee) {
+            images.append(image)
+        }
+        return images
     }
 }

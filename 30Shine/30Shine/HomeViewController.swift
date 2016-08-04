@@ -255,10 +255,11 @@ class HomeViewController: UIViewController {
 }
 
 //MARK: Save Image To document
-extension HomeViewController {
+extension DetailHairViewController {
     func getImagePathFromDisk(name : String) -> String {
+        let newName = name.stringByReplacingOccurrencesOfString("/", withString: "")
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
-        let getImagePath = paths.stringByAppendingString("/\(name)")
+        let getImagePath = paths.stringByAppendingString("/\(newName)")
         //self.imv.image = UIImage(contentsOfFile: getImagePath)
         return getImagePath
     }

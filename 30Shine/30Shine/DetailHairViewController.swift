@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import Alamofire
 import RealmSwift
+import ReachabilitySwift
 
 class DetailHairViewController: UIViewController {
     
@@ -30,6 +31,8 @@ class DetailHairViewController: UIViewController {
     var menuVar : Variable<[HairType]> = Variable([])
     var otherHairVar : Variable<[Imagee]> = Variable([])
     var index : Variable<Int> = Variable(0)
+    var reachability : Reachability?
+    var isConnectInternet = true
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -69,13 +72,16 @@ class DetailHairViewController: UIViewController {
         _ = self.menuVar.asObservable().bindTo(self.clvMenu.rx_itemsWithCellIdentifier("MenuCollectionViewCell", cellType: MenuCollectionViewCell.self)) {row,data,cell in
             _ = self.index.asObservable().subscribeNext {
                 index in
-                if data.title == self.menuVar.value[index].title {
-                    cell.lblTitle.font = UIFont.boldSystemFontOfSize(9)
-                }
-                else {
-                    if #available(iOS 8.2, *) {
-                        cell.lblTitle.font = UIFont.systemFontOfSize(10, weight: UIFontWeightThin)
+                if self.menuVar.value != [] {
+                    if data.title == self.menuVar.value[index].title {
+                        cell.lblTitle.font = UIFont.boldSystemFontOfSize(9)
                     }
+                    else {
+                        if #available(iOS 8.2, *) {
+                            cell.lblTitle.font = UIFont.systemFontOfSize(10, weight: UIFontWeightThin)
+                        }
+                    }
+
                 }
             }
             
@@ -90,6 +96,13 @@ class DetailHairViewController: UIViewController {
         
         _ = self.otherHairVar.asObservable().bindTo(self.clvOtherHair.rx_itemsWithCellIdentifier("OtherHairCollectionViewCell", cellType: OtherHairCollectionViewCell.self)) {row,data,cell in
             LazyImage.showForImageView(cell.imvHair, url: data.imageUrl)
+            if self.isConnectInternet {
+                self.showAndDownloadImage(cell.imvHair, url: data.imageUrl, name: data.imageUrl)
+            }
+            else {
+                cell.imvHair.image = UIImage(contentsOfFile: self.getImagePathFromDisk(data.imageUrl))
+            }
+            
         }
         
         _ = self.clvOtherHair.rx_itemSelected.subscribeNext {
@@ -135,17 +148,48 @@ class DetailHairViewController: UIViewController {
             let smallImage3Url = self.menuVar.value[index.value].images[2].imageUrl
             let smallImage4Url = self.menuVar.value[index.value].images[3].imageUrl
             
-            LazyImage.showForImageView(self.imvBigImage, url: bigImageUrl)
-            LazyImage.showForImageView(self.imvSmallImage1, url: smallImage1Url)
-            LazyImage.showForImageView(self.imvSmallImage2, url: smallImage2Url)
-            LazyImage.showForImageView(self.imvSmallImage3, url: smallImage3Url)
-            LazyImage.showForImageView(self.imvSmallImage4, url: smallImage4Url)
+            if self.isConnectInternet {
+                self.showAndDownloadImage(self.imvBigImage, url: bigImageUrl, name: bigImageUrl)
+                self.showAndDownloadImage(self.imvSmallImage1, url: smallImage1Url, name: smallImage1Url)
+                self.showAndDownloadImage(self.imvSmallImage2, url: smallImage2Url, name: smallImage2Url)
+                self.showAndDownloadImage(self.imvSmallImage3, url: smallImage3Url, name: smallImage3Url)
+                self.showAndDownloadImage(self.imvSmallImage4, url: smallImage4Url, name: smallImage4Url)
+            }
+            else {
+                self.imvBigImage.image = UIImage(contentsOfFile: self.getImagePathFromDisk("\(bigImageUrl)"))
+                print(self.getImagePathFromDisk("\(bigImageUrl)"))
+                self.imvSmallImage1.image = UIImage(contentsOfFile: self.getImagePathFromDisk("\(smallImage1Url)"))
+                self.imvSmallImage2.image = UIImage(contentsOfFile: self.getImagePathFromDisk("\(smallImage2Url)"))
+                self.imvSmallImage3.image = UIImage(contentsOfFile: self.getImagePathFromDisk("\(smallImage3Url)"))
+                self.imvSmallImage4.image = UIImage(contentsOfFile: self.getImagePathFromDisk("\(smallImage4Url)"))
+            }
+//            LazyImage.showForImageView(self.imvBigImage, url: bigImageUrl)
+//            LazyImage.showForImageView(self.imvSmallImage1, url: smallImage1Url)
+//            LazyImage.showForImageView(self.imvSmallImage2, url: smallImage2Url)
+//            LazyImage.showForImageView(self.imvSmallImage3, url: smallImage3Url)
+//            LazyImage.showForImageView(self.imvSmallImage4, url: smallImage4Url)
             
             self.matchingDataForOtherHair(self.index.value)
             self.tapOnImage(self.imvSmallImage1, url: smallImage1Url)
             self.tapOnImage(self.imvSmallImage2, url: smallImage2Url)
             self.tapOnImage(self.imvSmallImage3, url: smallImage3Url)
             self.tapOnImage(self.imvSmallImage4, url: smallImage4Url)
+        }
+    }
+    
+    func showAndDownloadImage(imageView: UIImageView, url: String, name : String) {
+        LazyImage.showForImageView(imageView, url: url) { 
+//            if let dataa = UIImagePNGRepresentation(imageView.image!) {
+//                let filename = self.getDocumentsDirectory().stringByAppendingPathComponent("\(name).png").stringByReplacingOccurrencesOfString(".jpg", withString: "")
+//                dataa.writeToFile(filename, atomically: true)
+//                
+//            }
+                let newName = name.stringByReplacingOccurrencesOfString("/", withString: "")
+                if let dataa = UIImageJPEGRepresentation(imageView.image!, 0.8) {
+                    let filename = self.getDocumentsDirectory().stringByAppendingPathComponent(newName)
+                    dataa.writeToFile(filename, atomically: true)
+                }
+            
         }
     }
     
@@ -166,7 +210,8 @@ class DetailHairViewController: UIViewController {
         let tapGesture = UITapGestureRecognizer.init()
         _ = tapGesture.rx_event.subscribeNext {
             gesture in
-            LazyImage.showForImageView(self.imvBigImage, url: url)
+            //LazyImage.showForImageView(self.imvBigImage, url: url)
+            self.showAndDownloadImage(self.imvBigImage, url: url, name: url)
         }
         image.addGestureRecognizer(tapGesture)
     }
@@ -180,12 +225,44 @@ class DetailHairViewController: UIViewController {
     
     //MARK: Dump data
     func initData() {
-        self.parseJSON {
-            () in
-            self.configCollectionView()
-            self.bindingData()
-
+        do {
+            reachability = try! Reachability.reachabilityForInternetConnection()
         }
+        reachability!.whenReachable = {
+            reachability in
+            self.isConnectInternet = true
+            dispatch_async(dispatch_get_main_queue()) {
+               self.menuVar.value = []
+               self.otherHairVar.value = []
+               self.index.value = 0
+               self.parseJSON({ 
+                self.bindingData()
+                
+               })
+            }
+        }
+        reachability!.whenUnreachable = {
+            reachability in
+            self.isConnectInternet = false
+            dispatch_async(dispatch_get_main_queue()) {
+                self.menuVar.value = []
+                self.otherHairVar.value = []
+                self.index.value = 0
+                self.menuVar.value = HairType.getAllHairType()
+                self.otherHairVar.value = Imagee.getAllImage()
+                self.bindingData()
+            }
+        }
+        self.configCollectionView()
+        try! reachability?.startNotifier()
+
+        
+//        self.parseJSON {
+//            () in
+//            self.configCollectionView()
+//            self.bindingData()
+//
+//        }
     }
     
     func parseJSON(complete: ()->()) {
@@ -220,4 +297,22 @@ class DetailHairViewController: UIViewController {
         }
     }
 
+}
+
+//MARK: Save Image To document
+extension HomeViewController {
+    func getImagePathFromDisk(name : String) -> String {
+        let newName = name.stringByReplacingOccurrencesOfString("/", withString: "")
+        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+        let getImagePath = paths.stringByAppendingString("/\(newName)")
+        //self.imv.image = UIImage(contentsOfFile: getImagePath)
+        return getImagePath
+    }
+    
+    func getDocumentsDirectory() -> NSString {
+        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+    }
+    
 }
