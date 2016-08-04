@@ -10,23 +10,18 @@ import UIKit
 import RxCocoa
 import RxSwift
 import Alamofire
+import ReachabilitySwift
 
 class CustomerHistoryView: UIView, UITableViewDelegate {
+    
+    var reachability : Reachability?
 
     @IBOutlet weak var tbvHistory: UITableView!
     var historyVar : Variable<[CustomerHistory]> = Variable([])
     override func awakeFromNib() {
         super.awakeFromNib()
         tbvHistory.delegate = self
-        self.parseJSON { 
-            () in
-            self.configTableView()
-            let frame = CGRectMake(50, 20, 2, CGFloat(self.historyVar.value.count)*120 - 50)
-            let lineView = UIView(frame: frame)
-            lineView.backgroundColor = UIColor(netHex: 0xD8D9DB)
-            self.tbvHistory.addSubview(lineView)
-            lineView.layer.zPosition = -1000
-        }
+        self.initData()
     }
     
     static func createView(view : UIView) -> CustomerHistoryView! {
@@ -40,6 +35,14 @@ class CustomerHistoryView: UIView, UITableViewDelegate {
             customerView.alpha = 1
         }
         return customerView
+    }
+    
+    func addLine() {
+        let frame = CGRectMake(50, 20, 2, CGFloat(self.historyVar.value.count)*120 - 50)
+        let lineView = UIView(frame: frame)
+        lineView.backgroundColor = UIColor(netHex: 0xD8D9DB)
+        self.tbvHistory.addSubview(lineView)
+        lineView.layer.zPosition = -1000
     }
     
     //MARK: tableview
@@ -124,6 +127,32 @@ class CustomerHistoryView: UIView, UITableViewDelegate {
     }
 
     //MARK: data
+    func initData() {
+        do {
+            reachability = try! Reachability.reachabilityForInternetConnection()
+        }
+        reachability!.whenReachable = {
+            reachability in
+            dispatch_async(dispatch_get_main_queue()) {
+                self.historyVar.value = []
+                self.parseJSON({ 
+                    () in
+                    self.addLine()
+                })
+            }
+        }
+        reachability!.whenUnreachable = {
+            reachability in
+            dispatch_async(dispatch_get_main_queue()) {
+                self.historyVar.value = []
+                self.historyVar.value = CustomerHistory.getAllHistory()
+                self.addLine()
+            }
+        }
+        self.configTableView()
+        try! reachability?.startNotifier()
+    }
+    
     func parseJSON(complete: ()->()) {
         let parameter = ["Id" : 1000]
         dispatch_async(dispatch_get_global_queue(0, 0)) { 

@@ -39,4 +39,12 @@ extension CustomerHistory {
         let predicate = NSPredicate(format: "createTime = %@", time)
         return sDB.realm.objects(CustomerHistory).filter(predicate).first
     }
+    
+    static func getAllHistory() -> [CustomerHistory] {
+        var historys = [CustomerHistory]()
+        for history in sDB.realm.objects(CustomerHistory) {
+            historys.append(history)
+        }
+        return historys
+    }
 }
