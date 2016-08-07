@@ -10,6 +10,9 @@ import UIKit
 
 class SalonContentViewController: UIViewController {
 
+    var pageIndex : NSInteger!
+    var salon : Salon!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

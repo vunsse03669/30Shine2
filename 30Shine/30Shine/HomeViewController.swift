@@ -110,7 +110,8 @@ class HomeViewController: UIViewController {
                      vc = self.storyboard?.instantiateViewControllerWithIdentifier("CosmeticViewController") as? CosmeticViewController
                 case 5:
                     
-                    vc = SalonsViewController(nibName: "SalonsViewController", bundle: nil)//self.storyboard?.instantiateViewControllerWithIdentifier("ChainSystemViewController") as? ChainSystemViewController
+                    vc = ListSalonsViewController(nibName: "ListSalonsViewController", bundle: nil)
+                //SalonsViewController(nibName: "SalonsViewController", bundle: nil)//self.storyboard?.instantiateViewControllerWithIdentifier("ChainSystemViewController") as? ChainSystemViewController
                 default:
                     print("Tap Failed!!!")
                 }

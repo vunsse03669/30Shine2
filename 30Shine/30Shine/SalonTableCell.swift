@@ -16,8 +16,12 @@ class SalonTableCell: UITableViewCell {
     @IBOutlet weak var lblHotLine: UILabel!
     @IBOutlet weak var lblFacebookLink: UILabel!
     
+    @IBOutlet weak var btnBooking: UIButton!
+    @IBOutlet weak var btnCall: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
+        btnCall.customButton()
+        btnBooking.customButton()
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

@@ -50,10 +50,10 @@ class ListSalonView: UIView, UITableViewDelegate {
         dispatch_async(dispatch_get_main_queue()) {
             _ =           self.salonVariable.asObservable().bindTo(self.tbvListSalon.rx_itemsWithCellIdentifier("SalonTableCell", cellType: SalonTableCell.self)){
                 row,data,cell in
-                cell.lblAdress.text = data.name
-                cell.lblManager.text = data.managerName
-                cell.lblHotLine.text = data.phone
-                cell.lblFacebookLink.text = data.fanpage
+                //cell.lblAdress.text = data.name
+                //cell.lblManager.text = data.managerName
+                //cell.lblHotLine.text = data.phone
+                //cell.lblFacebookLink.text = data.fanpage
                 print("count iamge \(data.listImages.count)")
                 if(data.listImages.count>0){
                     LazyImage.showForImageView(cell.imvSalon, url: data.listImages[0].url)

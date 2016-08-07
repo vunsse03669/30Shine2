@@ -17,7 +17,7 @@ class SalonPageViewController: UIPageViewController {
     }
     
     override init(transitionStyle style: UIPageViewControllerTransitionStyle, navigationOrientation: UIPageViewControllerNavigationOrientation, options: [String : AnyObject]?) {
-        super.init(transitionStyle: .PageCurl, navigationOrientation: .Horizontal, options: options)
+        super.init(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: options)
     }
     
     required init?(coder: NSCoder) {
