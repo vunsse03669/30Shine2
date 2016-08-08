@@ -23,7 +23,7 @@
                         <constraint firstAttribute="height" constant="30" id="euU-7n-cnX"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="UTM-Alexander" family="UTM Alexander" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="199" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sBd-dT-oBR">

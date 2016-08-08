@@ -17,15 +17,22 @@ class DetailSalonViewController: UIViewController,UIScrollViewDelegate, UIGestur
     @IBOutlet weak var clvImagesList: UICollectionView!
     
     @IBOutlet weak var scrollView: UIScrollView!
+    
+    @IBOutlet weak var btnHotline: UIButton!
+    @IBOutlet weak var btnBooking: UIButton!
+    @IBOutlet weak var btnFacebook: UIButton!
+    
     var currentSalon = Salon()
     var salonVariable  : Variable<[ImageObject]> = Variable([])
     var currentIndex :Variable<Int> = Variable(0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
         setupPichImageMap()
         setupData()
         setupCollectionView()
+        setupButtons()
     }
     
     func setupData(){
@@ -45,19 +52,26 @@ class DetailSalonViewController: UIViewController,UIScrollViewDelegate, UIGestur
     func setupCollectionView(){
         self.clvImagesList.registerNib(UINib.init(nibName: "SalonImageCell", bundle: nil), forCellWithReuseIdentifier: "SalonImageCell")
         
+        let flowLayout = UICollectionViewFlowLayout()
+        
         //config layout
-        let flowLayout: UICollectionViewFlowLayout! = UICollectionViewFlowLayout()
-        flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        flowLayout.minimumLineSpacing = 0
-        flowLayout.minimumInteritemSpacing = 10
 
+        self.view.layoutIfNeeded()
         self.clvImagesList.layoutIfNeeded()
         
-        let height = self.view.bounds.height
+        let height = self.clvImagesList.bounds.height - 80
         print(height)
-        let width = height
+        let width = height*4/3
+        let space = 5.0 as CGFloat
         
-        flowLayout.itemSize = CGSizeMake(width, height)
+        // Set view cell size
+        flowLayout.itemSize = CGSizeMake(width,height)
+        
+        // Set left and right margins
+        flowLayout.minimumInteritemSpacing = space
+        
+        // Set top and bottom margins
+        flowLayout.minimumLineSpacing = space
         
         flowLayout.scrollDirection = .Horizontal
         self.clvImagesList.setCollectionViewLayout(flowLayout, animated: false)
@@ -85,6 +99,33 @@ class DetailSalonViewController: UIViewController,UIScrollViewDelegate, UIGestur
             LazyImage.showForImageView(self.imvSelected, url: self.currentSalon.listImages[self.currentIndex.value].url)
         }
     }
+    
+    func setupButtons(){
+       
+        //btn.imageView.setContentMode:UIViewContentModeScaleAspectFit;
+        btnBooking.imageView?.contentMode = .ScaleAspectFit
+        btnFacebook.imageView?.contentMode = .ScaleAspectFit
+        btnFacebook.imageView?.contentMode = .ScaleAspectFit
+        
+        _=btnFacebook.rx_tap.subscribeNext({
+            print("hotline")
+            UIApplication.sharedApplication().openURL(NSURL(string: "tel://\(self.currentSalon.phone)")!)
+        })
+        
+        _=btnBooking.rx_tap.subscribeNext({
+            print("booking")
+            
+        })
+        
+        _=btnFacebook.rx_tap.subscribeNext({
+            print("fanpage")
+            
+            if let url = NSURL(string: self.currentSalon.fanpage) {
+                UIApplication.sharedApplication().openURL(url)
+            }
+        })
+    }
+
     
     func setupPichImageMap(){
         self.scrollView.delegate = self

@@ -75,18 +75,17 @@ class ListSalonView: UIView, UITableViewDelegate {
     }
     
     func showDetail(salon:Salon){
-        let detailVC = DetailSalonViewController(nibName: "DetailSalonViewController", bundle: nil)
-        self.navigation.push(detailVC, animated: true)
-        detailVC.currentSalon = salon
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        
-//        let vc = storyboard.instantiateViewControllerWithIdentifier("DetailSalonViewController") as? DetailSalonViewController
-        //self.detailSalonView = DetailSalonView.createInView(self, contentSalon: salon)
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let detailVC = storyboard.instantiateViewControllerWithIdentifier("DetailSalonViewController") as? DetailSalonViewController
+        self.navigation.push(detailVC!, animated: true)
+        detailVC!.currentSalon = salon
+        
     }
     
     func disappearDetail(){
         UIView .animateWithDuration(0.5, animations: {
-          //  self.detailSalonView.alpha = 0
+            //  self.detailSalonView.alpha = 0
         }) { (completion) in
             //self.detailSalonView.removeFromSuperview()
         }

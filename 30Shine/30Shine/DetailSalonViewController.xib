@@ -11,7 +11,7 @@
         </mutableArray>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailSalonViewController" customModule="_0Shine" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner">
             <connections>
                 <outlet property="clvImagesList" destination="DOi-4k-iTa" id="x1w-w8-F16"/>
                 <outlet property="imvSelected" destination="72z-Pq-8Hq" id="Qjg-eU-yNa"/>
