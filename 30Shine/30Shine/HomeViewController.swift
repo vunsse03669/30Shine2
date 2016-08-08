@@ -112,6 +112,9 @@ class HomeViewController: UIViewController {
                     
                     vc = ListSalonsViewController(nibName: "ListSalonsViewController", bundle: nil)
                 //SalonsViewController(nibName: "SalonsViewController", bundle: nil)//self.storyboard?.instantiateViewControllerWithIdentifier("ChainSystemViewController") as? ChainSystemViewController
+                    
+                case 6:
+                    vc = self.storyboard?.instantiateViewControllerWithIdentifier("ServicesViewController") as? ServicesViewController
                 default:
                     print("Tap Failed!!!")
                 }

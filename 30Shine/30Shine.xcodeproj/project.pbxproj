@@ -86,6 +86,10 @@
 		9991DCAD1D531E9F00E97910 /* CosmeticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9991DCAC1D531E9F00E97910 /* CosmeticViewController.swift */; };
 		99BC264C1D4B4324006E3ACE /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BC264B1D4B4324006E3ACE /* ViewControllerExtension.swift */; };
 		E800B99F1D4E5C0D003A7031 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E800B99E1D4E5C0D003A7031 /* Extensions.swift */; };
+		E8031EE41D587F3A0085DCA7 /* OtherServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8031EE31D587F3A0085DCA7 /* OtherServicesViewController.swift */; };
+		E8031EE61D587F480085DCA7 /* ShineComboViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8031EE51D587F480085DCA7 /* ShineComboViewController.swift */; };
+		E8031EE81D587F570085DCA7 /* ServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8031EE71D587F570085DCA7 /* ServicesViewController.swift */; };
+		E8031EED1D587F930085DCA7 /* ServiceMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8031EEB1D587F930085DCA7 /* ServiceMenuCell.swift */; };
 		E80CDBF41D491F7800B09385 /* AddressTabCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80CDBF21D491F7800B09385 /* AddressTabCell.swift */; };
 		E80CDBF51D491F7800B09385 /* AddressTabCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E80CDBF31D491F7800B09385 /* AddressTabCell.xib */; };
 		E8219B341D4A31E5008C6C23 /* DetailSalonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8219B331D4A31E5008C6C23 /* DetailSalonView.xib */; };
@@ -186,6 +190,10 @@
 		9991DCAC1D531E9F00E97910 /* CosmeticViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosmeticViewController.swift; sourceTree = "<group>"; };
 		99BC264B1D4B4324006E3ACE /* ViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
 		E800B99E1D4E5C0D003A7031 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		E8031EE31D587F3A0085DCA7 /* OtherServicesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherServicesViewController.swift; sourceTree = "<group>"; };
+		E8031EE51D587F480085DCA7 /* ShineComboViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShineComboViewController.swift; sourceTree = "<group>"; };
+		E8031EE71D587F570085DCA7 /* ServicesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesViewController.swift; sourceTree = "<group>"; };
+		E8031EEB1D587F930085DCA7 /* ServiceMenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceMenuCell.swift; sourceTree = "<group>"; };
 		E80CDBF21D491F7800B09385 /* AddressTabCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressTabCell.swift; sourceTree = "<group>"; };
 		E80CDBF31D491F7800B09385 /* AddressTabCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressTabCell.xib; sourceTree = "<group>"; };
 		E8219B331D4A31E5008C6C23 /* DetailSalonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailSalonView.xib; sourceTree = "<group>"; };
@@ -268,6 +276,7 @@
 		994299911D476B9B00D053B2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E8031EE01D587F050085DCA7 /* Services */,
 				E8F806D41D577F55005AA7AA /* DetailSalon */,
 				E8A056011D54769000112F11 /* SalonPages */,
 				994298A31D4769BF00D053B2 /* BookingViewController.swift */,
@@ -444,6 +453,33 @@
 				07F489400F76D4BC5F1DC920 /* Pods-30Shine.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		E8031EE01D587F050085DCA7 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				E8031EE21D587F180085DCA7 /* ShineCombo */,
+				E8031EE11D587F100085DCA7 /* OtherService */,
+				E8031EE71D587F570085DCA7 /* ServicesViewController.swift */,
+				E8031EEB1D587F930085DCA7 /* ServiceMenuCell.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		E8031EE11D587F100085DCA7 /* OtherService */ = {
+			isa = PBXGroup;
+			children = (
+				E8031EE31D587F3A0085DCA7 /* OtherServicesViewController.swift */,
+			);
+			name = OtherService;
+			sourceTree = "<group>";
+		};
+		E8031EE21D587F180085DCA7 /* ShineCombo */ = {
+			isa = PBXGroup;
+			children = (
+				E8031EE51D587F480085DCA7 /* ShineComboViewController.swift */,
+			);
+			name = ShineCombo;
 			sourceTree = "<group>";
 		};
 		E8A056011D54769000112F11 /* SalonPages */ = {
@@ -624,6 +660,7 @@
 				9942995F1D4769BF00D053B2 /* ComboCell.swift in Sources */,
 				9942998A1D4769BF00D053B2 /* SlideNetwork.swift in Sources */,
 				E8A056101D54A0A200112F11 /* ListSalonsViewController.swift in Sources */,
+				E8031EE61D587F480085DCA7 /* ShineComboViewController.swift in Sources */,
 				994299811D4769BF00D053B2 /* Salon.swift in Sources */,
 				994299701D4769BF00D053B2 /* HomeViewController.swift in Sources */,
 				994299741D4769BF00D053B2 /* LazyImage.swift in Sources */,
@@ -640,13 +677,16 @@
 				994299681D4769BF00D053B2 /* DetailHairViewController.swift in Sources */,
 				9942997A1D4769BF00D053B2 /* MenuNetwork.swift in Sources */,
 				9942991D1D4769BF00D053B2 /* AppDelegate.swift in Sources */,
+				E8031EE41D587F3A0085DCA7 /* OtherServicesViewController.swift in Sources */,
 				998965861D488C48006DEDF5 /* YoutubeVideo.swift in Sources */,
 				994299801D4769BF00D053B2 /* ProfileViewController.swift in Sources */,
 				994299861D4769BF00D053B2 /* ServiceView.swift in Sources */,
+				E8031EED1D587F930085DCA7 /* ServiceMenuCell.swift in Sources */,
 				9942998E1D4769BF00D053B2 /* Video.swift in Sources */,
 				9942999E1D476FB100D053B2 /* OtherService.swift in Sources */,
 				9917A8961D4E33F400D9D82B /* BookingNotificatioView.swift in Sources */,
 				994299831D4769BF00D053B2 /* SalonNetwork.swift in Sources */,
+				E8031EE81D587F570085DCA7 /* ServicesViewController.swift in Sources */,
 				9942996E1D4769BF00D053B2 /* HairTypeCell.swift in Sources */,
 				9942997C1D4769BF00D053B2 /* OtherServicesCell.swift in Sources */,
 				9942996C1D4769BF00D053B2 /* HairNetwork.swift in Sources */,
