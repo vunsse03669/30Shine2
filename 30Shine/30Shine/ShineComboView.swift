@@ -13,6 +13,7 @@ import Alamofire
 import RealmSwift
 import MediaPlayer
 import youtube_parser
+import ReachabilitySwift
 
 class ShineComboView: UIView {
     
@@ -21,11 +22,13 @@ class ShineComboView: UIView {
     @IBOutlet weak var viewVideo: UIView!
     @IBOutlet weak var btnPlayVideo: UIButton!
     @IBOutlet weak var imvThumbnail: UIImageView!
-    var moviePlayer : MPMoviePlayerController!
     
+    var moviePlayer : MPMoviePlayerController!
     var videoUrl : String = ""
     var comboSteps : Variable<[ComboStep]> = Variable([])
     var comboObject : Combo = Combo()
+    var reachability : Reachability?
+    var isConnectInternet = true
     
     static func createInView(view: UIView) -> ShineComboView{
         let shineComboView = NSBundle.mainBundle().loadNibNamed("ShineComboView", owner: self, options: nil) [0] as! ShineComboView
@@ -40,13 +43,36 @@ class ShineComboView: UIView {
     }
     
     func setupContent(){
-        parseJsonOtherServices {
-            self.setupCollectionView()
-            self.lblDescription.text = self.comboObject.listVideos[0].img_description
-            self.videoUrl = self.comboObject.listVideos[0].url
-            LazyImage.showForImageView(self.imvThumbnail, url: self.getVideoId(self.videoUrl),defaultImage: IMG_DEFAULT)
-            print("\(self.getVideoId(self.videoUrl))")
+        
+        do {
+            reachability = try! Reachability.reachabilityForInternetConnection()
         }
+        reachability!.whenReachable = {
+            reachability in
+            self.isConnectInternet = true
+            dispatch_async(dispatch_get_main_queue()) {
+                self.comboSteps.value = []
+                self.parseJsonOtherServices {
+                    self.lblDescription.text = self.comboObject.listVideos[0].img_description
+                    self.videoUrl = self.comboObject.listVideos[0].url
+//                    LazyImage.showForImageView(self.imvThumbnail, url: self.getVideoId(self.videoUrl),defaultImage: IMG_DEFAULT)
+                    self.showAndDownLoadImage(self.imvThumbnail, url: self.getVideoId(self.videoUrl), imageName: self.getVideoId(self.videoUrl))
+                    print("\(self.getVideoId(self.videoUrl))")
+                }
+            }
+        }
+        reachability!.whenUnreachable = {
+            reachability in
+            self.isConnectInternet = false
+            dispatch_async(dispatch_get_main_queue()) {
+                self.comboSteps.value = []
+                self.comboSteps.value = ComboStep.getAllComboStep()
+                self.imvThumbnail.image = UIImage(named: "imag-placeholder")
+                self.lblDescription.text = ""
+            }
+        }
+        self.setupCollectionView()
+        try! reachability?.startNotifier()
     }
     
     func setupCollectionView(){
@@ -68,7 +94,8 @@ class ShineComboView: UIView {
             _ = self.comboSteps.asObservable().bindTo(self.clvSteps.rx_itemsWithCellIdentifier("ComboCell", cellType: ComboCell.self)){
                 row, data, cell in
                 cell.lblTitle.text = ""
-                LazyImage.showForImageView(cell.imvBackground, url: data.thumb,defaultImage: IMG_DEFAULT)
+//                LazyImage.showForImageView(cell.imvBackground, url: data.thumb,defaultImage: IMG_DEFAULT)
+                self.showAndDownLoadImage(cell.imvBackground, url: data.thumb, imageName: data.thumb)
             }
         }
     }
@@ -165,6 +192,38 @@ class ShineComboView: UIView {
             self.moviePlayer = nil
         }
     }
+}
+
+extension ShineComboView {
+    func getImagePathFromDisk(name : String) -> String {
+        let newName = name.stringByReplacingOccurrencesOfString("/", withString: "")
+        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+        let getImagePath = paths.stringByAppendingString("/\(newName)")
+        //self.imv.image = UIImage(contentsOfFile: getImagePath)
+        return getImagePath
+    }
     
+    func getDocumentsDirectory() -> NSString {
+        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+    }
+    
+    func showAndDownLoadImage(imageView : UIImageView, url: String, imageName: String) {
+        if self.isConnectInternet {
+            LazyImage.showForImageView(imageView, url: url, defaultImage: IMG_DEFAULT, completion: {
+                let newName = imageName.stringByReplacingOccurrencesOfString("/", withString: "")
+                if let dataa = UIImageJPEGRepresentation(imageView.image!, 0.8) {
+                    let filename = self.getDocumentsDirectory().stringByAppendingPathComponent(newName)
+                    dataa.writeToFile(filename, atomically: true)
+                    print(filename)
+                }
+            })
+        }
+        else {
+            imageView.image = UIImage(contentsOfFile: self.getImagePathFromDisk(imageName))
+            print(imageName)
+        }
+    }
     
 }
