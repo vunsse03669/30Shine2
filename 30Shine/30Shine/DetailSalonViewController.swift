@@ -9,15 +9,14 @@
 import UIKit
 import RxCocoa
 import RxSwift
+import ReachabilitySwift
 
 class DetailSalonViewController: UIViewController,UIScrollViewDelegate, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var lblAddress: UILabel!
     @IBOutlet weak var imvSelected: UIImageView!
     @IBOutlet weak var clvImagesList: UICollectionView!
-    
     @IBOutlet weak var scrollView: UIScrollView!
-    
     @IBOutlet weak var btnHotline: UIButton!
     @IBOutlet weak var btnBooking: UIButton!
     @IBOutlet weak var btnFacebook: UIButton!
@@ -25,6 +24,8 @@ class DetailSalonViewController: UIViewController,UIScrollViewDelegate, UIGestur
     var currentSalon = Salon()
     var salonVariable  : Variable<[ImageObject]> = Variable([])
     var currentIndex :Variable<Int> = Variable(0)
+    var reachability : Reachability?
+    var isConnectInternet = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,7 +97,8 @@ class DetailSalonViewController: UIViewController,UIScrollViewDelegate, UIGestur
             else{
                 self.scrollView.userInteractionEnabled = true
             }
-            LazyImage.showForImageView(self.imvSelected, url: self.currentSalon.listImages[self.currentIndex.value].url)
+//            LazyImage.showForImageView(self.imvSelected, url: self.currentSalon.listImages[self.currentIndex.value].url)
+            self.showAndDownLoadImage(self.imvSelected, url: self.currentSalon.listImages[self.currentIndex.value].url, imageName: self.currentSalon.listImages[self.currentIndex.value].url)
         }
     }
     
@@ -159,3 +161,51 @@ class DetailSalonViewController: UIViewController,UIScrollViewDelegate, UIGestur
     }
     
 }
+
+extension DetailSalonViewController {
+    func getImagePathFromDisk(name : String) -> String {
+        let newName = name.stringByReplacingOccurrencesOfString("/", withString: "")
+        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+        let getImagePath = paths.stringByAppendingString("/\(newName)")
+        //self.imv.image = UIImage(contentsOfFile: getImagePath)
+        return getImagePath
+    }
+    
+    func getDocumentsDirectory() -> NSString {
+        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+    }
+    
+    func showAndDownLoadImage(imageView : UIImageView, url: String, imageName: String) {
+        
+        do {
+            reachability = try! Reachability.reachabilityForInternetConnection()
+        }
+        reachability!.whenReachable = {
+            reachability in
+            self.isConnectInternet = true
+            dispatch_async(dispatch_get_main_queue()) {
+                LazyImage.showForImageView(imageView, url: url, completion: {
+                    let newName = imageName.stringByReplacingOccurrencesOfString("/", withString: "")
+                    if let dataa = UIImageJPEGRepresentation(imageView.image!, 0.8) {
+                        let filename = self.getDocumentsDirectory().stringByAppendingPathComponent(newName)
+                        dataa.writeToFile(filename, atomically: true)
+                        print(filename)
+                    }
+                })
+            }
+        }
+        reachability!.whenUnreachable = {
+            reachability in
+            self.isConnectInternet = false
+            dispatch_async(dispatch_get_main_queue()) {
+                let newName = imageName.stringByReplacingOccurrencesOfString("/", withString: "")
+                imageView.image = UIImage(contentsOfFile: self.getImagePathFromDisk("\(newName)"))
+            }
+        }
+        try! reachability?.startNotifier()
+    }
+    
+}
+
