@@ -1091,19 +1091,19 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="atU-Dn-ThS">
-                                                    <rect key="frame" x="300" y="0.0" width="300" height="136.5"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="atU-Dn-ThS">
+                                                    <rect key="frame" x="300" y="4" width="296" height="128.5"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="atU-Dn-ThS" firstAttribute="top" secondItem="1Tg-bR-bDf" secondAttribute="top" id="38l-hM-RyL"/>
-                                                <constraint firstAttribute="bottom" secondItem="atU-Dn-ThS" secondAttribute="bottom" id="4T1-yM-zha"/>
+                                                <constraint firstItem="atU-Dn-ThS" firstAttribute="top" secondItem="1Tg-bR-bDf" secondAttribute="top" constant="4" id="38l-hM-RyL"/>
+                                                <constraint firstAttribute="bottom" secondItem="atU-Dn-ThS" secondAttribute="bottom" constant="4" id="4T1-yM-zha"/>
                                                 <constraint firstItem="Igi-Df-4Xj" firstAttribute="width" secondItem="1Tg-bR-bDf" secondAttribute="width" multiplier="1:2" constant="-30" id="8Gp-Ui-TsF"/>
                                                 <constraint firstItem="Igi-Df-4Xj" firstAttribute="leading" secondItem="1Tg-bR-bDf" secondAttribute="leading" constant="30" id="Ae6-Jl-4zg"/>
                                                 <constraint firstItem="Igi-Df-4Xj" firstAttribute="top" secondItem="1Tg-bR-bDf" secondAttribute="top" id="CsV-Qf-AlF"/>
                                                 <constraint firstAttribute="bottom" secondItem="Igi-Df-4Xj" secondAttribute="bottom" id="ZQm-D9-wFy"/>
                                                 <constraint firstItem="atU-Dn-ThS" firstAttribute="leading" secondItem="Igi-Df-4Xj" secondAttribute="trailing" id="w1x-sl-ITL"/>
-                                                <constraint firstAttribute="trailing" secondItem="atU-Dn-ThS" secondAttribute="trailing" id="was-YJ-yFa"/>
+                                                <constraint firstAttribute="trailing" secondItem="atU-Dn-ThS" secondAttribute="trailing" constant="4" id="was-YJ-yFa"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
