@@ -12,9 +12,12 @@ import RxSwift
 import Alamofire
 import JASON
 import RealmSwift
+import ReachabilitySwift
 
 class ListSalonView: UIView, UITableViewDelegate {
     
+    var reachability : Reachability?
+    var isConnectInternet = true
     var navigation : UINavigationController!
     @IBOutlet weak var tbvListSalon: UITableView!
     var salonVariable  : Variable<[Salon]> = Variable([])
@@ -37,10 +40,31 @@ class ListSalonView: UIView, UITableViewDelegate {
     }
     
     func initData(){
-        parseJsonSalonSystem {
-            () in
-            self.configCollectionView()
+        
+        do {
+            reachability = try! Reachability.reachabilityForInternetConnection()
         }
+        reachability!.whenReachable = {
+            reachability in
+            self.isConnectInternet = true
+            dispatch_async(dispatch_get_main_queue()) {
+                self.salonVariable.value = []
+                self.parseJsonSalonSystem({ 
+                    () in
+                })
+            }
+        }
+        reachability!.whenUnreachable = {
+            reachability in
+            self.isConnectInternet = false
+            dispatch_async(dispatch_get_main_queue()) {
+                self.salonVariable.value = []
+                self.salonVariable.value = Salon.getAllSalon()
+                print(self.salonVariable.value)
+            }
+        }
+        self.configCollectionView()
+        try! reachability?.startNotifier()
         
     }
     //MARK: TableView DataSource
@@ -56,10 +80,17 @@ class ListSalonView: UIView, UITableViewDelegate {
                 //cell.lblManager.text = data.managerName
                 //cell.lblHotLine.text = data.phone
                 //cell.lblFacebookLink.text = data.fanpage
-                print("count iamge \(data.listImages.count)")
-                if(data.listImages.count>0){
-                    LazyImage.showForImageView(cell.imvSalon, url: data.listImages[0].url)
-                }
+                //print("count iamge \(data.listImages.count)")
+                //if(data.listImages.count>0){
+                    if self.isConnectInternet {
+                        self.showAndDownLoadImage(cell.imvSalon, url: data.listImages[0].url, imageName: data.listImages[0].url)
+                    }
+                    else {
+                        let name = data.listImages[0].url.stringByReplacingOccurrencesOfString("/", withString: "")
+                        cell.imvSalon.image = UIImage(contentsOfFile: self.getImagePathFromDisk("\(name)"))
+                    }
+                    //LazyImage.showForImageView(cell.imvSalon, url: data.listImages[0].url)
+                //}
             }
         }
         _ = self.tbvListSalon.rx_itemSelected.subscribeNext {
@@ -116,3 +147,35 @@ class ListSalonView: UIView, UITableViewDelegate {
         }
     }
 }
+
+extension ListSalonView {
+    func getImagePathFromDisk(name : String) -> String {
+        let newName = name.stringByReplacingOccurrencesOfString("/", withString: "")
+        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+        let getImagePath = paths.stringByAppendingString("/\(newName)")
+        //self.imv.image = UIImage(contentsOfFile: getImagePath)
+        return getImagePath
+    }
+    
+    func getDocumentsDirectory() -> NSString {
+        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+    }
+    
+    func showAndDownLoadImage(imageView : UIImageView, url: String, imageName: String) {
+        LazyImage.showForImageView(imageView, url: url, completion: {
+            let newName = imageName.stringByReplacingOccurrencesOfString("/", withString: "")
+            if let dataa = UIImageJPEGRepresentation(imageView.image!, 0.8) {
+                let filename = self.getDocumentsDirectory().stringByAppendingPathComponent(newName)
+                dataa.writeToFile(filename, atomically: true)
+                print(filename)
+            }
+        })
+        
+        
+
+    }
+    
+}
+
