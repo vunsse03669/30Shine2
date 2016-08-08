@@ -19,6 +19,7 @@ class ListSalonsViewController: UIViewController {
     
     func setupContent(){
         listSalon = ListSalonView.createInView(self.view)
+        listSalon.navigation = self.navigationController
     }
 
     override func didReceiveMemoryWarning() {

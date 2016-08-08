@@ -15,10 +15,10 @@ import RealmSwift
 
 class ListSalonView: UIView, UITableViewDelegate {
     
+    var navigation : UINavigationController!
     @IBOutlet weak var tbvListSalon: UITableView!
-    
     var salonVariable  : Variable<[Salon]> = Variable([])
-    var detailSalonView : DetailSalonView!
+    var detaivararnView : DetailSalonView!
     override func awakeFromNib() {
         initData()
     }
@@ -50,7 +50,9 @@ class ListSalonView: UIView, UITableViewDelegate {
         dispatch_async(dispatch_get_main_queue()) {
             _ =           self.salonVariable.asObservable().bindTo(self.tbvListSalon.rx_itemsWithCellIdentifier("SalonTableCell", cellType: SalonTableCell.self)){
                 row,data,cell in
-                //cell.lblAdress.text = data.name
+                let title = "30SHINE"
+                cell.lblAdress.text = String(format: "%@ %@", title, data.name)
+                cell.phone = data.phone;
                 //cell.lblManager.text = data.managerName
                 //cell.lblHotLine.text = data.phone
                 //cell.lblFacebookLink.text = data.fanpage
@@ -73,14 +75,20 @@ class ListSalonView: UIView, UITableViewDelegate {
     }
     
     func showDetail(salon:Salon){
+        let detailVC = DetailSalonViewController(nibName: "DetailSalonViewController", bundle: nil)
+        self.navigation.push(detailVC, animated: true)
+        detailVC.currentSalon = salon
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        
+//        let vc = storyboard.instantiateViewControllerWithIdentifier("DetailSalonViewController") as? DetailSalonViewController
         //self.detailSalonView = DetailSalonView.createInView(self, contentSalon: salon)
     }
     
     func disappearDetail(){
         UIView .animateWithDuration(0.5, animations: {
-            self.detailSalonView.alpha = 0
+          //  self.detailSalonView.alpha = 0
         }) { (completion) in
-            self.detailSalonView.removeFromSuperview()
+            //self.detailSalonView.removeFromSuperview()
         }
     }
     

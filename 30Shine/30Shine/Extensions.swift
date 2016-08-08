@@ -96,5 +96,8 @@ extension UIButton {
 //        self.imageEdgeInsets = UIEdgeInsetsMake(-(titleSize.height + spacing), 0.0, 0.0, -titleSize.width)
 //        let edgeOffset = abs(titleSize.height - imageSize.height) / 2.0;
 //        self.contentEdgeInsets = UIEdgeInsetsMake(edgeOffset, 0.0, edgeOffset, 0.0)
+//        self.titleLabel?.font = UIFont.systemFontOfSize(8)
+        
+        self.imageView?.contentMode = .ScaleAspectFit
     }
 }

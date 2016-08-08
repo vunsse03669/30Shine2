@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class SalonTableCell: UITableViewCell {
 
@@ -18,14 +20,28 @@ class SalonTableCell: UITableViewCell {
     
     @IBOutlet weak var btnBooking: UIButton!
     @IBOutlet weak var btnCall: UIButton!
+    
+    var phone = ""
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         btnCall.customButton()
         btnBooking.customButton()
+        setupButton()
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+
+    func setupButton(){
+        _ = self.btnCall.rx_tap.subscribeNext{
+            print("hotline \(self.phone)")
+            UIApplication.sharedApplication().openURL(NSURL(string: "tel://\(self.phone)")!)
+        }
+        _ = self.btnCall.rx_tap.subscribeNext{
+            
+        }
     }
     
 }

@@ -4,6 +4,11 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="UTM Alexander.ttf">
+            <string>UTM-Alexander</string>
+        </mutableArray>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -11,8 +16,18 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HỆ THỐNG SALON" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9aq-ij-tu7">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="30"/>
+                    <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="euU-7n-cnX"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="UTM-Alexander" family="UTM Alexander" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="199" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sBd-dT-oBR">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <rect key="frame" x="0.0" y="30" width="600" height="570"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="delegate" destination="iN0-l3-epB" id="IMW-io-kPb"/>
@@ -21,11 +36,22 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="9aq-ij-tu7" secondAttribute="trailing" id="6Tu-4c-P6c"/>
+                <constraint firstAttribute="bottom" secondItem="sBd-dT-oBR" secondAttribute="bottom" id="7hf-bD-id6"/>
+                <constraint firstItem="9aq-ij-tu7" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="BY8-ME-V2R"/>
                 <constraint firstItem="sBd-dT-oBR" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Lbh-yU-NE3"/>
                 <constraint firstItem="sBd-dT-oBR" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="RC8-7R-lS1"/>
                 <constraint firstItem="sBd-dT-oBR" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="UMy-zb-6TF"/>
+                <constraint firstItem="sBd-dT-oBR" firstAttribute="top" secondItem="9aq-ij-tu7" secondAttribute="bottom" id="YaA-qX-fJJ"/>
                 <constraint firstItem="sBd-dT-oBR" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="lTT-Zd-RwG"/>
+                <constraint firstItem="9aq-ij-tu7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="nHB-kX-0e4"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="RC8-7R-lS1"/>
+                    <exclude reference="lTT-Zd-RwG"/>
+                </mask>
+            </variation>
             <connections>
                 <outlet property="tbvListSalon" destination="sBd-dT-oBR" id="iGW-xx-ptN"/>
             </connections>
