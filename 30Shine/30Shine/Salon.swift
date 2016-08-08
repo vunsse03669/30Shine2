@@ -26,6 +26,7 @@ class Salon: Object {
         salon.managerName = managerName
         salon.fanpage = fanpage
         salon.listImages = listImages
+        self.createSalon(salon)
         return salon
     }
 }
@@ -41,8 +42,12 @@ extension Salon {
         return sDB.realm.objects(Salon).filter(predicate).first
     }
     
-    static func getAllSalon()-> Results<Salon>{
-        return sDB.realm.objects(Salon)
+    static func getAllSalon()-> [Salon]{
+        var salons = [Salon]()
+        for salon in sDB.realm.objects(Salon) {
+            salons.append(salon)
+        }
+        return salons
     }
 }
 class ImageObject : Object{

@@ -163,12 +163,6 @@ class DetailHairViewController: UIViewController {
                 self.imvSmallImage3.image = UIImage(contentsOfFile: self.getImagePathFromDisk("\(smallImage3Url)"))
                 self.imvSmallImage4.image = UIImage(contentsOfFile: self.getImagePathFromDisk("\(smallImage4Url)"))
             }
-//            LazyImage.showForImageView(self.imvBigImage, url: bigImageUrl)
-//            LazyImage.showForImageView(self.imvSmallImage1, url: smallImage1Url)
-//            LazyImage.showForImageView(self.imvSmallImage2, url: smallImage2Url)
-//            LazyImage.showForImageView(self.imvSmallImage3, url: smallImage3Url)
-//            LazyImage.showForImageView(self.imvSmallImage4, url: smallImage4Url)
-            
             self.matchingDataForOtherHair(self.index.value)
             self.tapOnImage(self.imvSmallImage1, url: smallImage1Url)
             self.tapOnImage(self.imvSmallImage2, url: smallImage2Url)
@@ -179,17 +173,11 @@ class DetailHairViewController: UIViewController {
     
     func showAndDownloadImage(imageView: UIImageView, url: String, name : String) {
         LazyImage.showForImageView(imageView, url: url) { 
-//            if let dataa = UIImagePNGRepresentation(imageView.image!) {
-//                let filename = self.getDocumentsDirectory().stringByAppendingPathComponent("\(name).png").stringByReplacingOccurrencesOfString(".jpg", withString: "")
-//                dataa.writeToFile(filename, atomically: true)
-//                
-//            }
-                let newName = name.stringByReplacingOccurrencesOfString("/", withString: "")
-                if let dataa = UIImageJPEGRepresentation(imageView.image!, 0.8) {
-                    let filename = self.getDocumentsDirectory().stringByAppendingPathComponent(newName)
-                    dataa.writeToFile(filename, atomically: true)
-                }
-            
+            let newName = name.stringByReplacingOccurrencesOfString("/", withString: "")
+            if let dataa = UIImageJPEGRepresentation(imageView.image!, 0.8) {
+                let filename = self.getDocumentsDirectory().stringByAppendingPathComponent(newName)
+                dataa.writeToFile(filename, atomically: true)
+            }
         }
     }
     
