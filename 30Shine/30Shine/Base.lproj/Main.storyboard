@@ -564,7 +564,7 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hgg-3b-0cP">
-                                <rect key="frame" x="0.0" y="151" width="600" height="549"/>
+                                <rect key="frame" x="0.0" y="120" width="600" height="580"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vHc-FU-3kM" userLabel="Container">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="548"/>
@@ -753,61 +753,16 @@
                                     <constraint firstAttribute="bottom" secondItem="vHc-FU-3kM" secondAttribute="bottom" id="y9V-0n-TVL"/>
                                 </constraints>
                             </scrollView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="5vL-7w-Bmz">
-                                <rect key="frame" x="0.0" y="107" width="600" height="44"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="Xax-d6-mVm"/>
-                                </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vSS-hr-ML0">
-                                    <size key="itemSize" width="59" height="52"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MenuCollectionViewCell" id="Ys4-Ns-ufZ" customClass="MenuCollectionViewCell" customModule="_0Shine" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="-4" width="59" height="52"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="59" height="52"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d8U-l1-Jv1">
-                                                    <rect key="frame" x="0.0" y="8" width="59" height="36"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstItem="d8U-l1-Jv1" firstAttribute="leading" secondItem="Ys4-Ns-ufZ" secondAttribute="leading" id="36W-rc-dEt"/>
-                                            <constraint firstAttribute="trailing" secondItem="d8U-l1-Jv1" secondAttribute="trailing" id="8JZ-fH-LyF"/>
-                                            <constraint firstAttribute="bottomMargin" secondItem="d8U-l1-Jv1" secondAttribute="bottom" id="HHV-Ca-bn1"/>
-                                            <constraint firstItem="d8U-l1-Jv1" firstAttribute="top" secondItem="Ys4-Ns-ufZ" secondAttribute="topMargin" id="mOB-we-gnn"/>
-                                        </constraints>
-                                        <connections>
-                                            <outlet property="lblTitle" destination="d8U-l1-Jv1" id="08u-eH-A08"/>
-                                        </connections>
-                                    </collectionViewCell>
-                                </cells>
-                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="5vL-7w-Bmz" secondAttribute="trailing" id="1M7-Z0-MKU"/>
                             <constraint firstItem="xMn-V6-cNV" firstAttribute="leading" secondItem="Rpf-cM-kai" secondAttribute="leading" id="3sj-lO-Dsd"/>
-                            <constraint firstItem="5vL-7w-Bmz" firstAttribute="top" secondItem="xMn-V6-cNV" secondAttribute="bottom" constant="-1" id="7C5-qm-KCo"/>
                             <constraint firstItem="Tlv-pg-2R9" firstAttribute="top" secondItem="hgg-3b-0cP" secondAttribute="bottom" id="9zi-yK-rp9"/>
-                            <constraint firstItem="hgg-3b-0cP" firstAttribute="top" secondItem="5vL-7w-Bmz" secondAttribute="bottom" id="Tey-dq-zd9"/>
+                            <constraint firstItem="hgg-3b-0cP" firstAttribute="top" secondItem="SIt-fz-yGO" secondAttribute="bottom" constant="12" id="Ral-AV-B9g"/>
                             <constraint firstAttribute="trailing" secondItem="xMn-V6-cNV" secondAttribute="trailing" id="XE8-hX-Dfj"/>
                             <constraint firstItem="hgg-3b-0cP" firstAttribute="leading" secondItem="Rpf-cM-kai" secondAttribute="leading" id="gnZ-td-Ld2"/>
                             <constraint firstItem="vHc-FU-3kM" firstAttribute="width" secondItem="Rpf-cM-kai" secondAttribute="width" id="iIh-Pa-J38"/>
                             <constraint firstAttribute="trailing" secondItem="hgg-3b-0cP" secondAttribute="trailing" id="oay-o2-QYJ"/>
-                            <constraint firstItem="5vL-7w-Bmz" firstAttribute="leading" secondItem="Rpf-cM-kai" secondAttribute="leading" id="qen-BC-cWn"/>
                             <constraint firstItem="xMn-V6-cNV" firstAttribute="top" secondItem="Cgu-di-1ml" secondAttribute="bottom" id="tOV-kq-sw9"/>
                         </constraints>
                     </view>
@@ -832,7 +787,6 @@
                     <connections>
                         <outlet property="btnHome" destination="yoS-AF-PEx" id="vkm-9C-juC"/>
                         <outlet property="btnProfile" destination="5D1-py-5qP" id="bJ3-Q4-ffQ"/>
-                        <outlet property="clvMenu" destination="5vL-7w-Bmz" id="q5E-7V-m1U"/>
                         <outlet property="clvOtherHair" destination="A0q-M8-jzX" id="NJ8-B1-mFd"/>
                         <outlet property="imvBigImage" destination="4RJ-ge-EbK" id="NtD-Fa-QJx"/>
                         <outlet property="imvSmallImage1" destination="rgu-5z-x0e" id="XDY-YN-HGx"/>

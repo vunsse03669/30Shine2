@@ -23,14 +23,13 @@ class DetailHairViewController: UIViewController {
     @IBOutlet weak var imvSmallImage2: UIImageView!
     @IBOutlet weak var imvSmallImage1: UIImageView!
     @IBOutlet weak var imvBigImage: UIImageView!
-    @IBOutlet weak var clvMenu: UICollectionView!
     @IBOutlet weak var btnProfile: UIButton!
     @IBOutlet weak var btnHome: UIButton!
     @IBOutlet weak var clvOtherHair: UICollectionView!
     
-    var menuVar : Variable<[HairType]> = Variable([])
+    var menuVar : Variable<HairType!> = Variable(nil)
     var otherHairVar : Variable<[Imagee]> = Variable([])
-    var index : Variable<Int> = Variable(0)
+    //var index : Variable<Int> = Variable(0)
     var reachability : Reachability?
     var isConnectInternet = true
     
@@ -46,7 +45,7 @@ class DetailHairViewController: UIViewController {
         
         _ = btnHome.rx_tap
             .subscribeNext {
-                self.navigationController?.pop()
+                self.navigationController?.popViewControllerAnimated(true)
         }
         //Click btnProfile
         _ = btnProfile.rx_tap.subscribeNext {
@@ -63,36 +62,11 @@ class DetailHairViewController: UIViewController {
         imageView.frame = CGRectMake(0, 0, 64, 40)
         imageView.contentMode = .ScaleAspectFit
         self.navigationItem.titleView = imageView
-        self.clvMenu.userInteractionEnabled = true
         self.configCollectionLayout()
     }
     
     //MARK: Collection view
     func configCollectionView() {
-        _ = self.menuVar.asObservable().bindTo(self.clvMenu.rx_itemsWithCellIdentifier("MenuCollectionViewCell", cellType: MenuCollectionViewCell.self)) {row,data,cell in
-            _ = self.index.asObservable().subscribeNext {
-                index in
-                if self.menuVar.value != [] {
-                    if data.title == self.menuVar.value[index].title {
-                        cell.lblTitle.font = UIFont.boldSystemFontOfSize(9)
-                    }
-                    else {
-                        if #available(iOS 8.2, *) {
-                            cell.lblTitle.font = UIFont.systemFontOfSize(9, weight: UIFontWeightThin)
-                        }
-                    }
-
-                }
-            }
-            
-            cell.lblTitle.text = "\(data.title.uppercaseString)"
-        }
-        
-        _ = self.clvMenu.rx_itemSelected.subscribeNext {
-            indexPath in
-            self.index.value = indexPath.row
-            self.bindingData()
-        }
         
         _ = self.otherHairVar.asObservable().bindTo(self.clvOtherHair.rx_itemsWithCellIdentifier("OtherHairCollectionViewCell", cellType: OtherHairCollectionViewCell.self)) {row,data,cell in
             LazyImage.showForImageView(cell.imvHair, url: data.imageUrl)
@@ -113,17 +87,6 @@ class DetailHairViewController: UIViewController {
     
     func configCollectionLayout() {
         self.view.layoutIfNeeded()
-        self.clvMenu.layoutIfNeeded()
-        let layout : UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 2
-        layout.minimumInteritemSpacing = 2
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-        let width = self.view.bounds.width/3 - 5
-        let height = self.clvMenu.bounds.height - 10
-        layout.itemSize = CGSizeMake(width, height)
-        layout.scrollDirection = .Horizontal
-        self.clvMenu.setCollectionViewLayout(layout, animated: true)
-        
         let layoutHair : UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layoutHair.minimumLineSpacing = 2
         layoutHair.minimumInteritemSpacing = 2
@@ -137,16 +100,16 @@ class DetailHairViewController: UIViewController {
     
     //MARK: Data
     func bindingData() {
-        if menuVar.value != [] {
-            self.lblTitle.text = "\(self.menuVar.value[index.value].title)"
-            self.lblDescription.text = "\(self.menuVar.value[index.value].script)"
-            self.lblOther.text = "Các biến thể kiểu tóc \(self.menuVar.value[index.value].title)"
+        if menuVar.value != nil {
+            self.lblTitle.text = "\(self.menuVar.value.title)"
+            self.lblDescription.text = "\(self.menuVar.value.script)"
+            self.lblOther.text = "Các biến thể kiểu tóc \(self.menuVar.value.title)"
             
-            let bigImageUrl = self.menuVar.value[index.value].images[0].imageUrl
-            let smallImage1Url = self.menuVar.value[index.value].images[0].imageUrl
-            let smallImage2Url = self.menuVar.value[index.value].images[1].imageUrl
-            let smallImage3Url = self.menuVar.value[index.value].images[2].imageUrl
-            let smallImage4Url = self.menuVar.value[index.value].images[3].imageUrl
+            let bigImageUrl = self.menuVar.value.images[0].imageUrl
+            let smallImage1Url = self.menuVar.value.images[0].imageUrl
+            let smallImage2Url = self.menuVar.value.images[1].imageUrl
+            let smallImage3Url = self.menuVar.value.images[2].imageUrl
+            let smallImage4Url = self.menuVar.value.images[3].imageUrl
             
             if self.isConnectInternet {
                 self.showAndDownloadImage(self.imvBigImage, url: bigImageUrl, name: bigImageUrl)
@@ -163,7 +126,7 @@ class DetailHairViewController: UIViewController {
                 self.imvSmallImage3.image = UIImage(contentsOfFile: self.getImagePathFromDisk("\(smallImage3Url)"))
                 self.imvSmallImage4.image = UIImage(contentsOfFile: self.getImagePathFromDisk("\(smallImage4Url)"))
             }
-            self.matchingDataForOtherHair(self.index.value)
+            self.matchingDataForOtherHair()
             self.tapOnImage(self.imvSmallImage1, url: smallImage1Url)
             self.tapOnImage(self.imvSmallImage2, url: smallImage2Url)
             self.tapOnImage(self.imvSmallImage3, url: smallImage3Url)
@@ -173,10 +136,10 @@ class DetailHairViewController: UIViewController {
     
     
     
-    func matchingDataForOtherHair(index : Int) {
+    func matchingDataForOtherHair() {
         self.otherHairVar.value = []
         var count = 0
-        for image in self.menuVar.value[index].images {
+        for image in self.menuVar.value.images {
             if count > 3 {
                 self.otherHairVar.value.append(image)
             }
@@ -205,70 +168,37 @@ class DetailHairViewController: UIViewController {
     
     //MARK: Dump data
     func initData() {
-        do {
-            reachability = try! Reachability.reachabilityForInternetConnection()
-        }
-        reachability!.whenReachable = {
-            reachability in
-            self.isConnectInternet = true
-            dispatch_async(dispatch_get_main_queue()) {
-               self.menuVar.value = []
-               self.otherHairVar.value = []
-               self.index.value = 0
-               self.parseJSON({ 
-                self.bindingData()
-                
-               })
-            }
-        }
-        reachability!.whenUnreachable = {
-            reachability in
-            self.isConnectInternet = false
-            dispatch_async(dispatch_get_main_queue()) {
-                self.menuVar.value = []
-                self.otherHairVar.value = []
-                self.index.value = 0
-                self.menuVar.value = HairType.getAllHairType()
-                self.otherHairVar.value = Imagee.getAllImage()
-                self.bindingData()
-            }
-        }
+//        do {
+//            reachability = try! Reachability.reachabilityForInternetConnection()
+//        }
+//        reachability!.whenReachable = {
+//            reachability in
+//            self.isConnectInternet = true
+//            dispatch_async(dispatch_get_main_queue()) {
+//               self.otherHairVar.value = []
+//              // self.index.value = 0
+////               self.parseJSON({ 
+////                self.bindingData()
+////                
+////               })
+//            }
+//        }
+//        reachability!.whenUnreachable = {
+//            reachability in
+//            self.isConnectInternet = false
+//            dispatch_async(dispatch_get_main_queue()) {
+//                self.otherHairVar.value = []
+//                //self.index.value = 0
+//                self.menuVar.value = HairType.getAllHairType()
+//                self.otherHairVar.value = Imagee.getAllImage()
+//               // self.bindingData()
+//            }
+//        }
+//        self.configCollectionView()
+//        try! reachability?.startNotifier()
+        self.bindingData()
         self.configCollectionView()
-        try! reachability?.startNotifier()
     }
-    
-    func parseJSON(complete: ()->()) {
-        let HAIRTYPE_API = "http://api.30shine.com/hairstyle/index"
-        let parameter = ["" : ""]
-        dispatch_async(dispatch_get_global_queue(0, 0)) {
-            Alamofire.request(.POST,HAIRTYPE_API,parameters: parameter, encoding: .JSON).responseJASON {
-                response in
-                if let json = response.result.value {
-                    let haiTypes = json["d"].map(HairNetwork.init)
-                    for hairType in haiTypes {
-                        let images = List<Imagee>()
-                        for image in hairType.image {
-                            if Imagee.getImageeByUrl(image.url) == nil {
-                                images.append(Imagee.create(image.url))
-                            }
-                            else {
-                                images.append(Imagee.getImageeByUrl(image.url))
-                            }
-                        }
-                        if HairType.getHairTypeById(hairType.id) == nil {
-                            let h = HairType.create(hairType.id, title: hairType.title, script: hairType.description, imageName: images)
-                            self.menuVar.value.append(h)
-                        }
-                        else {
-                            self.menuVar.value.append(HairType.getHairTypeById(hairType.id))
-                        }
-                    }
-                    complete()
-                }
-            }
-        }
-    }
-
 }
 
 //MARK: Save Image To document

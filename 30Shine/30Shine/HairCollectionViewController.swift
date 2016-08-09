@@ -27,7 +27,6 @@ class HairCollectionViewController: UIViewController {
         //back to home
         _ = btnHome.rx_tap
             .subscribeNext {
-               // let vc = self.storyboard?.instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
                 self.navigationController?.pop()
         }
         //Click btnProfile
@@ -59,8 +58,7 @@ class HairCollectionViewController: UIViewController {
             indexPath in
             self.tbvHairType.deselectRowAtIndexPath(indexPath, animated: false)
             let vc = self.storyboard?.instantiateViewControllerWithIdentifier("DetailHairViewController") as! DetailHairViewController
-            vc.menuVar = self.hairTypeVariable
-            vc.index.value = indexPath.row
+            vc.menuVar.value = self.hairTypeVariable.value[indexPath.row]
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
