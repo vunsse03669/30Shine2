@@ -28,7 +28,7 @@ class ProfileViewController: UIViewController {
         _ = btnHome.rx_tap
             .subscribeNext {
                 //let vc = self.storyboard?.instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
-                self.navigationController?.pop()
+                self.navigationController?.popViewControllerAnimated(true)
         }
     }
     

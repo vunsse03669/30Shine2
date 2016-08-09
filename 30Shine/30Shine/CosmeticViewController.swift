@@ -10,12 +10,17 @@ import UIKit
 
 class CosmeticViewController: UIViewController, UIWebViewDelegate {
     @IBOutlet weak var webView: UIWebView!
+    @IBOutlet weak var btnBack: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configUI()
         webView.delegate = self
         webView.loadRequest(NSURLRequest(URL: NSURL(string: "http://30shinestore.com/")!))
+        
+        _ = btnBack.rx_tap.subscribeNext {
+            self.navigationController?.pop()
+        }
     }
     
     func configUI() {
