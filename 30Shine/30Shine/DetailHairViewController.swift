@@ -29,14 +29,8 @@ class DetailHairViewController: UIViewController {
     
     var menuVar : Variable<HairType!> = Variable(nil)
     var otherHairVar : Variable<[Imagee]> = Variable([])
-    //var index : Variable<Int> = Variable(0)
     var reachability : Reachability?
     var isConnectInternet = true
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-         //gotoIndex(index.value)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,7 +61,6 @@ class DetailHairViewController: UIViewController {
     
     //MARK: Collection view
     func configCollectionView() {
-        
         _ = self.otherHairVar.asObservable().bindTo(self.clvOtherHair.rx_itemsWithCellIdentifier("OtherHairCollectionViewCell", cellType: OtherHairCollectionViewCell.self)) {row,data,cell in
             LazyImage.showForImageView(cell.imvHair, url: data.imageUrl)
             if self.isConnectInternet {
@@ -81,7 +74,12 @@ class DetailHairViewController: UIViewController {
         
         _ = self.clvOtherHair.rx_itemSelected.subscribeNext {
             indexPath in
-            LazyImage.showForImageView(self.imvBigImage, url: self.otherHairVar.value[indexPath.row].imageUrl)
+            if self.isConnectInternet {
+                self.showAndDownloadImage(self.imvBigImage, url: self.otherHairVar.value[indexPath.row].imageUrl, name: self.otherHairVar.value[indexPath.row].imageUrl)
+            }
+            else {
+                self.imvBigImage.image = UIImage(contentsOfFile: "\(self.getImagePathFromDisk(self.otherHairVar.value[indexPath.row].imageUrl))")
+            }
         }
     }
     
@@ -120,7 +118,6 @@ class DetailHairViewController: UIViewController {
             }
             else {
                 self.imvBigImage.image = UIImage(contentsOfFile: self.getImagePathFromDisk("\(bigImageUrl)"))
-                print(self.getImagePathFromDisk("\(bigImageUrl)"))
                 self.imvSmallImage1.image = UIImage(contentsOfFile: self.getImagePathFromDisk("\(smallImage1Url)"))
                 self.imvSmallImage2.image = UIImage(contentsOfFile: self.getImagePathFromDisk("\(smallImage2Url)"))
                 self.imvSmallImage3.image = UIImage(contentsOfFile: self.getImagePathFromDisk("\(smallImage3Url)"))
@@ -153,49 +150,25 @@ class DetailHairViewController: UIViewController {
         let tapGesture = UITapGestureRecognizer.init()
         _ = tapGesture.rx_event.subscribeNext {
             gesture in
-            //LazyImage.showForImageView(self.imvBigImage, url: url)
             self.showAndDownloadImage(self.imvBigImage, url: url, name: url)
         }
         image.addGestureRecognizer(tapGesture)
     }
     
-//    func gotoIndex(index : Int){
-//        print("asdasdas")
-//        self.clvMenu.layoutIfNeeded()
-//        let indexPath = NSIndexPath(forRow: index, inSection: 0)
-//        self.clvMenu .scrollToItemAtIndexPath(indexPath, atScrollPosition: .CenteredHorizontally, animated: true)
-//    }
-    
     //MARK: Dump data
     func initData() {
-//        do {
-//            reachability = try! Reachability.reachabilityForInternetConnection()
-//        }
-//        reachability!.whenReachable = {
-//            reachability in
-//            self.isConnectInternet = true
-//            dispatch_async(dispatch_get_main_queue()) {
-//               self.otherHairVar.value = []
-//              // self.index.value = 0
-////               self.parseJSON({ 
-////                self.bindingData()
-////                
-////               })
-//            }
-//        }
-//        reachability!.whenUnreachable = {
-//            reachability in
-//            self.isConnectInternet = false
-//            dispatch_async(dispatch_get_main_queue()) {
-//                self.otherHairVar.value = []
-//                //self.index.value = 0
-//                self.menuVar.value = HairType.getAllHairType()
-//                self.otherHairVar.value = Imagee.getAllImage()
-//               // self.bindingData()
-//            }
-//        }
-//        self.configCollectionView()
-//        try! reachability?.startNotifier()
+        do {
+            reachability = try! Reachability.reachabilityForInternetConnection()
+        }
+        reachability!.whenReachable = {
+            reachability in
+            self.isConnectInternet = true
+        }
+        reachability!.whenUnreachable = {
+            reachability in
+            self.isConnectInternet = false
+        }
+        try! reachability?.startNotifier()
         self.bindingData()
         self.configCollectionView()
     }
@@ -217,7 +190,6 @@ extension DetailHairViewController {
         let newName = name.stringByReplacingOccurrencesOfString("/", withString: "")
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
         let getImagePath = paths.stringByAppendingString("/\(newName)")
-        //self.imv.image = UIImage(contentsOfFile: getImagePath)
         return getImagePath
     }
     

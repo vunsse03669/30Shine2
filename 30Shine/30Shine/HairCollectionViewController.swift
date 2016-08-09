@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import Alamofire
 import RealmSwift
+import ReachabilitySwift
 
 class HairCollectionViewController: UIViewController {
 
@@ -19,6 +20,8 @@ class HairCollectionViewController: UIViewController {
     @IBOutlet weak var tbvHairType: UITableView!
     
     var hairTypeVariable : Variable<[HairType]> = Variable([])
+    var reachability : Reachability?
+    var isConnectInternet = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +54,8 @@ class HairCollectionViewController: UIViewController {
             row,data,cell in
             cell.lblTitle.text = "\(data.title)"
             cell.lblDescription.text = "\(data.script)"
-            LazyImage.showForImageView(cell.imvImage, url: data.images[0].imageUrl)
+
+            self.showAndDownloadImage(cell.imvImage, url: data.images[0].imageUrl, imageName: data.images[0].imageUrl)
         }
         
         _ = self.tbvHairType.rx_itemSelected.subscribeNext {
@@ -65,10 +69,30 @@ class HairCollectionViewController: UIViewController {
     
     //MARK: Dump data
     func initData() {
-        self.parseJSON { 
-            () in
-            self.configTableView()
+        
+        do {
+            reachability = try! Reachability.reachabilityForInternetConnection()
         }
+        reachability!.whenReachable = {
+            reachability in
+            self.isConnectInternet = true
+            dispatch_async(dispatch_get_main_queue()) {
+                self.hairTypeVariable.value = []
+                self.parseJSON({ 
+                    () in
+                })
+            }
+        }
+        reachability!.whenUnreachable = {
+            reachability in
+            self.isConnectInternet = false
+            dispatch_async(dispatch_get_main_queue()) {
+                self.hairTypeVariable.value = []
+                self.hairTypeVariable.value = HairType.getAllHairType()
+            }
+        }
+        self.configTableView()
+        try! reachability?.startNotifier()
     }
     
     func parseJSON(complete: ()->()) {
@@ -104,3 +128,37 @@ class HairCollectionViewController: UIViewController {
     }
 
 }
+
+extension HairCollectionViewController {
+    func showAndDownloadImage(imageView: UIImageView, url: String, imageName : String) {
+        if self.isConnectInternet {
+            LazyImage.showForImageView(imageView, url: url, defaultImage: IMG_DEFAULT, completion: {
+                let newName = imageName.stringByReplacingOccurrencesOfString("/", withString: "")
+                if let dataa = UIImageJPEGRepresentation(imageView.image!, 0.8) {
+                    let filename = self.getDocumentsDirectory().stringByAppendingPathComponent(newName)
+                    dataa.writeToFile(filename, atomically: true)
+                    print(filename)
+                }
+            })
+        }
+        else {
+            imageView.image = UIImage(contentsOfFile: self.getImagePathFromDisk(imageName))
+        }
+    }
+    
+    func getImagePathFromDisk(name : String) -> String {
+        let newName = name.stringByReplacingOccurrencesOfString("/", withString: "")
+        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+        let getImagePath = paths.stringByAppendingString("/\(newName)")
+        //self.imv.image = UIImage(contentsOfFile: getImagePath)
+        return getImagePath
+    }
+    
+    func getDocumentsDirectory() -> NSString {
+        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+    }
+    
+}
+
