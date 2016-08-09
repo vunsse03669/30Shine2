@@ -42,7 +42,9 @@ class OtherServicesView: UIView ,UITableViewDelegate{
     }
     
     func setupTableView(){
-        self.tbvListCombo.rowHeight = self.tbvListCombo.frame.width*495/881//self.tbvListCombo.frame.height/4;
+
+        let screenRect = UIScreen.mainScreen().bounds
+        self.tbvListCombo.rowHeight = screenRect.width*495/881-16//self.tbvListCombo.frame.height/4;
         self.tbvListCombo.registerNib(UINib.init(nibName: "OtherServicesCell", bundle: nil), forCellReuseIdentifier: "OtherServicesCell")
         self.tbvListCombo.setEditing(false, animated: false)
         dispatch_async(dispatch_get_main_queue()) {
