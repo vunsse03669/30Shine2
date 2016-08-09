@@ -13,7 +13,7 @@ import Alamofire
 import RealmSwift
 import ReachabilitySwift
 
-class HairCollectionViewController: UIViewController {
+class HairCollectionViewController: UIViewController, UITableViewDelegate {
 
     @IBOutlet weak var btnHome: UIButton!
     @IBOutlet weak var btnProfile: UIButton!
@@ -27,6 +27,8 @@ class HairCollectionViewController: UIViewController {
         super.viewDidLoad()
         self.configUI()
         self.initData()
+        self.tbvHairType.delegate = self
+        
         //back to home
         _ = btnHome.rx_tap
             .subscribeNext {
@@ -58,13 +60,13 @@ class HairCollectionViewController: UIViewController {
             self.showAndDownloadImage(cell.imvImage, url: data.images[0].imageUrl, imageName: data.images[0].imageUrl)
         }
         
-        _ = self.tbvHairType.rx_itemSelected.subscribeNext {
-            indexPath in
-            self.tbvHairType.deselectRowAtIndexPath(indexPath, animated: false)
-            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("DetailHairViewController") as! DetailHairViewController
-            vc.menuVar.value = self.hairTypeVariable.value[indexPath.row]
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
+//        _ = self.tbvHairType.rx_itemSelected.subscribeNext {
+//            indexPath in
+//            self.tbvHairType.deselectRowAtIndexPath(indexPath, animated: false)
+//            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("DetailHairViewController") as! DetailHairViewController
+//            vc.menuVar.value = self.hairTypeVariable.value[indexPath.row]
+//            self.navigationController?.pushViewController(vc, animated: true)
+//        }
     }
     
     //MARK: Dump data
@@ -127,18 +129,31 @@ class HairCollectionViewController: UIViewController {
         }
     }
 
+    //MARK: table delegate
+    func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+        return UITableViewCellEditingStyle.Insert
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.tbvHairType.deselectRowAtIndexPath(indexPath, animated: false)
+        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("DetailHairViewController") as! DetailHairViewController
+        vc.menuVar.value = self.hairTypeVariable.value[indexPath.row]
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 extension HairCollectionViewController {
     func showAndDownloadImage(imageView: UIImageView, url: String, imageName : String) {
         if self.isConnectInternet {
             LazyImage.showForImageView(imageView, url: url, defaultImage: IMG_DEFAULT, completion: {
-                let newName = imageName.stringByReplacingOccurrencesOfString("/", withString: "")
-                if let dataa = UIImageJPEGRepresentation(imageView.image!, 0.8) {
-                    let filename = self.getDocumentsDirectory().stringByAppendingPathComponent(newName)
-                    dataa.writeToFile(filename, atomically: true)
-                    print(filename)
-                }
+                dispatch_async(dispatch_get_global_queue(0, 0), { 
+                    let newName = imageName.stringByReplacingOccurrencesOfString("/", withString: "")
+                    if let dataa = UIImageJPEGRepresentation(imageView.image!, 0.8) {
+                        let filename = self.getDocumentsDirectory().stringByAppendingPathComponent(newName)
+                        dataa.writeToFile(filename, atomically: true)
+                    }
+
+                })
             })
         }
         else {

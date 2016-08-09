@@ -16,7 +16,7 @@ class ServicesViewController: UIViewController , UITableViewDataSource, UITableV
         super.viewDidLoad()
         self.tbvMenu.delegate = self
         self.tbvMenu.dataSource = self
-                
+        self.configUI()
         // Do any additional setup after loading the view.
         var image = UIImage(named: "img-back")
         image = image?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
@@ -26,6 +26,30 @@ class ServicesViewController: UIViewController , UITableViewDataSource, UITableV
     
     func handleBackButton() {
         self.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    func handleProfile() {
+        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController") as! ProfileViewController
+        self.navigationController?.push(vc, animated: true)
+    }
+
+    
+    func configUI() {
+        let logo = UIImage(named: "logo")
+        let imageView = UIImageView(image:logo)
+        imageView.frame = CGRectMake(0, 0, 64, 40)
+        imageView.contentMode = .ScaleAspectFit
+        self.navigationItem.titleView = imageView
+        self.navigationController?.navigationBar.translucent = false
+        //back image
+        var backImage = UIImage(named: "img-back")
+        backImage = backImage?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: backImage, style: UIBarButtonItemStyle.Plain, target: self, action: #selector(handleBackButton))
+        //profile image
+        var profileImage = UIImage(named: "img-people")
+        profileImage = profileImage?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: profileImage, style: UIBarButtonItemStyle.Plain, target: self, action: #selector(handleProfile))
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -51,7 +75,7 @@ class ServicesViewController: UIViewController , UITableViewDataSource, UITableV
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print("did tap");
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
         var vc : UIViewController!
         if indexPath.row == 0 {
             vc = self.storyboard?.instantiateViewControllerWithIdentifier("ShineComboViewController")

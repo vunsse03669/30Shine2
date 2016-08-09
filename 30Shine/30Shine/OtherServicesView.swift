@@ -139,12 +139,13 @@ extension OtherServicesView {
     func showAndDownLoadImage(imageView : UIImageView, url: String, imageName: String) {
         if self.isConnectInternet {
             LazyImage.showForImageView(imageView, url: url, defaultImage: IMG_DEFAULT, completion: {
-                let newName = imageName.stringByReplacingOccurrencesOfString("/", withString: "")
-                if let dataa = UIImageJPEGRepresentation(imageView.image!, 0.8) {
-                    let filename = self.getDocumentsDirectory().stringByAppendingPathComponent(newName)
-                    dataa.writeToFile(filename, atomically: true)
-                    print(filename)
-                }
+                dispatch_async(dispatch_get_global_queue(0, 0), { 
+                    let newName = imageName.stringByReplacingOccurrencesOfString("/", withString: "")
+                    if let dataa = UIImageJPEGRepresentation(imageView.image!, 0.8) {
+                        let filename = self.getDocumentsDirectory().stringByAppendingPathComponent(newName)
+                        dataa.writeToFile(filename, atomically: true)
+                    }
+                })
             })
         }
         else {

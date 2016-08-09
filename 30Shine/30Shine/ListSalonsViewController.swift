@@ -15,7 +15,16 @@ class ListSalonsViewController: UIViewController {
         super.viewDidLoad()
         setupContent()
         // Do any additional setup after loading the view.
+        var image = UIImage(named: "img-back")
+        image = image?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: UIBarButtonItemStyle.Plain, target: self, action: #selector(handleBackButton))
     }
+    
+    func handleBackButton() {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+
     
     func setupContent(){
         listSalon = ListSalonView.createInView(self.view)
