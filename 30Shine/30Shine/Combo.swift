@@ -52,11 +52,25 @@ class ComboStep: Object {
     static func create(url : String, thumb: String, title : String, img_description : String) -> ComboStep{
         let comboStep = ComboStep()
         comboStep.url = url.stringByReplacingOccurrencesOfString(" ", withString: "%20")
-        
         comboStep.thumb = thumb.stringByReplacingOccurrencesOfString(" ", withString: "%20")
         comboStep.title = title
         comboStep.img_description = img_description
+        self.create(comboStep)
         return comboStep
+    }
+    
+    static func create(comboStep : ComboStep) {
+        try! sDB.realm.write {
+            sDB.realm.add(comboStep)
+        }
+    }
+    
+    static func getAllComboStep() -> [ComboStep] {
+        var comboSteps = [ComboStep]()
+        for comboStep in sDB.realm.objects(ComboStep) {
+            comboSteps.append(comboStep)
+        }
+        return comboSteps
     }
 }
 

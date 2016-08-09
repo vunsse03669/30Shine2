@@ -12,6 +12,7 @@ import RxSwift
 import Alamofire
 import RealmSwift
 import JASON
+import ReachabilitySwift
 
 class OtherServicesView: UIView ,UITableViewDelegate{
     
@@ -19,6 +20,8 @@ class OtherServicesView: UIView ,UITableViewDelegate{
     @IBOutlet weak var tbvListCombo: UITableView!
     
     var comboVariables : Variable<[OtherService]> = Variable([])
+    var reachability : Reachability?
+    var isConnectInternet = true
     
     static func createInView(view: UIView) -> OtherServicesView{
         let otherServicesView = NSBundle.mainBundle().loadNibNamed("OtherServicesView", owner: self, options: nil) [0] as! OtherServicesView
@@ -36,9 +39,27 @@ class OtherServicesView: UIView ,UITableViewDelegate{
     
     
     func setupContent(){
-        parseJsonOtherServices {
-            self.setupTableView()
+        do {
+            reachability = try! Reachability.reachabilityForInternetConnection()
         }
+        reachability!.whenReachable = {
+            reachability in
+            self.isConnectInternet = true
+            dispatch_async(dispatch_get_main_queue()) {
+               self.comboVariables.value = []
+                self.parseJsonOtherServices {}
+            }
+        }
+        reachability!.whenUnreachable = {
+            reachability in
+            self.isConnectInternet = false
+            dispatch_async(dispatch_get_main_queue()) {
+               self.comboVariables.value = []
+               self.comboVariables.value = OtherService.getAllSalon()
+            }
+        }
+        self.setupTableView()
+        try! reachability?.startNotifier()
     }
     
     func setupTableView(){
@@ -52,7 +73,8 @@ class OtherServicesView: UIView ,UITableViewDelegate{
                 row, data, cell in
                 if(data.listImages.count > 0){
                     cell.btnPrice.text = data.listImages[0].title
-                    LazyImage.showForImageView(cell.imvBackground, url: data.listImages[0].url,defaultImage: IMG_DEFAULT)
+//                    LazyImage.showForImageView(cell.imvBackground, url: data.listImages[0].url,defaultImage: IMG_DEFAULT)
+                    self.showAndDownLoadImage(cell.imvBackground, url: data.listImages[0].url, imageName: data.listImages[0].url)
                 }
             }
             
@@ -94,6 +116,40 @@ class OtherServicesView: UIView ,UITableViewDelegate{
                     complete()
                 }
             }
+        }
+    }
+    
+}
+
+extension OtherServicesView {
+    func getImagePathFromDisk(name : String) -> String {
+        let newName = name.stringByReplacingOccurrencesOfString("/", withString: "")
+        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+        let getImagePath = paths.stringByAppendingString("/\(newName)")
+        //self.imv.image = UIImage(contentsOfFile: getImagePath)
+        return getImagePath
+    }
+    
+    func getDocumentsDirectory() -> NSString {
+        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+    }
+    
+    func showAndDownLoadImage(imageView : UIImageView, url: String, imageName: String) {
+        if self.isConnectInternet {
+            LazyImage.showForImageView(imageView, url: url, defaultImage: IMG_DEFAULT, completion: {
+                let newName = imageName.stringByReplacingOccurrencesOfString("/", withString: "")
+                if let dataa = UIImageJPEGRepresentation(imageView.image!, 0.8) {
+                    let filename = self.getDocumentsDirectory().stringByAppendingPathComponent(newName)
+                    dataa.writeToFile(filename, atomically: true)
+                    print(filename)
+                }
+            })
+        }
+        else {
+            imageView.image = UIImage(contentsOfFile: self.getImagePathFromDisk(imageName))
+            print(imageName)
         }
     }
     

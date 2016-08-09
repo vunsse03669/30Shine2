@@ -20,6 +20,7 @@ class OtherService: Object {
         otherService.name = name
         otherService.listImages = listImages
         otherService.listVideos = listVideos
+        self.createSalon(otherService)
         return otherService
     }
 }
@@ -36,8 +37,12 @@ extension OtherService {
         return sDB.realm.objects(OtherService).filter(predicate).first
     }
     
-    static func getAllSalon()-> Results<OtherService>{
-        return sDB.realm.objects(OtherService)
+    static func getAllSalon()-> [OtherService]{
+        var services = [OtherService]()
+        for service in sDB.realm.objects(OtherService) {
+            services.append(service)
+        }
+        return services
     }
 }
 

@@ -103,7 +103,6 @@ class DetailSalonViewController: UIViewController,UIScrollViewDelegate, UIGestur
     }
     
     func setupButtons(){
-       
         //btn.imageView.setContentMode:UIViewContentModeScaleAspectFit;
         btnBooking.imageView?.contentMode = .ScaleAspectFit
         btnFacebook.imageView?.contentMode = .ScaleAspectFit

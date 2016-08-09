@@ -137,7 +137,7 @@ class DetailHairViewController: UIViewController {
     
     //MARK: Data
     func bindingData() {
-        if menuVar.value.count >= 0 {
+        if menuVar.value != [] {
             self.lblTitle.text = "\(self.menuVar.value[index.value].title)"
             self.lblDescription.text = "\(self.menuVar.value[index.value].script)"
             self.lblOther.text = "Các biến thể kiểu tóc \(self.menuVar.value[index.value].title)"
