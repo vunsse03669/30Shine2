@@ -78,7 +78,7 @@ class DetailHairViewController: UIViewController {
                     }
                     else {
                         if #available(iOS 8.2, *) {
-                            cell.lblTitle.font = UIFont.systemFontOfSize(10, weight: UIFontWeightThin)
+                            cell.lblTitle.font = UIFont.systemFontOfSize(9, weight: UIFontWeightThin)
                         }
                     }
 
@@ -171,15 +171,7 @@ class DetailHairViewController: UIViewController {
         }
     }
     
-    func showAndDownloadImage(imageView: UIImageView, url: String, name : String) {
-        LazyImage.showForImageView(imageView, url: url) { 
-            let newName = name.stringByReplacingOccurrencesOfString("/", withString: "")
-            if let dataa = UIImageJPEGRepresentation(imageView.image!, 0.8) {
-                let filename = self.getDocumentsDirectory().stringByAppendingPathComponent(newName)
-                dataa.writeToFile(filename, atomically: true)
-            }
-        }
-    }
+    
     
     func matchingDataForOtherHair(index : Int) {
         self.otherHairVar.value = []
@@ -243,14 +235,6 @@ class DetailHairViewController: UIViewController {
         }
         self.configCollectionView()
         try! reachability?.startNotifier()
-
-        
-//        self.parseJSON {
-//            () in
-//            self.configCollectionView()
-//            self.bindingData()
-//
-//        }
     }
     
     func parseJSON(complete: ()->()) {
@@ -288,7 +272,17 @@ class DetailHairViewController: UIViewController {
 }
 
 //MARK: Save Image To document
-extension HomeViewController {
+extension DetailHairViewController {
+    func showAndDownloadImage(imageView: UIImageView, url: String, name : String) {
+        LazyImage.showForImageView(imageView, url: url) {
+            let newName = name.stringByReplacingOccurrencesOfString("/", withString: "")
+            if let dataa = UIImageJPEGRepresentation(imageView.image!, 0.8) {
+                let filename = self.getDocumentsDirectory().stringByAppendingPathComponent(newName)
+                dataa.writeToFile(filename, atomically: true)
+            }
+        }
+    }
+    
     func getImagePathFromDisk(name : String) -> String {
         let newName = name.stringByReplacingOccurrencesOfString("/", withString: "")
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
