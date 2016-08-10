@@ -48,11 +48,6 @@ class ShineComboViewController: UIViewController {
         
         self.setupContent();
         
-        var image = UIImage(named: "img-back")
-        image = image?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
-        
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: UIBarButtonItemStyle.Plain, target: self, action: #selector(handleBackButton))
-        
         self.configUI()
     }
     
