@@ -52,6 +52,7 @@ class BookingViewController: UIViewController, UIAlertViewDelegate {
     var statusDate : Variable<Double> = Variable(0)
     var statusSalonId : Variable<Int> = Variable(0)
     var stylistID : Variable<Int> = Variable(0)
+    var workTimeList : Variable<[Int]> = Variable([])
     
     var isClickOnSalon = Variable(0)
     var isClickOnTime = Variable(0)
@@ -162,6 +163,8 @@ class BookingViewController: UIViewController, UIAlertViewDelegate {
         self.txtPhone.layer.borderWidth = 1.0
         self.txtPhone.clipsToBounds = true
         self.txtPhone.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
+        // Set keyboard
+        self.txtPhone.keyboardType = .DecimalPad
         
         self.txtName.layer.borderWidth = 1.0
         self.txtName.layer.borderColor = UIColor(netHex: 0xD7D7D7).CGColor
@@ -177,6 +180,7 @@ class BookingViewController: UIViewController, UIAlertViewDelegate {
         self.configDropDownList()
         self.configCollectionViewLayout()
         BookingNotificatioView.createView(self.view)
+        
     }
     
     func configDropDownList() {
@@ -199,9 +203,9 @@ class BookingViewController: UIViewController, UIAlertViewDelegate {
         
         dropStylist.placeholder = "Chọn stylist(không bắt buộc)"
         dropSalon.options = self.salonList
-        dropTime.options = ["Hôm nay \(self.format(self.getDate(self.getTime(0.0))))",
-                            "Ngày mai \(self.format(self.getDate(self.getTime(1))))",
-                            "Ngày kia \(self.format(self.getDate(self.getTime(2))))"]
+        dropTime.options = ["Hôm nay \(self.format(self.getDate(self.getTime(1))))",
+                            "Ngày mai \(self.format(self.getDate(self.getTime(2))))",
+                            "Ngày kia \(self.format(self.getDate(self.getTime(3))))"]
         
         self.scrollView.addSubview(dropSalon)
         self.scrollView.addSubview(dropTime)
@@ -522,17 +526,29 @@ extension BookingViewController {
 extension BookingViewController : UIDropDownDelegate {
     func dropDown(dropDown: UIDropDown, didSelectOption option: String, atIndex index: Int) {
         self.statusSalonId.value = self.salonId[index]
-        self.parseStylist(self.salonId[index]) {
+        
+        self.parseStaffAttendace(self.statusSalonId.value, workDate: self.toDate(self.statusDate.value)) { 
             () in
-            self.dropStylist.options = []
-            self.stylistId = []
-            for stylist in self.stylistVar.value {
-                self.dropStylist.options.append(stylist.fullName)
-                self.stylistId.append(stylist.id)
+            self.parseStylist(self.salonId[index]) {
+                () in
+                self.dropStylist.options = []
+                self.stylistId = []
+                for stylist in self.stylistVar.value {
+                    if self.workTimeList.value.contains(stylist.id) {
+                        self.dropStylist.options.append(stylist.fullName)
+                    }
+                    else {
+                        self.dropStylist.options.append("\(stylist.fullName) (nghỉ)")
+                    }
+                    
+                    self.stylistId.append(stylist.id)
+                }
+                self.dropStylist.placeholder = "Chọn Stylist( Không bắt buộc)"
+                self.dropStylist.selectedIndex = -1
+                self.stylistID.value = 0
             }
-            self.dropStylist.placeholder = "Chọn Stylist( Không bắt buộc)"
-            self.stylistID.value = 0
         }
+        
         
         if self.salonCount > 0 {
             self.parseSchedule(self.statusSalonId.value, workDate: self.toDate(self.statusDate.value), stylistId: 0) {
@@ -558,7 +574,6 @@ extension BookingViewController : UIDropDownTimeDelegate {
                 print("salonId \(self.statusSalonId.value)")
                 print("workDate \(self.toDate(self.statusDate.value))")
                 print("stylistId \(self.stylistID.value)")
-                
             }
         }
         self.dateCount += 1
@@ -623,6 +638,23 @@ extension BookingViewController {
             }
         }
         
+    }
+    
+    func parseStaffAttendace(salonId : Int, workDate : String, completion:()->()) {
+        let API = "http://api.30shine.com/staff/stylisttoworkdate"
+        let parameters = ["SalonId" : salonId, "WorkDate" : workDate]
+        dispatch_async(dispatch_get_global_queue(0, 0)) { 
+            Alamofire.request(.POST, API, parameters: parameters as? [String : AnyObject], encoding: .JSON)
+                .responseJASON { response in
+                    if let json = response.result.value {
+                        let hourIds = json["d"].map(StylistWorkTime.init)
+                        for hourId in hourIds {
+                            self.workTimeList.value.append(hourId.staffId)
+                        }
+                        completion()
+                    }
+            }
+        }
     }
 }
 

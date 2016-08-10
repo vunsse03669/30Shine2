@@ -250,6 +250,7 @@ class UIDropDownTime: UIControl, UITableViewDataSource, UITableViewDelegate {
         if(index > options.count - 1){
             return
         }
+        
         selectedIndex = index
         delegate.dropDownTime(self, didSelectOption: "\(options[index])", atIndex: index)
         

@@ -58,5 +58,7 @@ extension JSONKeys {
     static let stylistCurrentSlot = JSONKey<Int>("StylistCurrentSlot")
     static let fullName = JSONKey<String>("Fullname")
     static let statusBooking = JSONKey<Int>("Status")
+    static let hourIds = JSONKey<String>("HourIds")
+    static let staffId = JSONKey<Int>("StaffId")
 
 }

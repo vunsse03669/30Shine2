@@ -248,7 +248,7 @@ class UIDropDownStylist: UIControl, UITableViewDataSource, UITableViewDelegate {
     }
     
     func setSelectedIndex(index : Int){
-        if(index > options.count - 1){
+        if(index > options.count - 1 || index  < 0){
             return
         }
         selectedIndex = index
