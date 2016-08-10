@@ -60,7 +60,7 @@
 		994299861D4769BF00D053B2 /* ServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994299111D4769BF00D053B2 /* ServiceView.swift */; };
 		994299871D4769BF00D053B2 /* ServiceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 994299121D4769BF00D053B2 /* ServiceView.xib */; };
 		994299881D4769BF00D053B2 /* ShineComboView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994299131D4769BF00D053B2 /* ShineComboView.swift */; };
-		994299891D4769BF00D053B2 /* ShineComboView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 994299141D4769BF00D053B2 /* ShineComboView.xib */; };
+		994299891D4769BF00D053B2 /* sShineComboView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 994299141D4769BF00D053B2 /* sShineComboView.xib */; };
 		9942998A1D4769BF00D053B2 /* SlideNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994299151D4769BF00D053B2 /* SlideNetwork.swift */; };
 		9942998B1D4769BF00D053B2 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994299161D4769BF00D053B2 /* UIColorExtension.swift */; };
 		9942998C1D4769BF00D053B2 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994299171D4769BF00D053B2 /* UIViewExtension.swift */; };
@@ -100,7 +100,6 @@
 		E8A0560C1D5478A200112F11 /* SalonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A0560A1D5478A200112F11 /* SalonsViewController.swift */; };
 		E8A0560D1D5478A200112F11 /* SalonsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8A0560B1D5478A200112F11 /* SalonsViewController.xib */; };
 		E8A056101D54A0A200112F11 /* ListSalonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A0560E1D54A0A200112F11 /* ListSalonsViewController.swift */; };
-		E8A056111D54A0A200112F11 /* ListSalonsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8A0560F1D54A0A200112F11 /* ListSalonsViewController.xib */; };
 		E8F7B6D91D57A6080094ADE4 /* SalonImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F7B6D71D57A6080094ADE4 /* SalonImageCell.swift */; };
 		E8F7B6DA1D57A6080094ADE4 /* SalonImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8F7B6D81D57A6080094ADE4 /* SalonImageCell.xib */; };
 		E8F806DB1D577FAE005AA7AA /* DetailSalonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F806D91D577FAE005AA7AA /* DetailSalonViewController.swift */; };
@@ -164,7 +163,7 @@
 		994299111D4769BF00D053B2 /* ServiceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceView.swift; sourceTree = "<group>"; };
 		994299121D4769BF00D053B2 /* ServiceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServiceView.xib; sourceTree = "<group>"; };
 		994299131D4769BF00D053B2 /* ShineComboView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShineComboView.swift; sourceTree = "<group>"; };
-		994299141D4769BF00D053B2 /* ShineComboView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShineComboView.xib; sourceTree = "<group>"; };
+		994299141D4769BF00D053B2 /* sShineComboView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = sShineComboView.xib; sourceTree = "<group>"; };
 		994299151D4769BF00D053B2 /* SlideNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideNetwork.swift; sourceTree = "<group>"; };
 		994299161D4769BF00D053B2 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		994299171D4769BF00D053B2 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
@@ -204,7 +203,6 @@
 		E8A0560A1D5478A200112F11 /* SalonsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SalonsViewController.swift; sourceTree = "<group>"; };
 		E8A0560B1D5478A200112F11 /* SalonsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SalonsViewController.xib; sourceTree = "<group>"; };
 		E8A0560E1D54A0A200112F11 /* ListSalonsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListSalonsViewController.swift; sourceTree = "<group>"; };
-		E8A0560F1D54A0A200112F11 /* ListSalonsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListSalonsViewController.xib; sourceTree = "<group>"; };
 		E8F7B6D71D57A6080094ADE4 /* SalonImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SalonImageCell.swift; sourceTree = "<group>"; };
 		E8F7B6D81D57A6080094ADE4 /* SalonImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SalonImageCell.xib; sourceTree = "<group>"; };
 		E8F806D91D577FAE005AA7AA /* DetailSalonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailSalonViewController.swift; sourceTree = "<group>"; };
@@ -345,7 +343,7 @@
 				994299111D4769BF00D053B2 /* ServiceView.swift */,
 				994299121D4769BF00D053B2 /* ServiceView.xib */,
 				994299131D4769BF00D053B2 /* ShineComboView.swift */,
-				994299141D4769BF00D053B2 /* ShineComboView.xib */,
+				994299141D4769BF00D053B2 /* sShineComboView.xib */,
 				E80CDBF21D491F7800B09385 /* AddressTabCell.swift */,
 				E80CDBF31D491F7800B09385 /* AddressTabCell.xib */,
 				9917A8951D4E33F400D9D82B /* BookingNotificatioView.swift */,
@@ -492,7 +490,6 @@
 				E8A0560A1D5478A200112F11 /* SalonsViewController.swift */,
 				E8A0560B1D5478A200112F11 /* SalonsViewController.xib */,
 				E8A0560E1D54A0A200112F11 /* ListSalonsViewController.swift */,
-				E8A0560F1D54A0A200112F11 /* ListSalonsViewController.xib */,
 			);
 			name = SalonPages;
 			sourceTree = "<group>";
@@ -577,10 +574,9 @@
 				9942991E1D4769BF00D053B2 /* Assets.xcassets in Resources */,
 				99876F051D4A58260094EF12 /* ionicons.ttf in Resources */,
 				9942991F1D4769BF00D053B2 /* LaunchScreen.storyboard in Resources */,
-				994299891D4769BF00D053B2 /* ShineComboView.xib in Resources */,
+				994299891D4769BF00D053B2 /* sShineComboView.xib in Resources */,
 				E8F7B6DA1D57A6080094ADE4 /* SalonImageCell.xib in Resources */,
 				9942997F1D4769BF00D053B2 /* OtherServicesView.xib in Resources */,
-				E8A056111D54A0A200112F11 /* ListSalonsViewController.xib in Resources */,
 				9942997D1D4769BF00D053B2 /* OtherServicesCell.xib in Resources */,
 				E8F806DC1D577FAE005AA7AA /* DetailSalonViewController.xib in Resources */,
 				9917A8981D4E340A00D9D82B /* BookingNotificationView.xib in Resources */,

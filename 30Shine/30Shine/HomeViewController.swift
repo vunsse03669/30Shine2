@@ -109,8 +109,8 @@ class HomeViewController: UIViewController {
 //                    }
                      vc = self.storyboard?.instantiateViewControllerWithIdentifier("CosmeticViewController") as? CosmeticViewController
                 case 5:
-                    
-                    vc = ListSalonsViewController(nibName: "ListSalonsViewController", bundle: nil)
+                    vc = self.storyboard?.instantiateViewControllerWithIdentifier("ListSalonsViewController") as? ListSalonsViewController
+                   // vc = ListSalonsViewController(nibName: "ListSalonsViewController", bundle: nil)
                 //SalonsViewController(nibName: "SalonsViewController", bundle: nil)//self.storyboard?.instantiateViewControllerWithIdentifier("ChainSystemViewController") as? ChainSystemViewController
                     
                 case 6:

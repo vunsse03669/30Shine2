@@ -17,6 +17,7 @@ import ReachabilitySwift
 
 class ShineComboView: UIView {
     
+    @IBOutlet weak var srcollView: UIScrollView!
     @IBOutlet weak var clvSteps: UICollectionView!
     @IBOutlet weak var lblDescription: UILabel!
     @IBOutlet weak var viewVideo: UIView!
@@ -29,7 +30,7 @@ class ShineComboView: UIView {
     var comboObject : Combo = Combo()
     var reachability : Reachability?
     var isConnectInternet = true
-    
+
     static func createInView(view: UIView) -> ShineComboView{
         let shineComboView = NSBundle.mainBundle().loadNibNamed("ShineComboView", owner: self, options: nil) [0] as! ShineComboView
         view.layoutIfNeeded()
@@ -39,6 +40,7 @@ class ShineComboView: UIView {
         shineComboView.fadeIn(0.2)
         
         shineComboView.setupContent()
+        print("asdasdasdas\n\n\n\n\n\n\n\n\n\n\n\n \(shineComboView.srcollView.contentSize.height)")
         return shineComboView
     }
     
@@ -98,6 +100,8 @@ class ShineComboView: UIView {
                 self.showAndDownLoadImage(cell.imvBackground, url: data.thumb, imageName: data.thumb)
             }
         }
+        
+        print("\n\n\n\n------------\(self.imvThumbnail.frame.height+self.lblDescription.frame.height+self.clvSteps.frame.height)")
     }
     
     func parseJsonOtherServices(complete:()->()){

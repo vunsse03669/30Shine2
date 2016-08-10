@@ -12,6 +12,8 @@ import RxSwift
 import ReachabilitySwift
 
 class DetailSalonViewController: UIViewController,UIScrollViewDelegate, UIGestureRecognizerDelegate {
+    @IBOutlet weak var btnProfile: UIButton!
+    @IBOutlet weak var btnBack: UIButton!
     
     @IBOutlet weak var lblAddress: UILabel!
     @IBOutlet weak var imvSelected: UIImageView!
@@ -30,6 +32,22 @@ class DetailSalonViewController: UIViewController,UIScrollViewDelegate, UIGestur
     override func viewDidLoad() {
         super.viewDidLoad()
        
+        _ = btnBack.rx_tap
+            .subscribeNext {
+                self.navigationController?.pop()
+        }
+        //Click btnProfile
+        _ = btnProfile.rx_tap.subscribeNext {
+            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController") as! ProfileViewController
+            self.navigationController?.push(vc, animated: true)
+        }
+        
+        let logo = UIImage(named: "logo")
+        let imageView = UIImageView(image:logo)
+        imageView.frame = CGRectMake(0, 0, 64, 40)
+        imageView.contentMode = .ScaleAspectFit
+        self.navigationItem.titleView = imageView
+        
         setupPichImageMap()
         setupData()
         setupCollectionView()

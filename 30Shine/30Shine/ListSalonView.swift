@@ -71,6 +71,9 @@ class ListSalonView: UIView, UITableViewDelegate {
     func configCollectionView() {
         tbvListSalon.registerNib(UINib.init(nibName: "SalonTableCell", bundle: nil), forCellReuseIdentifier: "SalonTableCell")
         tbvListSalon.rowHeight = 120
+        
+        tbvListSalon.tableFooterView = UIView()
+        
         dispatch_async(dispatch_get_main_queue()) {
             _ =           self.salonVariable.asObservable().bindTo(self.tbvListSalon.rx_itemsWithCellIdentifier("SalonTableCell", cellType: SalonTableCell.self)){
                 row,data,cell in
