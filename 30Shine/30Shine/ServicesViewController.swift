@@ -36,12 +36,12 @@ class ServicesViewController: UIViewController , UITableViewDataSource, UITableV
         
         self.tbvMenu.delegate = self
         self.tbvMenu.dataSource = self
-<<<<<<< HEAD
+
         self.tbvMenu.tableFooterView = UIView()
                 
-=======
+
         self.configUI()
->>>>>>> 20e63229332ca67c40984188b056c9df8ad2b3f0
+
         // Do any additional setup after loading the view.
         var image = UIImage(named: "img-back")
         image = image?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
@@ -100,14 +100,11 @@ class ServicesViewController: UIViewController , UITableViewDataSource, UITableV
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-<<<<<<< HEAD
+
         print("did tap");
         
         tableView .deselectRowAtIndexPath(indexPath, animated: true)
-        
-=======
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
->>>>>>> 20e63229332ca67c40984188b056c9df8ad2b3f0
+
         var vc : UIViewController!
         if indexPath.row == 0 {
             vc = self.storyboard?.instantiateViewControllerWithIdentifier("ShineComboViewController")

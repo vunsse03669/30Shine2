@@ -44,22 +44,6 @@ class ShineComboViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-<<<<<<< HEAD
-        
-        _ = btnBack.rx_tap
-            .subscribeNext {
-                self.navigationController?.pop()
-        }
-        
-        _ = btnProfile.rx_tap.subscribeNext {
-            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController") as! ProfileViewController
-            self.navigationController?.push(vc, animated: true)
-        }
-        let logo = UIImage(named: "logo")
-        let imageView = UIImageView(image:logo)
-        imageView.frame = CGRectMake(0, 0, 64, 40)
-        imageView.contentMode = .ScaleAspectFit
-        self.navigationItem.titleView = imageView
         
         
         self.setupContent();
@@ -68,11 +52,10 @@ class ShineComboViewController: UIViewController {
         image = image?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: UIBarButtonItemStyle.Plain, target: self, action: #selector(handleBackButton))
-=======
+
         self.shineComboView = ShineComboView.createInView(self.viewShineCombo)
         // Do any additional setup after loading the view.
         self.configUI()
->>>>>>> 20e63229332ca67c40984188b056c9df8ad2b3f0
     }
     
     func handleBackButton() {
