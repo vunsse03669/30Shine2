@@ -17,22 +17,7 @@ class ServicesViewController: UIViewController , UITableViewDataSource, UITableV
     @IBOutlet weak var tbvMenu: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        _ = btnBack.rx_tap
-            .subscribeNext {
-                self.navigationController?.pop()
-        }
-        //Click btnProfile
-        _ = btnProfile.rx_tap.subscribeNext {
-            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController") as! ProfileViewController
-            self.navigationController?.push(vc, animated: true)
-        }
-        let logo = UIImage(named: "logo")
-        let imageView = UIImageView(image:logo)
-        imageView.frame = CGRectMake(0, 0, 64, 40)
-        imageView.contentMode = .ScaleAspectFit
-        self.navigationItem.titleView = imageView
-        
+              
         
         self.tbvMenu.delegate = self
         self.tbvMenu.dataSource = self
@@ -41,12 +26,6 @@ class ServicesViewController: UIViewController , UITableViewDataSource, UITableV
                 
 
         self.configUI()
-
-        // Do any additional setup after loading the view.
-        var image = UIImage(named: "img-back")
-        image = image?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
-        
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: UIBarButtonItemStyle.Plain, target: self, action: #selector(handleBackButton))
     }
     
     func handleBackButton() {
