@@ -37,7 +37,7 @@ class HomeViewController: UIViewController {
         self.configSilder()
         //Click btnProfile
         _ = btnProfile.rx_tap.subscribeNext {
-            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController") as! ProfileViewController
+            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("SelectProfileController") as! SelectProfileController
             self.navigationController?.push(vc, animated: true)
         }
     }

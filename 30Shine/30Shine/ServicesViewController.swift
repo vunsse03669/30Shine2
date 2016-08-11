@@ -33,7 +33,7 @@ class ServicesViewController: UIViewController , UITableViewDataSource, UITableV
     }
     
     func handleProfile() {
-        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController") as! ProfileViewController
+        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("SelectProfileController") as! SelectProfileController
         self.navigationController?.push(vc, animated: true)
     }
 
