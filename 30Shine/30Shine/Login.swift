@@ -45,4 +45,14 @@ extension Login {
         let predicate = NSPredicate(format: "id = %d", id)
         return sDB.realm.objects(Login).filter(predicate).first
     }
+    
+    static func getLogin() -> Login! {
+        return sDB.realm.objects(Login).first
+    }
+    
+    static func updateToken(login: Login,  token : String) {
+        try! sDB.realm.write {
+            login.acessToken = token
+        }
+    }
 }

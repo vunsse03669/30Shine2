@@ -135,8 +135,9 @@ class CustomerHistoryView: UIView, UITableViewDelegate {
             reachability in
             dispatch_async(dispatch_get_main_queue()) {
                 self.historyVar.value = []
-                self.parseJSON({ 
-                    () in
+                let id = Login.getLogin().id
+                let token = Login.getLogin().acessToken
+                self.parseJSON(id, token: token, complete: { 
                     self.addLine()
                 })
             }
@@ -153,10 +154,12 @@ class CustomerHistoryView: UIView, UITableViewDelegate {
         try! reachability?.startNotifier()
     }
     
-    func parseJSON(complete: ()->()) {
-        let parameter = ["Id" : 1000]
+    func parseJSON(id: Int, token : String, complete: ()->()) {
+        let parameter = ["Id" : id,"AccessToken" : token]
+        print(id)
+        print(token)
         dispatch_async(dispatch_get_global_queue(0, 0)) { 
-            Alamofire.request(.POST,HISTORY_API,parameters: parameter, encoding: .JSON).responseJASON {
+            Alamofire.request(.POST,HISTORY_API,parameters: parameter as? [String : AnyObject], encoding: .JSON).responseJASON {
                 response in
                 if let json = response.result.value {
                     let histories = json["d"].map(HistoryNetwork.init)

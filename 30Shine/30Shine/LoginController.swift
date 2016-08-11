@@ -47,6 +47,9 @@ class LoginController: UIViewController {
         self.txtPhone.keyboardType = .DecimalPad
         self.txtPassword.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
         self.txtPassword.secureTextEntry = true
+        
+        self.txtPhone.text = "01669808868"
+        self.txtPassword.text = "api123"
     }
     //MARK: Login
     func login() {
@@ -104,6 +107,10 @@ class LoginController: UIViewController {
                         Login.create(loginNetwork.id, phone: loginNetwork.phone, fullName: loginNetwork.fullname,
                             email: loginNetwork.email, token: loginNetwork.accessToken, dob: loginNetwork.dob,
                             mob: loginNetwork.mob, yob: loginNetwork.yob)
+                    }
+                    else if (Login.getLoginById(loginNetwork.id) != nil) {
+                        let login = Login.getLoginById(loginNetwork.id)
+                        Login.updateToken(login, token: loginNetwork.accessToken)
                     }
                     if loginNetwork.id == 0 {
                         self.loginSuccess = false
