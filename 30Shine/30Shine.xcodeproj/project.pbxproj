@@ -10,6 +10,7 @@
 		186A11811D5C569A00BDB3B3 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186A11801D5C569A00BDB3B3 /* LoginController.swift */; };
 		186A11841D5C5AFD00BDB3B3 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186A11831D5C5AFD00BDB3B3 /* Login.swift */; };
 		186A11861D5C62BE00BDB3B3 /* LoginNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186A11851D5C62BE00BDB3B3 /* LoginNetwork.swift */; };
+		186A11881D5C727500BDB3B3 /* CustomerInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186A11871D5C727500BDB3B3 /* CustomerInfoController.swift */; };
 		186F21E01D5BABDD00A8959C /* StylistWorkTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186F21DF1D5BABDD00A8959C /* StylistWorkTime.swift */; };
 		18DD16F41D5C3B4200837986 /* SelectProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD16F31D5C3B4200837986 /* SelectProfileController.swift */; };
 		18DD16F61D5C3BFA00837986 /* ProfileItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD16F51D5C3BFA00837986 /* ProfileItemCell.swift */; };
@@ -118,6 +119,7 @@
 		186A11801D5C569A00BDB3B3 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		186A11831D5C5AFD00BDB3B3 /* Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		186A11851D5C62BE00BDB3B3 /* LoginNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginNetwork.swift; sourceTree = "<group>"; };
+		186A11871D5C727500BDB3B3 /* CustomerInfoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerInfoController.swift; sourceTree = "<group>"; };
 		186F21DF1D5BABDD00A8959C /* StylistWorkTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StylistWorkTime.swift; sourceTree = "<group>"; };
 		18DD16F31D5C3B4200837986 /* SelectProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectProfileController.swift; sourceTree = "<group>"; };
 		18DD16F51D5C3BFA00837986 /* ProfileItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileItemCell.swift; sourceTree = "<group>"; };
@@ -244,6 +246,73 @@
 			name = Login;
 			sourceTree = "<group>";
 		};
+		186A11891D5C798F00BDB3B3 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				9942990B1D4769BF00D053B2 /* ProfileViewController.swift */,
+				18DD16F31D5C3B4200837986 /* SelectProfileController.swift */,
+				186A11871D5C727500BDB3B3 /* CustomerInfoController.swift */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
+		186A118A1D5C79B700BDB3B3 /* Booking */ = {
+			isa = PBXGroup;
+			children = (
+				994298A31D4769BF00D053B2 /* BookingViewController.swift */,
+			);
+			name = Booking;
+			sourceTree = "<group>";
+		};
+		186A118B1D5C79D600BDB3B3 /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				9942991B1D4769BF00D053B2 /* VideoViewController.swift */,
+			);
+			name = Video;
+			sourceTree = "<group>";
+		};
+		186A118C1D5C79EE00BDB3B3 /* Hair */ = {
+			isa = PBXGroup;
+			children = (
+				994298F61D4769BF00D053B2 /* HairCollectionViewController.swift */,
+				994298F31D4769BF00D053B2 /* DetailHairViewController.swift */,
+			);
+			name = Hair;
+			sourceTree = "<group>";
+		};
+		186A118D1D5C7A0000BDB3B3 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				186A11801D5C569A00BDB3B3 /* LoginController.swift */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		186A118E1D5C7A0E00BDB3B3 /* Cosmetic */ = {
+			isa = PBXGroup;
+			children = (
+				9991DCAC1D531E9F00E97910 /* CosmeticViewController.swift */,
+			);
+			name = Cosmetic;
+			sourceTree = "<group>";
+		};
+		186A118F1D5C7A2200BDB3B3 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				994298FB1D4769BF00D053B2 /* HomeViewController.swift */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		186A11901D5C7A2D00BDB3B3 /* ChainSystem */ = {
+			isa = PBXGroup;
+			children = (
+				994298E81D4769BF00D053B2 /* ChainSystemViewController.swift */,
+			);
+			name = ChainSystem;
+			sourceTree = "<group>";
+		};
 		78DC61FFF3F5104449498112 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -297,19 +366,17 @@
 		994299911D476B9B00D053B2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				186A118D1D5C7A0000BDB3B3 /* Login */,
+				186A118F1D5C7A2200BDB3B3 /* Home */,
+				186A11901D5C7A2D00BDB3B3 /* ChainSystem */,
+				186A118E1D5C7A0E00BDB3B3 /* Cosmetic */,
+				186A118C1D5C79EE00BDB3B3 /* Hair */,
+				186A118B1D5C79D600BDB3B3 /* Video */,
+				186A118A1D5C79B700BDB3B3 /* Booking */,
+				186A11891D5C798F00BDB3B3 /* Profile */,
 				E8031EE01D587F050085DCA7 /* Services */,
 				E8F806D41D577F55005AA7AA /* DetailSalon */,
 				E8A056011D54769000112F11 /* SalonPages */,
-				994298A31D4769BF00D053B2 /* BookingViewController.swift */,
-				994298E81D4769BF00D053B2 /* ChainSystemViewController.swift */,
-				994298F61D4769BF00D053B2 /* HairCollectionViewController.swift */,
-				994298F31D4769BF00D053B2 /* DetailHairViewController.swift */,
-				994298FB1D4769BF00D053B2 /* HomeViewController.swift */,
-				9942990B1D4769BF00D053B2 /* ProfileViewController.swift */,
-				9942991B1D4769BF00D053B2 /* VideoViewController.swift */,
-				9991DCAC1D531E9F00E97910 /* CosmeticViewController.swift */,
-				18DD16F31D5C3B4200837986 /* SelectProfileController.swift */,
-				186A11801D5C569A00BDB3B3 /* LoginController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -685,6 +752,7 @@
 				9942995F1D4769BF00D053B2 /* ComboCell.swift in Sources */,
 				9942998A1D4769BF00D053B2 /* SlideNetwork.swift in Sources */,
 				E8A056101D54A0A200112F11 /* ListSalonsViewController.swift in Sources */,
+				186A11881D5C727500BDB3B3 /* CustomerInfoController.swift in Sources */,
 				E8031EE61D587F480085DCA7 /* ShineComboViewController.swift in Sources */,
 				994299811D4769BF00D053B2 /* Salon.swift in Sources */,
 				994299701D4769BF00D053B2 /* HomeViewController.swift in Sources */,

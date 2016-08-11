@@ -58,7 +58,7 @@ class SelectProfileController: UIViewController {
                 var vc : UIViewController!
                 switch indexPath.row {
                 case 0 :
-                    print("Selected Invalid !!!")
+                    vc = self.storyboard?.instantiateViewControllerWithIdentifier("CustomerInfoController") as? CustomerInfoController
                 case 1 :
                     print("Selected Invalid !!!")
                     
