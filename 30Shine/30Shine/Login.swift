@@ -55,4 +55,10 @@ extension Login {
             login.acessToken = token
         }
     }
+    
+    static func deleteLogin() {
+        try! sDB.realm.write {
+            sDB.realm.deleteAll()
+        }
+    }
 }

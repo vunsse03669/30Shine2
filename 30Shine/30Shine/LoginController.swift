@@ -30,6 +30,11 @@ class LoginController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationItem.setHidesBackButton(true, animated: animated)
+    }
+    
     
     //MARK: hide keyboard
     func keyboardWillShow(notification: NSNotification) {

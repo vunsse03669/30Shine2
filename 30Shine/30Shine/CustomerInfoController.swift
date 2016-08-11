@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomerInfoController: UIViewController {
+class CustomerInfoController: UIViewController, UIAlertViewDelegate {
     @IBOutlet weak var btnLogout: UIButton!
     @IBOutlet weak var btnModification: UIButton!
     @IBOutlet weak var txtEmail: UITextField!
@@ -23,6 +23,7 @@ class CustomerInfoController: UIViewController {
         super.viewDidLoad()
         self.configUI()
         self.bindingData()
+        self.logout()
     }
     
     func handleBackButton() {
@@ -96,6 +97,22 @@ class CustomerInfoController: UIViewController {
             str = "\(num)"
         }
         return str
+    }
+    
+    //MARK: Logout
+    func logout() {
+        _ = btnLogout.rx_tap.subscribeNext {
+            let alert = UIAlertView(title: "", message: "Bạn thực sự muốn đăng xuất?", delegate: self, cancelButtonTitle: "Không", otherButtonTitles: "Có")
+            alert.show()
+        }
+    }
+    
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        if buttonIndex == 1 {
+            Login.deleteLogin()
+            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("LoginController") as! LoginController
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
 
 }
