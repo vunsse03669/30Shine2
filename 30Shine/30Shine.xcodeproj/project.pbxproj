@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		186A11811D5C569A00BDB3B3 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186A11801D5C569A00BDB3B3 /* LoginController.swift */; };
+		186A11841D5C5AFD00BDB3B3 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186A11831D5C5AFD00BDB3B3 /* Login.swift */; };
+		186A11861D5C62BE00BDB3B3 /* LoginNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186A11851D5C62BE00BDB3B3 /* LoginNetwork.swift */; };
 		186F21E01D5BABDD00A8959C /* StylistWorkTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186F21DF1D5BABDD00A8959C /* StylistWorkTime.swift */; };
 		18DD16F41D5C3B4200837986 /* SelectProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD16F31D5C3B4200837986 /* SelectProfileController.swift */; };
 		18DD16F61D5C3BFA00837986 /* ProfileItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD16F51D5C3BFA00837986 /* ProfileItemCell.swift */; };
@@ -114,6 +116,8 @@
 /* Begin PBXFileReference section */
 		07F489400F76D4BC5F1DC920 /* Pods-30Shine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-30Shine.release.xcconfig"; path = "Pods/Target Support Files/Pods-30Shine/Pods-30Shine.release.xcconfig"; sourceTree = "<group>"; };
 		186A11801D5C569A00BDB3B3 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		186A11831D5C5AFD00BDB3B3 /* Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		186A11851D5C62BE00BDB3B3 /* LoginNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginNetwork.swift; sourceTree = "<group>"; };
 		186F21DF1D5BABDD00A8959C /* StylistWorkTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StylistWorkTime.swift; sourceTree = "<group>"; };
 		18DD16F31D5C3B4200837986 /* SelectProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectProfileController.swift; sourceTree = "<group>"; };
 		18DD16F51D5C3BFA00837986 /* ProfileItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileItemCell.swift; sourceTree = "<group>"; };
@@ -231,6 +235,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		186A11821D5C5AE900BDB3B3 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				186A11831D5C5AFD00BDB3B3 /* Login.swift */,
+				186A11851D5C62BE00BDB3B3 /* LoginNetwork.swift */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
 		78DC61FFF3F5104449498112 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -304,6 +317,7 @@
 		994299921D476BB000D053B2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				186A11821D5C5AE900BDB3B3 /* Login */,
 				9917A8991D4E3D3700D9D82B /* BookingNotification */,
 				99876F081D4A5F160094EF12 /* Booking */,
 				998965821D488BA2006DEDF5 /* Video */,
@@ -677,6 +691,7 @@
 				994299741D4769BF00D053B2 /* LazyImage.swift in Sources */,
 				99876F0A1D4A5F780094EF12 /* BookingNetwork.swift in Sources */,
 				186F21E01D5BABDD00A8959C /* StylistWorkTime.swift in Sources */,
+				186A11841D5C5AFD00BDB3B3 /* Login.swift in Sources */,
 				994299901D4769BF00D053B2 /* VideoViewController.swift in Sources */,
 				99876F071D4A5E8E0094EF12 /* BookingCell.swift in Sources */,
 				994299821D4769BF00D053B2 /* SalonCell.swift in Sources */,
@@ -721,6 +736,7 @@
 				994299771D4769BF00D053B2 /* Menu.swift in Sources */,
 				18DD16F81D5C3E7F00837986 /* ProfileItem.swift in Sources */,
 				9942998C1D4769BF00D053B2 /* UIViewExtension.swift in Sources */,
+				186A11861D5C62BE00BDB3B3 /* LoginNetwork.swift in Sources */,
 				994299731D4769BF00D053B2 /* JSONKEYsExtension.swift in Sources */,
 				994299881D4769BF00D053B2 /* ShineComboView.swift in Sources */,
 				9942998B1D4769BF00D053B2 /* UIColorExtension.swift in Sources */,

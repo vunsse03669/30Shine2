@@ -60,5 +60,15 @@ extension JSONKeys {
     static let statusBooking = JSONKey<Int>("Status")
     static let hourIds = JSONKey<String>("HourIds")
     static let staffId = JSONKey<Int>("StaffId")
+    
+    //Login
+    static let login_id = JSONKey<Int>("Id")
+    static let login_phone = JSONKey<String>("Phone")
+    static let login_fullname = JSONKey<String>("Fullname")
+    static let login_email = JSONKey<String>("Email")
+    static let login_accessToken = JSONKey<String>("AccessToken")
+    static let login_dob = JSONKey<Int>("DayOfBirth")
+    static let login_mob = JSONKey<Int>("MonthOfBirth")
+    static let login_yob = JSONKey<Int>("YearOfBirth")
 
 }
