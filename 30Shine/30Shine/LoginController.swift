@@ -59,6 +59,7 @@ class LoginController: UIViewController {
     //MARK: Login
     func login() {
         _ = btnLogin.rx_tap.subscribeNext {
+            self.btnLogin.userInteractionEnabled = false
             guard let phone = self.txtPhone.text, password = self.txtPassword.text else {
                 return
             }
@@ -67,6 +68,7 @@ class LoginController: UIViewController {
             }
             
             self.sendRequest(phone, password: password, completion: {
+                self.btnLogin.userInteractionEnabled = true
                 if !self.loginSuccess {
                     self.showAlert("", msg: "Số điện thoại hoặc mật khẩu đăng nhập sai. Quý khách vui lòng kiểm tra lại")
                 }

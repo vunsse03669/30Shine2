@@ -17,10 +17,10 @@
         </mutableArray>
     </customFonts>
     <scenes>
-        <!--Navigation Controller-->
+        <!--Home Navigation-->
         <scene sceneID="Yfs-jn-IO5">
             <objects>
-                <navigationController id="nCv-O6-zhf" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="HomeNavigation" id="nCv-O6-zhf" customClass="HomeNavigation" customModule="_0Shine" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hQ8-sJ-HQC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -33,10 +33,10 @@
             </objects>
             <point key="canvasLocation" x="-1092" y="9"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Login Navigation-->
         <scene sceneID="wQB-ug-xF2">
             <objects>
-                <navigationController id="mxg-OA-8B9" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="loginNavigation" id="mxg-OA-8B9" customClass="loginNavigation" customModule="_0Shine" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0sF-zR-cWP">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

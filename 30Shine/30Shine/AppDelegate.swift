@@ -24,7 +24,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         self.window!.backgroundColor = .whiteColor();
         self.checkInternet()
+        self.checkLogin()
         return true
+    }
+    
+    func checkLogin() {
+        let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+        
+        if Login.getLogin() != nil {
+            let nvc = mainStoryBoard.instantiateViewControllerWithIdentifier("HomeNavigation") as! HomeNavigation
+            self.window?.rootViewController = nvc
+
+        }
+        else {
+            let nvc = mainStoryBoard.instantiateViewControllerWithIdentifier("loginNavigation") as! loginNavigation
+            self.window?.rootViewController = nvc
+
+        }
+        self.window?.makeKeyAndVisible()
+        
     }
     
     func checkInternet() {
