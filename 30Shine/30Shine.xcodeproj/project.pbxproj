@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		186A11811D5C569A00BDB3B3 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186A11801D5C569A00BDB3B3 /* LoginController.swift */; };
 		186F21E01D5BABDD00A8959C /* StylistWorkTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186F21DF1D5BABDD00A8959C /* StylistWorkTime.swift */; };
 		18DD16F41D5C3B4200837986 /* SelectProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD16F31D5C3B4200837986 /* SelectProfileController.swift */; };
 		18DD16F61D5C3BFA00837986 /* ProfileItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD16F51D5C3BFA00837986 /* ProfileItemCell.swift */; };
@@ -112,6 +113,7 @@
 
 /* Begin PBXFileReference section */
 		07F489400F76D4BC5F1DC920 /* Pods-30Shine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-30Shine.release.xcconfig"; path = "Pods/Target Support Files/Pods-30Shine/Pods-30Shine.release.xcconfig"; sourceTree = "<group>"; };
+		186A11801D5C569A00BDB3B3 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		186F21DF1D5BABDD00A8959C /* StylistWorkTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StylistWorkTime.swift; sourceTree = "<group>"; };
 		18DD16F31D5C3B4200837986 /* SelectProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectProfileController.swift; sourceTree = "<group>"; };
 		18DD16F51D5C3BFA00837986 /* ProfileItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileItemCell.swift; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 				9942991B1D4769BF00D053B2 /* VideoViewController.swift */,
 				9991DCAC1D531E9F00E97910 /* CosmeticViewController.swift */,
 				18DD16F31D5C3B4200837986 /* SelectProfileController.swift */,
+				186A11801D5C569A00BDB3B3 /* LoginController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -714,6 +717,7 @@
 				994299791D4769BF00D053B2 /* MenuCollectionViewCell.swift in Sources */,
 				9942998F1D4769BF00D053B2 /* VideoCell.swift in Sources */,
 				9942991C1D4769BF00D053B2 /* AppConstant.swift in Sources */,
+				186A11811D5C569A00BDB3B3 /* LoginController.swift in Sources */,
 				994299771D4769BF00D053B2 /* Menu.swift in Sources */,
 				18DD16F81D5C3E7F00837986 /* ProfileItem.swift in Sources */,
 				9942998C1D4769BF00D053B2 /* UIViewExtension.swift in Sources */,
