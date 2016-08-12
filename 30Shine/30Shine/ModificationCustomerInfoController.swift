@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Alamofire
 
 class ModificationCustomerInfoController: UIViewController {
 
@@ -20,9 +21,25 @@ class ModificationCustomerInfoController: UIViewController {
     @IBOutlet weak var txtName: UITextField!
     @IBOutlet weak var txtPhone: UITextField!
     
+    var updateSuccess = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configUI()
+        self.update()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    //MARK: hide keyboard
+    func keyboardWillShow(notification: NSNotification) {
+        self.hideKeyboardWhenTappedAround()
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        for recognizer in view.gestureRecognizers ?? [] {
+            view.removeGestureRecognizer(recognizer)
+        }
     }
     
     func handleBackButton() {
@@ -50,5 +67,79 @@ class ModificationCustomerInfoController: UIViewController {
         var profileImage = UIImage(named: "img-people")
         profileImage = profileImage?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: profileImage, style: UIBarButtonItemStyle.Plain, target: self, action: #selector(handleProfileButton))
+        
+        //MARK: TextField
+        self.configTextField(self.txtName, padding: 5.0, keyboardType: .Default)
+        self.configTextField(self.txtPhone, padding: 5.0, keyboardType: .NumberPad)
+        self.configTextField(self.txtEmail, padding: 5.0, keyboardType: .Default)
+        self.configTextField(self.txtDob, padding: 5.0, keyboardType: .NumberPad)
+        self.configTextField(self.txtMob, padding: 5.0, keyboardType: .NumberPad)
+        self.configTextField(self.txtYob, padding: 5.0, keyboardType: .NumberPad)
+    }
+    
+    func configTextField(textField : UITextField, padding : CGFloat, keyboardType : UIKeyboardType) {
+        textField.keyboardType = keyboardType
+        textField.layer.sublayerTransform = CATransform3DMakeTranslation(padding, 0, 0)
+    }
+    
+    //MARK: Update
+    func update() {
+        _ = self.btnUpdate.rx_tap.subscribeNext {
+            guard let phone = self.txtPhone.text, name = self.txtName.text, dob = Int(self.txtDob.text!), mob = Int(self.txtMob.text!), yob = Int(self.txtYob.text!), mail = self.txtEmail.text else {
+                self.showAlert("Quá trình cập nhật thông tin xảy ra sự cố. Quý khách vui lòng kiểm tra lại thông tin")
+                return
+            }
+            let id    = Login.getLogin().id
+            let token = Login.getLogin().acessToken
+            
+            if id == 0 || token == "" || phone == "" || name == "" {
+                self.showAlert("Quá trình cập nhật thông tin xảy ra sự cố. Quý khách vui lòng kiểm tra lại thông tin")
+                return
+            }
+            
+            self.updateInfo(id, phone: phone, name: name, dob: dob, mob: mob, yob: yob, email: mail, token: token) {
+                if self.updateSuccess {
+                    Login.deleteLogin()
+                    Login.create(id, phone: phone, fullName: name, email: mail, token: token, dob: dob, mob: mob, yob: yob)
+                    self.showAlert("Cập nhật thông tin thành công")
+                    self.navigationController?.popViewControllerAnimated(true)
+                }
+                else {
+                    self.showAlert("Quá trình cập nhật thông tin xảy ra sự cố. Quý khách vui lòng kiểm tra lại thông tin")
+                }
+            }
+        }
+    }
+    
+    func updateInfo(id : Int, phone : String, name : String, dob : Int, mob : Int, yob : Int, email : String, token : String, completion: () -> ()) {
+        let API = "http://api.30shine.com/customer/updateinfo"
+        let parameter = ["Id" : id,
+                         "Phone" : phone,
+                         "CustomerName" : name,
+                         "DayOfBirth" : dob,
+                         "MonthOfBirth" : mob,
+                         "YearOfBirth" : yob,
+                         "Email" : email,
+                         "AccessToken" : token]
+        dispatch_async(dispatch_get_global_queue(0, 0)) { 
+            Alamofire.request(.POST, API, parameters: parameter as? [String : AnyObject], encoding: .JSON).responseJASON {
+                response in
+                if let json = response.result.value {
+                    if json["d"].string == "success" {
+                        self.updateSuccess = true
+                    }
+                    else {
+                        self.updateSuccess = false
+                    }
+                    completion()
+                }
+            }
+        }
+    
+    }
+    
+    func showAlert(msg : String) {
+        let alert = UIAlertView(title: "", message: msg, delegate: nil, cancelButtonTitle: "Xác nhận")
+        alert.show()
     }
 }

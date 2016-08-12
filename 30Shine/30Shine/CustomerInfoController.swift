@@ -22,9 +22,13 @@ class CustomerInfoController: UIViewController, UIAlertViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configUI()
-        self.bindingData()
         self.logout()
         self.modificationInfo()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.bindingData()
     }
     
     func handleBackButton() {
