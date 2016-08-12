@@ -14,6 +14,7 @@
 		186A11921D5C8CCB00BDB3B3 /* loginNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186A11911D5C8CCB00BDB3B3 /* loginNavigation.swift */; };
 		186A11941D5C8CD800BDB3B3 /* HomeNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186A11931D5C8CD800BDB3B3 /* HomeNavigation.swift */; };
 		186F21E01D5BABDD00A8959C /* StylistWorkTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186F21DF1D5BABDD00A8959C /* StylistWorkTime.swift */; };
+		18908A801D5D7B320079A9FB /* ModificationCustomerInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18908A7F1D5D7B320079A9FB /* ModificationCustomerInfoController.swift */; };
 		18DD16F41D5C3B4200837986 /* SelectProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD16F31D5C3B4200837986 /* SelectProfileController.swift */; };
 		18DD16F61D5C3BFA00837986 /* ProfileItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD16F51D5C3BFA00837986 /* ProfileItemCell.swift */; };
 		18DD16F81D5C3E7F00837986 /* ProfileItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD16F71D5C3E7F00837986 /* ProfileItem.swift */; };
@@ -125,6 +126,7 @@
 		186A11911D5C8CCB00BDB3B3 /* loginNavigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loginNavigation.swift; sourceTree = "<group>"; };
 		186A11931D5C8CD800BDB3B3 /* HomeNavigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeNavigation.swift; sourceTree = "<group>"; };
 		186F21DF1D5BABDD00A8959C /* StylistWorkTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StylistWorkTime.swift; sourceTree = "<group>"; };
+		18908A7F1D5D7B320079A9FB /* ModificationCustomerInfoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModificationCustomerInfoController.swift; sourceTree = "<group>"; };
 		18DD16F31D5C3B4200837986 /* SelectProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectProfileController.swift; sourceTree = "<group>"; };
 		18DD16F51D5C3BFA00837986 /* ProfileItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileItemCell.swift; sourceTree = "<group>"; };
 		18DD16F71D5C3E7F00837986 /* ProfileItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileItem.swift; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 				9942990B1D4769BF00D053B2 /* ProfileViewController.swift */,
 				18DD16F31D5C3B4200837986 /* SelectProfileController.swift */,
 				186A11871D5C727500BDB3B3 /* CustomerInfoController.swift */,
+				18908A7F1D5D7B320079A9FB /* ModificationCustomerInfoController.swift */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -769,6 +772,7 @@
 				994299901D4769BF00D053B2 /* VideoViewController.swift in Sources */,
 				99876F071D4A5E8E0094EF12 /* BookingCell.swift in Sources */,
 				994299821D4769BF00D053B2 /* SalonCell.swift in Sources */,
+				18908A801D5D7B320079A9FB /* ModificationCustomerInfoController.swift in Sources */,
 				99BC264C1D4B4324006E3ACE /* ViewControllerExtension.swift in Sources */,
 				994299671D4769BF00D053B2 /* DB.swift in Sources */,
 				99876F101D4A5FD40094EF12 /* Stylist.swift in Sources */,
