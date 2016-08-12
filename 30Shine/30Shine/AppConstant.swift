@@ -22,6 +22,7 @@ let PRODUCT_LINK = "https://30shine.com/san-pham.html"
 
 //DEFAULT
 let IMG_DEFAULT = "imag-placeholder"
+let HEIGHT_KEYBOARD = 216.0
 
 //TIME CONSTANT
 

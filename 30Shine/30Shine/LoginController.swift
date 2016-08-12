@@ -78,6 +78,11 @@ class LoginController: UIViewController {
                 }
             })
         }
+        
+        _ = btnRegister.rx_tap.subscribeNext{
+            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("RegisterViewController") as! RegisterViewController
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func checkLogin(phone: String, password: String) -> Bool{
