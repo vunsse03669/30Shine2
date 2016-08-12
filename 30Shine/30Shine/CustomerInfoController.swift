@@ -24,6 +24,7 @@ class CustomerInfoController: UIViewController, UIAlertViewDelegate {
         self.configUI()
         self.bindingData()
         self.logout()
+        self.modificationInfo()
     }
     
     func handleBackButton() {
@@ -111,6 +112,14 @@ class CustomerInfoController: UIViewController, UIAlertViewDelegate {
         if buttonIndex == 1 {
             Login.deleteLogin()
             let vc = self.storyboard?.instantiateViewControllerWithIdentifier("LoginController") as! LoginController
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    //MARK: Modification Customer info
+    func modificationInfo() {
+        _ = self.btnModification.rx_tap.subscribeNext {
+            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ModificationCustomerInfoController") as! ModificationCustomerInfoController
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
