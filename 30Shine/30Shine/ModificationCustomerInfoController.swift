@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Alamofire
+import SVProgressHUD
 
 class ModificationCustomerInfoController: UIViewController {
 
@@ -75,6 +76,7 @@ class ModificationCustomerInfoController: UIViewController {
         self.configTextField(self.txtDob, padding: 5.0, keyboardType: .NumberPad)
         self.configTextField(self.txtMob, padding: 5.0, keyboardType: .NumberPad)
         self.configTextField(self.txtYob, padding: 5.0, keyboardType: .NumberPad)
+        
     }
     
     func configTextField(textField : UITextField, padding : CGFloat, keyboardType : UIKeyboardType) {
@@ -97,7 +99,13 @@ class ModificationCustomerInfoController: UIViewController {
                 return
             }
             
+            //Activity indicator
+            SVProgressHUD.showWithStatus("Đang tải dữ liệu")
+            
             self.updateInfo(id, phone: phone, name: name, dob: dob, mob: mob, yob: yob, email: mail, token: token) {
+                dispatch_async(dispatch_get_main_queue(), { 
+                    SVProgressHUD.popActivity()
+                })
                 if self.updateSuccess {
                     Login.deleteLogin()
                     Login.create(id, phone: phone, fullName: name, email: mail, token: token, dob: dob, mob: mob, yob: yob)

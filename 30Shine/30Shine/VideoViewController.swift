@@ -13,6 +13,7 @@ import MediaPlayer
 import youtube_parser
 import Alamofire
 import ReachabilitySwift
+import SVProgressHUD
 
 class VideoViewController: UIViewController, UITableViewDelegate, UIAlertViewDelegate {
     
@@ -51,6 +52,9 @@ class VideoViewController: UIViewController, UITableViewDelegate, UIAlertViewDel
         imageView.frame = CGRectMake(0, 0, 64, 40)
         imageView.contentMode = .ScaleAspectFit
         self.navigationItem.titleView = imageView
+        
+        //Activity indicator
+        SVProgressHUD.showWithStatus("Đang tải dữ liệu")
     }
     
     //MARK: TableView
@@ -147,6 +151,9 @@ class VideoViewController: UIViewController, UITableViewDelegate, UIAlertViewDel
                 self.videoVariable.value = []
                 self.parseJson {
                     () in
+                    dispatch_async(dispatch_get_main_queue(), { 
+                        SVProgressHUD.popActivity()
+                    })
                     self.videoVariable.value.sortInPlace {
                         return ($0).publishDate > ($1).publishDate
                     }

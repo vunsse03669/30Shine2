@@ -11,6 +11,7 @@ import RxCocoa
 import RxSwift
 import Alamofire
 import ReachabilitySwift
+import SVProgressHUD
 
 class CustomerHistoryView: UIView, UITableViewDelegate {
     
@@ -22,6 +23,9 @@ class CustomerHistoryView: UIView, UITableViewDelegate {
         super.awakeFromNib()
         tbvHistory.delegate = self
         self.initData()
+        
+        //Activity indicator
+        SVProgressHUD.showWithStatus("Đang tải dữ liệu")
     }
     
     static func createView(view : UIView) -> CustomerHistoryView! {
@@ -137,7 +141,10 @@ class CustomerHistoryView: UIView, UITableViewDelegate {
                 self.historyVar.value = []
                 let id = Login.getLogin().id
                 let token = Login.getLogin().acessToken
-                self.parseJSON(id, token: token, complete: { 
+                self.parseJSON(id, token: token, complete: {
+                    dispatch_async(dispatch_get_main_queue(), { 
+                        SVProgressHUD.popActivity()
+                    })
                     self.addLine()
                 })
             }

@@ -12,6 +12,7 @@ import RxCocoa
 import Alamofire
 import Spring
 import ReachabilitySwift
+import SVProgressHUD
 
 class HomeViewController: UIViewController {
     
@@ -53,6 +54,9 @@ class HomeViewController: UIViewController {
         self.navigationItem.titleView = imageView
         self.navigationController?.navigationBar.translucent = false
         self.configColletionLayout()
+        
+        //activity indicator
+        SVProgressHUD.showWithStatus("Đang tải dữ liệu")
     }
     
     func configColletionLayout() {
@@ -206,6 +210,9 @@ class HomeViewController: UIViewController {
                 self.menuVariable.value = []
                 self.slideImageVar.value = []
                 self.parseJsonMenu({() in
+                    dispatch_async(dispatch_get_main_queue(), { 
+                        SVProgressHUD.popActivity()
+                    })
                 })
                 self.parseJsonSlide()
             }

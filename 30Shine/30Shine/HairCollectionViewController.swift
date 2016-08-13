@@ -12,6 +12,7 @@ import RxCocoa
 import Alamofire
 import RealmSwift
 import ReachabilitySwift
+import SVProgressHUD
 
 class HairCollectionViewController: UIViewController, UITableViewDelegate {
 
@@ -48,6 +49,9 @@ class HairCollectionViewController: UIViewController, UITableViewDelegate {
         imageView.frame = CGRectMake(0, 0, 64, 40)
         imageView.contentMode = .ScaleAspectFit
         self.navigationItem.titleView = imageView
+        
+        //Activity indicator
+        SVProgressHUD.showWithStatus("Đang tải dữ liệu")
     }
     
     //MARK: Tableview
@@ -59,14 +63,6 @@ class HairCollectionViewController: UIViewController, UITableViewDelegate {
 
             self.showAndDownloadImage(cell.imvImage, url: data.images[0].imageUrl, imageName: data.images[0].imageUrl)
         }
-        
-//        _ = self.tbvHairType.rx_itemSelected.subscribeNext {
-//            indexPath in
-//            self.tbvHairType.deselectRowAtIndexPath(indexPath, animated: false)
-//            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("DetailHairViewController") as! DetailHairViewController
-//            vc.menuVar.value = self.hairTypeVariable.value[indexPath.row]
-//            self.navigationController?.pushViewController(vc, animated: true)
-//        }
     }
     
     //MARK: Dump data
@@ -82,6 +78,9 @@ class HairCollectionViewController: UIViewController, UITableViewDelegate {
                 self.hairTypeVariable.value = []
                 self.parseJSON({ 
                     () in
+                    dispatch_async(dispatch_get_main_queue(), { 
+                        SVProgressHUD.popActivity()
+                    })
                 })
             }
         }

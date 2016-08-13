@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Alamofire
+import SVProgressHUD
 
 class LoginController: UIViewController {
 
@@ -60,6 +61,7 @@ class LoginController: UIViewController {
     func login() {
         _ = btnLogin.rx_tap.subscribeNext {
             self.btnLogin.userInteractionEnabled = false
+            SVProgressHUD.showWithStatus("Đang tải dữ liệu")
             guard let phone = self.txtPhone.text, password = self.txtPassword.text else {
                 return
             }
@@ -68,6 +70,9 @@ class LoginController: UIViewController {
             }
             
             self.sendRequest(phone, password: password, completion: {
+                dispatch_async(dispatch_get_main_queue(), { 
+                    SVProgressHUD.popActivity()
+                })
                 self.btnLogin.userInteractionEnabled = true
                 if !self.loginSuccess {
                     self.showAlert("", msg: "Số điện thoại hoặc mật khẩu đăng nhập sai. Quý khách vui lòng kiểm tra lại")
