@@ -41,6 +41,20 @@ class RegisterViewController: UIViewController , UITextFieldDelegate{
     func setUpButton(){
         
         setTagForTextField()
+        self.textPhone.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
+        self.textName.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
+        self.textDate.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
+        self.textMonth.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
+        self.textYear.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
+        self.textEmail.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
+        self.textPassword.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
+        self.textConfirmPass.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
+        self.textPhone.keyboardType = .DecimalPad
+        self.textDate.keyboardType = .DecimalPad
+        self.textMonth.keyboardType = .DecimalPad
+        self.textYear.keyboardType = .DecimalPad
+        self.textPassword.secureTextEntry = true
+        self.textConfirmPass.secureTextEntry = true
         
         _ = btnRegister.rx_tap.subscribeNext{
             print(" register ");
@@ -178,8 +192,8 @@ class RegisterViewController: UIViewController , UITextFieldDelegate{
                         print("TRUE")
                         self.showAlert("", msg: "Đăng kí thành công")
                         
-                        //let vc = self.storyboard?.instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
-                        //self.navigationController?.pushViewController(vc, animated: true)
+                        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
+                        self.navigationController?.pushViewController(vc, animated: true)
                         
                     }
                     completion()
