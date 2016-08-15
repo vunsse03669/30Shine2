@@ -53,7 +53,7 @@ class RegisterViewController: UIViewController , UITextFieldDelegate{
                     
                 })
             }else{
-                print("INVALID VALUES!")
+                // self.showAlert("Cảnh báo", msg: "Vui lòng kiểm tra lại thông tin đăng kí")
             }
         }
     }
@@ -84,21 +84,35 @@ class RegisterViewController: UIViewController , UITextFieldDelegate{
     func validate() -> Bool{
         //check empty
         if(!self.checkNoEmptyTextFieldIn(self.view)){
+            self.showAlert("Đăng kí", msg: "Vui lòng điền đầy đủ thông tin")
             return false
         }
         
         //valid phone number
+        print("leng phone : \(self.textPhone.text?.length)")
         if(self.textPhone.text?.length < RANGE_AFTER || self.textPhone.text?.length>RANGE_BEFORE){
+            self.showAlert("Đăng kí", msg: "Số điện thoại chỉ bao gồm 10 hoặc 11 số");
             return false
+        }
+        
+        //valid phone number
+        if(self.textPhone.text?.length>0){
+            print(self.textPhone.text?.hasPrefix("0"))
+            if((self.textPhone.text?.hasPrefix("0")) == false){
+                self.showAlert("Đăng kí", msg: "Số điện thoại phải bắt đầu với số 0");
+                return false;
+            }
         }
         
         //minimum leter of pass
         if(self.textPassword.text?.length < PASSWORD_MINLETTER){
+            self.showAlert("Đăng kí", msg: "Mật khẩu phải có ít nhất \(PASSWORD_MINLETTER) kí tự");
             return false
         }
         
         //compare confirm password
         if(self.textPassword.text != self.textConfirmPass.text){
+            self.showAlert("Đăng kí", msg: "Mật khẩu và xác nhận mật khẩu không trùng khớp")
             return false
         }
         
@@ -157,7 +171,7 @@ class RegisterViewController: UIViewController , UITextFieldDelegate{
                     if loginNetwork.id == 0 {
                         // self.loginSuccess = false
                         print("FALSE")
-                         self.showAlert("", msg: "Đăng kí không thành công")
+                        self.showAlert("", msg: "Đăng kí không thành công")
                     }
                     else {
                         //self.loginSuccess = true
@@ -166,9 +180,6 @@ class RegisterViewController: UIViewController , UITextFieldDelegate{
                         
                         //let vc = self.storyboard?.instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
                         //self.navigationController?.pushViewController(vc, animated: true)
-                        
-                        
-                       
                         
                     }
                     completion()
