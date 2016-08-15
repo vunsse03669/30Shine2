@@ -24,6 +24,7 @@ class ModificationCustomerInfoController: UIViewController, WWCalendarTimeSelect
     @IBOutlet weak var txtPhone: UITextField!
     
     var updateSuccess = false
+    var centerPoint : CGRect!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,11 +32,14 @@ class ModificationCustomerInfoController: UIViewController, WWCalendarTimeSelect
         self.update()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+
+        self.centerPoint = self.view.frame
         
         //Add event for textfield
         self.txtDob.addTarget(self, action: #selector(handleTextField), forControlEvents: UIControlEvents.TouchDown)
         self.txtMob.addTarget(self, action: #selector(handleTextField), forControlEvents: UIControlEvents.TouchDown)
         self.txtYob.addTarget(self, action: #selector(handleTextField), forControlEvents: UIControlEvents.TouchDown)
+        self.txtEmail.addTarget(self, action: #selector(handleEmail), forControlEvents: UIControlEvents.TouchDown)
     }
     
     
@@ -70,6 +74,16 @@ class ModificationCustomerInfoController: UIViewController, WWCalendarTimeSelect
     func keyboardWillHide(notification: NSNotification) {
         for recognizer in view.gestureRecognizers ?? [] {
             view.removeGestureRecognizer(recognizer)
+        }
+        UIView.animateWithDuration(0.3) { 
+            self.view.frame = CGRectMake(0, 60, self.centerPoint.size.width, self.centerPoint.size.height)
+            
+        }
+    }
+    
+    func handleEmail() {
+        UIView.animateWithDuration(0.3) { 
+            self.view.center.y -= 100
         }
     }
     
