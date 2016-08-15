@@ -39,8 +39,14 @@ class SalonTableCell: UITableViewCell {
             print("hotline \(self.phone)")
             UIApplication.sharedApplication().openURL(NSURL(string: "tel://\(self.phone)")!)
         }
-        _ = self.btnCall.rx_tap.subscribeNext{
+        _ = self.btnBooking.rx_tap.subscribeNext{
             
+            let rootViewController = self.window!.rootViewController as! UINavigationController
+            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            let vc : UIViewController!
+            vc = mainStoryboard.instantiateViewControllerWithIdentifier("BookingViewController") as? BookingViewController
+            rootViewController.pushViewController(vc, animated: true)
         }
     }
     

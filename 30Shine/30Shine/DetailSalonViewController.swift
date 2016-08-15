@@ -133,7 +133,9 @@ class DetailSalonViewController: UIViewController,UIScrollViewDelegate, UIGestur
         
         _=btnBooking.rx_tap.subscribeNext({
             print("booking")
-            
+            let vc : UIViewController!
+            vc = self.storyboard?.instantiateViewControllerWithIdentifier("BookingViewController") as? BookingViewController
+             self.navigationController?.pushViewController(vc, animated: true)
         })
         
         _=btnFacebook.rx_tap.subscribeNext({
