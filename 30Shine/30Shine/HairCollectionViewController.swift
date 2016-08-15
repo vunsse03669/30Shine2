@@ -33,7 +33,7 @@ class HairCollectionViewController: UIViewController, UITableViewDelegate {
         //back to home
         _ = btnHome.rx_tap
             .subscribeNext {
-                self.navigationController?.pop()
+                self.navigationController?.popViewControllerAnimated(true)
         }
         //Click btnProfile
         _ = btnProfile.rx_tap.subscribeNext {

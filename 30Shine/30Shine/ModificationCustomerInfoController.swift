@@ -106,13 +106,16 @@ class ModificationCustomerInfoController: UIViewController, WWCalendarTimeSelect
         self.configTextField(self.txtDob, padding: 5.0, keyboardType: .NumberPad)
         self.configTextField(self.txtMob, padding: 5.0, keyboardType: .NumberPad)
         self.configTextField(self.txtYob, padding: 5.0, keyboardType: .NumberPad)
+        self.txtYob.inputView = UIView()
+        self.txtMob.inputView = UIView()
+        self.txtDob.inputView = UIView()
+
         
     }
     
     func configTextField(textField : UITextField, padding : CGFloat, keyboardType : UIKeyboardType) {
         textField.keyboardType = keyboardType
         textField.layer.sublayerTransform = CATransform3DMakeTranslation(padding, 0, 0)
-        textField.inputView = UIView()
     }
     
     //MARK: Update
