@@ -11,8 +11,9 @@ import RxSwift
 import RxCocoa
 import Alamofire
 import SVProgressHUD
+import WWCalendarTimeSelector
 
-class ModificationCustomerInfoController: UIViewController {
+class ModificationCustomerInfoController: UIViewController, WWCalendarTimeSelectorProtocol {
 
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var btnUpdate: UIButton!
@@ -30,6 +31,35 @@ class ModificationCustomerInfoController: UIViewController {
         self.update()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        
+        //Add event for textfield
+        self.txtDob.addTarget(self, action: #selector(handleTextField), forControlEvents: UIControlEvents.TouchDown)
+        self.txtMob.addTarget(self, action: #selector(handleTextField), forControlEvents: UIControlEvents.TouchDown)
+        self.txtYob.addTarget(self, action: #selector(handleTextField), forControlEvents: UIControlEvents.TouchDown)
+    }
+    
+    
+    //MARK: Add Calendar
+    func handleTextField() {
+        self.showCalendar()
+    }
+    
+    func showCalendar() {
+        let selector = WWCalendarTimeSelector.instantiate()
+        selector.delegate = self
+        selector.optionTopPanelTitle = "Chọn ngày tháng năm sinh của bạn"
+        self.presentViewController(selector, animated: true, completion: nil)
+    }
+    
+    //WWCCalendar delegate
+    func WWCalendarTimeSelectorDone(selector: WWCalendarTimeSelector, date: NSDate) {
+        let unitFlags: NSCalendarUnit = [.Hour, .Day, .Month, .Year]
+        let components = NSCalendar.currentCalendar().components(unitFlags, fromDate: date)
+        
+        self.txtDob.text = "\(components.day)"
+        self.txtMob.text = "\(components.month)"
+        self.txtYob.text = "\(components.year)"
+        
     }
     
     //MARK: hide keyboard
@@ -82,6 +112,7 @@ class ModificationCustomerInfoController: UIViewController {
     func configTextField(textField : UITextField, padding : CGFloat, keyboardType : UIKeyboardType) {
         textField.keyboardType = keyboardType
         textField.layer.sublayerTransform = CATransform3DMakeTranslation(padding, 0, 0)
+        textField.inputView = UIView()
     }
     
     //MARK: Update
