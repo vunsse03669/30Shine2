@@ -49,6 +49,14 @@ class LoginController: UIViewController, UIAlertViewDelegate {
     }
     //MARK: UI
     func configUI() {
+        //logo
+        let logo = UIImage(named: "logo")
+        let imageView = UIImageView(image:logo)
+        imageView.frame = CGRectMake(0, 0, 64, 40)
+        imageView.contentMode = .ScaleAspectFit
+        self.navigationItem.titleView = imageView
+        self.navigationController?.navigationBar.translucent = false
+        
         self.txtPhone.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
         self.txtPhone.keyboardType = .DecimalPad
         self.txtPassword.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)

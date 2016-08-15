@@ -136,22 +136,26 @@ class ModificationCustomerInfoController: UIViewController, WWCalendarTimeSelect
     func update() {
         _ = self.btnUpdate.rx_tap.subscribeNext {
             guard let phone = self.txtPhone.text, name = self.txtName.text, dob = Int(self.txtDob.text!), mob = Int(self.txtMob.text!), yob = Int(self.txtYob.text!), mail = self.txtEmail.text else {
-                self.showAlert("Quá trình cập nhật thông tin xảy ra sự cố. Quý khách vui lòng kiểm tra lại thông tin")
+                self.showAlert("Cảnh báo",msg: "Quá trình cập nhật thông tin xảy ra sự cố. Quý khách vui lòng kiểm tra lại thông tin")
                 return
             }
             let id    = Login.getLogin().id
             let token = Login.getLogin().acessToken
             
             if id == 0 || token == "" || phone == "" || name == "" {
-                self.showAlert("Quá trình cập nhật thông tin xảy ra sự cố. Quý khách vui lòng kiểm tra lại thông tin")
+                self.showAlert("Cảnh báo",msg: "Quá trình cập nhật thông tin xảy ra sự cố. Quý khách vui lòng kiểm tra lại thông tin")
                 return
             }
             if phone.characters.first != "0" {
-                self.showAlert("Số điện thoại phải bắt đầu băng số 0")
+                self.showAlert("Cảnh báo",msg: "Số điện thoại phải bắt đầu băng số 0")
                 return
             }
             if phone.characters.count < 10 && phone.characters.count > 11 {
-                self.showAlert("Số điện thoải phải bao gồm 10 hoặc 11 chữ số")
+                self.showAlert("Cảnh báo",msg: "Số điện thoải phải bao gồm 10 hoặc 11 chữ số")
+                return
+            }
+            if !mail.containsString("@") && !mail.containsString(".") {
+                self.showAlert("Cảnh báo",msg: "Quý khách chưa nhập mail đúng định dạng! Quý khác vui lòng nhập lại")
                 return
             }
             
@@ -165,11 +169,11 @@ class ModificationCustomerInfoController: UIViewController, WWCalendarTimeSelect
                 if self.updateSuccess {
                     Login.deleteLogin()
                     Login.create(id, phone: phone, fullName: name, email: mail, token: token, dob: dob, mob: mob, yob: yob)
-                    self.showAlert("Cập nhật thông tin thành công")
+                    self.showAlert("Cảnh báo",msg: "Cập nhật thông tin thành công")
                     self.navigationController?.popViewControllerAnimated(true)
                 }
                 else {
-                    self.showAlert("Quá trình cập nhật thông tin xảy ra sự cố. Quý khách vui lòng kiểm tra lại thông tin")
+                    self.showAlert("Cảnh báo",msg: "Quá trình cập nhật thông tin xảy ra sự cố. Quý khách vui lòng kiểm tra lại thông tin")
                 }
             }
         }
@@ -202,8 +206,8 @@ class ModificationCustomerInfoController: UIViewController, WWCalendarTimeSelect
     
     }
     
-    func showAlert(msg : String) {
-        let alert = UIAlertView(title: "", message: msg, delegate: nil, cancelButtonTitle: "Xác nhận")
+    func showAlert(title: String, msg : String) {
+        let alert = UIAlertView(title: title, message: msg, delegate: nil, cancelButtonTitle: "Xác nhận")
         alert.show()
     }
 }

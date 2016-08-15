@@ -36,7 +36,7 @@ class VideoViewController: UIViewController, UITableViewDelegate, UIAlertViewDel
         _ = btnHome.rx_tap
             .subscribeNext {
                 //let vc = self.storyboard?.instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
-                self.navigationController?.pop()
+                self.navigationController?.popViewControllerAnimated(true)
         }
         //Click btnProfile
         _ = btnProfile.rx_tap.subscribeNext {
@@ -208,7 +208,7 @@ class VideoViewController: UIViewController, UITableViewDelegate, UIAlertViewDel
     //MARK: Alertview delegate
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
         if buttonIndex == 0 {
-            self.navigationController?.pop()
+            self.navigationController?.popViewControllerAnimated(true)
         }
         
     }

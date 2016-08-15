@@ -84,7 +84,7 @@ class BookingViewController: UIViewController, UIAlertViewDelegate {
         
         _ = btnHome.rx_tap
             .subscribeNext {
-                self.navigationController?.pop()
+                self.navigationController?.popViewControllerAnimated(true)
         }
         _ = btnProfile.rx_tap.subscribeNext {
             let vc = self.storyboard?.instantiateViewControllerWithIdentifier("SelectProfileController") as! SelectProfileController
@@ -662,7 +662,7 @@ extension BookingViewController {
     //MARK: Alertview delegate
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
         if buttonIndex == 0 {
-            self.navigationController?.pop()
+            self.navigationController?.popViewControllerAnimated(true)
         }
         
     }

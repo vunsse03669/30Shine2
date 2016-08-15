@@ -20,7 +20,7 @@ class OtherServicesViewController: UIViewController {
         super.viewDidLoad()
         _ = btnBack.rx_tap
             .subscribeNext {
-                self.navigationController?.pop()
+                self.navigationController?.popViewControllerAnimated(true)
         }
         //Click btnProfile
         _ = btnProfile.rx_tap.subscribeNext {
