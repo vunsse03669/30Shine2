@@ -388,6 +388,7 @@
 				186A11891D5C798F00BDB3B3 /* Profile */,
 				E8031EE01D587F050085DCA7 /* Services */,
 				E8F806D41D577F55005AA7AA /* DetailSalon */,
+				E807DDC01D623EF30090E22E /* ListSalon */,
 				E8A056011D54769000112F11 /* SalonPages */,
 			);
 			name = Controller;
@@ -588,6 +589,14 @@
 			name = ShineCombo;
 			sourceTree = "<group>";
 		};
+		E807DDC01D623EF30090E22E /* ListSalon */ = {
+			isa = PBXGroup;
+			children = (
+				E8A0560E1D54A0A200112F11 /* ListSalonsViewController.swift */,
+			);
+			name = ListSalon;
+			sourceTree = "<group>";
+		};
 		E8A056011D54769000112F11 /* SalonPages */ = {
 			isa = PBXGroup;
 			children = (
@@ -597,7 +606,6 @@
 				E8A056071D54787000112F11 /* SalonContentViewController.xib */,
 				E8A0560A1D5478A200112F11 /* SalonsViewController.swift */,
 				E8A0560B1D5478A200112F11 /* SalonsViewController.xib */,
-				E8A0560E1D54A0A200112F11 /* ListSalonsViewController.swift */,
 			);
 			name = SalonPages;
 			sourceTree = "<group>";
