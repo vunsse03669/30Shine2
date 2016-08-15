@@ -10,8 +10,10 @@ import UIKit
 import Alamofire
 import JASON
 import Alamofire
+import SVProgressHUD
+import WWCalendarTimeSelector
 
-class RegisterViewController: UIViewController , UITextFieldDelegate{
+class RegisterViewController: UIViewController , UITextFieldDelegate , WWCalendarTimeSelectorProtocol{
     
     @IBOutlet weak var lblWarning: UILabel!
     @IBOutlet weak var textPhone: UITextField!
@@ -29,13 +31,25 @@ class RegisterViewController: UIViewController , UITextFieldDelegate{
         print("CHƯa CHECK EAMAIL")
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
-        
+        configUI()
         setUpButton()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    func configUI() {
+        let logo = UIImage(named: "logo")
+        let imageView = UIImageView(image:logo)
+        imageView.frame = CGRectMake(0, 0, 64, 40)
+        imageView.contentMode = .ScaleAspectFit
+        self.navigationItem.titleView = imageView
+        self.navigationController?.navigationBar.translucent = false
+        //back image
+        var backImage = UIImage(named: "img-back")
+        backImage = backImage?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: backImage, style: UIBarButtonItemStyle.Plain, target: self, action: #selector(handleBackButton))
     }
     
     func setUpButton(){
@@ -49,12 +63,20 @@ class RegisterViewController: UIViewController , UITextFieldDelegate{
         self.textEmail.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
         self.textPassword.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
         self.textConfirmPass.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
-        self.textPhone.keyboardType = .DecimalPad
-        self.textDate.keyboardType = .DecimalPad
-        self.textMonth.keyboardType = .DecimalPad
-        self.textYear.keyboardType = .DecimalPad
+        self.textPhone.keyboardType = .NumberPad
+        self.textDate.keyboardType = .NumberPad
+        self.textMonth.keyboardType = .NumberPad
+        self.textYear.keyboardType = .NumberPad
         self.textPassword.secureTextEntry = true
         self.textConfirmPass.secureTextEntry = true
+        
+        //Add event for textfield
+        self.textDate.addTarget(self, action: #selector(handleTextField), forControlEvents: UIControlEvents.TouchDown)
+        self.textMonth.addTarget(self, action: #selector(handleTextField), forControlEvents: UIControlEvents.TouchDown)
+        self.textYear.addTarget(self, action: #selector(handleTextField), forControlEvents: UIControlEvents.TouchDown)
+        self.textEmail.addTarget(self, action: #selector(handleEmail), forControlEvents: UIControlEvents.TouchDown)
+        self.textPassword.addTarget(self, action: #selector(handleEmail), forControlEvents: UIControlEvents.TouchDown)
+        self.textConfirmPass.addTarget(self, action: #selector(handleEmail), forControlEvents: UIControlEvents.TouchDown)
         
         _ = btnRegister.rx_tap.subscribeNext{
             print(" register ");
@@ -62,9 +84,15 @@ class RegisterViewController: UIViewController , UITextFieldDelegate{
                 let date : Int? = Int(self.textDate.text!)
                 let month : Int? = Int(self.textMonth.text!)
                 let year : Int? = Int(self.textYear.text!)
-                print(date)
+                //print(date)
+                
+                //Activity indicator
+                SVProgressHUD.showWithStatus("Đang gửi dữ liệu")
+                
                 self.sendRequest(self.textPhone.text!, customerName: self.textName.text!, email: self.textEmail.text!, password: self.textPassword.text!, dayOfBirth: date!, monthOfBirth: month!, yearOfBirth: year!, completion: {
-                    
+                    dispatch_async(dispatch_get_main_queue(), {
+                        SVProgressHUD.popActivity()
+                    })
                 })
             }else{
                 // self.showAlert("Cảnh báo", msg: "Vui lòng kiểm tra lại thông tin đăng kí")
@@ -98,14 +126,14 @@ class RegisterViewController: UIViewController , UITextFieldDelegate{
     func validate() -> Bool{
         //check empty
         if(!self.checkNoEmptyTextFieldIn(self.view)){
-            self.showAlert("Đăng kí", msg: "Vui lòng điền đầy đủ thông tin")
+            self.showAlert("Cảnh báo", msg: "Vui lòng điền đầy đủ thông tin")
             return false
         }
         
         //valid phone number
         print("leng phone : \(self.textPhone.text?.length)")
         if(self.textPhone.text?.length < RANGE_AFTER || self.textPhone.text?.length>RANGE_BEFORE){
-            self.showAlert("Đăng kí", msg: "Số điện thoại chỉ bao gồm 10 hoặc 11 số");
+            self.showAlert("Cảnh báo", msg: "Số điện thoại chỉ bao gồm 10 hoặc 11 số");
             return false
         }
         
@@ -113,24 +141,50 @@ class RegisterViewController: UIViewController , UITextFieldDelegate{
         if(self.textPhone.text?.length>0){
             print(self.textPhone.text?.hasPrefix("0"))
             if((self.textPhone.text?.hasPrefix("0")) == false){
-                self.showAlert("Đăng kí", msg: "Số điện thoại phải bắt đầu với số 0");
+                self.showAlert("Cảnh báo", msg: "Số điện thoại phải bắt đầu với số 0");
                 return false;
             }
         }
         
         //minimum leter of pass
         if(self.textPassword.text?.length < PASSWORD_MINLETTER){
-            self.showAlert("Đăng kí", msg: "Mật khẩu phải có ít nhất \(PASSWORD_MINLETTER) kí tự");
+            self.showAlert("Cảnh báo", msg: "Mật khẩu phải có ít nhất \(PASSWORD_MINLETTER) kí tự");
             return false
         }
         
         //compare confirm password
         if(self.textPassword.text != self.textConfirmPass.text){
-            self.showAlert("Đăng kí", msg: "Mật khẩu và xác nhận mật khẩu không trùng khớp")
+            self.showAlert("Cảnh báo", msg: "Mật khẩu và xác nhận mật khẩu không trùng khớp")
             return false
         }
         
         return true
+    }
+    
+    //MARK: Add Calendar
+    func handleTextField() {
+        self.showCalendar()
+    }
+    
+    func showCalendar() {
+        let selector = WWCalendarTimeSelector.instantiate()
+        selector.delegate = self
+        selector.optionTopPanelTitle = "Chọn ngày tháng năm sinh của bạn"
+        self.presentViewController(selector, animated: true, completion: nil)
+    }
+    
+    //WWCCalendar delegate
+    func WWCalendarTimeSelectorDone(selector: WWCalendarTimeSelector, date: NSDate) {
+        let unitFlags: NSCalendarUnit = [.Hour, .Day, .Month, .Year]
+        let components = NSCalendar.currentCalendar().components(unitFlags, fromDate: date)
+        
+        self.textDate.text = "\(components.day)"
+        self.textMonth.text = "\(components.month)"
+        self.textYear.text = "\(components.year)"
+        
+    }
+    func handleEmail() {
+        moveUpView(self.view)
     }
     
     //MARK: hide keyboard
@@ -139,21 +193,26 @@ class RegisterViewController: UIViewController , UITextFieldDelegate{
         // self.moveUpView(self.view)
     }
     
-    func moveUpView(view : UIView){
-        UIView.animateWithDuration(0.6) {
-            view.transform = CGAffineTransformMakeTranslation(0, -CGFloat(HEIGHT_KEYBOARD))
-        }
-    }
-    func moveDownView(view : UIView){
-        UIView.animateWithDuration(0.6) {
-            view.transform = CGAffineTransformIdentity
-        }
-    }
     func keyboardWillHide(notification: NSNotification) {
         for recognizer in view.gestureRecognizers ?? [] {
             view.removeGestureRecognizer(recognizer)
         }
         self.moveDownView(self.view)
+    }
+    
+    func moveUpView(view : UIView){
+        UIView.animateWithDuration(0.4) {
+            view.transform = CGAffineTransformMakeTranslation(0, -CGFloat(HEIGHT_KEYBOARD))
+        }
+    }
+    
+    func moveDownView(view : UIView){
+        UIView.animateWithDuration(0.4) {
+            view.transform = CGAffineTransformIdentity
+        }
+    }
+    func handleBackButton() {
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
     //MARK: Send request to server
