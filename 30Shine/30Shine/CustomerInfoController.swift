@@ -64,9 +64,9 @@ class CustomerInfoController: UIViewController, UIAlertViewDelegate {
         
         self.configTextField(self.txtName, padding: 5, type: UIKeyboardType.Default)
         self.configTextField(self.txtPhone, padding: 5, type: UIKeyboardType.NumberPad)
-        self.configTextField(self.txtDob, padding: self.txtDob.frame.width/2 - 5, type: UIKeyboardType.NumberPad)
-        self.configTextField(self.txtMob, padding: self.txtMob.frame.width/2 - 5, type: UIKeyboardType.NumberPad)
-        self.configTextField(self.txtYob, padding: self.txtYob.frame.width/2 - 5, type: UIKeyboardType.NumberPad)
+        self.configTextField(self.txtDob, padding: self.txtDob.frame.width/2 - 8, type: UIKeyboardType.NumberPad)
+        self.configTextField(self.txtMob, padding: self.txtMob.frame.width/2 - 8, type: UIKeyboardType.NumberPad)
+        self.configTextField(self.txtYob, padding: self.txtYob.frame.width/2 - 16, type: UIKeyboardType.NumberPad)
         self.configTextField(self.txtEmail, padding: 5, type: UIKeyboardType.Default)
     }
     

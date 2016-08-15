@@ -203,9 +203,9 @@ class BookingViewController: UIViewController, UIAlertViewDelegate {
         
         dropStylist.placeholder = "Chọn stylist(không bắt buộc)"
         dropSalon.options = self.salonList
-        dropTime.options = ["Hôm nay \(self.format(self.getDate(self.getTime(1))))",
-                            "Ngày mai \(self.format(self.getDate(self.getTime(2))))",
-                            "Ngày kia \(self.format(self.getDate(self.getTime(3))))"]
+        dropTime.options = ["Hôm nay \(self.format(self.getDate(self.getTime(0))))",
+                            "Ngày mai \(self.format(self.getDate(self.getTime(1))))",
+                            "Ngày kia \(self.format(self.getDate(self.getTime(2))))"]
         
         self.scrollView.addSubview(dropSalon)
         self.scrollView.addSubview(dropTime)

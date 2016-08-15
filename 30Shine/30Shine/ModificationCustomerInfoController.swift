@@ -132,6 +132,14 @@ class ModificationCustomerInfoController: UIViewController, WWCalendarTimeSelect
                 self.showAlert("Quá trình cập nhật thông tin xảy ra sự cố. Quý khách vui lòng kiểm tra lại thông tin")
                 return
             }
+            if phone.characters.first != "0" {
+                self.showAlert("Số điện thoại phải bắt đầu băng số 0")
+                return
+            }
+            if phone.characters.count < 10 && phone.characters.count > 11 {
+                self.showAlert("Số điện thoải phải bao gồm 10 hoặc 11 chữ số")
+                return
+            }
             
             //Activity indicator
             SVProgressHUD.showWithStatus("Đang tải dữ liệu")
