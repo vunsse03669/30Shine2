@@ -34,8 +34,9 @@ class BookingViewController: UIViewController, UIAlertViewDelegate {
     var dropTime : UIDropDownTime!
     var dropStylist : UIDropDownStylist!
     
+    var salonId = 0
     var stylistId : [Int] = [0]
-    var salonId : [Int] = [2,3,4,5]
+    var salonIds  : [Int] = [2,3,4,5]
     var salonList : [String] = ["346 Khâm Thiên",
                                 "82 Trần Đại Nghĩa",
                                 "235 Đội Cấn",
@@ -78,7 +79,7 @@ class BookingViewController: UIViewController, UIAlertViewDelegate {
         self.checkInternet()
         self.configUI()
         self.configCollectionView()
-        self.parseSchedule(salonId[0], workDate: self.toDate(0), stylistId: 0) {
+        self.parseSchedule(salonIds[0], workDate: self.toDate(0), stylistId: 0) {
             () in
         }
         
@@ -525,11 +526,11 @@ extension BookingViewController {
 //MARK : Change text field value
 extension BookingViewController : UIDropDownDelegate {
     func dropDown(dropDown: UIDropDown, didSelectOption option: String, atIndex index: Int) {
-        self.statusSalonId.value = self.salonId[index]
+        self.statusSalonId.value = self.salonIds[index]
         
         self.parseStaffAttendace(self.statusSalonId.value, workDate: self.toDate(self.statusDate.value)) { 
             () in
-            self.parseStylist(self.salonId[index]) {
+            self.parseStylist(self.salonIds[index]) {
                 () in
                 self.dropStylist.options = []
                 self.stylistId = []
