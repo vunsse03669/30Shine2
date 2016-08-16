@@ -65,11 +65,11 @@ class ServicesViewController: UIViewController , UITableViewDataSource, UITableV
         let cell = tableView.dequeueReusableCellWithIdentifier("ServiceMenuCell", forIndexPath: indexPath) as! ServiceMenuCell
         if indexPath.row == 0 {
             cell.lblTitle.text = "Shine Combo"
-            cell.imv.image = UIImage(named: "khamthien1")
+            cell.imv.image = UIImage(named: "shineCombo")
         }
         else{
             cell.lblTitle.text = "Dịch Vụ Khác"
-            cell.imv.image = UIImage(named: "khamthien1")
+            cell.imv.image = UIImage(named: "otherService")
         }
         return cell
     }
