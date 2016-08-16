@@ -47,7 +47,7 @@ class DetailSalonViewController: UIViewController,UIScrollViewDelegate, UIGestur
         imageView.frame = CGRectMake(0, 0, 64, 40)
         imageView.contentMode = .ScaleAspectFit
         self.navigationItem.titleView = imageView
-        
+        self.scrollView.userInteractionEnabled = false;
         setupPichImageMap()
         setupData()
         setupCollectionView()
@@ -126,7 +126,7 @@ class DetailSalonViewController: UIViewController,UIScrollViewDelegate, UIGestur
         btnFacebook.imageView?.contentMode = .ScaleAspectFit
         btnFacebook.imageView?.contentMode = .ScaleAspectFit
         
-        _=btnFacebook.rx_tap.subscribeNext({
+        _=btnHotline.rx_tap.subscribeNext({
             print("hotline")
             UIApplication.sharedApplication().openURL(NSURL(string: "tel://\(self.currentSalon.phone)")!)
         })

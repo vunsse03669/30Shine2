@@ -75,16 +75,18 @@ class ModificationCustomerInfoController: UIViewController, WWCalendarTimeSelect
         for recognizer in view.gestureRecognizers ?? [] {
             view.removeGestureRecognizer(recognizer)
         }
-        UIView.animateWithDuration(0.3) { 
-            self.view.frame = CGRectMake(0, 60, self.centerPoint.size.width, self.centerPoint.size.height)
-            
-        }
+//        UIView.animateWithDuration(0.3) { 
+//            self.view.frame = CGRectMake(0, 60, self.centerPoint.size.width, self.centerPoint.size.height)
+//            
+//        }
+        moveDownView(self.view)
     }
     
     func handleEmail() {
-        UIView.animateWithDuration(0.3) { 
-            self.view.center.y -= 100
-        }
+//        UIView.animateWithDuration(0.3) { 
+//            self.view.center.y -= 100
+//        }
+        moveUpView(self.view)
     }
     
     func handleBackButton() {
@@ -95,6 +97,18 @@ class ModificationCustomerInfoController: UIViewController, WWCalendarTimeSelect
         let vc = self.storyboard?.instantiateViewControllerWithIdentifier("SelectProfileController") as! SelectProfileController
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    func moveUpView(view : UIView){
+        UIView.animateWithDuration(0.4) {
+            view.transform = CGAffineTransformMakeTranslation(0, -CGFloat(HEIGHT_KEYBOARD))
+        }
+    }
+    
+    func moveDownView(view : UIView){
+        UIView.animateWithDuration(0.4) {
+            view.transform = CGAffineTransformIdentity
+        }
+    }
+
     
     //MARK: UI
     func configUI() {

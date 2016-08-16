@@ -141,8 +141,13 @@ class ListSalonView: UIView, UITableViewDelegate {
                             let newSalonImage:ImageObject = ImageObject.create(salonIN.url, thumb: salonIN.thumb, title: salonIN.title, img_description: salonIN.img_description)
                             listImages.append(newSalonImage)
                         }
+                        if Salon.getSalonByID(salon.ID) == nil{
                         let newSalon : Salon = Salon.create(salon.ID, name: salon.name, phone: salon.phone, managerName: salon.managerName, fanpage: salon.fanpage, listImages: listImages)
                         self.salonVariable.value.append(newSalon)
+                        }
+                        else{
+                            self.salonVariable.value.append(Salon.getSalonByID(salon.ID))
+                        }
                     }
                     complete()
                 }

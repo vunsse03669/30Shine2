@@ -211,6 +211,7 @@ class RegisterViewController: UIViewController , UITextFieldDelegate , WWCalenda
             view.transform = CGAffineTransformIdentity
         }
     }
+    
     func handleBackButton() {
         self.navigationController?.popViewControllerAnimated(true)
     }
