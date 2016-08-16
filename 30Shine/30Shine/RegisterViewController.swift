@@ -108,6 +108,7 @@ class RegisterViewController: UIViewController , UITextFieldDelegate , WWCalenda
         textYear.tag = 4
         textPassword.tag = 5
         textConfirmPass.tag = 6
+        textEmail.tag = 7
         
         textPhone.delegate = self
         textName.delegate = self
@@ -146,6 +147,13 @@ class RegisterViewController: UIViewController , UITextFieldDelegate , WWCalenda
             }
         }
         
+        if(self.textEmail.text?.length>0){
+            if(!self.isValidEmail(self.textEmail.text!)){
+                self.showAlert("Cảnh báo", msg: "Email không hợp lệ");
+                return false;
+            }
+        }
+        
         //minimum leter of pass
         if(self.textPassword.text?.length < PASSWORD_MINLETTER){
             self.showAlert("Cảnh báo", msg: "Mật khẩu phải có ít nhất \(PASSWORD_MINLETTER) kí tự");
@@ -159,6 +167,13 @@ class RegisterViewController: UIViewController , UITextFieldDelegate , WWCalenda
         }
         
         return true
+    }
+    func isValidEmail(testStr:String) -> Bool {
+        // print("validate calendar: \(testStr)")
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluateWithObject(testStr)
     }
     
     //MARK: Add Calendar
