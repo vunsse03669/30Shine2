@@ -34,7 +34,7 @@ class BookingViewController: UIViewController, UIAlertViewDelegate {
     var dropTime : UIDropDownTime!
     var dropStylist : UIDropDownStylist!
     
-    var salonId = 0
+    var salonId = 2
     var stylistId : [Int] = [0]
     var salonIds  : [Int] = [2,3,4,5]
     var salonList : [String] = ["346 Khâm Thiên",
@@ -79,7 +79,7 @@ class BookingViewController: UIViewController, UIAlertViewDelegate {
         self.checkInternet()
         self.configUI()
         self.configCollectionView()
-        self.parseSchedule(salonIds[0], workDate: self.toDate(0), stylistId: 0) {
+        self.parseSchedule(salonId, workDate: self.toDate(0), stylistId: 0) {
             () in
         }
         
@@ -217,7 +217,8 @@ class BookingViewController: UIViewController, UIAlertViewDelegate {
         dropTime.delegate = self
         
         dropTime.setSelectedIndex(0)
-        dropSalon.setSelectedIndex(0)
+        let index = self.salonIds.indexOf(self.salonId)
+        dropSalon.setSelectedIndex(index!)
         
         dropTime.hideOptionsWhenSelect = true
         dropSalon.hideOptionsWhenSelect = true
