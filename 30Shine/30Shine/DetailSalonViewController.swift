@@ -107,6 +107,9 @@ class DetailSalonViewController: UIViewController,UIScrollViewDelegate, UIGestur
         }
         _ = self.clvImagesList.rx_itemSelected.subscribeNext {
             indexPath in
+            
+            
+            
             self.currentIndex.value = indexPath.row
             if(self.currentIndex.value < 3 && self.currentIndex.value >= 0){
                 self.scrollView.zoomScale = 1
@@ -115,6 +118,10 @@ class DetailSalonViewController: UIViewController,UIScrollViewDelegate, UIGestur
             else{
                 self.scrollView.userInteractionEnabled = true
             }
+            let cell = self.clvImagesList!.cellForItemAtIndexPath(indexPath)
+            cell?.bounceAction({ 
+                
+            })
 //            LazyImage.showForImageView(self.imvSelected, url: self.currentSalon.listImages[self.currentIndex.value].url)
             self.showAndDownLoadImage(self.imvSelected, url: self.currentSalon.listImages[self.currentIndex.value].url, imageName: self.currentSalon.listImages[self.currentIndex.value].url)
         }
