@@ -80,6 +80,7 @@ class ListSalonView: UIView, UITableViewDelegate {
                 let title = "30SHINE"
                 cell.lblAdress.text = String(format: "%@ %@", title, data.name)
                 cell.phone = data.phone;
+                cell.salonId = data.ID
                 //cell.lblManager.text = data.managerName
                 //cell.lblHotLine.text = data.phone
                 //cell.lblFacebookLink.text = data.fanpage

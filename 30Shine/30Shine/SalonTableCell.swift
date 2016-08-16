@@ -22,6 +22,7 @@ class SalonTableCell: UITableViewCell {
     @IBOutlet weak var btnCall: UIButton!
     
     var phone = ""
+    var salonId = 0
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -44,8 +45,9 @@ class SalonTableCell: UITableViewCell {
             let rootViewController = self.window!.rootViewController as! UINavigationController
             let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             
-            let vc : UIViewController!
+            let vc : BookingViewController!
             vc = mainStoryboard.instantiateViewControllerWithIdentifier("BookingViewController") as? BookingViewController
+            vc.salonId = self.salonId;
             rootViewController.pushViewController(vc, animated: true)
         }
     }
