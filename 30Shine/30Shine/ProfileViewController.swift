@@ -22,7 +22,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         self.configUI()
         self.configContent()
-        //self.configSelector()
+
         //back to home
         _ = btnHome.rx_tap
             .subscribeNext {

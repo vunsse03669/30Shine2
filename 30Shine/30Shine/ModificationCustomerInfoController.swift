@@ -59,11 +59,9 @@ class ModificationCustomerInfoController: UIViewController, WWCalendarTimeSelect
     func WWCalendarTimeSelectorDone(selector: WWCalendarTimeSelector, date: NSDate) {
         let unitFlags: NSCalendarUnit = [.Hour, .Day, .Month, .Year]
         let components = NSCalendar.currentCalendar().components(unitFlags, fromDate: date)
-        
         self.txtDob.text = "\(components.day)"
         self.txtMob.text = "\(components.month)"
         self.txtYob.text = "\(components.year)"
-        
     }
     
     //MARK: hide keyboard
@@ -75,17 +73,10 @@ class ModificationCustomerInfoController: UIViewController, WWCalendarTimeSelect
         for recognizer in view.gestureRecognizers ?? [] {
             view.removeGestureRecognizer(recognizer)
         }
-//        UIView.animateWithDuration(0.3) { 
-//            self.view.frame = CGRectMake(0, 60, self.centerPoint.size.width, self.centerPoint.size.height)
-//            
-//        }
         moveDownView(self.view)
     }
     
     func handleEmail() {
-//        UIView.animateWithDuration(0.3) { 
-//            self.view.center.y -= 100
-//        }
         moveUpView(self.view)
     }
     
@@ -93,10 +84,6 @@ class ModificationCustomerInfoController: UIViewController, WWCalendarTimeSelect
         self.navigationController?.popViewControllerAnimated(true)
     }
     
-    func handleProfileButton() {
-        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("SelectProfileController") as! SelectProfileController
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
     func moveUpView(view : UIView){
         UIView.animateWithDuration(0.4) {
             view.transform = CGAffineTransformMakeTranslation(0, -CGFloat(HEIGHT_KEYBOARD))
@@ -122,10 +109,6 @@ class ModificationCustomerInfoController: UIViewController, WWCalendarTimeSelect
         var backImage = UIImage(named: "img-back")
         backImage = backImage?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: backImage, style: UIBarButtonItemStyle.Plain, target: self, action: #selector(handleBackButton))
-        //profile image
-        var profileImage = UIImage(named: "img-people")
-        profileImage = profileImage?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: profileImage, style: UIBarButtonItemStyle.Plain, target: self, action: #selector(handleProfileButton))
         
         //MARK: TextField
         self.configTextField(self.txtName, padding: 5.0, keyboardType: .Default)

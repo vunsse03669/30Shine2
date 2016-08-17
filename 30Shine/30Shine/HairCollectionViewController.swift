@@ -24,11 +24,17 @@ class HairCollectionViewController: UIViewController, UITableViewDelegate {
     var reachability : Reachability?
     var isConnectInternet = true
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tbvHairType.scrollToRowAtIndexPath(NSIndexPath(forRow: HairIndex.shareInstance.getIndex(), inSection: 0), atScrollPosition: UITableViewScrollPosition.Middle, animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configUI()
         self.initData()
         self.tbvHairType.delegate = self
+        HairIndex.shareInstance.setIndex(0)
         
         //back to home
         _ = btnHome.rx_tap
@@ -136,6 +142,8 @@ class HairCollectionViewController: UIViewController, UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.tbvHairType.deselectRowAtIndexPath(indexPath, animated: false)
         let vc = self.storyboard?.instantiateViewControllerWithIdentifier("DetailHairViewController") as! DetailHairViewController
+        
+        HairIndex.shareInstance.setIndex(indexPath.row)
         vc.menuVar.value = self.hairTypeVariable.value[indexPath.row]
         self.navigationController?.pushViewController(vc, animated: true)
     }

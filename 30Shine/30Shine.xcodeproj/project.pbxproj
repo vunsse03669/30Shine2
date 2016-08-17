@@ -15,6 +15,7 @@
 		186A11941D5C8CD800BDB3B3 /* HomeNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186A11931D5C8CD800BDB3B3 /* HomeNavigation.swift */; };
 		186F21E01D5BABDD00A8959C /* StylistWorkTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186F21DF1D5BABDD00A8959C /* StylistWorkTime.swift */; };
 		18908A801D5D7B320079A9FB /* ModificationCustomerInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18908A7F1D5D7B320079A9FB /* ModificationCustomerInfoController.swift */; };
+		18A4A9761D641B1B00C4E413 /* HairIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A4A9751D641B1B00C4E413 /* HairIndex.swift */; };
 		18DD16F41D5C3B4200837986 /* SelectProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD16F31D5C3B4200837986 /* SelectProfileController.swift */; };
 		18DD16F61D5C3BFA00837986 /* ProfileItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD16F51D5C3BFA00837986 /* ProfileItemCell.swift */; };
 		18DD16F81D5C3E7F00837986 /* ProfileItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD16F71D5C3E7F00837986 /* ProfileItem.swift */; };
@@ -127,6 +128,7 @@
 		186A11931D5C8CD800BDB3B3 /* HomeNavigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeNavigation.swift; sourceTree = "<group>"; };
 		186F21DF1D5BABDD00A8959C /* StylistWorkTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StylistWorkTime.swift; sourceTree = "<group>"; };
 		18908A7F1D5D7B320079A9FB /* ModificationCustomerInfoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModificationCustomerInfoController.swift; sourceTree = "<group>"; };
+		18A4A9751D641B1B00C4E413 /* HairIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HairIndex.swift; sourceTree = "<group>"; };
 		18DD16F31D5C3B4200837986 /* SelectProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectProfileController.swift; sourceTree = "<group>"; };
 		18DD16F51D5C3BFA00837986 /* ProfileItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileItemCell.swift; sourceTree = "<group>"; };
 		18DD16F71D5C3E7F00837986 /* ProfileItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileItem.swift; sourceTree = "<group>"; };
@@ -474,6 +476,7 @@
 			children = (
 				994298F71D4769BF00D053B2 /* HairNetwork.swift */,
 				994298F81D4769BF00D053B2 /* HairType.swift */,
+				18A4A9751D641B1B00C4E413 /* HairIndex.swift */,
 			);
 			name = Hair;
 			sourceTree = "<group>";
@@ -762,6 +765,7 @@
 				994299691D4769BF00D053B2 /* DetailSalonView.swift in Sources */,
 				9989658A1D488E0B006DEDF5 /* YoutubeNetwork.swift in Sources */,
 				9917A89B1D4E3D5F00D9D82B /* BookingNotification.swift in Sources */,
+				18A4A9761D641B1B00C4E413 /* HairIndex.swift in Sources */,
 				994299841D4769BF00D053B2 /* SalonTableCell.swift in Sources */,
 				99876F041D4A58260094EF12 /* Ionicons.swift in Sources */,
 				9942997E1D4769BF00D053B2 /* OtherServicesView.swift in Sources */,

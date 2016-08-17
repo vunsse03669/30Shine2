@@ -35,11 +35,6 @@ class CustomerInfoController: UIViewController, UIAlertViewDelegate {
         self.navigationController?.popViewControllerAnimated(true)
     }
     
-    func handleProfileButton() {
-        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("SelectProfileController") as! SelectProfileController
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
     //MARK: UI
     func configUI() {
         let logo = UIImage(named: "logo")
@@ -52,10 +47,6 @@ class CustomerInfoController: UIViewController, UIAlertViewDelegate {
         var backImage = UIImage(named: "img-back")
         backImage = backImage?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: backImage, style: UIBarButtonItemStyle.Plain, target: self, action: #selector(handleBackButton))
-        //profile image
-        var profileImage = UIImage(named: "img-people")
-        profileImage = profileImage?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: profileImage, style: UIBarButtonItemStyle.Plain, target: self, action: #selector(handleProfileButton))
         
         //Texfield
         self.txtYob.layoutIfNeeded()
