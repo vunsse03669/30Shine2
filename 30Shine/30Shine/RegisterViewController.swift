@@ -11,9 +11,8 @@ import Alamofire
 import JASON
 import Alamofire
 import SVProgressHUD
-import WWCalendarTimeSelector
 
-class RegisterViewController: UIViewController , UITextFieldDelegate , WWCalendarTimeSelectorProtocol{
+class RegisterViewController: UIViewController , UITextFieldDelegate, CalendarDelegate{
     
     @IBOutlet weak var lblWarning: UILabel!
     @IBOutlet weak var textPhone: UITextField!
@@ -101,6 +100,10 @@ class RegisterViewController: UIViewController , UITextFieldDelegate , WWCalenda
     }
     
     func setTagForTextField(){
+        textMonth.inputView = UIView()
+        textYear.inputView = UIView()
+        textDate.inputView = UIView()
+        
         textPhone.tag = 0
         textName.tag = 1
         textDate.tag = 2
@@ -182,21 +185,18 @@ class RegisterViewController: UIViewController , UITextFieldDelegate , WWCalenda
     }
     
     func showCalendar() {
-        let selector = WWCalendarTimeSelector.instantiate()
+        let selector = CalendarView.createView(self.view)
         selector.delegate = self
-        selector.optionTopPanelTitle = "Chọn ngày tháng năm sinh của bạn"
-        self.presentViewController(selector, animated: true, completion: nil)
     }
     
-    //WWCCalendar delegate
-    func WWCalendarTimeSelectorDone(selector: WWCalendarTimeSelector, date: NSDate) {
+    //Calendar delegate
+    func didPickDate(date: NSDate) {
         let unitFlags: NSCalendarUnit = [.Hour, .Day, .Month, .Year]
         let components = NSCalendar.currentCalendar().components(unitFlags, fromDate: date)
         
         self.textDate.text = "\(components.day)"
         self.textMonth.text = "\(components.month)"
         self.textYear.text = "\(components.year)"
-        
     }
     func handleEmail() {
         moveUpView(self.view)

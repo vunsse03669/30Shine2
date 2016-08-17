@@ -16,6 +16,8 @@
 		186F21E01D5BABDD00A8959C /* StylistWorkTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186F21DF1D5BABDD00A8959C /* StylistWorkTime.swift */; };
 		18908A801D5D7B320079A9FB /* ModificationCustomerInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18908A7F1D5D7B320079A9FB /* ModificationCustomerInfoController.swift */; };
 		18A4A9761D641B1B00C4E413 /* HairIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A4A9751D641B1B00C4E413 /* HairIndex.swift */; };
+		18A4A97D1D6451ED00C4E413 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A4A97C1D6451ED00C4E413 /* CalendarView.swift */; };
+		18A4A97F1D6451FC00C4E413 /* CalendarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A4A97E1D6451FC00C4E413 /* CalendarView.xib */; };
 		18DD16F41D5C3B4200837986 /* SelectProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD16F31D5C3B4200837986 /* SelectProfileController.swift */; };
 		18DD16F61D5C3BFA00837986 /* ProfileItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD16F51D5C3BFA00837986 /* ProfileItemCell.swift */; };
 		18DD16F81D5C3E7F00837986 /* ProfileItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD16F71D5C3E7F00837986 /* ProfileItem.swift */; };
@@ -129,6 +131,8 @@
 		186F21DF1D5BABDD00A8959C /* StylistWorkTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StylistWorkTime.swift; sourceTree = "<group>"; };
 		18908A7F1D5D7B320079A9FB /* ModificationCustomerInfoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModificationCustomerInfoController.swift; sourceTree = "<group>"; };
 		18A4A9751D641B1B00C4E413 /* HairIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HairIndex.swift; sourceTree = "<group>"; };
+		18A4A97C1D6451ED00C4E413 /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		18A4A97E1D6451FC00C4E413 /* CalendarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalendarView.xib; sourceTree = "<group>"; };
 		18DD16F31D5C3B4200837986 /* SelectProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectProfileController.swift; sourceTree = "<group>"; };
 		18DD16F51D5C3BFA00837986 /* ProfileItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileItemCell.swift; sourceTree = "<group>"; };
 		18DD16F71D5C3E7F00837986 /* ProfileItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileItem.swift; sourceTree = "<group>"; };
@@ -325,6 +329,15 @@
 			name = ChainSystem;
 			sourceTree = "<group>";
 		};
+		18A4A97B1D6451C900C4E413 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				18A4A97C1D6451ED00C4E413 /* CalendarView.swift */,
+				18A4A97E1D6451FC00C4E413 /* CalendarView.xib */,
+			);
+			name = Calendar;
+			sourceTree = "<group>";
+		};
 		78DC61FFF3F5104449498112 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -419,6 +432,7 @@
 		994299931D476BBC00D053B2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				18A4A97B1D6451C900C4E413 /* Calendar */,
 				9942989E1D4769BF00D053B2 /* Assets.xcassets */,
 				9942989F1D4769BF00D053B2 /* LaunchScreen.storyboard */,
 				994298A11D4769BF00D053B2 /* Main.storyboard */,
@@ -687,6 +701,7 @@
 				994299711D4769BF00D053B2 /* Info.plist in Resources */,
 				994299761D4769BF00D053B2 /* ListSalonView.xib in Resources */,
 				E8A056051D54783800112F11 /* SalonPageViewController.xib in Resources */,
+				18A4A97F1D6451FC00C4E413 /* CalendarView.xib in Resources */,
 				9942991E1D4769BF00D053B2 /* Assets.xcassets in Resources */,
 				99876F051D4A58260094EF12 /* ionicons.ttf in Resources */,
 				9942991F1D4769BF00D053B2 /* LaunchScreen.storyboard in Resources */,
@@ -846,6 +861,7 @@
 				E800B99F1D4E5C0D003A7031 /* Extensions.swift in Sources */,
 				9991DCAD1D531E9F00E97910 /* CosmeticViewController.swift in Sources */,
 				994299631D4769BF00D053B2 /* CustomerHistoryCell.swift in Sources */,
+				18A4A97D1D6451ED00C4E413 /* CalendarView.swift in Sources */,
 				9942996D1D4769BF00D053B2 /* HairType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

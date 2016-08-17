@@ -11,9 +11,8 @@ import RxSwift
 import RxCocoa
 import Alamofire
 import SVProgressHUD
-import WWCalendarTimeSelector
 
-class ModificationCustomerInfoController: UIViewController, WWCalendarTimeSelectorProtocol {
+class ModificationCustomerInfoController: UIViewController, CalendarDelegate {
 
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var btnUpdate: UIButton!
@@ -49,14 +48,12 @@ class ModificationCustomerInfoController: UIViewController, WWCalendarTimeSelect
     }
     
     func showCalendar() {
-        let selector = WWCalendarTimeSelector.instantiate()
+        let selector = CalendarView.createView(self.view)
         selector.delegate = self
-        selector.optionTopPanelTitle = "Chọn ngày tháng năm sinh của bạn"
-        self.presentViewController(selector, animated: true, completion: nil)
     }
     
-    //WWCCalendar delegate
-    func WWCalendarTimeSelectorDone(selector: WWCalendarTimeSelector, date: NSDate) {
+    // Calendar delegate
+    func didPickDate(date: NSDate) {
         let unitFlags: NSCalendarUnit = [.Hour, .Day, .Month, .Year]
         let components = NSCalendar.currentCalendar().components(unitFlags, fromDate: date)
         self.txtDob.text = "\(components.day)"
