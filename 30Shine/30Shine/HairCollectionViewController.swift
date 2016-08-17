@@ -26,7 +26,7 @@ class HairCollectionViewController: UIViewController, UITableViewDelegate {
     
     override func viewDidAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.tbvHairType.scrollToRowAtIndexPath(NSIndexPath(forRow: HairIndex.shareInstance.getIndex(), inSection: 0), atScrollPosition: UITableViewScrollPosition.Middle, animated: true)
+        self.tbvHairType.scrollToRowAtIndexPath(NSIndexPath(forRow: HairIndex.shareInstance.getIndex(), inSection: 0), atScrollPosition: UITableViewScrollPosition.None, animated: false)
     }
     
     override func viewDidLoad() {
