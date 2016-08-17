@@ -130,6 +130,15 @@ class ModificationCustomerInfoController: UIViewController, WWCalendarTimeSelect
     }
     
     //MARK: Update
+    
+    func isValidEmail(testStr:String) -> Bool {
+        // print("validate calendar: \(testStr)")
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluateWithObject(testStr)
+    }
+    
     func update() {
         _ = self.btnUpdate.rx_tap.subscribeNext {
             guard let phone = self.txtPhone.text, name = self.txtName.text, dob = Int(self.txtDob.text!), mob = Int(self.txtMob.text!), yob = Int(self.txtYob.text!), mail = self.txtEmail.text else {
@@ -151,7 +160,7 @@ class ModificationCustomerInfoController: UIViewController, WWCalendarTimeSelect
                 self.showAlert("Cảnh báo",msg: "Số điện thoải phải bao gồm 10 hoặc 11 chữ số")
                 return
             }
-            if !mail.containsString("@") && !mail.containsString(".") {
+            if !self.isValidEmail(mail) {
                 self.showAlert("Cảnh báo",msg: "Quý khách chưa nhập mail đúng định dạng! Quý khác vui lòng nhập lại")
                 return
             }

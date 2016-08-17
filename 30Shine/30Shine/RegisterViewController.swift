@@ -122,7 +122,7 @@ class RegisterViewController: UIViewController , UITextFieldDelegate , WWCalenda
     
     let RANGE_AFTER = 10
     let RANGE_BEFORE = 11
-    let PASSWORD_MINLETTER = 4
+    let PASSWORD_MINLETTER = 6
     
     func validate() -> Bool{
         //check empty
@@ -315,7 +315,7 @@ class RegisterViewController: UIViewController , UITextFieldDelegate , WWCalenda
             maxLength = 2
             
         case 4:
-            maxLength = 4
+            maxLength = 6
         default:
             maxLength = 255
             break
