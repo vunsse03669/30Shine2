@@ -103,10 +103,11 @@ class UIDropDownStylist: UIControl, UITableViewDataSource, UITableViewDelegate {
     func showTable() {
         
         delegate.dropDownTableWillAppear?(self)
-        
         table = UITableView(frame: CGRect(x: CGRectGetMinX(self.frame), y: CGRectGetMinY(self.frame), width: CGRectGetWidth(self.frame), height: CGRectGetHeight(self.frame)))
         table.dataSource = self
         table.delegate = self
+        table.reloadData()
+        table.flashScrollIndicators()
         //table.layer.cornerRadius = 5.0
         table.layer.borderWidth = 1.0
         table.layer.borderColor = UIColor(netHex: 0xD7D7D7).CGColor

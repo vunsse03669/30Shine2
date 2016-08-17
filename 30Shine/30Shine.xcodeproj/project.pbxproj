@@ -338,6 +338,23 @@
 			name = Calendar;
 			sourceTree = "<group>";
 		};
+		18A4A9831D64615700C4E413 /* JASON */ = {
+			isa = PBXGroup;
+			children = (
+				994298FD1D4769BF00D053B2 /* JASON+Alamofire.swift */,
+				994298FE1D4769BF00D053B2 /* JSONKEYsExtension.swift */,
+			);
+			name = JASON;
+			sourceTree = "<group>";
+		};
+		18A4A9841D64616C00C4E413 /* LazyImage */ = {
+			isa = PBXGroup;
+			children = (
+				994298FF1D4769BF00D053B2 /* LazyImage.swift */,
+			);
+			name = LazyImage;
+			sourceTree = "<group>";
+		};
 		78DC61FFF3F5104449498112 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -527,10 +544,9 @@
 		994299991D476C7A00D053B2 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				18A4A9841D64616C00C4E413 /* LazyImage */,
+				18A4A9831D64615700C4E413 /* JASON */,
 				99876EFB1D4A57AD0094EF12 /* DropDownList */,
-				994298FD1D4769BF00D053B2 /* JASON+Alamofire.swift */,
-				994298FE1D4769BF00D053B2 /* JSONKEYsExtension.swift */,
-				994298FF1D4769BF00D053B2 /* LazyImage.swift */,
 			);
 			name = Vendor;
 			sourceTree = "<group>";
