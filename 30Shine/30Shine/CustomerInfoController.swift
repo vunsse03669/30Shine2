@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomerInfoController: UIViewController, UIAlertViewDelegate {
+class CustomerInfoController: UIViewController {
     @IBOutlet weak var btnLogout: UIButton!
     @IBOutlet weak var btnModification: UIButton!
     @IBOutlet weak var txtEmail: UITextField!
@@ -85,13 +85,7 @@ class CustomerInfoController: UIViewController, UIAlertViewDelegate {
     }
     
     func convertNumberToString(num : Int) -> String {
-        var str = ""
-        if num < 10 {
-            str = "0\(num)"
-        }
-        else {
-            str = "\(num)"
-        }
+        let str = (num < 10) ? "0\(num)" : "\(num)"
         return str
     }
     
@@ -100,14 +94,6 @@ class CustomerInfoController: UIViewController, UIAlertViewDelegate {
         _ = btnLogout.rx_tap.subscribeNext {
             let alert = UIAlertView(title: "", message: "Bạn thực sự muốn đăng xuất?", delegate: self, cancelButtonTitle: "Không", otherButtonTitles: "Có")
             alert.show()
-        }
-    }
-    
-    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
-        if buttonIndex == 1 {
-            Login.deleteLogin()
-            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("LoginController") as! LoginController
-            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     
@@ -120,3 +106,15 @@ class CustomerInfoController: UIViewController, UIAlertViewDelegate {
     }
 
 }
+
+//MARK: UIAlertView delegate
+extension CustomerInfoController : UIAlertViewDelegate {
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        if buttonIndex == 1 {
+            Login.deleteLogin()
+            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("LoginController") as! LoginController
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+}
+ 

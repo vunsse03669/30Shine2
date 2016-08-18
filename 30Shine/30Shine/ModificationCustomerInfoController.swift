@@ -12,7 +12,7 @@ import RxCocoa
 import Alamofire
 import SVProgressHUD
 
-class ModificationCustomerInfoController: UIViewController, CalendarDelegate {
+class ModificationCustomerInfoController: UIViewController {
 
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var btnUpdate: UIButton!
@@ -23,16 +23,17 @@ class ModificationCustomerInfoController: UIViewController, CalendarDelegate {
     @IBOutlet weak var txtPhone: UITextField!
     
     var updateSuccess = false
-    var centerPoint : CGRect!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configUI()
         self.update()
+        
+        //Add hide keyboard observer
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
 
-        self.centerPoint = self.view.frame
         
         //Add event for textfield
         self.txtDob.addTarget(self, action: #selector(handleTextField), forControlEvents: UIControlEvents.TouchDown)
@@ -40,7 +41,6 @@ class ModificationCustomerInfoController: UIViewController, CalendarDelegate {
         self.txtYob.addTarget(self, action: #selector(handleTextField), forControlEvents: UIControlEvents.TouchDown)
         self.txtEmail.addTarget(self, action: #selector(handleEmail), forControlEvents: UIControlEvents.TouchDown)
     }
-    
     
     //MARK: Add Calendar
     func handleTextField() {
@@ -50,15 +50,6 @@ class ModificationCustomerInfoController: UIViewController, CalendarDelegate {
     func showCalendar() {
         let selector = CalendarView.createView(self.view)
         selector.delegate = self
-    }
-    
-    // Calendar delegate
-    func didPickDate(date: NSDate) {
-        let unitFlags: NSCalendarUnit = [.Hour, .Day, .Month, .Year]
-        let components = NSCalendar.currentCalendar().components(unitFlags, fromDate: date)
-        self.txtDob.text = "\(components.day)"
-        self.txtMob.text = "\(components.month)"
-        self.txtYob.text = "\(components.year)"
     }
     
     //MARK: hide keyboard
@@ -72,14 +63,7 @@ class ModificationCustomerInfoController: UIViewController, CalendarDelegate {
         }
         moveDownView(self.view)
     }
-    
-    func handleEmail() {
-        moveUpView(self.view)
-    }
-    
-    func handleBackButton() {
-        self.navigationController?.popViewControllerAnimated(true)
-    }
+
     
     func moveUpView(view : UIView){
         UIView.animateWithDuration(0.4) {
@@ -92,6 +76,14 @@ class ModificationCustomerInfoController: UIViewController, CalendarDelegate {
             view.transform = CGAffineTransformIdentity
         }
     }
+    
+    func handleEmail() {
+        moveUpView(self.view)
+    }
+    
+    func handleBackButton() {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
 
     
     //MARK: UI
@@ -102,6 +94,7 @@ class ModificationCustomerInfoController: UIViewController, CalendarDelegate {
         imageView.contentMode = .ScaleAspectFit
         self.navigationItem.titleView = imageView
         self.navigationController?.navigationBar.translucent = false
+        
         //back image
         var backImage = UIImage(named: "img-back")
         backImage = backImage?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
@@ -127,7 +120,6 @@ class ModificationCustomerInfoController: UIViewController, CalendarDelegate {
     }
     
     //MARK: Update
-    
     func isValidEmail(testStr:String) -> Bool {
         // print("validate calendar: \(testStr)")
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
@@ -154,7 +146,7 @@ class ModificationCustomerInfoController: UIViewController, CalendarDelegate {
                 return
             }
             if phone.characters.count < 10 && phone.characters.count > 11 {
-                self.showAlert("Cảnh báo",msg: "Số điện thoải phải bao gồm 10 hoặc 11 chữ số")
+                self.showAlert("Cảnh báo",msg: "Số điện thoại phải bao gồm 10 hoặc 11 chữ số")
                 return
             }
             if !self.isValidEmail(mail) {
@@ -213,4 +205,16 @@ class ModificationCustomerInfoController: UIViewController, CalendarDelegate {
         let alert = UIAlertView(title: title, message: msg, delegate: nil, cancelButtonTitle: "Xác nhận")
         alert.show()
     }
+}
+
+//MARK: Calendar delegate
+extension ModificationCustomerInfoController : CalendarDelegate {
+    func didPickDate(date: NSDate) {
+        let unitFlags: NSCalendarUnit = [.Hour, .Day, .Month, .Year]
+        let components = NSCalendar.currentCalendar().components(unitFlags, fromDate: date)
+        self.txtDob.text = "\(components.day)"
+        self.txtMob.text = "\(components.month)"
+        self.txtYob.text = "\(components.year)"
+    }
+
 }

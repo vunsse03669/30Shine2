@@ -22,10 +22,6 @@ class SelectProfileController: UIViewController {
         self.configTableView()
     }
     
-    func handleBackButton() {
-        self.navigationController?.popViewControllerAnimated(true)
-    }
-    
     func configUI() {
         let logo = UIImage(named: "logo")
         let imageView = UIImageView(image:logo)
@@ -33,11 +29,15 @@ class SelectProfileController: UIViewController {
         imageView.contentMode = .ScaleAspectFit
         self.navigationItem.titleView = imageView
         self.navigationController?.navigationBar.translucent = false
+        
         //back image
         var backImage = UIImage(named: "img-back")
         backImage = backImage?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: backImage, style: UIBarButtonItemStyle.Plain, target: self, action: #selector(handleBackButton))
-        //profile image
+    }
+    
+    func handleBackButton() {
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
     //MARK: Config TableView

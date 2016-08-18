@@ -21,7 +21,6 @@ class BookingViewController: UIViewController {
     @IBOutlet weak var txtName: UITextField!
     @IBOutlet weak var txtPhone: UITextField!
     @IBOutlet weak var vContainer: UIView!
-    
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblPhone: UILabel!
     @IBOutlet weak var lblSalon: UILabel!
@@ -29,9 +28,8 @@ class BookingViewController: UIViewController {
     @IBOutlet weak var lblDate: UILabel!
     @IBOutlet weak var lblBookTime: UILabel!
     
-    
-    var dropSalon : UIDropDown!
-    var dropTime : UIDropDownTime!
+    var dropSalon   : UIDropDown!
+    var dropTime    : UIDropDownTime!
     var dropStylist : UIDropDownStylist!
     
     var salonId = 2
@@ -41,22 +39,22 @@ class BookingViewController: UIViewController {
                                 "82 Trần Đại Nghĩa",
                                 "235 Đội Cấn",
                                 "702 Đường Láng"]
-    var salontCount = 0
-    var dateCount = 0
-    var stylistCount = 0
-    var salonCount = 0
+    var salontCount   = 0
+    var dateCount     = 0
+    var stylistCount  = 0
+    var salonCount    = 0
     var reachability: Reachability?
     
     var bookingTimeId : Variable<Int> = Variable(0)
-    var dataVar : Variable<[Booking]> = Variable([])
-    var stylistVar : Variable<[Stylist]> = Variable([])
-    var statusDate : Variable<Double> = Variable(0)
+    var dataVar       : Variable<[Booking]> = Variable([])
+    var stylistVar    : Variable<[Stylist]> = Variable([])
+    var statusDate    : Variable<Double> = Variable(0)
     var statusSalonId : Variable<Int> = Variable(0)
-    var stylistID : Variable<Int> = Variable(0)
-    var workTimeList : Variable<[Int]> = Variable([])
+    var stylistID     : Variable<Int> = Variable(0)
+    var workTimeList  : Variable<[Int]> = Variable([])
     
-    var isClickOnSalon = Variable(0)
-    var isClickOnTime = Variable(0)
+    var isClickOnSalon   = Variable(0)
+    var isClickOnTime    = Variable(0)
     var isClickOnStylist = Variable(0)
     
     func checkInternet() {
@@ -80,19 +78,25 @@ class BookingViewController: UIViewController {
         self.configUI()
         self.bindingData()
         self.configCollectionView()
-        self.parseSchedule(salonId, workDate: self.toDate(0), stylistId: 0) {
-            () in
-        }
+        self.parseSchedule(salonId, workDate: self.toDate(0), stylistId: 0) {}
         
+        // Add Hide keyboard observer
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(BookingViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(BookingViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        
+        //Click on button Back
         _ = btnHome.rx_tap
             .subscribeNext {
                 self.navigationController?.popViewControllerAnimated(true)
         }
+        
+        //Click on button profile
         _ = btnProfile.rx_tap.subscribeNext {
             let vc = self.storyboard?.instantiateViewControllerWithIdentifier("SelectProfileController") as! SelectProfileController
             self.navigationController?.push(vc, animated: true)
         }
         
+        //Click on button submit
         _ = btnSubmit.rx_tap.subscribeNext {
             print("Name : \(self.txtName.text!)")
             print("Phone: \(self.txtPhone.text!)")
@@ -101,12 +105,13 @@ class BookingViewController: UIViewController {
             print("Stylist id : \(self.stylistID.value)")
             print("HourId : \(self.bookingTimeId.value)")
             
-            let name = self.txtName.text!
-            let phone = self.txtPhone.text!
-            let salonId = String(self.statusSalonId.value)
-            let date = self.toDate(self.statusDate.value)
+            let name      = self.txtName.text!
+            let phone     = self.txtPhone.text!
+            let salonId   = String(self.statusSalonId.value)
+            let date      = self.toDate(self.statusDate.value)
             let stylistId = String(self.stylistID.value)
-            let hourId = String(self.bookingTimeId.value)
+            let hourId    = String(self.bookingTimeId.value)
+            
             if self.validate(name, phone: phone, date: date, hourId: hourId) {
                 print("booking")
                 sNetworkSender.sendBooking(name, phone: phone, salonID: salonId, dateBook: date, StylistId: stylistId, hourId: hourId,completion: {
@@ -126,11 +131,9 @@ class BookingViewController: UIViewController {
                 self.alertMessage("Cảnh báo", msg: "Đã xảy ra sự cố trong quá trình đặt lịch.Quý khách vui lòng thực hiện lại!")
             }
         }
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(BookingViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(BookingViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
     
+    //Validate
     func validate(name : String, phone: String, date : String, hourId : String) -> Bool {
         if name == "" || phone == "" || date == "" || hourId == "0" {
             return false
@@ -152,32 +155,31 @@ class BookingViewController: UIViewController {
         }
     }
 
-    
     //MARK: UI
     func configUI() {
-        let logo = UIImage(named: "logo")
-        let imageView = UIImageView(image:logo)
+        let logo        = UIImage(named: "logo")
+        let imageView   = UIImageView(image:logo)
         imageView.frame = CGRectMake(0, 0, 64, 40)
         imageView.contentMode = .ScaleAspectFit
+        
         self.navigationItem.titleView = imageView
         self.scrollView.bringSubviewToFront(self.vContainer)
-        self.clvBooking.layer.zPosition = -1000
-        self.clvBooking.layer.borderWidth = 0.5
-        self.clvBooking.layer.borderColor = UIColor(netHex: 0xD7D7D7).CGColor
-        self.clvBooking.layer.cornerRadius = 5.0
         
-        self.btnSubmit.layer.cornerRadius = 5.0
+        self.clvBooking.layer.zPosition    = -1000
+        self.clvBooking.layer.borderWidth  = 0.5
+        self.clvBooking.layer.borderColor  = UIColor(netHex: 0xD7D7D7).CGColor
+        self.clvBooking.layer.cornerRadius = 5.0
+        self.btnSubmit.layer.cornerRadius  = 5.0
         
         self.txtPhone.layer.borderColor = UIColor(netHex: 0xD7D7D7).CGColor
         self.txtPhone.layer.borderWidth = 1.0
-        self.txtPhone.clipsToBounds = true
+        self.txtPhone.clipsToBounds     = true
         self.txtPhone.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
-        // Set keyboard
         self.txtPhone.keyboardType = .DecimalPad
         
         self.txtName.layer.borderWidth = 1.0
         self.txtName.layer.borderColor = UIColor(netHex: 0xD7D7D7).CGColor
-        self.txtName.clipsToBounds = true
+        self.txtName.clipsToBounds     = true
         self.txtName.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
         
         self.lblName.mutiColor("* Họ tên:", startAt: 0, range: 1, color: .redColor())
@@ -325,8 +327,6 @@ class BookingViewController: UIViewController {
                         print("failded")
                     }
                 }
-                
-                
             }
             
             cell.layer.cornerRadius = 5.0
@@ -344,7 +344,6 @@ class BookingViewController: UIViewController {
                     }
                 }
                 self.clvBooking.cellForItemAtIndexPath(indexPath)?.backgroundColor = UIColor(netHex: 0x1AD6FD)
-                
             }
             
         }
@@ -353,39 +352,42 @@ class BookingViewController: UIViewController {
     func configCollectionViewLayout() {
         self.vContainer.layoutIfNeeded()
         self.clvBooking.layoutIfNeeded()
+        
         let layout : UICollectionViewFlowLayout! = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         layout.minimumLineSpacing = 5
         layout.minimumInteritemSpacing = 5
+        
         let width = self.vContainer.bounds.width/4 - 12
-        let height = 0.6*width
+        let height = 0.6 * width
+        
         layout.itemSize = CGSizeMake(width, height)
         self.clvBooking.setCollectionViewLayout(layout, animated: true)
     }
     
     func haveSlot(cell : BookingCell) {
-        cell.backgroundColor = UIColor(netHex: 0x4FAC4B)
-        cell.lblTime.textColor = UIColor.whiteColor()
+        cell.backgroundColor     = UIColor(netHex: 0x4FAC4B)
+        cell.lblTime.textColor   = UIColor.whiteColor()
         cell.lblStatus.textColor = UIColor.whiteColor()
-        cell.lblStatus.text = "Còn chỗ"
-        cell.canBooking = true
+        cell.lblStatus.text      = "Còn chỗ"
+        cell.canBooking          = true
     }
     
     func fullSlot(cell : BookingCell) {
-        cell.backgroundColor = UIColor(netHex: 0xB3322E)
-        cell.lblTime.textColor = UIColor.whiteColor()
+        cell.backgroundColor     = UIColor(netHex: 0xB3322E)
+        cell.lblTime.textColor   = UIColor.whiteColor()
         cell.lblStatus.textColor = UIColor.whiteColor()
-        cell.lblStatus.text = "Hết chỗ"
+        cell.lblStatus.text      = "Hết chỗ"
         cell.canBooking = false
 
     }
     
     func desist(cell : BookingCell) {
-        cell.backgroundColor = UIColor(netHex: 0xC1C1C1)
+        cell.backgroundColor     = UIColor(netHex: 0xC1C1C1)
         cell.lblStatus.textColor = UIColor.blackColor()
-        cell.lblTime.textColor = UIColor.blackColor()
-        cell.lblStatus.text = "Nghỉ"
-        cell.canBooking = false
+        cell.lblTime.textColor   = UIColor.blackColor()
+        cell.lblStatus.text      = "Nghỉ"
+        cell.canBooking          = false
     }
     
     
@@ -421,7 +423,7 @@ extension BookingViewController : UIDropDownDelegate {
         
         if self.salonCount > 0 {
             self.parseSchedule(self.statusSalonId.value, workDate: self.toDate(self.statusDate.value), stylistId: 0) {
-                () in
+    
                 print(self.statusDate.value)
                 print("salonId \(self.statusSalonId.value)")
                 print("workDate \(self.toDate(self.statusDate.value))")
@@ -438,7 +440,7 @@ extension BookingViewController : UIDropDownTimeDelegate {
         if self.dateCount > 0 {
             self.statusDate.value = Double(index)
             self.parseSchedule(self.statusSalonId.value, workDate: self.toDate(self.statusDate.value), stylistId: self.stylistID.value) {
-                () in
+                
                 print(self.statusDate.value)
                 print("salonId \(self.statusSalonId.value)")
                 print("workDate \(self.toDate(self.statusDate.value))")
@@ -454,7 +456,7 @@ extension BookingViewController : UIDropDownStylistDelegate {
 
         self.stylistID.value = self.stylistId[index]
         self.parseSchedule(self.statusSalonId.value, workDate: self.toDate(self.statusDate.value), stylistId: self.stylistID.value) {
-            () in
+            
             self.stylistCount += 1
             print("salonId \(self.statusSalonId.value)")
             print("workDate \(self.toDate(self.statusDate.value))")
@@ -466,10 +468,7 @@ extension BookingViewController : UIDropDownStylistDelegate {
 //MARK: Parse Json
 extension BookingViewController {
     func parseSchedule(salonId : Int, workDate : String, stylistId : Int, compeletion : () ->()) {
-        /*
-         SalonId: 3,
-         WorkDate: '27-07-2016'
-         */
+
         let BOOKING_API = "http://api.30shine.com/booking/dsbookhour/stylist"
         let parameter = ["SalonId":salonId,"WorkDate":workDate,"Stylist":stylistId]
         self.dataVar.value = []
@@ -490,6 +489,7 @@ extension BookingViewController {
     }
     
     func parseStylist(salonId : Int,completion : ()->()) {
+        
         let GET_STYLIST_API = "http://api.30shine.com/staff/stylist"
         let parameter = ["SalonId":salonId]
         self.stylistVar.value = []
@@ -510,11 +510,13 @@ extension BookingViewController {
     }
     
     func parseStaffAttendace(salonId : Int, workDate : String, completion:()->()) {
+        
         let API = "http://api.30shine.com/staff/stylisttoworkdate"
         let parameters = ["SalonId" : salonId, "WorkDate" : workDate]
         dispatch_async(dispatch_get_global_queue(0, 0)) { 
             Alamofire.request(.POST, API, parameters: parameters as? [String : AnyObject], encoding: .JSON)
-                .responseJASON { response in
+                .responseJASON {
+                    response in
                     if let json = response.result.value {
                         let hourIds = json["d"].map(StylistWorkTime.init)
                         for hourId in hourIds {
@@ -634,7 +636,6 @@ extension BookingViewController {
                 str.append(c)
             }
         }
-        
         return Int(str.stringByReplacingOccurrencesOfString("h", withString: ""))
     }
     
@@ -681,7 +682,6 @@ extension BookingViewController {
             }
             
         }
-        
         return false
     }
     

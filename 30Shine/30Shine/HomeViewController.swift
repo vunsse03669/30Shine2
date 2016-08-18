@@ -20,14 +20,13 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var clvMenu: UICollectionView!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var imvSlide: SpringImageView!
+    
     var reachability : Reachability?
     var isConnectInternet = true
-    
     var currentPage = 0
     let swipeGestureLeft = UISwipeGestureRecognizer()
     let swipeGestureRight = UISwipeGestureRecognizer()
     var isPressOnSlider = false
-    
     var slideImageVar : Variable<[String]> = Variable([])
     var menuVariable  : Variable<[Menu]> = Variable([])
     
@@ -36,6 +35,7 @@ class HomeViewController: UIViewController {
         self.initData()
         self.configUI()
         self.configSilder()
+        
         //Click btnProfile
         _ = btnProfile.rx_tap.subscribeNext {
             let vc = self.storyboard?.instantiateViewControllerWithIdentifier("SelectProfileController") as! SelectProfileController
@@ -69,7 +69,7 @@ class HomeViewController: UIViewController {
         layout.minimumLineSpacing = 5
         layout.minimumInteritemSpacing = 1
         let width = (self.view.frame.width - 25)/2
-        layout.itemSize = CGSizeMake(width, 0.7*width)
+        layout.itemSize = CGSizeMake(width, 0.7 * width)
         self.clvMenu.setCollectionViewLayout(layout, animated: true)
     }
     
