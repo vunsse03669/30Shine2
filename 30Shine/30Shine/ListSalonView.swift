@@ -21,7 +21,6 @@ class ListSalonView: UIView, UITableViewDelegate {
     var navigation : UINavigationController!
     @IBOutlet weak var tbvListSalon: UITableView!
     var salonVariable  : Variable<[Salon]> = Variable([])
-    var detaivararnView : DetailSalonView!
     override func awakeFromNib() {
         initData()
     }
