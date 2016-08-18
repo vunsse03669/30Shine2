@@ -76,7 +76,7 @@ class VideoViewController: UIViewController, UITableViewDelegate, UIAlertViewDel
             self.playVideo(videoId)
         }
     }
-        
+    
     func playVideo(videoId : String) {
         if videoId != "" {
             videoPlayerViewController = XCDYouTubeVideoPlayerViewController(videoIdentifier: videoId)
