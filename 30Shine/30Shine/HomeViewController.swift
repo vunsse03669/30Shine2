@@ -42,6 +42,12 @@ class HomeViewController: UIViewController {
             self.navigationController?.push(vc, animated: true)
         }
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationItem.setHidesBackButton(true, animated: animated)
+    }
+    
     //MARK: UI
     func configUI() {
         self.pageControl.userInteractionEnabled = false
