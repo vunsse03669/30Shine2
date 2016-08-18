@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -19,7 +19,7 @@
                         <constraint firstAttribute="height" constant="21" id="fJ2-N7-biB"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- Mỗi lượt dịch vụ chỉ dành cho 1 người. Quý khách có bạn đi cùng vui lòng đặt nhiều lần với đúng sdt từng người." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cLB-wy-l5G">
@@ -28,7 +28,7 @@
                         <constraint firstAttribute="height" constant="45" id="mLg-HF-5pp"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="italicSystem" pointSize="11"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- Quý khách vui lòng đến sớm hoặc muộn không quá 10p so với giờ đặt lịch. Nếu muộn quá 10p vui lòng đặt lịch với lễ tân!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G27-TW-j33">
@@ -37,7 +37,7 @@
                         <constraint firstAttribute="height" constant="45" id="Nvx-Cd-Dkn"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="italicSystem" pointSize="11"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- Khung giờ 17h-20h salon thường rất đông, quý khách nên đặt lịch trong khoảng 8h-16h để được phục vụ tốt nhất!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QCz-Be-bNH">
@@ -46,7 +46,7 @@
                         <constraint firstAttribute="height" constant="43" id="4XH-6D-mUo"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="italicSystem" pointSize="11"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZM7-bZ-IcW">

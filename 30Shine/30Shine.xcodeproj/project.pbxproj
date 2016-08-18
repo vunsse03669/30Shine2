@@ -315,6 +315,53 @@
 			name = LazyImage;
 			sourceTree = "<group>";
 		};
+		18E15C441D658F4D00EA7471 /* Hair */ = {
+			isa = PBXGroup;
+			children = (
+				994298F91D4769BF00D053B2 /* HairTypeCell.swift */,
+				994299061D4769BF00D053B2 /* OtherHairCollectionViewCell.swift */,
+			);
+			name = Hair;
+			sourceTree = "<group>";
+		};
+		18E15C451D658F5F00EA7471 /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				9942991A1D4769BF00D053B2 /* VideoCell.swift */,
+			);
+			name = Video;
+			sourceTree = "<group>";
+		};
+		18E15C461D658F7600EA7471 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				994299031D4769BF00D053B2 /* MenuCell.swift */,
+				994299041D4769BF00D053B2 /* MenuCollectionViewCell.swift */,
+			);
+			name = Menu;
+			sourceTree = "<group>";
+		};
+		18E15C471D658F8500EA7471 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				18DD16F51D5C3BFA00837986 /* ProfileItemCell.swift */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
+		18E15C481D658FBA00EA7471 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				994298E91D4769BF00D053B2 /* Combo.swift */,
+				9942990C1D4769BF00D053B2 /* Salon.swift */,
+				9942990E1D4769BF00D053B2 /* SalonNetwork.swift */,
+				9942999A1D476FB100D053B2 /* ComboNetwork.swift */,
+				9942999B1D476FB100D053B2 /* OtherService.swift */,
+				9942999C1D476FB100D053B2 /* OtherServiceNetwork.swift */,
+			);
+			name = Service;
+			sourceTree = "<group>";
+		};
 		78DC61FFF3F5104449498112 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -385,6 +432,7 @@
 		994299921D476BB000D053B2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				18E15C481D658FBA00EA7471 /* Service */,
 				186A11821D5C5AE900BDB3B3 /* Login */,
 				9917A8991D4E3D3700D9D82B /* BookingNotification */,
 				99876F081D4A5F160094EF12 /* Booking */,
@@ -392,13 +440,7 @@
 				994299961D476C2200D053B2 /* History */,
 				994299951D476BE900D053B2 /* Hair */,
 				994299941D476BE100D053B2 /* Home */,
-				994298E91D4769BF00D053B2 /* Combo.swift */,
-				9942990C1D4769BF00D053B2 /* Salon.swift */,
-				9942990E1D4769BF00D053B2 /* SalonNetwork.swift */,
 				994299191D4769BF00D053B2 /* Video.swift */,
-				9942999A1D476FB100D053B2 /* ComboNetwork.swift */,
-				9942999B1D476FB100D053B2 /* OtherService.swift */,
-				9942999C1D476FB100D053B2 /* OtherServiceNetwork.swift */,
 				994298F21D4769BF00D053B2 /* DB.swift */,
 			);
 			name = Model;
@@ -410,13 +452,10 @@
 				9942989E1D4769BF00D053B2 /* Assets.xcassets */,
 				9942989F1D4769BF00D053B2 /* LaunchScreen.storyboard */,
 				994298A11D4769BF00D053B2 /* Main.storyboard */,
-				99876F061D4A5E8E0094EF12 /* BookingCell.swift */,
-				994299031D4769BF00D053B2 /* MenuCell.swift */,
-				994299061D4769BF00D053B2 /* OtherHairCollectionViewCell.swift */,
-				994299041D4769BF00D053B2 /* MenuCollectionViewCell.swift */,
-				9942991A1D4769BF00D053B2 /* VideoCell.swift */,
-				994298F91D4769BF00D053B2 /* HairTypeCell.swift */,
-				18DD16F51D5C3BFA00837986 /* ProfileItemCell.swift */,
+				18E15C471D658F8500EA7471 /* Profile */,
+				18E15C461D658F7600EA7471 /* Menu */,
+				18E15C451D658F5F00EA7471 /* Video */,
+				18E15C441D658F4D00EA7471 /* Hair */,
 				E8CF8EF81D6571A10005B33B /* CustomerHistory */,
 				18A4A97B1D6451C900C4E413 /* Calendar */,
 				E8CF8EF91D6572010005B33B /* Booking */,
@@ -619,6 +658,7 @@
 		E8CF8EF91D6572010005B33B /* Booking */ = {
 			isa = PBXGroup;
 			children = (
+				99876F061D4A5E8E0094EF12 /* BookingCell.swift */,
 				9917A8951D4E33F400D9D82B /* BookingNotificatioView.swift */,
 				9917A8971D4E340A00D9D82B /* BookingNotificationView.xib */,
 			);
