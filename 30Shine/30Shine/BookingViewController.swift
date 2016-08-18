@@ -12,7 +12,7 @@ import RxSwift
 import RxCocoa
 import ReachabilitySwift
 
-class BookingViewController: UIViewController, UIAlertViewDelegate {
+class BookingViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var clvBooking: UICollectionView!
     @IBOutlet weak var btnSubmit: UIButton!
@@ -78,6 +78,7 @@ class BookingViewController: UIViewController, UIAlertViewDelegate {
         super.viewDidLoad()
         self.checkInternet()
         self.configUI()
+        self.bindingData()
         self.configCollectionView()
         self.parseSchedule(salonId, workDate: self.toDate(0), stylistId: 0) {
             () in
@@ -106,31 +107,38 @@ class BookingViewController: UIViewController, UIAlertViewDelegate {
             let date = self.toDate(self.statusDate.value)
             let stylistId = String(self.stylistID.value)
             let hourId = String(self.bookingTimeId.value)
-            if name != "" && phone != "" && date != "" && hourId != "0" {
+            if self.validate(name, phone: phone, date: date, hourId: hourId) {
                 print("booking")
                 sNetworkSender.sendBooking(name, phone: phone, salonID: salonId, dateBook: date, StylistId: stylistId, hourId: hourId,completion: {
                     Bool in
                     if(Bool){
                         print("DONE")
-                        let alert =  UIAlertView(title: "", message: "Đặt lịch thành công!", delegate: nil, cancelButtonTitle: "Close")
-                        alert.show()
+                        self.alertMessage("Thông báo", msg: "Đặt lịch thành công")
                     }
                     else{
-                        let alert =  UIAlertView(title: "", message: "Đặt lịch thành công!", delegate: nil, cancelButtonTitle: "Close")
-                        alert.show()
+                        self.alertMessage("Cảnh báo", msg: "Đặt lịch thất bại. Quý khách vui lòng kiểm tra lại thông tin")
                         print("ERROR")
                     }
                     return Bool
                 })
             }
             else {
-                let alert = UIAlertView(title: "", message: "Đã xảy ra sự cố trong quá trình đặt lịch.Quý khách vui lòng thực hiện lại!", delegate: nil, cancelButtonTitle: "Ok")
-                alert.show()
+                self.alertMessage("Cảnh báo", msg: "Đã xảy ra sự cố trong quá trình đặt lịch.Quý khách vui lòng thực hiện lại!")
             }
         }
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(BookingViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(BookingViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    func validate(name : String, phone: String, date : String, hourId : String) -> Bool {
+        if name == "" || phone == "" || date == "" || hourId == "0" {
+            return false
+        }
+        else if phone.characters.count < 10 && phone.characters.count > 11 {
+            return false
+        }
+        return true
     }
     
     //MARK: hide keyboard
@@ -267,6 +275,15 @@ class BookingViewController: UIViewController, UIAlertViewDelegate {
         }
     }
     
+    //MARK: bingding data for txtPhone, name
+    func bindingData() {
+        if Login.getLogin().phone != ""  {
+            self.txtPhone.text = Login.getLogin().phone
+        }
+        if Login.getLogin().fullName != "" {
+            self.txtName.text = Login.getLogin().fullName
+        }
+    }
     
     //MARK: CollectionView
     func configCollectionView() {
@@ -374,7 +391,153 @@ class BookingViewController: UIViewController, UIAlertViewDelegate {
     
 }
 
-//MARK: Progress String
+//MARK : Change text field value
+extension BookingViewController : UIDropDownDelegate {
+    func dropDown(dropDown: UIDropDown, didSelectOption option: String, atIndex index: Int) {
+        self.statusSalonId.value = self.salonIds[index]
+        
+        self.parseStaffAttendace(self.statusSalonId.value, workDate: self.toDate(self.statusDate.value)) { 
+            () in
+            self.parseStylist(self.salonIds[index]) {
+                () in
+                self.dropStylist.options = []
+                self.stylistId = []
+                for stylist in self.stylistVar.value {
+                    if self.workTimeList.value.contains(stylist.id) {
+                        self.dropStylist.options.append(stylist.fullName)
+                    }
+                    else {
+                        self.dropStylist.options.append("\(stylist.fullName) (nghỉ)")
+                    }
+                    
+                    self.stylistId.append(stylist.id)
+                }
+                self.dropStylist.placeholder = "Chọn Stylist( Không bắt buộc)"
+                self.dropStylist.selectedIndex = -1
+                self.stylistID.value = 0
+            }
+        }
+        
+        
+        if self.salonCount > 0 {
+            self.parseSchedule(self.statusSalonId.value, workDate: self.toDate(self.statusDate.value), stylistId: 0) {
+                () in
+                print(self.statusDate.value)
+                print("salonId \(self.statusSalonId.value)")
+                print("workDate \(self.toDate(self.statusDate.value))")
+                print("stylistId 0)")
+                
+            }
+        }
+        self.salonCount += 1
+    }
+}
+
+extension BookingViewController : UIDropDownTimeDelegate {
+    func dropDownTime(dropDown: UIDropDownTime, didSelectOption option: String, atIndex index: Int){
+        if self.dateCount > 0 {
+            self.statusDate.value = Double(index)
+            self.parseSchedule(self.statusSalonId.value, workDate: self.toDate(self.statusDate.value), stylistId: self.stylistID.value) {
+                () in
+                print(self.statusDate.value)
+                print("salonId \(self.statusSalonId.value)")
+                print("workDate \(self.toDate(self.statusDate.value))")
+                print("stylistId \(self.stylistID.value)")
+            }
+        }
+        self.dateCount += 1
+    }
+}
+
+extension BookingViewController : UIDropDownStylistDelegate {
+    func dropDownStylist(dropDown: UIDropDownStylist, didSelectOption option: String, atIndex index: Int){
+
+        self.stylistID.value = self.stylistId[index]
+        self.parseSchedule(self.statusSalonId.value, workDate: self.toDate(self.statusDate.value), stylistId: self.stylistID.value) {
+            () in
+            self.stylistCount += 1
+            print("salonId \(self.statusSalonId.value)")
+            print("workDate \(self.toDate(self.statusDate.value))")
+            print("stylistId \(self.stylistID.value)")
+        }
+    }
+}
+
+//MARK: Parse Json
+extension BookingViewController {
+    func parseSchedule(salonId : Int, workDate : String, stylistId : Int, compeletion : () ->()) {
+        /*
+         SalonId: 3,
+         WorkDate: '27-07-2016'
+         */
+        let BOOKING_API = "http://api.30shine.com/booking/dsbookhour/stylist"
+        let parameter = ["SalonId":salonId,"WorkDate":workDate,"Stylist":stylistId]
+        self.dataVar.value = []
+        dispatch_async(dispatch_get_global_queue(0, 0)) {
+            Alamofire.request(.POST, BOOKING_API, parameters: parameter as? [String : AnyObject], encoding: .JSON).responseJASON {
+                response in
+                if let json = response.result.value {
+                    let bookings = json["d"].map(BookingNetwork.init)
+                    for booking in bookings {
+                        let data = Booking(id: booking.id, hour: booking.hour, status: "", slot: booking.slot, hourFrame: booking.hourFrame, salonId: booking.salonId, currentSlot: booking.currentSlot, stylistCurrentSlot: booking.stylistCurrentSlot,statusBooking : booking.statusBooking)
+                        print(data.statusBooking)
+                        self.dataVar.value.append(data)
+                    }
+                    compeletion()
+                }
+            }
+        }
+    }
+    
+    func parseStylist(salonId : Int,completion : ()->()) {
+        let GET_STYLIST_API = "http://api.30shine.com/staff/stylist"
+        let parameter = ["SalonId":salonId]
+        self.stylistVar.value = []
+        dispatch_async(dispatch_get_global_queue(0, 0)) {
+            Alamofire.request(.POST, GET_STYLIST_API, parameters: parameter, encoding: .JSON).responseJASON {
+                response in
+                if let json = response.result.value {
+                    let stylists = json["d"].map(StylistNetwork.init)
+                    for stylist in stylists {
+                        let data = Stylist(id: stylist.id, fullName: stylist.fullName, salonId: stylist.salonId)
+                        self.stylistVar.value.append(data)
+                    }
+                    completion()
+                }
+            }
+        }
+        
+    }
+    
+    func parseStaffAttendace(salonId : Int, workDate : String, completion:()->()) {
+        let API = "http://api.30shine.com/staff/stylisttoworkdate"
+        let parameters = ["SalonId" : salonId, "WorkDate" : workDate]
+        dispatch_async(dispatch_get_global_queue(0, 0)) { 
+            Alamofire.request(.POST, API, parameters: parameters as? [String : AnyObject], encoding: .JSON)
+                .responseJASON { response in
+                    if let json = response.result.value {
+                        let hourIds = json["d"].map(StylistWorkTime.init)
+                        for hourId in hourIds {
+                            self.workTimeList.value.append(hourId.staffId)
+                        }
+                        completion()
+                    }
+            }
+        }
+    }
+}
+
+extension BookingViewController: UIAlertViewDelegate {
+    //MARK: Alertview delegate
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        if buttonIndex == 0 {
+            self.navigationController?.popViewControllerAnimated(true)
+        }
+        
+    }
+}
+
+//MARK:  Helper
 extension BookingViewController {
     func getTime(time : Double) -> String {
         let today = NSDate()
@@ -522,153 +685,12 @@ extension BookingViewController {
         return false
     }
     
-}
-
-//MARK : Change text field value
-extension BookingViewController : UIDropDownDelegate {
-    func dropDown(dropDown: UIDropDown, didSelectOption option: String, atIndex index: Int) {
-        self.statusSalonId.value = self.salonIds[index]
-        
-        self.parseStaffAttendace(self.statusSalonId.value, workDate: self.toDate(self.statusDate.value)) { 
-            () in
-            self.parseStylist(self.salonIds[index]) {
-                () in
-                self.dropStylist.options = []
-                self.stylistId = []
-                for stylist in self.stylistVar.value {
-                    if self.workTimeList.value.contains(stylist.id) {
-                        self.dropStylist.options.append(stylist.fullName)
-                    }
-                    else {
-                        self.dropStylist.options.append("\(stylist.fullName) (nghỉ)")
-                    }
-                    
-                    self.stylistId.append(stylist.id)
-                }
-                self.dropStylist.placeholder = "Chọn Stylist( Không bắt buộc)"
-                self.dropStylist.selectedIndex = -1
-                self.stylistID.value = 0
-            }
-        }
-        
-        
-        if self.salonCount > 0 {
-            self.parseSchedule(self.statusSalonId.value, workDate: self.toDate(self.statusDate.value), stylistId: 0) {
-                () in
-                print(self.statusDate.value)
-                print("salonId \(self.statusSalonId.value)")
-                print("workDate \(self.toDate(self.statusDate.value))")
-                print("stylistId 0)")
-                
-            }
-        }
-        self.salonCount += 1
+    func alertMessage(title : String, msg : String) {
+        let alert = UIAlertView(title: title, message: msg, delegate: nil, cancelButtonTitle: "Xác nhận")
+        alert.show()
     }
 }
 
-extension BookingViewController : UIDropDownTimeDelegate {
-    func dropDownTime(dropDown: UIDropDownTime, didSelectOption option: String, atIndex index: Int){
-        if self.dateCount > 0 {
-            self.statusDate.value = Double(index)
-            self.parseSchedule(self.statusSalonId.value, workDate: self.toDate(self.statusDate.value), stylistId: self.stylistID.value) {
-                () in
-                print(self.statusDate.value)
-                print("salonId \(self.statusSalonId.value)")
-                print("workDate \(self.toDate(self.statusDate.value))")
-                print("stylistId \(self.stylistID.value)")
-            }
-        }
-        self.dateCount += 1
-    }
-}
-
-extension BookingViewController : UIDropDownStylistDelegate {
-    func dropDownStylist(dropDown: UIDropDownStylist, didSelectOption option: String, atIndex index: Int){
-
-        self.stylistID.value = self.stylistId[index]
-        self.parseSchedule(self.statusSalonId.value, workDate: self.toDate(self.statusDate.value), stylistId: self.stylistID.value) {
-            () in
-            self.stylistCount += 1
-            print("salonId \(self.statusSalonId.value)")
-            print("workDate \(self.toDate(self.statusDate.value))")
-            print("stylistId \(self.stylistID.value)")
-        }
-    }
-}
-
-//MARK: Parse Json
-extension BookingViewController {
-    func parseSchedule(salonId : Int, workDate : String, stylistId : Int, compeletion : () ->()) {
-        /*
-         SalonId: 3,
-         WorkDate: '27-07-2016'
-         */
-        let BOOKING_API = "http://api.30shine.com/booking/dsbookhour/stylist"
-        let parameter = ["SalonId":salonId,"WorkDate":workDate,"Stylist":stylistId]
-        self.dataVar.value = []
-        dispatch_async(dispatch_get_global_queue(0, 0)) {
-            Alamofire.request(.POST, BOOKING_API, parameters: parameter as? [String : AnyObject], encoding: .JSON).responseJASON {
-                response in
-                if let json = response.result.value {
-                    let bookings = json["d"].map(BookingNetwork.init)
-                    for booking in bookings {
-                        let data = Booking(id: booking.id, hour: booking.hour, status: "", slot: booking.slot, hourFrame: booking.hourFrame, salonId: booking.salonId, currentSlot: booking.currentSlot, stylistCurrentSlot: booking.stylistCurrentSlot,statusBooking : booking.statusBooking)
-                        print(data.statusBooking)
-                        self.dataVar.value.append(data)
-                    }
-                    compeletion()
-                }
-            }
-        }
-    }
-    
-    func parseStylist(salonId : Int,completion : ()->()) {
-        let GET_STYLIST_API = "http://api.30shine.com/staff/stylist"
-        let parameter = ["SalonId":salonId]
-        self.stylistVar.value = []
-        dispatch_async(dispatch_get_global_queue(0, 0)) {
-            Alamofire.request(.POST, GET_STYLIST_API, parameters: parameter, encoding: .JSON).responseJASON {
-                response in
-                if let json = response.result.value {
-                    let stylists = json["d"].map(StylistNetwork.init)
-                    for stylist in stylists {
-                        let data = Stylist(id: stylist.id, fullName: stylist.fullName, salonId: stylist.salonId)
-                        self.stylistVar.value.append(data)
-                    }
-                    completion()
-                }
-            }
-        }
-        
-    }
-    
-    func parseStaffAttendace(salonId : Int, workDate : String, completion:()->()) {
-        let API = "http://api.30shine.com/staff/stylisttoworkdate"
-        let parameters = ["SalonId" : salonId, "WorkDate" : workDate]
-        dispatch_async(dispatch_get_global_queue(0, 0)) { 
-            Alamofire.request(.POST, API, parameters: parameters as? [String : AnyObject], encoding: .JSON)
-                .responseJASON { response in
-                    if let json = response.result.value {
-                        let hourIds = json["d"].map(StylistWorkTime.init)
-                        for hourId in hourIds {
-                            self.workTimeList.value.append(hourId.staffId)
-                        }
-                        completion()
-                    }
-            }
-        }
-    }
-}
-
-extension BookingViewController {
-    //MARK: Alertview delegate
-    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
-        if buttonIndex == 0 {
-            self.navigationController?.popViewControllerAnimated(true)
-        }
-        
-    }
-}
 
 
 
