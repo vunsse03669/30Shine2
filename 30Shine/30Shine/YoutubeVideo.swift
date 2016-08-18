@@ -16,8 +16,9 @@ class YoutubeVideo: Object {
     dynamic var thumb : String = ""
     dynamic var viewCount : Int = 0
     dynamic var publishDate: String = ""
+    dynamic var videoId : String = ""
     
-    static func create(id : Int, title : String,link : String,thumb: String, viewCount : Int, publistDate : String) -> YoutubeVideo! {
+    static func create(id : Int, title : String,link : String,thumb: String, viewCount : Int, publistDate : String, videoId : String) -> YoutubeVideo! {
         let video = YoutubeVideo()
         video.id = id
         video.title = title
@@ -25,6 +26,7 @@ class YoutubeVideo: Object {
         video.thumb = thumb
         video.viewCount = viewCount
         video.publishDate = publistDate
+        video.videoId = videoId
         print("\(video.title)")
         self.createVideo(video)
         return video

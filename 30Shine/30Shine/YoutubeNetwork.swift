@@ -16,6 +16,7 @@ struct YoutubeNetwork {
     let viewCount : Int
     let thumb : String
     let publishDate : String
+    let videoId : String
     
     init(_ json : JSON) {
         id = json[.youtube_id]
@@ -24,6 +25,7 @@ struct YoutubeNetwork {
         viewCount = json[.youtube_viewCount]
         thumb = json[.youtube_thumb]
         publishDate = json[.youtube_publishDate]
+        videoId = json[.youtube_videoId]
     }
 }
 

@@ -14,6 +14,7 @@ import youtube_parser
 import Alamofire
 import ReachabilitySwift
 import SVProgressHUD
+import XCDYouTubeKit
 
 class VideoViewController: UIViewController, UITableViewDelegate, UIAlertViewDelegate {
     
@@ -21,8 +22,8 @@ class VideoViewController: UIViewController, UITableViewDelegate, UIAlertViewDel
     @IBOutlet weak var btnHome: UIButton!
     @IBOutlet weak var btnProfile: UIButton!
     
-    var moviePlayer : MPMoviePlayerController!
     var videoVariable : Variable<[YoutubeVideo]> = Variable([])
+    var videoPlayerViewController : XCDYouTubeVideoPlayerViewController!
     var reachability : Reachability?
     
     override func viewDidLoad() {
@@ -71,50 +72,19 @@ class VideoViewController: UIViewController, UITableViewDelegate, UIAlertViewDel
         _ = self.tbvVideo.rx_itemSelected.subscribeNext {
             indexPath in
             self.tbvVideo.deselectRowAtIndexPath(indexPath, animated: false)
-            let url = self.videoVariable.value[indexPath.row].link
-            let urlPlay = self.getVideo(url)
-            self.playVideo(urlPlay)
+            let videoId = self.videoVariable.value[indexPath.row].videoId
+            self.playVideo(videoId)
         }
     }
-    
-    //MARK: Youtube
-    func getVideoId(url : String) -> String {
-        var str = ""
-        let urlStr = "http://img.youtube.com/vi/MASK_ID/0.jpg"
-        for c in url.characters {
-            str.append(c)
-            if c == "=" {
-                break
-            }
-        }
-        let id = url.stringByReplacingOccurrencesOfString(str, withString: "")
-        return urlStr.stringByReplacingOccurrencesOfString("MASK_ID", withString: id)
-    }
-    
-    func playVideo(url : String) {
-        self.moviePlayer = MPMoviePlayerController()
         
-        self.view.layoutIfNeeded()
-        self.moviePlayer.view.frame = self.view.frame
-        self.moviePlayer.view.center = self.view.center
-        self.view.addSubview(self.moviePlayer.view)
-        self.moviePlayer.fullscreen = true
-        let youtubeURL = NSURL(string: url)!
-        if youtubeURL.absoluteString != "" {
-            //self.moviePlayer.stop()
-            print(youtubeURL)
-             self.playVideoWithYoutubeURL(youtubeURL)
+    func playVideo(videoId : String) {
+        if videoId != "" {
+            videoPlayerViewController = XCDYouTubeVideoPlayerViewController(videoIdentifier: videoId)
+            videoPlayerViewController.presentInView(self.view)
+            videoPlayerViewController.moviePlayer.play()
+            videoPlayerViewController.moviePlayer.fullscreen = true
              NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(VideoViewController.doneButtonClick(_:)), name: MPMoviePlayerWillExitFullscreenNotification, object: nil)
         }
-    }
-    
-    func playVideoWithYoutubeURL(url: NSURL) {
-        Youtube.h264videosWithYoutubeURL(url, completion: { (videoInfo, error) -> Void in
-            if let
-                videoURLString = videoInfo?["url"] as? String {
-                self.moviePlayer.contentURL = NSURL(string: videoURLString)
-            }
-        })
     }
     
     func getVideo(url : String) -> String {
@@ -127,14 +97,12 @@ class VideoViewController: UIViewController, UITableViewDelegate, UIAlertViewDel
         let value = UIInterfaceOrientation.Portrait.rawValue
         UIDevice.currentDevice().setValue(value, forKey: "orientation")
         NSNotificationCenter.defaultCenter().removeObserver(self, name: MPMoviePlayerWillExitFullscreenNotification, object: nil)
-        self.moviePlayer.stop()
+        self.videoPlayerViewController.moviePlayer.stop()
         UIView.animateWithDuration(0.3, animations: {
-            self.moviePlayer.stop()
-            self.moviePlayer.view.alpha = 0
             }) { (animate) in
-                self.moviePlayer.stop()
-                self.moviePlayer.view.removeFromSuperview()
-                self.moviePlayer = nil
+                self.videoPlayerViewController.view.removeFromSuperview()
+                self.videoPlayerViewController.moviePlayer.stop()
+                self.videoPlayerViewController = nil
         }
     }
 
@@ -174,11 +142,6 @@ class VideoViewController: UIViewController, UITableViewDelegate, UIAlertViewDel
     }
     
     func parseJson(complete: ()->()) {
-        /*
-         {
-         SalonId: 3
-         }
-         */
         let parameter = ["SalonId": 3]
         dispatch_async(dispatch_get_global_queue(0, 0)) { 
             Alamofire.request(.POST,VIDEO_YOUTUBE_API,parameters: parameter, encoding: .JSON)
@@ -187,7 +150,7 @@ class VideoViewController: UIViewController, UITableViewDelegate, UIAlertViewDel
                         let videos = json["d"].map(YoutubeNetwork.init)
                         for video in videos {
                             if YoutubeVideo.getVideoById(video.id) == nil {
-                                let v = YoutubeVideo.create(video.id, title: video.title, link: video.link, thumb: video.thumb, viewCount: video.viewCount,publistDate: video.publishDate)
+                                let v = YoutubeVideo.create(video.id, title: video.title, link: video.link, thumb: video.thumb, viewCount: video.viewCount,publistDate: video.publishDate, videoId: video.videoId)
                                 self.videoVariable.value.append(v)
                             }
                             else {
