@@ -527,8 +527,8 @@ extension BookingViewController {
     }
 }
 
+//MARK: Alertview delegate
 extension BookingViewController: UIAlertViewDelegate {
-    //MARK: Alertview delegate
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
         if buttonIndex == 0 {
             self.navigationController?.popViewControllerAnimated(true)
