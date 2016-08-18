@@ -24,8 +24,6 @@ class CustomerHistoryView: UIView, UITableViewDelegate {
         tbvHistory.delegate = self
         self.initData()
         
-        //Activity indicator
-        SVProgressHUD.showWithStatus("Đang tải dữ liệu")
     }
     
     static func createView(view : UIView) -> CustomerHistoryView! {
@@ -138,6 +136,8 @@ class CustomerHistoryView: UIView, UITableViewDelegate {
         reachability!.whenReachable = {
             reachability in
             dispatch_async(dispatch_get_main_queue()) {
+                //Activity indicator
+                SVProgressHUD.showWithStatus("Đang tải dữ liệu")
                 self.historyVar.value = []
                 let id = Login.getLogin().id
                 let token = Login.getLogin().acessToken

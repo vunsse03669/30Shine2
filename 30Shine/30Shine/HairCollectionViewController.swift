@@ -55,9 +55,6 @@ class HairCollectionViewController: UIViewController, UITableViewDelegate {
         imageView.frame = CGRectMake(0, 0, 64, 40)
         imageView.contentMode = .ScaleAspectFit
         self.navigationItem.titleView = imageView
-        
-        //Activity indicator
-        SVProgressHUD.showWithStatus("Đang tải dữ liệu")
     }
     
     //MARK: Tableview
@@ -81,6 +78,8 @@ class HairCollectionViewController: UIViewController, UITableViewDelegate {
             reachability in
             self.isConnectInternet = true
             dispatch_async(dispatch_get_main_queue()) {
+                //Activity indicator
+                SVProgressHUD.showWithStatus("Đang tải dữ liệu")
                 self.hairTypeVariable.value = []
                 self.parseJSON({ 
                     () in

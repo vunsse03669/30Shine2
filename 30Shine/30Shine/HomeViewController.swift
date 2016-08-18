@@ -54,9 +54,6 @@ class HomeViewController: UIViewController {
         self.navigationItem.titleView = imageView
         self.navigationController?.navigationBar.translucent = false
         self.configColletionLayout()
-        
-        //activity indicator
-        SVProgressHUD.showWithStatus("Đang tải dữ liệu")
     }
     
     func configColletionLayout() {
@@ -108,15 +105,9 @@ class HomeViewController: UIViewController {
                 case 3:
                     vc = self.storyboard?.instantiateViewControllerWithIdentifier("VideoViewController") as? VideoViewController
                 case 4:
-//                    if let url = NSURL(string: PRODUCT_LINK) {
-//                        UIApplication.sharedApplication().openURL(url)
-//                    }
                      vc = self.storyboard?.instantiateViewControllerWithIdentifier("CosmeticViewController") as? CosmeticViewController
                 case 5:
                     vc = self.storyboard?.instantiateViewControllerWithIdentifier("ListSalonsViewController") as? ListSalonsViewController
-                   // vc = ListSalonsViewController(nibName: "ListSalonsViewController", bundle: nil)
-                //SalonsViewController(nibName: "SalonsViewController", bundle: nil)//self.storyboard?.instantiateViewControllerWithIdentifier("ChainSystemViewController") as? ChainSystemViewController
-                    
                 case 6:
                     vc = self.storyboard?.instantiateViewControllerWithIdentifier("ServicesViewController") as? ServicesViewController
                 default:
@@ -207,6 +198,8 @@ class HomeViewController: UIViewController {
             reachability in
             self.isConnectInternet = true
             dispatch_async(dispatch_get_main_queue()) {
+                //activity indicator
+                SVProgressHUD.showWithStatus("Đang tải dữ liệu")
                 self.menuVariable.value = []
                 self.slideImageVar.value = []
                 self.parseJsonMenu({() in
