@@ -14,7 +14,7 @@ extension UINavigationController{
     }
     
     func pop(){
-        
+    
         let viewControllers: [UIViewController] = self.viewControllers as [UIViewController];
         for vc in viewControllers {
             self.popToViewController(vc, animated: true)
