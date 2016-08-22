@@ -63,6 +63,27 @@ class AdviseMenuController: UIViewController {
                 cell.lblDescreption.text = data.descreption
                 cell.imvAvatar.image = UIImage(named: "\(data.imagePath)")
         }
+        
+        //click on each item
+        _  = self.tbvMenu.rx_itemSelected.subscribeNext {
+            indexPath in
+            
+            self.tbvMenu.deselectRowAtIndexPath(indexPath, animated: false)
+            var vc : UIViewController!
+            
+            switch indexPath.row {
+            case 0:
+                vc = self.storyboard?.instantiateViewControllerWithIdentifier("AdviseHairController") as! AdviseHairController
+            case 1 :
+                print("invalid!")
+            default:
+                print("invalid!")
+            }
+            
+            if vc != nil {
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
     }
     
     //MARK: Init data

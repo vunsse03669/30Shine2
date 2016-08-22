@@ -19,6 +19,10 @@
 		18A29F2D1D6AE23600AA452D /* AdviseMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A29F2C1D6AE23600AA452D /* AdviseMenu.swift */; };
 		18A29F2F1D6AE40200AA452D /* AdviseMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A29F2E1D6AE40200AA452D /* AdviseMenuController.swift */; };
 		18A29F311D6AEA1700AA452D /* AdviseMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A29F301D6AEA1700AA452D /* AdviseMenuCell.swift */; };
+		18A29F341D6AF6EA00AA452D /* AdviseHairView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A29F331D6AF6EA00AA452D /* AdviseHairView.swift */; };
+		18A29F361D6AF6FD00AA452D /* AdviseHairView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A29F351D6AF6FD00AA452D /* AdviseHairView.xib */; };
+		18A29F381D6AF8CA00AA452D /* AdviseHairImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A29F371D6AF8CA00AA452D /* AdviseHairImageView.swift */; };
+		18A29F3A1D6AF8E400AA452D /* AdviseHairImageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A29F391D6AF8E400AA452D /* AdviseHairImageView.xib */; };
 		18A4A9761D641B1B00C4E413 /* HairIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A4A9751D641B1B00C4E413 /* HairIndex.swift */; };
 		18A4A97D1D6451ED00C4E413 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A4A97C1D6451ED00C4E413 /* CalendarView.swift */; };
 		18A4A97F1D6451FC00C4E413 /* CalendarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A4A97E1D6451FC00C4E413 /* CalendarView.xib */; };
@@ -122,6 +126,10 @@
 		18A29F2C1D6AE23600AA452D /* AdviseMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdviseMenu.swift; sourceTree = "<group>"; };
 		18A29F2E1D6AE40200AA452D /* AdviseMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdviseMenuController.swift; sourceTree = "<group>"; };
 		18A29F301D6AEA1700AA452D /* AdviseMenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdviseMenuCell.swift; sourceTree = "<group>"; };
+		18A29F331D6AF6EA00AA452D /* AdviseHairView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdviseHairView.swift; sourceTree = "<group>"; };
+		18A29F351D6AF6FD00AA452D /* AdviseHairView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdviseHairView.xib; sourceTree = "<group>"; };
+		18A29F371D6AF8CA00AA452D /* AdviseHairImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdviseHairImageView.swift; sourceTree = "<group>"; };
+		18A29F391D6AF8E400AA452D /* AdviseHairImageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdviseHairImageView.xib; sourceTree = "<group>"; };
 		18A4A9751D641B1B00C4E413 /* HairIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HairIndex.swift; sourceTree = "<group>"; };
 		18A4A97C1D6451ED00C4E413 /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		18A4A97E1D6451FC00C4E413 /* CalendarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalendarView.xib; sourceTree = "<group>"; };
@@ -308,6 +316,7 @@
 		18A29F281D6AE1D500AA452D /* Advise */ = {
 			isa = PBXGroup;
 			children = (
+				18A29F321D6AF6C300AA452D /* AdviseHair */,
 				18A29F301D6AEA1700AA452D /* AdviseMenuCell.swift */,
 			);
 			name = Advise;
@@ -320,6 +329,17 @@
 				18A29F2E1D6AE40200AA452D /* AdviseMenuController.swift */,
 			);
 			name = Advise;
+			sourceTree = "<group>";
+		};
+		18A29F321D6AF6C300AA452D /* AdviseHair */ = {
+			isa = PBXGroup;
+			children = (
+				18A29F331D6AF6EA00AA452D /* AdviseHairView.swift */,
+				18A29F351D6AF6FD00AA452D /* AdviseHairView.xib */,
+				18A29F371D6AF8CA00AA452D /* AdviseHairImageView.swift */,
+				18A29F391D6AF8E400AA452D /* AdviseHairImageView.xib */,
+			);
+			name = AdviseHair;
 			sourceTree = "<group>";
 		};
 		18A4A97B1D6451C900C4E413 /* Calendar */ = {
@@ -771,9 +791,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18A29F361D6AF6FD00AA452D /* AdviseHairView.xib in Resources */,
 				994299641D4769BF00D053B2 /* CustomerHistoryCell.xib in Resources */,
 				994299201D4769BF00D053B2 /* Main.storyboard in Resources */,
 				994299711D4769BF00D053B2 /* Info.plist in Resources */,
+				18A29F3A1D6AF8E400AA452D /* AdviseHairImageView.xib in Resources */,
 				994299761D4769BF00D053B2 /* ListSalonView.xib in Resources */,
 				18A4A97F1D6451FC00C4E413 /* CalendarView.xib in Resources */,
 				9942991E1D4769BF00D053B2 /* Assets.xcassets in Resources */,
@@ -851,6 +873,7 @@
 				18A4A9761D641B1B00C4E413 /* HairIndex.swift in Sources */,
 				994299841D4769BF00D053B2 /* SalonTableCell.swift in Sources */,
 				99876F041D4A58260094EF12 /* Ionicons.swift in Sources */,
+				18A29F381D6AF8CA00AA452D /* AdviseHairImageView.swift in Sources */,
 				9942995F1D4769BF00D053B2 /* ComboCell.swift in Sources */,
 				9942998A1D4769BF00D053B2 /* SlideNetwork.swift in Sources */,
 				E8A056101D54A0A200112F11 /* ListSalonsViewController.swift in Sources */,
@@ -884,6 +907,7 @@
 				994299801D4769BF00D053B2 /* ProfileViewController.swift in Sources */,
 				E8031EED1D587F930085DCA7 /* ServiceMenuCell.swift in Sources */,
 				9942998E1D4769BF00D053B2 /* Video.swift in Sources */,
+				18A29F341D6AF6EA00AA452D /* AdviseHairView.swift in Sources */,
 				9942999E1D476FB100D053B2 /* OtherService.swift in Sources */,
 				9917A8961D4E33F400D9D82B /* BookingNotificatioView.swift in Sources */,
 				994299831D4769BF00D053B2 /* SalonNetwork.swift in Sources */,
