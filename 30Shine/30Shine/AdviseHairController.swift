@@ -44,5 +44,8 @@ class AdviseHairController: UIViewController {
         profileImage = profileImage?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: profileImage, style: UIBarButtonItemStyle.Plain, target: self, action: #selector(handleProfile))
         
+        //create advise hair view
+        AdviseHairView.createView(self.containerView)
+        
     }
 }

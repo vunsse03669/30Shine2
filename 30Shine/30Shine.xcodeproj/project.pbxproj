@@ -25,8 +25,6 @@
 		18A29F311D6AEA1700AA452D /* AdviseMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A29F301D6AEA1700AA452D /* AdviseMenuCell.swift */; };
 		18A29F341D6AF6EA00AA452D /* AdviseHairView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A29F331D6AF6EA00AA452D /* AdviseHairView.swift */; };
 		18A29F361D6AF6FD00AA452D /* AdviseHairView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A29F351D6AF6FD00AA452D /* AdviseHairView.xib */; };
-		18A29F381D6AF8CA00AA452D /* AdviseHairImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A29F371D6AF8CA00AA452D /* AdviseHairImageView.swift */; };
-		18A29F3A1D6AF8E400AA452D /* AdviseHairImageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A29F391D6AF8E400AA452D /* AdviseHairImageView.xib */; };
 		18A4A9761D641B1B00C4E413 /* HairIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A4A9751D641B1B00C4E413 /* HairIndex.swift */; };
 		18A4A97D1D6451ED00C4E413 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A4A97C1D6451ED00C4E413 /* CalendarView.swift */; };
 		18A4A97F1D6451FC00C4E413 /* CalendarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A4A97E1D6451FC00C4E413 /* CalendarView.xib */; };
@@ -136,8 +134,6 @@
 		18A29F301D6AEA1700AA452D /* AdviseMenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdviseMenuCell.swift; sourceTree = "<group>"; };
 		18A29F331D6AF6EA00AA452D /* AdviseHairView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdviseHairView.swift; sourceTree = "<group>"; };
 		18A29F351D6AF6FD00AA452D /* AdviseHairView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdviseHairView.xib; sourceTree = "<group>"; };
-		18A29F371D6AF8CA00AA452D /* AdviseHairImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdviseHairImageView.swift; sourceTree = "<group>"; };
-		18A29F391D6AF8E400AA452D /* AdviseHairImageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdviseHairImageView.xib; sourceTree = "<group>"; };
 		18A4A9751D641B1B00C4E413 /* HairIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HairIndex.swift; sourceTree = "<group>"; };
 		18A4A97C1D6451ED00C4E413 /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		18A4A97E1D6451FC00C4E413 /* CalendarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalendarView.xib; sourceTree = "<group>"; };
@@ -346,8 +342,6 @@
 			children = (
 				18A29F331D6AF6EA00AA452D /* AdviseHairView.swift */,
 				18A29F351D6AF6FD00AA452D /* AdviseHairView.xib */,
-				18A29F371D6AF8CA00AA452D /* AdviseHairImageView.swift */,
-				18A29F391D6AF8E400AA452D /* AdviseHairImageView.xib */,
 				184E020D1D6B5CD400C2C636 /* ProductCell.swift */,
 				184E020F1D6B5CEF00C2C636 /* ProductCell.xib */,
 			);
@@ -807,7 +801,6 @@
 				994299641D4769BF00D053B2 /* CustomerHistoryCell.xib in Resources */,
 				994299201D4769BF00D053B2 /* Main.storyboard in Resources */,
 				994299711D4769BF00D053B2 /* Info.plist in Resources */,
-				18A29F3A1D6AF8E400AA452D /* AdviseHairImageView.xib in Resources */,
 				994299761D4769BF00D053B2 /* ListSalonView.xib in Resources */,
 				18A4A97F1D6451FC00C4E413 /* CalendarView.xib in Resources */,
 				9942991E1D4769BF00D053B2 /* Assets.xcassets in Resources */,
@@ -887,7 +880,6 @@
 				18A4A9761D641B1B00C4E413 /* HairIndex.swift in Sources */,
 				994299841D4769BF00D053B2 /* SalonTableCell.swift in Sources */,
 				99876F041D4A58260094EF12 /* Ionicons.swift in Sources */,
-				18A29F381D6AF8CA00AA452D /* AdviseHairImageView.swift in Sources */,
 				9942995F1D4769BF00D053B2 /* ComboCell.swift in Sources */,
 				9942998A1D4769BF00D053B2 /* SlideNetwork.swift in Sources */,
 				E8A056101D54A0A200112F11 /* ListSalonsViewController.swift in Sources */,
