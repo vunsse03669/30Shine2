@@ -15,6 +15,8 @@
 		186A11941D5C8CD800BDB3B3 /* HomeNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186A11931D5C8CD800BDB3B3 /* HomeNavigation.swift */; };
 		186F21E01D5BABDD00A8959C /* StylistWorkTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186F21DF1D5BABDD00A8959C /* StylistWorkTime.swift */; };
 		18908A801D5D7B320079A9FB /* ModificationCustomerInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18908A7F1D5D7B320079A9FB /* ModificationCustomerInfoController.swift */; };
+		18A29F2B1D6AE21500AA452D /* AdviseHairController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A29F2A1D6AE21500AA452D /* AdviseHairController.swift */; };
+		18A29F2D1D6AE23600AA452D /* AdviseMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A29F2C1D6AE23600AA452D /* AdviseMenu.swift */; };
 		18A4A9761D641B1B00C4E413 /* HairIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A4A9751D641B1B00C4E413 /* HairIndex.swift */; };
 		18A4A97D1D6451ED00C4E413 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A4A97C1D6451ED00C4E413 /* CalendarView.swift */; };
 		18A4A97F1D6451FC00C4E413 /* CalendarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A4A97E1D6451FC00C4E413 /* CalendarView.xib */; };
@@ -114,6 +116,8 @@
 		186A11931D5C8CD800BDB3B3 /* HomeNavigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeNavigation.swift; sourceTree = "<group>"; };
 		186F21DF1D5BABDD00A8959C /* StylistWorkTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StylistWorkTime.swift; sourceTree = "<group>"; };
 		18908A7F1D5D7B320079A9FB /* ModificationCustomerInfoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModificationCustomerInfoController.swift; sourceTree = "<group>"; };
+		18A29F2A1D6AE21500AA452D /* AdviseHairController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdviseHairController.swift; sourceTree = "<group>"; };
+		18A29F2C1D6AE23600AA452D /* AdviseMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdviseMenu.swift; sourceTree = "<group>"; };
 		18A4A9751D641B1B00C4E413 /* HairIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HairIndex.swift; sourceTree = "<group>"; };
 		18A4A97C1D6451ED00C4E413 /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		18A4A97E1D6451FC00C4E413 /* CalendarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalendarView.xib; sourceTree = "<group>"; };
@@ -289,6 +293,29 @@
 			name = Home;
 			sourceTree = "<group>";
 		};
+		18A29F271D6AE1BB00AA452D /* Advise */ = {
+			isa = PBXGroup;
+			children = (
+				18A29F2C1D6AE23600AA452D /* AdviseMenu.swift */,
+			);
+			name = Advise;
+			sourceTree = "<group>";
+		};
+		18A29F281D6AE1D500AA452D /* Advise */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Advise;
+			sourceTree = "<group>";
+		};
+		18A29F291D6AE1E800AA452D /* Advise */ = {
+			isa = PBXGroup;
+			children = (
+				18A29F2A1D6AE21500AA452D /* AdviseHairController.swift */,
+			);
+			name = Advise;
+			sourceTree = "<group>";
+		};
 		18A4A97B1D6451C900C4E413 /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
@@ -415,6 +442,7 @@
 		994299911D476B9B00D053B2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				18A29F291D6AE1E800AA452D /* Advise */,
 				186A118D1D5C7A0000BDB3B3 /* Login */,
 				186A118F1D5C7A2200BDB3B3 /* Home */,
 				186A118E1D5C7A0E00BDB3B3 /* Cosmetic */,
@@ -432,6 +460,7 @@
 		994299921D476BB000D053B2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				18A29F271D6AE1BB00AA452D /* Advise */,
 				18E15C481D658FBA00EA7471 /* Service */,
 				186A11821D5C5AE900BDB3B3 /* Login */,
 				9917A8991D4E3D3700D9D82B /* BookingNotification */,
@@ -452,6 +481,7 @@
 				9942989E1D4769BF00D053B2 /* Assets.xcassets */,
 				9942989F1D4769BF00D053B2 /* LaunchScreen.storyboard */,
 				994298A11D4769BF00D053B2 /* Main.storyboard */,
+				18A29F281D6AE1D500AA452D /* Advise */,
 				18E15C471D658F8500EA7471 /* Profile */,
 				18E15C461D658F7600EA7471 /* Menu */,
 				18E15C451D658F5F00EA7471 /* Video */,
@@ -819,6 +849,7 @@
 				E8A056101D54A0A200112F11 /* ListSalonsViewController.swift in Sources */,
 				186A11881D5C727500BDB3B3 /* CustomerInfoController.swift in Sources */,
 				E8031EE61D587F480085DCA7 /* ShineComboViewController.swift in Sources */,
+				18A29F2B1D6AE21500AA452D /* AdviseHairController.swift in Sources */,
 				994299811D4769BF00D053B2 /* Salon.swift in Sources */,
 				994299701D4769BF00D053B2 /* HomeViewController.swift in Sources */,
 				994299741D4769BF00D053B2 /* LazyImage.swift in Sources */,
@@ -836,6 +867,7 @@
 				18DD16F41D5C3B4200837986 /* SelectProfileController.swift in Sources */,
 				9942996F1D4769BF00D053B2 /* HistoryNetwork.swift in Sources */,
 				994299681D4769BF00D053B2 /* DetailHairViewController.swift in Sources */,
+				18A29F2D1D6AE23600AA452D /* AdviseMenu.swift in Sources */,
 				9942997A1D4769BF00D053B2 /* MenuNetwork.swift in Sources */,
 				9942991D1D4769BF00D053B2 /* AppDelegate.swift in Sources */,
 				186A11921D5C8CCB00BDB3B3 /* loginNavigation.swift in Sources */,
