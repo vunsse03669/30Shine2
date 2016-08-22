@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		184E020E1D6B5CD400C2C636 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184E020D1D6B5CD400C2C636 /* ProductCell.swift */; };
+		184E02101D6B5CEF00C2C636 /* ProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184E020F1D6B5CEF00C2C636 /* ProductCell.xib */; };
+		184E02121D6B60F000C2C636 /* AdviseHairNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184E02111D6B60F000C2C636 /* AdviseHairNetwork.swift */; };
+		184E02141D6B64BF00C2C636 /* AdviseHair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184E02131D6B64BF00C2C636 /* AdviseHair.swift */; };
 		186A11811D5C569A00BDB3B3 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186A11801D5C569A00BDB3B3 /* LoginController.swift */; };
 		186A11841D5C5AFD00BDB3B3 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186A11831D5C5AFD00BDB3B3 /* Login.swift */; };
 		186A11861D5C62BE00BDB3B3 /* LoginNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186A11851D5C62BE00BDB3B3 /* LoginNetwork.swift */; };
@@ -114,6 +118,10 @@
 
 /* Begin PBXFileReference section */
 		07F489400F76D4BC5F1DC920 /* Pods-30Shine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-30Shine.release.xcconfig"; path = "Pods/Target Support Files/Pods-30Shine/Pods-30Shine.release.xcconfig"; sourceTree = "<group>"; };
+		184E020D1D6B5CD400C2C636 /* ProductCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
+		184E020F1D6B5CEF00C2C636 /* ProductCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductCell.xib; sourceTree = "<group>"; };
+		184E02111D6B60F000C2C636 /* AdviseHairNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdviseHairNetwork.swift; sourceTree = "<group>"; };
+		184E02131D6B64BF00C2C636 /* AdviseHair.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdviseHair.swift; sourceTree = "<group>"; };
 		186A11801D5C569A00BDB3B3 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		186A11831D5C5AFD00BDB3B3 /* Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		186A11851D5C62BE00BDB3B3 /* LoginNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginNetwork.swift; sourceTree = "<group>"; };
@@ -309,6 +317,8 @@
 			isa = PBXGroup;
 			children = (
 				18A29F2C1D6AE23600AA452D /* AdviseMenu.swift */,
+				184E02111D6B60F000C2C636 /* AdviseHairNetwork.swift */,
+				184E02131D6B64BF00C2C636 /* AdviseHair.swift */,
 			);
 			name = Advise;
 			sourceTree = "<group>";
@@ -338,6 +348,8 @@
 				18A29F351D6AF6FD00AA452D /* AdviseHairView.xib */,
 				18A29F371D6AF8CA00AA452D /* AdviseHairImageView.swift */,
 				18A29F391D6AF8E400AA452D /* AdviseHairImageView.xib */,
+				184E020D1D6B5CD400C2C636 /* ProductCell.swift */,
+				184E020F1D6B5CEF00C2C636 /* ProductCell.xib */,
 			);
 			name = AdviseHair;
 			sourceTree = "<group>";
@@ -804,6 +816,7 @@
 				9942991F1D4769BF00D053B2 /* LaunchScreen.storyboard in Resources */,
 				E8F7B6DA1D57A6080094ADE4 /* SalonImageCell.xib in Resources */,
 				9942997D1D4769BF00D053B2 /* OtherServicesCell.xib in Resources */,
+				184E02101D6B5CEF00C2C636 /* ProductCell.xib in Resources */,
 				9917A8981D4E340A00D9D82B /* BookingNotificationView.xib in Resources */,
 				994299851D4769BF00D053B2 /* SalonTableCell.xib in Resources */,
 				994299601D4769BF00D053B2 /* ComboCell.xib in Resources */,
@@ -867,6 +880,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				184E02121D6B60F000C2C636 /* AdviseHairNetwork.swift in Sources */,
 				18A29F311D6AEA1700AA452D /* AdviseMenuCell.swift in Sources */,
 				9989658A1D488E0B006DEDF5 /* YoutubeNetwork.swift in Sources */,
 				9917A89B1D4E3D5F00D9D82B /* BookingNotification.swift in Sources */,
@@ -879,6 +893,7 @@
 				E8A056101D54A0A200112F11 /* ListSalonsViewController.swift in Sources */,
 				18A29F2F1D6AE40200AA452D /* AdviseMenuController.swift in Sources */,
 				186A11881D5C727500BDB3B3 /* CustomerInfoController.swift in Sources */,
+				184E020E1D6B5CD400C2C636 /* ProductCell.swift in Sources */,
 				E8031EE61D587F480085DCA7 /* ShineComboViewController.swift in Sources */,
 				18A29F2B1D6AE21500AA452D /* AdviseHairController.swift in Sources */,
 				994299811D4769BF00D053B2 /* Salon.swift in Sources */,
@@ -925,6 +940,7 @@
 				994299211D4769BF00D053B2 /* BookingViewController.swift in Sources */,
 				994299791D4769BF00D053B2 /* MenuCollectionViewCell.swift in Sources */,
 				9942998F1D4769BF00D053B2 /* VideoCell.swift in Sources */,
+				184E02141D6B64BF00C2C636 /* AdviseHair.swift in Sources */,
 				9942991C1D4769BF00D053B2 /* AppConstant.swift in Sources */,
 				186A11811D5C569A00BDB3B3 /* LoginController.swift in Sources */,
 				994299771D4769BF00D053B2 /* Menu.swift in Sources */,

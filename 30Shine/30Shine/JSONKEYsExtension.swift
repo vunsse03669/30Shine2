@@ -71,5 +71,14 @@ extension JSONKeys {
     static let login_dob = JSONKey<Int>("DayOfBirth")
     static let login_mob = JSONKey<Int>("MonthOfBirth")
     static let login_yob = JSONKey<Int>("YearOfBirth")
+    
+    //Advise Hair
+    static let advise_description = JSONKey<String>("Description")
+    static let advise_dateConsultant = JSONKey<String>("DateConsultant")
+    static let advise_product = JSONKey<JSON>("Products")
+    static let advise_id = JSONKey<Int>("Id")
+    static let advise_productName = JSONKey<String>("ProductName")
+    static let advise_price = JSONKey<Int>("Price")
+    static let advise_thumb = JSONKey<String>("Thumb")
 
 }
