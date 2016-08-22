@@ -103,6 +103,9 @@ class HomeViewController: UIViewController {
             selectedCell.bounceAction({
                 var vc : UIViewController!
                 switch indexPath.row {
+                case 0 :
+                    vc = self.storyboard?.instantiateViewControllerWithIdentifier("AdviseMenuController") as? AdviseMenuController
+                    
                 case 1 :
                     vc = self.storyboard?.instantiateViewControllerWithIdentifier("HairCollectionViewController") as? HairCollectionViewController
                 case 2 :
@@ -110,15 +113,20 @@ class HomeViewController: UIViewController {
                     
                 case 3:
                     vc = self.storyboard?.instantiateViewControllerWithIdentifier("VideoViewController") as? VideoViewController
+                    
                 case 4:
                      vc = self.storyboard?.instantiateViewControllerWithIdentifier("CosmeticViewController") as? CosmeticViewController
+                    
                 case 5:
                     vc = self.storyboard?.instantiateViewControllerWithIdentifier("ListSalonsViewController") as? ListSalonsViewController
+                    
                 case 6:
                     vc = self.storyboard?.instantiateViewControllerWithIdentifier("ServicesViewController") as? ServicesViewController
+                    
                 default:
                     print("Tap Failed!!!")
                 }
+                
                 if vc != nil {
                     self.navigationController?.pushViewController(vc, animated: true)
                 }

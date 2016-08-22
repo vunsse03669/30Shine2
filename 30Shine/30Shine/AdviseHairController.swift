@@ -10,4 +10,5 @@ import UIKit
 
 class AdviseHairController: UIViewController {
 
+    @IBOutlet weak var containerView: UIView!
 }
