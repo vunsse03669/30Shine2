@@ -106,6 +106,9 @@
 		E8031EE81D587F570085DCA7 /* ServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8031EE71D587F570085DCA7 /* ServicesViewController.swift */; };
 		E8031EED1D587F930085DCA7 /* ServiceMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8031EEB1D587F930085DCA7 /* ServiceMenuCell.swift */; };
 		E8043B251D5DADE500853948 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8043B241D5DADE500853948 /* RegisterViewController.swift */; };
+		E840B0E71D6C00AA006052D7 /* AdviseSkinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E840B0E61D6C00AA006052D7 /* AdviseSkinView.swift */; };
+		E840B0E91D6C00BF006052D7 /* AdviseSkinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E840B0E81D6C00BF006052D7 /* AdviseSkinView.xib */; };
+		E840B0EB1D6C03F8006052D7 /* AdviseSkinController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E840B0EA1D6C03F8006052D7 /* AdviseSkinController.swift */; };
 		E8A056101D54A0A200112F11 /* ListSalonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A0560E1D54A0A200112F11 /* ListSalonsViewController.swift */; };
 		E8CF8EF21D656FC50005B33B /* OtherServicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CF8EF01D656FC50005B33B /* OtherServicesView.swift */; };
 		E8CF8EF31D656FC50005B33B /* OtherServicesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8CF8EF11D656FC50005B33B /* OtherServicesView.xib */; };
@@ -217,6 +220,9 @@
 		E8031EE71D587F570085DCA7 /* ServicesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesViewController.swift; sourceTree = "<group>"; };
 		E8031EEB1D587F930085DCA7 /* ServiceMenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceMenuCell.swift; sourceTree = "<group>"; };
 		E8043B241D5DADE500853948 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		E840B0E61D6C00AA006052D7 /* AdviseSkinView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdviseSkinView.swift; sourceTree = "<group>"; };
+		E840B0E81D6C00BF006052D7 /* AdviseSkinView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdviseSkinView.xib; sourceTree = "<group>"; };
+		E840B0EA1D6C03F8006052D7 /* AdviseSkinController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdviseSkinController.swift; sourceTree = "<group>"; };
 		E8A0560E1D54A0A200112F11 /* ListSalonsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListSalonsViewController.swift; sourceTree = "<group>"; };
 		E8CF8EF01D656FC50005B33B /* OtherServicesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherServicesView.swift; sourceTree = "<group>"; };
 		E8CF8EF11D656FC50005B33B /* OtherServicesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OtherServicesView.xib; sourceTree = "<group>"; };
@@ -322,6 +328,7 @@
 		18A29F281D6AE1D500AA452D /* Advise */ = {
 			isa = PBXGroup;
 			children = (
+				E840B0E51D6BFEE2006052D7 /* AdviseSkin */,
 				18A29F321D6AF6C300AA452D /* AdviseHair */,
 				18A29F301D6AEA1700AA452D /* AdviseMenuCell.swift */,
 			);
@@ -333,6 +340,7 @@
 			children = (
 				18A29F2A1D6AE21500AA452D /* AdviseHairController.swift */,
 				18A29F2E1D6AE40200AA452D /* AdviseMenuController.swift */,
+				E840B0EA1D6C03F8006052D7 /* AdviseSkinController.swift */,
 			);
 			name = Advise;
 			sourceTree = "<group>";
@@ -665,6 +673,15 @@
 			name = ListSalon;
 			sourceTree = "<group>";
 		};
+		E840B0E51D6BFEE2006052D7 /* AdviseSkin */ = {
+			isa = PBXGroup;
+			children = (
+				E840B0E61D6C00AA006052D7 /* AdviseSkinView.swift */,
+				E840B0E81D6C00BF006052D7 /* AdviseSkinView.xib */,
+			);
+			name = AdviseSkin;
+			sourceTree = "<group>";
+		};
 		E8CF8EF41D6570240005B33B /* OtherServiceView */ = {
 			isa = PBXGroup;
 			children = (
@@ -807,6 +824,7 @@
 				99876F051D4A58260094EF12 /* ionicons.ttf in Resources */,
 				E8CF8EF31D656FC50005B33B /* OtherServicesView.xib in Resources */,
 				9942991F1D4769BF00D053B2 /* LaunchScreen.storyboard in Resources */,
+				E840B0E91D6C00BF006052D7 /* AdviseSkinView.xib in Resources */,
 				E8F7B6DA1D57A6080094ADE4 /* SalonImageCell.xib in Resources */,
 				9942997D1D4769BF00D053B2 /* OtherServicesCell.xib in Resources */,
 				184E02101D6B5CEF00C2C636 /* ProductCell.xib in Resources */,
@@ -907,6 +925,7 @@
 				994299681D4769BF00D053B2 /* DetailHairViewController.swift in Sources */,
 				18A29F2D1D6AE23600AA452D /* AdviseMenu.swift in Sources */,
 				9942997A1D4769BF00D053B2 /* MenuNetwork.swift in Sources */,
+				E840B0EB1D6C03F8006052D7 /* AdviseSkinController.swift in Sources */,
 				9942991D1D4769BF00D053B2 /* AppDelegate.swift in Sources */,
 				186A11921D5C8CCB00BDB3B3 /* loginNavigation.swift in Sources */,
 				E8031EE41D587F3A0085DCA7 /* OtherServicesViewController.swift in Sources */,
@@ -919,6 +938,7 @@
 				9917A8961D4E33F400D9D82B /* BookingNotificatioView.swift in Sources */,
 				994299831D4769BF00D053B2 /* SalonNetwork.swift in Sources */,
 				18DD16F61D5C3BFA00837986 /* ProfileItemCell.swift in Sources */,
+				E840B0E71D6C00AA006052D7 /* AdviseSkinView.swift in Sources */,
 				E8031EE81D587F570085DCA7 /* ServicesViewController.swift in Sources */,
 				9942996E1D4769BF00D053B2 /* HairTypeCell.swift in Sources */,
 				9942997C1D4769BF00D053B2 /* OtherServicesCell.swift in Sources */,

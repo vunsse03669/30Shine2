@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="mxg-OA-8B9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="mxg-OA-8B9">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -3150,6 +3150,62 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ic6-nl-fXK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1883" y="2752"/>
+        </scene>
+        <!--Advise Skin Controller-->
+        <scene sceneID="51y-VY-guZ">
+            <objects>
+                <viewController storyboardIdentifier="AdviseSkinController" id="zX9-K7-Iya" userLabel="Advise Skin Controller" customClass="AdviseSkinController" customModule="_0Shine" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IHu-Hx-X2M"/>
+                        <viewControllerLayoutGuide type="bottom" id="MIa-a7-zGN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zLV-20-NJL">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Dq-wo-xA5">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CHUYÊN GIA TƯ VẤN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pKf-JY-5OD">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.84705882349999995" green="0.85098039219999999" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="pKf-JY-5OD" secondAttribute="trailing" id="3mu-w2-WTS"/>
+                                    <constraint firstItem="pKf-JY-5OD" firstAttribute="top" secondItem="0Dq-wo-xA5" secondAttribute="top" id="6Ej-DP-bZz"/>
+                                    <constraint firstAttribute="bottom" secondItem="pKf-JY-5OD" secondAttribute="bottom" id="SpM-3X-PNZ"/>
+                                    <constraint firstItem="pKf-JY-5OD" firstAttribute="leading" secondItem="0Dq-wo-xA5" secondAttribute="leading" id="Vrv-LD-jld"/>
+                                    <constraint firstAttribute="height" constant="44" id="gx8-72-Nw2"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1zQ-As-bMc">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="0Dq-wo-xA5" firstAttribute="top" secondItem="IHu-Hx-X2M" secondAttribute="bottom" id="5gq-3K-KFy"/>
+                            <constraint firstAttribute="trailing" secondItem="1zQ-As-bMc" secondAttribute="trailing" id="8cX-T0-piO"/>
+                            <constraint firstItem="MIa-a7-zGN" firstAttribute="top" secondItem="1zQ-As-bMc" secondAttribute="bottom" id="LIq-je-mPs"/>
+                            <constraint firstItem="0Dq-wo-xA5" firstAttribute="leading" secondItem="zLV-20-NJL" secondAttribute="leading" id="Yet-Yk-7YM"/>
+                            <constraint firstAttribute="trailing" secondItem="0Dq-wo-xA5" secondAttribute="trailing" id="bfO-s2-fFO"/>
+                            <constraint firstItem="1zQ-As-bMc" firstAttribute="top" secondItem="pKf-JY-5OD" secondAttribute="bottom" id="d1k-bP-uur"/>
+                            <constraint firstItem="1zQ-As-bMc" firstAttribute="leading" secondItem="zLV-20-NJL" secondAttribute="leading" id="yMZ-BX-Rj1"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="5VN-Vg-Mq7"/>
+                    <connections>
+                        <outlet property="containerView" destination="1zQ-As-bMc" id="SnO-hu-V9n"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uIK-TH-bMy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3122" y="6848"/>
         </scene>
     </scenes>
     <resources>
