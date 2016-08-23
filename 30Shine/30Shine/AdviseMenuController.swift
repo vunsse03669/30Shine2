@@ -81,7 +81,7 @@ class AdviseMenuController: UIViewController {
             case 0:
                 vc = self.storyboard?.instantiateViewControllerWithIdentifier("AdviseHairController") as! AdviseHairController
             case 1 :
-                print("invalid!")
+                vc = self.storyboard?.instantiateViewControllerWithIdentifier("AdviseSkinController") as! AdviseSkinController
             default:
                 print("invalid!")
             }
