@@ -2956,7 +2956,7 @@
                                     <constraint firstAttribute="bottom" secondItem="dPZ-fZ-7XR" secondAttribute="bottom" id="YmN-Ve-8jR"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lần tư vấn gần nhất: 05/08/2016" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ryW-kQ-P0k">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ryW-kQ-P0k">
                                 <rect key="frame" x="8" y="109" width="584" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="FHo-ib-8xE"/>
@@ -3035,6 +3035,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="SaF-W8-b5b"/>
                     <connections>
+                        <outlet property="lblDate" destination="ryW-kQ-P0k" id="eGr-I0-gGf"/>
                         <outlet property="tbvMenu" destination="zcV-AE-Vkw" id="ttw-XD-rj7"/>
                     </connections>
                 </viewController>

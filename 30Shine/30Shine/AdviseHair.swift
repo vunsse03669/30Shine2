@@ -34,6 +34,10 @@ extension AdviseHair {
         let predicate = NSPredicate(format: "dateConsultant = %@", date)
         return sDB.realm.objects(AdviseHair).filter(predicate).first
     }
+    
+    static func getAdviseHair() -> AdviseHair! {
+        return sDB.realm.objects(AdviseHair).first
+    }
 }
 
 class Product : Object {

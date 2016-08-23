@@ -13,6 +13,7 @@ import RxCocoa
 
 class AdviseMenuController: UIViewController {
     
+    @IBOutlet weak var lblDate: UILabel!
     @IBOutlet weak var tbvMenu: UITableView!
     
     
@@ -51,6 +52,10 @@ class AdviseMenuController: UIViewController {
         var profileImage = UIImage(named: "img-people")
         profileImage = profileImage?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: profileImage, style: UIBarButtonItemStyle.Plain, target: self, action: #selector(handleProfile))
+        
+        //Consultant date
+        let consultantDate = AdviseHair.getAdviseHair().dateConsultant
+        self.lblDate.text = "Lần tư vấn gần nhất: \(consultantDate)"
         
     }
     
