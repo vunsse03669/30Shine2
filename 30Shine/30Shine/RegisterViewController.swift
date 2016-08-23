@@ -123,10 +123,6 @@ class RegisterViewController: UIViewController , UITextFieldDelegate, CalendarDe
         textEmail.delegate = self
     }
     
-    let RANGE_AFTER = 10
-    let RANGE_BEFORE = 11
-    let PASSWORD_MINLETTER = 6
-    
     func validate() -> Bool{
         //check empty
         if(!self.checkNoEmptyTextFieldIn(self.view)){
