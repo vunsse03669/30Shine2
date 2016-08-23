@@ -54,9 +54,10 @@ class AdviseMenuController: UIViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: profileImage, style: UIBarButtonItemStyle.Plain, target: self, action: #selector(handleProfile))
         
         //Consultant date
-        let consultantDate = AdviseHair.getAdviseHair().dateConsultant
-        self.lblDate.text = "Lần tư vấn gần nhất: \(consultantDate)"
-        
+        if AdviseHair.getAdviseHair() != nil {
+            let consultantDate = AdviseHair.getAdviseHair().dateConsultant
+            self.lblDate.text = "Lần tư vấn gần nhất: \(consultantDate)"
+        }
     }
     
     //MARK: Config table view 

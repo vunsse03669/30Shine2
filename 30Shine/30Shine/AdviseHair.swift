@@ -66,4 +66,12 @@ class Product : Object {
         let predicate = NSPredicate(format: "id = %d", id)
         return sDB.realm.objects(Product).filter(predicate).first
     }
+    
+    static func getAllProduct() -> [Product] {
+        var products = [Product]()
+        for product in sDB.realm.objects(Product) {
+            products.append(product)
+        }
+        return products
+    }
 }

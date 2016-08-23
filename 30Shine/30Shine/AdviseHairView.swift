@@ -11,6 +11,7 @@ import RxCocoa
 import RxSwift
 import Alamofire
 import RealmSwift
+import ReachabilitySwift
 
 class AdviseHairView: UIView {
 
@@ -20,6 +21,7 @@ class AdviseHairView: UIView {
     
     var advise : Variable<[AdviseHair]> = Variable([])
     var product : Variable<[Product]> = Variable([])
+    var reachability : Reachability?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -66,22 +68,66 @@ class AdviseHairView: UIView {
     
     //MARK: config data
     func configData() {
-        let cId = Login.getLogin().id
-        self.parseJson(cId) {
-            // have data
-            if self.advise.value[0].dateConsultant != "" {
-                self.configTableView()
-                self.bindingData()
-            }
-            // not have data
-            else {
-               self.addImage()
+        do {
+            reachability = try! Reachability.reachabilityForInternetConnection()
+        }
+        reachability!.whenReachable = {
+            reachability in
+            dispatch_async(dispatch_get_main_queue()) {
+                self.advise.value = []
+                let cId = Login.getLogin().id
+                self.parseJson(cId) {
+                    // have data
+                    if self.advise.value[0].dateConsultant != "" {
+                        self.bindingData()
+                    }
+                    // not have data
+                    else {
+                        self.addImage()
+                    }
+                }
             }
         }
+        reachability!.whenUnreachable = {
+            reachability in
+            dispatch_async(dispatch_get_main_queue()) {
+                self.advise.value = []
+                self.product.value = []
+                if AdviseHair.getAdviseHair() != nil {
+                    self.advise.value.append(AdviseHair.getAdviseHair())
+                    // have data
+                    if self.advise.value[0].dateConsultant != "" {
+                        self.bindingData()
+                    }
+                        // not have data
+                    else {
+                        self.addImage()
+                    }
+                }
+                if Product.getAllProduct().count != 0 {
+                    self.product.value = Product.getAllProduct()
+                }
+            }
+        }
+        
+        self.configTableView()
+        
+        try! reachability?.startNotifier()
     }
     
     func bindingData() {
         self.lblNote.text = self.advise.value[0].descriptionn
+    }
+    
+    func checkData() {
+        // have data
+        if self.advise.value[0].dateConsultant != "" {
+            self.bindingData()
+        }
+            // not have data
+        else {
+            self.addImage()
+        }
     }
     
     func parseJson(customerId : Int, completion : () -> ()) {
@@ -119,5 +165,11 @@ class AdviseHairView: UIView {
                 completion()
             }
         }
+    }
+    
+    //MARK: Helper
+    func alert(title : String, msg : String) {
+        let alert = UIAlertView(title: title, message: msg, delegate: nil, cancelButtonTitle: "Xác nhận")
+        alert.show()
     }
 }

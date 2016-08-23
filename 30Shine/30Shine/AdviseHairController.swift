@@ -52,26 +52,6 @@ class AdviseHairController: UIViewController {
         
     }
     
-    //MARK: check internet
-    func checkInternet() {
-        do {
-            reachability = try! Reachability.reachabilityForInternetConnection()
-        }
-        reachability!.whenReachable = {
-            reachability in
-            dispatch_async(dispatch_get_main_queue()) {
-                
-            }
-        }
-        reachability!.whenUnreachable = {
-            reachability in
-            dispatch_async(dispatch_get_main_queue()) {
-                
-            }
-        }
-        try! reachability?.startNotifier()
-    }
-    
     //MARK: Helper
     func alert(title : String, msg : String) {
         let alert = UIAlertView(title: title, message: msg, delegate: nil, cancelButtonTitle: "Xác nhận")
