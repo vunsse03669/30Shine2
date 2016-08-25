@@ -95,9 +95,9 @@ class AdviseMenuController: UIViewController {
     //MARK: Init data
     func initData() {
         self.adviseMenu.value.append(AdviseMenu(title: "Tóc và da đầu",
-            descreption: "Xem phân tích chất tóc và da đâu của bạn hơn để chăm sóc cho đúng cách", imagePath: "shineCombo"))
+            descreption: "Xem phân tích chất tóc và da đâu của bạn hơn để chăm sóc cho đúng cách", imagePath: "hairAdvise"))
         self.adviseMenu.value.append(AdviseMenu(title: "Da và cơ thể",
-            descreption: "Hiểu loại da của bạn để lựa chọn sản phẩm chăm sóc tóc phù hợp", imagePath: "shineCombo"))
+            descreption: "Hiểu loại da của bạn để lựa chọn sản phẩm chăm sóc tóc phù hợp", imagePath: "skinAdvise"))
     }
 
 }
