@@ -9,6 +9,7 @@
 import UIKit
 import MediaPlayer
 import ReachabilitySwift
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,11 +22,48 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
         UINavigationBar.appearance().barTintColor = UIColor.blackColor()
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
-
+        
+        FIRApp.configure()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self,
+                                                         selector: #selector(tokenRefreshNotification(_:)),
+                                                         name: kFIRInstanceIDTokenRefreshNotification,
+                                                         object: nil)
+        
         self.window!.backgroundColor = .whiteColor();
         self.checkInternet()
         self.checkLogin()
         return true
+    }
+    
+    
+    
+    // NOTE: Need to use this when swizzling is disabled
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        
+        FIRInstanceID.instanceID().setAPNSToken(deviceToken, type: FIRInstanceIDAPNSTokenType.Sandbox)
+    }
+    
+    func tokenRefreshNotification(notification: NSNotification) {
+        // NOTE: It can be nil here
+        let refreshedToken = FIRInstanceID.instanceID().token()
+        print("InstanceID token: \(refreshedToken)")
+        
+        connectToFcm()
+    }
+    
+    func connectToFcm() {
+        FIRMessaging.messaging().connectWithCompletion { (error) in
+            if (error != nil) {
+                print("Unable to connect with FCM. \(error)")
+            } else {
+                print("Connected to FCM.")
+            }
+        }
+    }
+    
+     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        print(userInfo)
     }
     
     func checkLogin() {

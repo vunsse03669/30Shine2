@@ -101,6 +101,7 @@
 		9991DCAD1D531E9F00E97910 /* CosmeticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9991DCAC1D531E9F00E97910 /* CosmeticViewController.swift */; };
 		99BC264C1D4B4324006E3ACE /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BC264B1D4B4324006E3ACE /* ViewControllerExtension.swift */; };
 		E800B99F1D4E5C0D003A7031 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E800B99E1D4E5C0D003A7031 /* Extensions.swift */; };
+		E80159381D6EFC5100F21EEF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E80159371D6EFC5100F21EEF /* GoogleService-Info.plist */; };
 		E8031EE41D587F3A0085DCA7 /* OtherServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8031EE31D587F3A0085DCA7 /* OtherServicesViewController.swift */; };
 		E8031EE61D587F480085DCA7 /* ShineComboViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8031EE51D587F480085DCA7 /* ShineComboViewController.swift */; };
 		E8031EE81D587F570085DCA7 /* ServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8031EE71D587F570085DCA7 /* ServicesViewController.swift */; };
@@ -215,6 +216,7 @@
 		9991DCAC1D531E9F00E97910 /* CosmeticViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosmeticViewController.swift; sourceTree = "<group>"; };
 		99BC264B1D4B4324006E3ACE /* ViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
 		E800B99E1D4E5C0D003A7031 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		E80159371D6EFC5100F21EEF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E8031EE31D587F3A0085DCA7 /* OtherServicesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherServicesViewController.swift; sourceTree = "<group>"; };
 		E8031EE51D587F480085DCA7 /* ShineComboViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShineComboViewController.swift; sourceTree = "<group>"; };
 		E8031EE71D587F570085DCA7 /* ServicesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesViewController.swift; sourceTree = "<group>"; };
@@ -482,6 +484,7 @@
 		994299911D476B9B00D053B2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E80159371D6EFC5100F21EEF /* GoogleService-Info.plist */,
 				18A29F291D6AE1E800AA452D /* Advise */,
 				186A118D1D5C7A0000BDB3B3 /* Login */,
 				186A118F1D5C7A2200BDB3B3 /* Home */,
@@ -787,7 +790,12 @@
 				TargetAttributes = {
 					994298851D47675E00D053B2 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = YCJNEHP2D6;
+						DevelopmentTeam = RYSKGJU4N5;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -831,6 +839,7 @@
 				9917A8981D4E340A00D9D82B /* BookingNotificationView.xib in Resources */,
 				994299851D4769BF00D053B2 /* SalonTableCell.xib in Resources */,
 				994299601D4769BF00D053B2 /* ComboCell.xib in Resources */,
+				E80159381D6EFC5100F21EEF /* GoogleService-Info.plist in Resources */,
 				9942998D1D4769BF00D053B2 /* UTM Alexander.ttf in Resources */,
 				994299661D4769BF00D053B2 /* CustomerHistoryView.xib in Resources */,
 			);
@@ -1099,7 +1108,7 @@
 				INFOPLIST_FILE = 30Shine/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = vu.30Shine;
+				PRODUCT_BUNDLE_IDENTIFIER = com.30Shine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1116,7 +1125,7 @@
 				INFOPLIST_FILE = 30Shine/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = vu.30Shine;
+				PRODUCT_BUNDLE_IDENTIFIER = com.30Shine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
