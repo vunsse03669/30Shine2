@@ -83,6 +83,13 @@ class VideoViewController: UIViewController, UITableViewDelegate, UIAlertViewDel
             videoPlayerViewController.presentInView(self.view)
             videoPlayerViewController.moviePlayer.play()
             videoPlayerViewController.moviePlayer.fullscreen = true
+            
+            do{
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            } catch {
+                //Didn't work
+            }
+            
              NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(VideoViewController.doneButtonClick(_:)), name: MPMoviePlayerWillExitFullscreenNotification, object: nil)
         }
     }

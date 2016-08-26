@@ -475,6 +475,7 @@
 				994299921D476BB000D053B2 /* Model */,
 				994299931D476BBC00D053B2 /* View */,
 				994299911D476B9B00D053B2 /* Controller */,
+				E80159371D6EFC5100F21EEF /* GoogleService-Info.plist */,
 				994298FC1D4769BF00D053B2 /* Info.plist */,
 				994299181D4769BF00D053B2 /* UTM Alexander.ttf */,
 			);
@@ -484,7 +485,6 @@
 		994299911D476B9B00D053B2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				E80159371D6EFC5100F21EEF /* GoogleService-Info.plist */,
 				18A29F291D6AE1E800AA452D /* Advise */,
 				186A118D1D5C7A0000BDB3B3 /* Login */,
 				186A118F1D5C7A2200BDB3B3 /* Home */,
