@@ -13,6 +13,7 @@ import Alamofire
 import JASON
 import RealmSwift
 import ReachabilitySwift
+import SVProgressHUD
 
 class ListSalonView: UIView, UITableViewDelegate {
     
@@ -47,9 +48,16 @@ class ListSalonView: UIView, UITableViewDelegate {
             reachability in
             self.isConnectInternet = true
             dispatch_async(dispatch_get_main_queue()) {
+                
+                //activity indicator
+                SVProgressHUD.showWithStatus("Đang tải dữ liệu")
+                
                 self.salonVariable.value = []
                 self.parseJsonSalonSystem({ 
                     () in
+                    dispatch_async(dispatch_get_main_queue(), {
+                        SVProgressHUD.popActivity()
+                    })
                 })
             }
         }
