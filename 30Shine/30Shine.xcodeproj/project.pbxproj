@@ -28,6 +28,7 @@
 		18A4A9761D641B1B00C4E413 /* HairIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A4A9751D641B1B00C4E413 /* HairIndex.swift */; };
 		18A4A97D1D6451ED00C4E413 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A4A97C1D6451ED00C4E413 /* CalendarView.swift */; };
 		18A4A97F1D6451FC00C4E413 /* CalendarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A4A97E1D6451FC00C4E413 /* CalendarView.xib */; };
+		18CFFE941D71C74E0034EBE4 /* ForgetPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CFFE931D71C74E0034EBE4 /* ForgetPasswordController.swift */; };
 		18DD16F41D5C3B4200837986 /* SelectProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD16F31D5C3B4200837986 /* SelectProfileController.swift */; };
 		18DD16F61D5C3BFA00837986 /* ProfileItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD16F51D5C3BFA00837986 /* ProfileItemCell.swift */; };
 		18DD16F81D5C3E7F00837986 /* ProfileItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD16F71D5C3E7F00837986 /* ProfileItem.swift */; };
@@ -141,6 +142,7 @@
 		18A4A9751D641B1B00C4E413 /* HairIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HairIndex.swift; sourceTree = "<group>"; };
 		18A4A97C1D6451ED00C4E413 /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		18A4A97E1D6451FC00C4E413 /* CalendarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalendarView.xib; sourceTree = "<group>"; };
+		18CFFE931D71C74E0034EBE4 /* ForgetPasswordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetPasswordController.swift; sourceTree = "<group>"; };
 		18DD16F31D5C3B4200837986 /* SelectProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectProfileController.swift; sourceTree = "<group>"; };
 		18DD16F51D5C3BFA00837986 /* ProfileItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileItemCell.swift; sourceTree = "<group>"; };
 		18DD16F71D5C3E7F00837986 /* ProfileItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileItem.swift; sourceTree = "<group>"; };
@@ -296,6 +298,7 @@
 				186A11801D5C569A00BDB3B3 /* LoginController.swift */,
 				186A11911D5C8CCB00BDB3B3 /* loginNavigation.swift */,
 				E8043B241D5DADE500853948 /* RegisterViewController.swift */,
+				18CFFE931D71C74E0034EBE4 /* ForgetPasswordController.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -975,6 +978,7 @@
 				99876F011D4A58030094EF12 /* UIDropDownTime.swift in Sources */,
 				9942999D1D476FB100D053B2 /* ComboNetwork.swift in Sources */,
 				E8F806DB1D577FAE005AA7AA /* DetailSalonViewController.swift in Sources */,
+				18CFFE941D71C74E0034EBE4 /* ForgetPasswordController.swift in Sources */,
 				9942997B1D4769BF00D053B2 /* OtherHairCollectionViewCell.swift in Sources */,
 				9942999F1D476FB100D053B2 /* OtherServiceNetwork.swift in Sources */,
 				E8F7B6D91D57A6080094ADE4 /* SalonImageCell.swift in Sources */,

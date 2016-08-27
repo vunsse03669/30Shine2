@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="mxg-OA-8B9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="mxg-OA-8B9">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -164,6 +164,186 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pgT-ke-vUe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-313" y="-707"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="QqC-n4-awx">
+            <objects>
+                <navigationController id="bcJ-tq-iod" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3o4-fv-AgF">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="tak-CG-fvX" kind="relationship" relationship="rootViewController" id="pZD-fm-ZdM"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZNu-gH-NMb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="330" y="-698"/>
+        </scene>
+        <!--Forget Password Controller-->
+        <scene sceneID="TXW-1K-BD5">
+            <objects>
+                <viewController storyboardIdentifier="ForgetPasswordController" id="tak-CG-fvX" customClass="ForgetPasswordController" customModule="_0Shine" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="CbM-Jr-l24"/>
+                        <viewControllerLayoutGuide type="bottom" id="Hqj-G2-btm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="62a-4R-X3f">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fsL-fB-WXX">
+                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LẤY LẠI MẬT KHẨU" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9BQ-fM-7DJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.84705882349999995" green="0.85098039219999999" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="9BQ-fM-7DJ" secondAttribute="bottom" id="GnN-Cp-N9a"/>
+                                    <constraint firstAttribute="trailing" secondItem="9BQ-fM-7DJ" secondAttribute="trailing" id="PpJ-Ik-3NB"/>
+                                    <constraint firstItem="9BQ-fM-7DJ" firstAttribute="top" secondItem="fsL-fB-WXX" secondAttribute="top" id="agH-hD-0AB"/>
+                                    <constraint firstAttribute="height" constant="44" id="dpo-tn-kS7"/>
+                                    <constraint firstItem="9BQ-fM-7DJ" firstAttribute="leading" secondItem="fsL-fB-WXX" secondAttribute="leading" id="f17-zh-jk1"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="soG-AO-SE1">
+                                <rect key="frame" x="20" y="108" width="560" height="62"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="62" id="syN-IN-EO2"/>
+                                </constraints>
+                                <attributedString key="attributedText">
+                                    <fragment content="Quý khách vui lòng nhập đúng ">
+                                        <attributes>
+                                            <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <font key="NSFont" size="17" name="HelveticaNeue-Italic"/>
+                                            <font key="NSOriginalFont" size="17" name="HelveticaNeue-Italic"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="số điện thoại">
+                                        <attributes>
+                                            <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <font key="NSFont" size="17" name="HelveticaNeue-MediumItalic"/>
+                                            <font key="NSOriginalFont" size="17" name="HelveticaNeue-MediumItalic"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content=" và ">
+                                        <attributes>
+                                            <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <font key="NSFont" size="17" name="HelveticaNeue-Italic"/>
+                                            <font key="NSOriginalFont" size="17" name="HelveticaNeue-Italic"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="email">
+                                        <attributes>
+                                            <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <font key="NSFont" size="17" name="HelveticaNeue-MediumItalic"/>
+                                            <font key="NSOriginalFont" size="17" name="HelveticaNeue-MediumItalic"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content=" đăng ký để nhận lại mật khẩu">
+                                        <attributes>
+                                            <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <font key="NSFont" size="17" name="HelveticaNeue-Italic"/>
+                                            <font key="NSOriginalFont" size="17" name="HelveticaNeue-Italic"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Số điện thoại *" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdO-zb-da1">
+                                <rect key="frame" x="20" y="178" width="560" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="Isq-ec-o5f"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Số điện thoại *" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UGk-x5-aEK">
+                                <rect key="frame" x="20" y="245" width="560" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="0hK-Q3-7ot"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="I1l-6B-OnR">
+                                <rect key="frame" x="20" y="207" width="560" height="30"/>
+                                <color key="backgroundColor" red="0.84705882349999995" green="0.85098039219999999" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="2zt-SK-BeK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kS3-am-V9B">
+                                <rect key="frame" x="20" y="274" width="560" height="30"/>
+                                <color key="backgroundColor" red="0.84705882349999995" green="0.85098039219999999" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Ckd-ZP-HQq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="utL-Et-8hJ">
+                                <rect key="frame" x="180" y="316" width="240" height="44"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="9Mo-6p-vCb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="GỬI LẠI MẬT KHẨU">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="UGk-x5-aEK" secondAttribute="trailing" constant="20" id="6Z8-fM-d17"/>
+                            <constraint firstItem="I1l-6B-OnR" firstAttribute="leading" secondItem="62a-4R-X3f" secondAttribute="leading" constant="20" id="Egn-t3-VJU"/>
+                            <constraint firstItem="kS3-am-V9B" firstAttribute="leading" secondItem="62a-4R-X3f" secondAttribute="leading" constant="20" id="FSz-Mh-Fnc"/>
+                            <constraint firstItem="soG-AO-SE1" firstAttribute="top" secondItem="fsL-fB-WXX" secondAttribute="bottom" id="Fva-Ug-82h"/>
+                            <constraint firstItem="utL-Et-8hJ" firstAttribute="top" secondItem="kS3-am-V9B" secondAttribute="bottom" constant="12" id="WWz-vm-9iK"/>
+                            <constraint firstItem="UGk-x5-aEK" firstAttribute="leading" secondItem="62a-4R-X3f" secondAttribute="leading" constant="20" id="XPq-eF-coP"/>
+                            <constraint firstAttribute="trailing" secondItem="I1l-6B-OnR" secondAttribute="trailing" constant="20" id="a5H-La-VRt"/>
+                            <constraint firstAttribute="trailing" secondItem="qdO-zb-da1" secondAttribute="trailing" constant="20" id="bCl-Mh-Pnm"/>
+                            <constraint firstItem="UGk-x5-aEK" firstAttribute="top" secondItem="I1l-6B-OnR" secondAttribute="bottom" constant="8" id="bPz-t4-2rv"/>
+                            <constraint firstItem="qdO-zb-da1" firstAttribute="top" secondItem="soG-AO-SE1" secondAttribute="bottom" constant="8" id="efa-VG-4UF"/>
+                            <constraint firstItem="kS3-am-V9B" firstAttribute="top" secondItem="UGk-x5-aEK" secondAttribute="bottom" constant="8" id="emk-1H-gFe"/>
+                            <constraint firstItem="fsL-fB-WXX" firstAttribute="top" secondItem="CbM-Jr-l24" secondAttribute="bottom" id="h9V-P5-SMG"/>
+                            <constraint firstItem="qdO-zb-da1" firstAttribute="leading" secondItem="62a-4R-X3f" secondAttribute="leading" constant="20" id="juV-Jx-xyq"/>
+                            <constraint firstAttribute="trailing" secondItem="kS3-am-V9B" secondAttribute="trailing" constant="20" id="nfa-8S-v2F"/>
+                            <constraint firstAttribute="trailing" secondItem="fsL-fB-WXX" secondAttribute="trailing" id="ohf-0x-eUJ"/>
+                            <constraint firstItem="utL-Et-8hJ" firstAttribute="width" secondItem="62a-4R-X3f" secondAttribute="width" multiplier="0.4" id="qkO-j0-GZo"/>
+                            <constraint firstItem="utL-Et-8hJ" firstAttribute="centerX" secondItem="62a-4R-X3f" secondAttribute="centerX" id="rrP-6N-H0g"/>
+                            <constraint firstItem="I1l-6B-OnR" firstAttribute="top" secondItem="qdO-zb-da1" secondAttribute="bottom" constant="8" id="tfE-UD-Zzy"/>
+                            <constraint firstAttribute="trailing" secondItem="soG-AO-SE1" secondAttribute="trailing" constant="20" id="uEH-92-kO5"/>
+                            <constraint firstItem="soG-AO-SE1" firstAttribute="leading" secondItem="62a-4R-X3f" secondAttribute="leading" constant="20" id="vFU-T9-0hX"/>
+                            <constraint firstItem="fsL-fB-WXX" firstAttribute="leading" secondItem="62a-4R-X3f" secondAttribute="leading" id="xaK-US-eGF"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="NBb-fv-pVH"/>
+                    <connections>
+                        <outlet property="btnSubmit" destination="utL-Et-8hJ" id="Fc3-MO-idC"/>
+                        <outlet property="txtMail" destination="kS3-am-V9B" id="TAU-DJ-ZFC"/>
+                        <outlet property="txtPhone" destination="kS3-am-V9B" id="JQm-zn-IHq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hwH-8b-b9M" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1071" y="-698"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="tne-QT-ifu">
