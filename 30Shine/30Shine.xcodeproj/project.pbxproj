@@ -29,6 +29,8 @@
 		18A4A97D1D6451ED00C4E413 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A4A97C1D6451ED00C4E413 /* CalendarView.swift */; };
 		18A4A97F1D6451FC00C4E413 /* CalendarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A4A97E1D6451FC00C4E413 /* CalendarView.xib */; };
 		18CFFE941D71C74E0034EBE4 /* ForgetPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CFFE931D71C74E0034EBE4 /* ForgetPasswordController.swift */; };
+		18D86E781D71E4350002D6D4 /* ForgetAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D86E771D71E4350002D6D4 /* ForgetAlertView.swift */; };
+		18D86E7A1D71E46E0002D6D4 /* ForgetAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D86E791D71E46E0002D6D4 /* ForgetAlertView.xib */; };
 		18DD16F41D5C3B4200837986 /* SelectProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD16F31D5C3B4200837986 /* SelectProfileController.swift */; };
 		18DD16F61D5C3BFA00837986 /* ProfileItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD16F51D5C3BFA00837986 /* ProfileItemCell.swift */; };
 		18DD16F81D5C3E7F00837986 /* ProfileItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD16F71D5C3E7F00837986 /* ProfileItem.swift */; };
@@ -143,6 +145,8 @@
 		18A4A97C1D6451ED00C4E413 /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		18A4A97E1D6451FC00C4E413 /* CalendarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalendarView.xib; sourceTree = "<group>"; };
 		18CFFE931D71C74E0034EBE4 /* ForgetPasswordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetPasswordController.swift; sourceTree = "<group>"; };
+		18D86E771D71E4350002D6D4 /* ForgetAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetAlertView.swift; sourceTree = "<group>"; };
+		18D86E791D71E46E0002D6D4 /* ForgetAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgetAlertView.xib; sourceTree = "<group>"; };
 		18DD16F31D5C3B4200837986 /* SelectProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectProfileController.swift; sourceTree = "<group>"; };
 		18DD16F51D5C3BFA00837986 /* ProfileItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileItemCell.swift; sourceTree = "<group>"; };
 		18DD16F71D5C3E7F00837986 /* ProfileItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileItem.swift; sourceTree = "<group>"; };
@@ -387,6 +391,15 @@
 			name = LazyImage;
 			sourceTree = "<group>";
 		};
+		18D86E761D71E3B40002D6D4 /* AlertView */ = {
+			isa = PBXGroup;
+			children = (
+				18D86E771D71E4350002D6D4 /* ForgetAlertView.swift */,
+				18D86E791D71E46E0002D6D4 /* ForgetAlertView.xib */,
+			);
+			name = AlertView;
+			sourceTree = "<group>";
+		};
 		18E15C441D658F4D00EA7471 /* Hair */ = {
 			isa = PBXGroup;
 			children = (
@@ -527,6 +540,7 @@
 				9942989E1D4769BF00D053B2 /* Assets.xcassets */,
 				9942989F1D4769BF00D053B2 /* LaunchScreen.storyboard */,
 				994298A11D4769BF00D053B2 /* Main.storyboard */,
+				18D86E761D71E3B40002D6D4 /* AlertView */,
 				18A29F281D6AE1D500AA452D /* Advise */,
 				18E15C471D658F8500EA7471 /* Profile */,
 				18E15C461D658F7600EA7471 /* Menu */,
@@ -830,6 +844,7 @@
 				994299201D4769BF00D053B2 /* Main.storyboard in Resources */,
 				994299711D4769BF00D053B2 /* Info.plist in Resources */,
 				994299761D4769BF00D053B2 /* ListSalonView.xib in Resources */,
+				18D86E7A1D71E46E0002D6D4 /* ForgetAlertView.xib in Resources */,
 				18A4A97F1D6451FC00C4E413 /* CalendarView.xib in Resources */,
 				9942991E1D4769BF00D053B2 /* Assets.xcassets in Resources */,
 				99876F051D4A58260094EF12 /* ionicons.ttf in Resources */,
@@ -949,6 +964,7 @@
 				9942999E1D476FB100D053B2 /* OtherService.swift in Sources */,
 				9917A8961D4E33F400D9D82B /* BookingNotificatioView.swift in Sources */,
 				994299831D4769BF00D053B2 /* SalonNetwork.swift in Sources */,
+				18D86E781D71E4350002D6D4 /* ForgetAlertView.swift in Sources */,
 				18DD16F61D5C3BFA00837986 /* ProfileItemCell.swift in Sources */,
 				E840B0E71D6C00AA006052D7 /* AdviseSkinView.swift in Sources */,
 				E8031EE81D587F570085DCA7 /* ServicesViewController.swift in Sources */,

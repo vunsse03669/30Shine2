@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ForgetAlertView" customModule="_0Shine" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="404" height="93.5"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q98-3e-KcB">
+                    <rect key="frame" x="162" y="32" width="80" height="44"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="80" id="0V0-ac-g4i"/>
+                        <constraint firstAttribute="height" constant="44" id="yYz-gN-Gl8"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <state key="normal" title="ĐÓNG">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gMT-16-KdT">
+                    <rect key="frame" x="20" y="8" width="364" height="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="gMT-16-KdT" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="4bC-5f-2oe"/>
+                <constraint firstAttribute="trailing" secondItem="gMT-16-KdT" secondAttribute="trailing" constant="20" id="HEq-W0-2Vo"/>
+                <constraint firstItem="gMT-16-KdT" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="n2j-DV-p6n"/>
+                <constraint firstItem="Q98-3e-KcB" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ucO-UB-nYJ"/>
+                <constraint firstItem="Q98-3e-KcB" firstAttribute="top" secondItem="gMT-16-KdT" secondAttribute="bottom" constant="8" id="xje-VO-1Sj"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="btnClose" destination="Q98-3e-KcB" id="d91-4i-RRd"/>
+                <outlet property="lblTitle" destination="gMT-16-KdT" id="vsS-Ho-yBR"/>
+            </connections>
+            <point key="canvasLocation" x="428" y="45.75"/>
+        </view>
+    </objects>
+</document>

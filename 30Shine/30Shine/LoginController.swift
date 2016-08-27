@@ -27,6 +27,18 @@ class LoginController: UIViewController, UIAlertViewDelegate {
         self.configUI()
         self.login()
         
+        //push to Register VC
+        _ = btnRegister.rx_tap.subscribeNext{
+            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("RegisterViewController") as! RegisterViewController
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        
+        //push to Forget VC
+        _ = btnForgotPass.rx_tap.subscribeNext{
+            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ForgetPasswordController") as! ForgetPasswordController
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
@@ -93,10 +105,6 @@ class LoginController: UIViewController, UIAlertViewDelegate {
             })
         }
         
-        _ = btnRegister.rx_tap.subscribeNext{
-            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("RegisterViewController") as! RegisterViewController
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
     }
     
     func checkLogin(phone: String, password: String) -> Bool{
