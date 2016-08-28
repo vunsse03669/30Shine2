@@ -13,6 +13,7 @@ import Firebase
 import FirebaseInstanceID
 import FirebaseMessaging
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
@@ -103,9 +104,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Print message ID.
         print("Message ID: \(userInfo["gcm.message_id"]!)")
+        print(".........: \(userInfo["aps"]!["alert"]!!["title"])")
+        var userId = 0
+        var title = ""
+        var body = ""
+        if Login.getLogin() != nil {
+            userId = Login.getLogin().id
+        }
         
-        // Print full message.
-        //print("%@", userInfo)
+        if let tit = userInfo["aps"]!["alert"]!!["title"]! {
+            title = String(tit)
+        }
+        if let bod = userInfo["aps"]!["alert"]!!["body"]! {
+            body = String(bod)
+        }
+        let ctm = ContentMessage.create(title, body: body, time: "")
+
+        Message.create(userId, message: ctm)
+        print("\(Message.getAllMessage())")
     }
     
     func applicationWillResignActive(application: UIApplication) {

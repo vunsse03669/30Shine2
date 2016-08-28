@@ -10,16 +10,14 @@ import UIKit
 import RealmSwift
 
 class Message: Object {
-    dynamic var id : Int = 0
-    dynamic var title : String = ""
-    dynamic var time : String = ""
+    dynamic var userId : Int = 0
+    dynamic var message : ContentMessage?
     
-    static func create(id : Int, title : String, time : String) -> Message {
+    static func create(id : Int, message : ContentMessage) -> Message! {
         let msg = Message()
-        msg.id = id
-        msg.time = time
-        msg.title = title
-        
+        msg.userId = id
+        msg.message = message
+        self.createMessage(msg)
         return msg
     }
 }
@@ -32,22 +30,42 @@ extension Message {
     }
     
     static func getMessageByUserId(id : Int) -> Message! {
-        let predicate = NSPredicate(format: "id = %d", id)
+        let predicate = NSPredicate(format: "userId = %d", id)
         return sDB.realm.objects(Message).filter(predicate).first
+    }
+    
+    static func getAllMessage() -> [Message] {
+        var messages = [Message]()
+        for msg in sDB.realm.objects(Message) {
+            messages.append(msg)
+        }
+        
+        return messages
     }
 }
 
 class ContentMessage : Object {
     dynamic var title : String = ""
     dynamic var time : String = ""
+    dynamic var body : String = ""
     
-    static func create(title : String, time : String) -> ContentMessage {
+    static func create(title : String,body : String, time : String) -> ContentMessage! {
         let ctm = ContentMessage()
         ctm.title = title
         ctm.time = time
-        
+        ctm.body = body
+        self.create(ctm)
         return ctm
     }
     
+    static func create(ctm : ContentMessage) {
+        try! sDB.realm.write {
+            sDB.realm.add(ctm)
+        }
+    }
     
+    static func getContentMessageByTitle(title : String) -> ContentMessage!{
+        let predicate = NSPredicate(format: "title = %@", title)
+        return sDB.realm.objects(ContentMessage).filter(predicate).first
+    }
 }

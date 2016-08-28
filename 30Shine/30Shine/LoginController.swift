@@ -96,16 +96,16 @@ class LoginController: UIViewController, UIAlertViewDelegate {
             self.sendRequest(phone, password: password, completion: {
                 dispatch_async(dispatch_get_main_queue(), { 
                     SVProgressHUD.popActivity()
-                    self.tokenRefreshNotification()
-                    SendTokenNotification.shareInstance.sendTokenNotification({ 
-                        
-                    })
                 })
                 self.btnLogin.userInteractionEnabled = true
                 if !self.loginSuccess {
                     self.showAlert("", msg: "Số điện thoại hoặc mật khẩu đăng nhập sai. Quý khách vui lòng kiểm tra lại")
                 }
                 else {
+                    self.tokenRefreshNotification()
+                    SendTokenNotification.shareInstance.sendTokenNotification({
+                        
+                    })
                     let vc = self.storyboard?.instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
@@ -126,10 +126,8 @@ class LoginController: UIViewController, UIAlertViewDelegate {
                 NotificationToken.updateToken(notificationToken, newToken: refreshedToken)
             }
             
-            SendTokenNotification.shareInstance.sendTokenNotification({
-                
-            })
         }
+        
         connectToFcm()
     }
     
