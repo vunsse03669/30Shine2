@@ -22,6 +22,8 @@
 		186CEE071D72E1640015CFF7 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186CEE061D72E1640015CFF7 /* Message.swift */; };
 		186CEE091D731C180015CFF7 /* MessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186CEE081D731C180015CFF7 /* MessageController.swift */; };
 		186CEE0B1D731E240015CFF7 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186CEE0A1D731E240015CFF7 /* MessageCell.swift */; };
+		186CEE0D1D7337A50015CFF7 /* MessageAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186CEE0C1D7337A50015CFF7 /* MessageAlertView.swift */; };
+		186CEE0F1D7337B10015CFF7 /* MessageAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186CEE0E1D7337B10015CFF7 /* MessageAlertView.xib */; };
 		186F21E01D5BABDD00A8959C /* StylistWorkTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186F21DF1D5BABDD00A8959C /* StylistWorkTime.swift */; };
 		18908A801D5D7B320079A9FB /* ModificationCustomerInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18908A7F1D5D7B320079A9FB /* ModificationCustomerInfoController.swift */; };
 		18A29F2B1D6AE21500AA452D /* AdviseHairController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A29F2A1D6AE21500AA452D /* AdviseHairController.swift */; };
@@ -143,6 +145,8 @@
 		186CEE061D72E1640015CFF7 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		186CEE081D731C180015CFF7 /* MessageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageController.swift; sourceTree = "<group>"; };
 		186CEE0A1D731E240015CFF7 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		186CEE0C1D7337A50015CFF7 /* MessageAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageAlertView.swift; sourceTree = "<group>"; };
+		186CEE0E1D7337B10015CFF7 /* MessageAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageAlertView.xib; sourceTree = "<group>"; };
 		186F21DF1D5BABDD00A8959C /* StylistWorkTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StylistWorkTime.swift; sourceTree = "<group>"; };
 		18908A7F1D5D7B320079A9FB /* ModificationCustomerInfoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModificationCustomerInfoController.swift; sourceTree = "<group>"; };
 		18A29F2A1D6AE21500AA452D /* AdviseHairController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdviseHairController.swift; sourceTree = "<group>"; };
@@ -417,6 +421,8 @@
 			children = (
 				18D86E771D71E4350002D6D4 /* ForgetAlertView.swift */,
 				18D86E791D71E46E0002D6D4 /* ForgetAlertView.xib */,
+				186CEE0C1D7337A50015CFF7 /* MessageAlertView.swift */,
+				186CEE0E1D7337B10015CFF7 /* MessageAlertView.xib */,
 			);
 			name = AlertView;
 			sourceTree = "<group>";
@@ -878,6 +884,7 @@
 				9942991F1D4769BF00D053B2 /* LaunchScreen.storyboard in Resources */,
 				E840B0E91D6C00BF006052D7 /* AdviseSkinView.xib in Resources */,
 				E8F7B6DA1D57A6080094ADE4 /* SalonImageCell.xib in Resources */,
+				186CEE0F1D7337B10015CFF7 /* MessageAlertView.xib in Resources */,
 				9942997D1D4769BF00D053B2 /* OtherServicesCell.xib in Resources */,
 				184E02101D6B5CEF00C2C636 /* ProductCell.xib in Resources */,
 				9917A8981D4E340A00D9D82B /* BookingNotificationView.xib in Resources */,
@@ -1017,6 +1024,7 @@
 				18DD16F81D5C3E7F00837986 /* ProfileItem.swift in Sources */,
 				9942998C1D4769BF00D053B2 /* UIViewExtension.swift in Sources */,
 				186A11861D5C62BE00BDB3B3 /* LoginNetwork.swift in Sources */,
+				186CEE0D1D7337A50015CFF7 /* MessageAlertView.swift in Sources */,
 				994299731D4769BF00D053B2 /* JSONKEYsExtension.swift in Sources */,
 				994299881D4769BF00D053B2 /* ShineComboView.swift in Sources */,
 				9942998B1D4769BF00D053B2 /* UIColorExtension.swift in Sources */,

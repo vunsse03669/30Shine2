@@ -36,10 +36,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FIRApp.configure()
         
-//        NSNotificationCenter.defaultCenter().addObserver(self,
-//                                                         selector: #selector(self.tokenRefreshNotification),
-//                                                         name: kFIRInstanceIDTokenRefreshNotification,
-//                                                         object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self,
+                                                         selector: #selector(self.tokenRefreshNotification),
+                                                         name: kFIRInstanceIDTokenRefreshNotification,
+                                                         object: nil)
         
         self.window!.backgroundColor = .whiteColor();
         self.checkInternet()

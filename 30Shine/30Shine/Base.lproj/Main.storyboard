@@ -1750,7 +1750,7 @@
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="82" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qI7-PV-f5M">
                                 <rect key="frame" x="0.0" y="108" width="600" height="492"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" rowHeight="82" id="odd-64-NvR" customClass="MessageCell" customModule="_0Shine" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="600" height="82"/>
@@ -1796,6 +1796,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="e29-Aa-2e4" secondAttribute="trailing" constant="8" id="n1p-Ym-Jgt"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="imvIcon" destination="yfk-MZ-MA9" id="l3S-dF-nfm"/>
                                             <outlet property="lblTime" destination="IWB-9c-fZ4" id="Ocz-KJ-bNf"/>

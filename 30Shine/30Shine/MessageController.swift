@@ -48,6 +48,18 @@ class MessageController: UIViewController {
             cell.lblTitle.text = data.message?.title
             cell.imvIcon.image = UIImage(named: "img-customer")
         }
+        
+        _ = self.tbvMessage.rx_itemSelected.subscribeNext {
+            indexPath in
+            self.tbvMessage.deselectRowAtIndexPath(indexPath, animated: false)
+            let title = self.messagesVar.value[indexPath.row].message!.title
+            let time = self.messagesVar.value[indexPath.row].message!.time
+            let body = self.messagesVar.value[indexPath.row].message!.body
+            let msgView = MessageAlertView.createView(self.view, title: title, time: time, imagePath: "img-customer", content: body)
+            msgView.delegate = self
+            self.view.backgroundColor = UIColor(netHex: 0x9E9E9E)
+            
+        }
     }
     
     //MARK: Data
@@ -56,5 +68,10 @@ class MessageController: UIViewController {
         self.messagesVar.value = Message.getMessageByUserId(userId)
     }
 
+}
 
+extension MessageController : MessageAlertProtocol {
+    func changeColor() {
+        self.view.backgroundColor = UIColor.whiteColor()
+    }
 }
