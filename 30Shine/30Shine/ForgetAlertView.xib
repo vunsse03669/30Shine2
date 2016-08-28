@@ -12,11 +12,11 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q98-3e-KcB">
-                    <rect key="frame" x="162" y="32" width="80" height="44"/>
+                    <rect key="frame" x="157" y="44" width="90" height="30"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="80" id="0V0-ac-g4i"/>
-                        <constraint firstAttribute="height" constant="44" id="yYz-gN-Gl8"/>
+                        <constraint firstAttribute="width" constant="90" id="0V0-ac-g4i"/>
+                        <constraint firstAttribute="height" constant="30" id="yYz-gN-Gl8"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <state key="normal" title="ĐÓNG">
@@ -36,7 +36,7 @@
                 <constraint firstAttribute="trailing" secondItem="gMT-16-KdT" secondAttribute="trailing" constant="20" id="HEq-W0-2Vo"/>
                 <constraint firstItem="gMT-16-KdT" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="n2j-DV-p6n"/>
                 <constraint firstItem="Q98-3e-KcB" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ucO-UB-nYJ"/>
-                <constraint firstItem="Q98-3e-KcB" firstAttribute="top" secondItem="gMT-16-KdT" secondAttribute="bottom" constant="8" id="xje-VO-1Sj"/>
+                <constraint firstItem="Q98-3e-KcB" firstAttribute="top" secondItem="gMT-16-KdT" secondAttribute="bottom" constant="20" id="xje-VO-1Sj"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>

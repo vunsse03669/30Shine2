@@ -10,6 +10,8 @@ import UIKit
 import MediaPlayer
 import ReachabilitySwift
 import Firebase
+import FirebaseInstanceID
+import FirebaseMessaging
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,10 +25,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().barTintColor = UIColor.blackColor()
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         
+        
+        // [START register_for_notifications]
+        let settings: UIUserNotificationSettings =
+            UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+        application.registerUserNotificationSettings(settings)
+        application.registerForRemoteNotifications()
+        // [END register_for_notifications]
+        
         FIRApp.configure()
         
         NSNotificationCenter.defaultCenter().addObserver(self,
-                                                         selector: #selector(tokenRefreshNotification(_:)),
+                                                         selector: #selector(self.tokenRefreshNotification),
                                                          name: kFIRInstanceIDTokenRefreshNotification,
                                                          object: nil)
         
@@ -40,15 +50,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // NOTE: Need to use this when swizzling is disabled
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        let tokenChars = UnsafePointer<CChar>(deviceToken.bytes)
+        var tokenString = ""
         
-        FIRInstanceID.instanceID().setAPNSToken(deviceToken, type: FIRInstanceIDAPNSTokenType.Sandbox)
+        for i in 0..<deviceToken.length {
+            tokenString += String(format: "%02.2hhx", arguments: [tokenChars[i]])
+        }
+        
+        //Tricky line
+        FIRInstanceID.instanceID().setAPNSToken(deviceToken, type: FIRInstanceIDAPNSTokenType.Unknown)
+        print("Device Token:", tokenString)
     }
     
     func tokenRefreshNotification(notification: NSNotification) {
         // NOTE: It can be nil here
-        let refreshedToken = FIRInstanceID.instanceID().token()
-        print("InstanceID token: \(refreshedToken)")
-        
+        if let refreshedToken = FIRInstanceID.instanceID().token() {
+            print("InstanceID token: \(refreshedToken)")
+        }
         connectToFcm()
     }
     
@@ -66,46 +84,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print(userInfo)
     }
     
-    func checkLogin() {
-        let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject],
+                     fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+        // If you are receiving a notification message while your app is in the background,
+        // this callback will not be fired till the user taps on the notification launching the application.
+        // TODO: Handle data of notification
         
-        if Login.getLogin() != nil {
-            let nvc = mainStoryBoard.instantiateViewControllerWithIdentifier("HomeNavigation") as! HomeNavigation
-            self.window?.rootViewController = nvc
-
-        }
-        else {
-            let nvc = mainStoryBoard.instantiateViewControllerWithIdentifier("loginNavigation") as! loginNavigation
-            self.window?.rootViewController = nvc
-
-        }
-        self.window?.makeKeyAndVisible()
+        // Print message ID.
+        print("Message ID: \(userInfo["gcm.message_id"]!)")
         
+        // Print full message.
+        //print("%@", userInfo)
     }
-    
-    func checkInternet() {
-        do {
-            reachability = try! Reachability.reachabilityForInternetConnection()
-        }
-        reachability!.whenUnreachable = {
-            reachability in
-            dispatch_async(dispatch_get_main_queue()) {
-                let message = "Mất kết nối internet. Chương trình sẽ tiếp tục chạy offline."
-                let alert = UIAlertView(title: "", message: message, delegate: nil, cancelButtonTitle: "Xác nhận")
-                alert.show()
-            }
-        }
-        reachability!.whenReachable = {
-            reachability in
-            dispatch_async(dispatch_get_main_queue()){
-                
-            }
-        }
-        
-        try! reachability?.startNotifier()
-        
-    }
-
     
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -115,6 +105,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        FIRMessaging.messaging().disconnect()
+        print("Disconnected from FCM.")
     }
     
     func applicationWillEnterForeground(application: UIApplication) {
@@ -123,6 +115,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        connectToFcm()
     }
     
     func applicationWillTerminate(application: UIApplication) {
@@ -148,6 +141,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         }
         return .Portrait;
+    }
+    
+    //MARK: Internet
+    func checkLogin() {
+        let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+        
+        if Login.getLogin() != nil {
+            let nvc = mainStoryBoard.instantiateViewControllerWithIdentifier("HomeNavigation") as! HomeNavigation
+            self.window?.rootViewController = nvc
+            
+        }
+        else {
+            let nvc = mainStoryBoard.instantiateViewControllerWithIdentifier("loginNavigation") as! loginNavigation
+            self.window?.rootViewController = nvc
+            
+        }
+        self.window?.makeKeyAndVisible()
+        
+    }
+    
+    func checkInternet() {
+        do {
+            reachability = try! Reachability.reachabilityForInternetConnection()
+        }
+        reachability!.whenUnreachable = {
+            reachability in
+            dispatch_async(dispatch_get_main_queue()) {
+                let message = "Mất kết nối internet. Chương trình sẽ tiếp tục chạy offline."
+                let alert = UIAlertView(title: "", message: message, delegate: nil, cancelButtonTitle: "Xác nhận")
+                alert.show()
+            }
+        }
+        reachability!.whenReachable = {
+            reachability in
+            dispatch_async(dispatch_get_main_queue()){
+                
+            }
+        }
+        
+        try! reachability?.startNotifier()
         
     }
 }
