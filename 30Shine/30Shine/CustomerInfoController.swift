@@ -144,7 +144,7 @@ extension CustomerInfoController : UIAlertViewDelegate {
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
         if buttonIndex == 1 {
             
-            //self.tokenRefreshNotification()
+            self.tokenRefreshNotification()
             
             Login.deleteLogin()
 

@@ -8,6 +8,7 @@
 
 import UIKit
 import MediaPlayer
+import TTGSnackbar
 import ReachabilitySwift
 import Firebase
 import FirebaseInstanceID
@@ -122,6 +123,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         Message.create(userId, message: ctm)
         print("\(Message.getAllMessage())")
+        
+        let snackbar = TTGSnackbar.init(message: "You have a new message", duration: .Middle, actionText: "Action")
+        { (snackbar) -> Void in
+            NSLog("Click action!")
+        }
+        snackbar.show()
     }
     
     func applicationWillResignActive(application: UIApplication) {

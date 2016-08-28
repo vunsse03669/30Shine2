@@ -20,9 +20,7 @@ class Message: Object {
         self.createMessage(msg)
         return msg
     }
-}
-
-extension Message {
+    
     static func createMessage(msg : Message) {
         try! sDB.realm.write {
                 sDB.realm.add(msg)
@@ -59,11 +57,11 @@ class ContentMessage : Object {
         ctm.title = title
         ctm.time = time
         ctm.body = body
-        self.create(ctm)
+        self.createContentMessage(ctm)
         return ctm
     }
     
-    static func create(ctm : ContentMessage) {
+    static func createContentMessage(ctm : ContentMessage) {
         try! sDB.realm.write {
             sDB.realm.add(ctm)
         }

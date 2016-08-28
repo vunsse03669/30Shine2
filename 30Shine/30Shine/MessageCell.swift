@@ -15,13 +15,24 @@ class MessageCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        self.contentView.layer.borderColor = UIColor.blackColor().CGColor
+        self.contentView.layer.borderWidth = 1.0
+        self.contentView.layer.cornerRadius = 5.0
+        self.contentView.clipsToBounds = true
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.layoutIfNeeded()
+        let f = contentView.frame
+        let fr = UIEdgeInsetsInsetRect(f, UIEdgeInsetsMake(5, 20, 5, 20))
+        contentView.frame = fr
     }
 
 }

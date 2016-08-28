@@ -31,6 +31,9 @@ class MessageController: UIViewController {
         self.navigationItem.titleView = imageView
         self.navigationController?.navigationBar.translucent = false
         
+        //remove separator for tableview
+        self.tbvMessage.separatorStyle = .None
+        
         //back image
         var backImage = UIImage(named: "img-back")
         backImage = backImage?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)

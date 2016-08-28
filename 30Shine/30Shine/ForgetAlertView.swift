@@ -28,7 +28,7 @@ class ForgetAlertView: UIView {
     static func createView(superView : UIView, msg : String) -> ForgetAlertView!  {
         let forgetView = NSBundle.mainBundle().loadNibNamed("ForgetAlertView", owner: self, options: nil) [0] as! ForgetAlertView
         forgetView.lblTitle.sizeToFit()
-        let height = forgetView.lblTitle.frame.size.height + forgetView.btnClose.frame.size.height + 80
+        let height = forgetView.lblTitle.frame.size.height + forgetView.btnClose.frame.size.height + 60
         let width = 4*superView.frame.width/5
         let dx = (superView.frame.size.width - width)/2
         let dy = superView.frame.size.height/2 - height

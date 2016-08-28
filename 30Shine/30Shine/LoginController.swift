@@ -83,7 +83,7 @@ class LoginController: UIViewController, UIAlertViewDelegate {
     //MARK: Login
     func login() {
         _ = btnLogin.rx_tap.subscribeNext {
-            self.btnLogin.userInteractionEnabled = false
+            
             SVProgressHUD.showWithStatus("Đang tải dữ liệu")
             guard let phone = self.txtPhone.text, password = self.txtPassword.text else {
                 return
@@ -92,7 +92,7 @@ class LoginController: UIViewController, UIAlertViewDelegate {
             if !self.checkLogin(phone, password: password) {
                 return
             }
-            
+            self.btnLogin.userInteractionEnabled = false
             self.sendRequest(phone, password: password, completion: {
                 dispatch_async(dispatch_get_main_queue(), { 
                     SVProgressHUD.popActivity()
@@ -103,9 +103,7 @@ class LoginController: UIViewController, UIAlertViewDelegate {
                 }
                 else {
                     self.tokenRefreshNotification()
-                    SendTokenNotification.shareInstance.sendTokenNotification({ 
-                        
-                    })
+                    SendTokenNotification.shareInstance.sendTokenNotification({})
                     let vc = self.storyboard?.instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
@@ -116,7 +114,7 @@ class LoginController: UIViewController, UIAlertViewDelegate {
     
     func tokenRefreshNotification() {
         // NOTE: It can be nil here
-        FIRInstanceID.instanceID().token()
+        
         if let refreshedToken = FIRInstanceID.instanceID().token() {
             print("InstanceID token: \(refreshedToken)")
             if NotificationToken.getToken() == nil {

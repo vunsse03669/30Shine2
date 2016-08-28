@@ -17,5 +17,7 @@ pod 'SVProgressHUD'
 pod 'XCDYouTubeKit'
 pod 'Firebase'
 pod 'Firebase/Messaging'
+pod 'TTGSnackbar'
+
 end
 

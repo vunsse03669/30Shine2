@@ -1749,10 +1749,10 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="82" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qI7-PV-f5M">
-                                <rect key="frame" x="0.0" y="108" width="600" height="492"/>
+                                <rect key="frame" x="0.0" y="120" width="600" height="480"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" rowHeight="82" id="odd-64-NvR" customClass="MessageCell" customModule="_0Shine" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" rowHeight="82" id="odd-64-NvR" customClass="MessageCell" customModule="_0Shine" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="600" height="82"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="odd-64-NvR" id="UQM-dJ-P1Y">
@@ -1775,7 +1775,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="16h00 10/08/2016" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IWB-9c-fZ4">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="16h00 10/08/2016" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IWB-9c-fZ4">
                                                     <rect key="frame" x="417" y="53.5" width="175" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="175" id="82X-eq-Gkq"/>
@@ -1808,7 +1808,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="qI7-PV-f5M" firstAttribute="top" secondItem="25j-Ma-6tC" secondAttribute="bottom" id="12t-hy-oax"/>
+                            <constraint firstItem="qI7-PV-f5M" firstAttribute="top" secondItem="25j-Ma-6tC" secondAttribute="bottom" constant="12" id="12t-hy-oax"/>
                             <constraint firstAttribute="trailing" secondItem="25j-Ma-6tC" secondAttribute="trailing" id="2NI-E4-ysv"/>
                             <constraint firstItem="25j-Ma-6tC" firstAttribute="leading" secondItem="xV2-Bc-eOd" secondAttribute="leading" id="W7T-6h-E8H"/>
                             <constraint firstAttribute="trailing" secondItem="qI7-PV-f5M" secondAttribute="trailing" id="ecG-3q-a6O"/>
