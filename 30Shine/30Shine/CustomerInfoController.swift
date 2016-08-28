@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseMessaging
+import FirebaseInstanceID
 
 class CustomerInfoController: UIViewController {
     @IBOutlet weak var btnLogout: UIButton!
@@ -97,6 +100,35 @@ class CustomerInfoController: UIViewController {
         }
     }
     
+    func tokenRefreshNotification() {
+        // NOTE: It can be nil here
+        if let refreshedToken = FIRInstanceID.instanceID().token() {
+            print("InstanceID token: \(refreshedToken)")
+            if NotificationToken.getToken() == nil {
+                NotificationToken.create(refreshedToken)
+            }
+            else {
+                let notificationToken = NotificationToken.getToken()
+                NotificationToken.updateToken(notificationToken, newToken: refreshedToken)
+            }
+            
+            SendTokenNotification.shareInstance.sendTokenNotification({
+                
+            })
+        }
+        connectToFcm()
+    }
+    
+    func connectToFcm() {
+        FIRMessaging.messaging().connectWithCompletion { (error) in
+            if (error != nil) {
+                print("Unable to connect with FCM. \(error)")
+            } else {
+                print("Connected to FCM.")
+            }
+        }
+    }
+    
     //MARK: Modification Customer info
     func modificationInfo() {
         _ = self.btnModification.rx_tap.subscribeNext {
@@ -111,7 +143,11 @@ class CustomerInfoController: UIViewController {
 extension CustomerInfoController : UIAlertViewDelegate {
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
         if buttonIndex == 1 {
+            
+            self.tokenRefreshNotification()
+            
             Login.deleteLogin()
+
             let vc = self.storyboard?.instantiateViewControllerWithIdentifier("LoginController") as! LoginController
             self.navigationController?.pushViewController(vc, animated: true)
         }

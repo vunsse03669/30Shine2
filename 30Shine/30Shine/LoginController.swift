@@ -11,6 +11,9 @@ import RxSwift
 import RxCocoa
 import Alamofire
 import SVProgressHUD
+import Firebase
+import FirebaseMessaging
+import FirebaseInstanceID
 
 class LoginController: UIViewController, UIAlertViewDelegate {
 
@@ -93,6 +96,10 @@ class LoginController: UIViewController, UIAlertViewDelegate {
             self.sendRequest(phone, password: password, completion: {
                 dispatch_async(dispatch_get_main_queue(), { 
                     SVProgressHUD.popActivity()
+                    self.tokenRefreshNotification()
+                    SendTokenNotification.shareInstance.sendTokenNotification({ 
+                        
+                    })
                 })
                 self.btnLogin.userInteractionEnabled = true
                 if !self.loginSuccess {
@@ -105,6 +112,35 @@ class LoginController: UIViewController, UIAlertViewDelegate {
             })
         }
         
+    }
+    
+    func tokenRefreshNotification() {
+        // NOTE: It can be nil here
+        if let refreshedToken = FIRInstanceID.instanceID().token() {
+            print("InstanceID token: \(refreshedToken)")
+            if NotificationToken.getToken() == nil {
+                NotificationToken.create(refreshedToken)
+            }
+            else {
+                let notificationToken = NotificationToken.getToken()
+                NotificationToken.updateToken(notificationToken, newToken: refreshedToken)
+            }
+            
+            SendTokenNotification.shareInstance.sendTokenNotification({
+                
+            })
+        }
+        connectToFcm()
+    }
+    
+    func connectToFcm() {
+        FIRMessaging.messaging().connectWithCompletion { (error) in
+            if (error != nil) {
+                print("Unable to connect with FCM. \(error)")
+            } else {
+                print("Connected to FCM.")
+            }
+        }
     }
     
     func checkLogin(phone: String, password: String) -> Bool{

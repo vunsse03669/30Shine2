@@ -17,6 +17,9 @@
 		186A11881D5C727500BDB3B3 /* CustomerInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186A11871D5C727500BDB3B3 /* CustomerInfoController.swift */; };
 		186A11921D5C8CCB00BDB3B3 /* loginNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186A11911D5C8CCB00BDB3B3 /* loginNavigation.swift */; };
 		186A11941D5C8CD800BDB3B3 /* HomeNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186A11931D5C8CD800BDB3B3 /* HomeNavigation.swift */; };
+		186CEE031D72B3C80015CFF7 /* NotificationToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186CEE021D72B3C80015CFF7 /* NotificationToken.swift */; };
+		186CEE051D72B9750015CFF7 /* SendTokenNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186CEE041D72B9750015CFF7 /* SendTokenNotification.swift */; };
+		186CEE071D72E1640015CFF7 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186CEE061D72E1640015CFF7 /* Message.swift */; };
 		186F21E01D5BABDD00A8959C /* StylistWorkTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186F21DF1D5BABDD00A8959C /* StylistWorkTime.swift */; };
 		18908A801D5D7B320079A9FB /* ModificationCustomerInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18908A7F1D5D7B320079A9FB /* ModificationCustomerInfoController.swift */; };
 		18A29F2B1D6AE21500AA452D /* AdviseHairController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A29F2A1D6AE21500AA452D /* AdviseHairController.swift */; };
@@ -133,6 +136,9 @@
 		186A11871D5C727500BDB3B3 /* CustomerInfoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerInfoController.swift; sourceTree = "<group>"; };
 		186A11911D5C8CCB00BDB3B3 /* loginNavigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loginNavigation.swift; sourceTree = "<group>"; };
 		186A11931D5C8CD800BDB3B3 /* HomeNavigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeNavigation.swift; sourceTree = "<group>"; };
+		186CEE021D72B3C80015CFF7 /* NotificationToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationToken.swift; sourceTree = "<group>"; };
+		186CEE041D72B9750015CFF7 /* SendTokenNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendTokenNotification.swift; sourceTree = "<group>"; };
+		186CEE061D72E1640015CFF7 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		186F21DF1D5BABDD00A8959C /* StylistWorkTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StylistWorkTime.swift; sourceTree = "<group>"; };
 		18908A7F1D5D7B320079A9FB /* ModificationCustomerInfoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModificationCustomerInfoController.swift; sourceTree = "<group>"; };
 		18A29F2A1D6AE21500AA452D /* AdviseHairController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdviseHairController.swift; sourceTree = "<group>"; };
@@ -322,6 +328,16 @@
 				186A11931D5C8CD800BDB3B3 /* HomeNavigation.swift */,
 			);
 			name = Home;
+			sourceTree = "<group>";
+		};
+		186CEE011D72B3920015CFF7 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				186CEE021D72B3C80015CFF7 /* NotificationToken.swift */,
+				186CEE041D72B9750015CFF7 /* SendTokenNotification.swift */,
+				186CEE061D72E1640015CFF7 /* Message.swift */,
+			);
+			name = Notification;
 			sourceTree = "<group>";
 		};
 		18A29F271D6AE1BB00AA452D /* Advise */ = {
@@ -519,6 +535,7 @@
 		994299921D476BB000D053B2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				186CEE011D72B3920015CFF7 /* Notification */,
 				18A29F271D6AE1BB00AA452D /* Advise */,
 				18E15C481D658FBA00EA7471 /* Service */,
 				186A11821D5C5AE900BDB3B3 /* Login */,
@@ -962,14 +979,17 @@
 				998965861D488C48006DEDF5 /* YoutubeVideo.swift in Sources */,
 				994299801D4769BF00D053B2 /* ProfileViewController.swift in Sources */,
 				E8031EED1D587F930085DCA7 /* ServiceMenuCell.swift in Sources */,
+				186CEE031D72B3C80015CFF7 /* NotificationToken.swift in Sources */,
 				9942998E1D4769BF00D053B2 /* Video.swift in Sources */,
 				18A29F341D6AF6EA00AA452D /* AdviseHairView.swift in Sources */,
 				9942999E1D476FB100D053B2 /* OtherService.swift in Sources */,
 				9917A8961D4E33F400D9D82B /* BookingNotificatioView.swift in Sources */,
 				994299831D4769BF00D053B2 /* SalonNetwork.swift in Sources */,
 				18D86E781D71E4350002D6D4 /* ForgetAlertView.swift in Sources */,
+				186CEE051D72B9750015CFF7 /* SendTokenNotification.swift in Sources */,
 				18DD16F61D5C3BFA00837986 /* ProfileItemCell.swift in Sources */,
 				E840B0E71D6C00AA006052D7 /* AdviseSkinView.swift in Sources */,
+				186CEE071D72E1640015CFF7 /* Message.swift in Sources */,
 				E8031EE81D587F570085DCA7 /* ServicesViewController.swift in Sources */,
 				9942996E1D4769BF00D053B2 /* HairTypeCell.swift in Sources */,
 				9942997C1D4769BF00D053B2 /* OtherServicesCell.swift in Sources */,

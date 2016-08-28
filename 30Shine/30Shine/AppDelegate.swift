@@ -35,10 +35,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FIRApp.configure()
         
-        NSNotificationCenter.defaultCenter().addObserver(self,
-                                                         selector: #selector(self.tokenRefreshNotification),
-                                                         name: kFIRInstanceIDTokenRefreshNotification,
-                                                         object: nil)
+//        NSNotificationCenter.defaultCenter().addObserver(self,
+//                                                         selector: #selector(self.tokenRefreshNotification),
+//                                                         name: kFIRInstanceIDTokenRefreshNotification,
+//                                                         object: nil)
         
         self.window!.backgroundColor = .whiteColor();
         self.checkInternet()
@@ -66,6 +66,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // NOTE: It can be nil here
         if let refreshedToken = FIRInstanceID.instanceID().token() {
             print("InstanceID token: \(refreshedToken)")
+            if NotificationToken.getToken() == nil {
+                NotificationToken.create(refreshedToken)
+            }
+            else {
+                let notificationToken = NotificationToken.getToken()
+                NotificationToken.updateToken(notificationToken, newToken: refreshedToken)
+            }
+            
+            SendTokenNotification.shareInstance.sendTokenNotification({ 
+                
+            })
         }
         connectToFcm()
     }
