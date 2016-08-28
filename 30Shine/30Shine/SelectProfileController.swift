@@ -57,7 +57,7 @@ class SelectProfileController: UIViewController {
                 case 0 :
                     vc = self.storyboard?.instantiateViewControllerWithIdentifier("CustomerInfoController") as? CustomerInfoController
                 case 1 :
-                    print("Selected Invalid !!!")
+                    vc = self.storyboard?.instantiateViewControllerWithIdentifier("MessageController") as? MessageController
                     
                 case 2:
                     vc = self.storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController") as? ProfileViewController

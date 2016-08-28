@@ -103,7 +103,7 @@ class LoginController: UIViewController, UIAlertViewDelegate {
                 }
                 else {
                     self.tokenRefreshNotification()
-                    SendTokenNotification.shareInstance.sendTokenNotification({
+                    SendTokenNotification.shareInstance.sendTokenNotification({ 
                         
                     })
                     let vc = self.storyboard?.instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
@@ -116,6 +116,7 @@ class LoginController: UIViewController, UIAlertViewDelegate {
     
     func tokenRefreshNotification() {
         // NOTE: It can be nil here
+        FIRInstanceID.instanceID().token()
         if let refreshedToken = FIRInstanceID.instanceID().token() {
             print("InstanceID token: \(refreshedToken)")
             if NotificationToken.getToken() == nil {

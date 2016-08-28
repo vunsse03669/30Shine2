@@ -29,9 +29,14 @@ extension Message {
         }
     }
     
-    static func getMessageByUserId(id : Int) -> Message! {
-        let predicate = NSPredicate(format: "userId = %d", id)
-        return sDB.realm.objects(Message).filter(predicate).first
+    static func getMessageByUserId(id : Int) -> [Message] {
+        var messages = [Message]()
+        for msg in sDB.realm.objects(Message) {
+            if msg.userId == id {
+                messages.append(msg)
+            }
+        }
+        return messages
     }
     
     static func getAllMessage() -> [Message] {

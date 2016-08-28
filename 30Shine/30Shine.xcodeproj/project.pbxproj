@@ -20,6 +20,8 @@
 		186CEE031D72B3C80015CFF7 /* NotificationToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186CEE021D72B3C80015CFF7 /* NotificationToken.swift */; };
 		186CEE051D72B9750015CFF7 /* SendTokenNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186CEE041D72B9750015CFF7 /* SendTokenNotification.swift */; };
 		186CEE071D72E1640015CFF7 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186CEE061D72E1640015CFF7 /* Message.swift */; };
+		186CEE091D731C180015CFF7 /* MessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186CEE081D731C180015CFF7 /* MessageController.swift */; };
+		186CEE0B1D731E240015CFF7 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186CEE0A1D731E240015CFF7 /* MessageCell.swift */; };
 		186F21E01D5BABDD00A8959C /* StylistWorkTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186F21DF1D5BABDD00A8959C /* StylistWorkTime.swift */; };
 		18908A801D5D7B320079A9FB /* ModificationCustomerInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18908A7F1D5D7B320079A9FB /* ModificationCustomerInfoController.swift */; };
 		18A29F2B1D6AE21500AA452D /* AdviseHairController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A29F2A1D6AE21500AA452D /* AdviseHairController.swift */; };
@@ -139,6 +141,8 @@
 		186CEE021D72B3C80015CFF7 /* NotificationToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationToken.swift; sourceTree = "<group>"; };
 		186CEE041D72B9750015CFF7 /* SendTokenNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendTokenNotification.swift; sourceTree = "<group>"; };
 		186CEE061D72E1640015CFF7 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		186CEE081D731C180015CFF7 /* MessageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageController.swift; sourceTree = "<group>"; };
+		186CEE0A1D731E240015CFF7 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		186F21DF1D5BABDD00A8959C /* StylistWorkTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StylistWorkTime.swift; sourceTree = "<group>"; };
 		18908A7F1D5D7B320079A9FB /* ModificationCustomerInfoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModificationCustomerInfoController.swift; sourceTree = "<group>"; };
 		18A29F2A1D6AE21500AA452D /* AdviseHairController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdviseHairController.swift; sourceTree = "<group>"; };
@@ -273,6 +277,7 @@
 				18DD16F31D5C3B4200837986 /* SelectProfileController.swift */,
 				186A11871D5C727500BDB3B3 /* CustomerInfoController.swift */,
 				18908A7F1D5D7B320079A9FB /* ModificationCustomerInfoController.swift */,
+				186CEE081D731C180015CFF7 /* MessageController.swift */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -446,6 +451,7 @@
 			isa = PBXGroup;
 			children = (
 				18DD16F51D5C3BFA00837986 /* ProfileItemCell.swift */,
+				186CEE0A1D731E240015CFF7 /* MessageCell.swift */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -947,6 +953,7 @@
 				99876F041D4A58260094EF12 /* Ionicons.swift in Sources */,
 				9942995F1D4769BF00D053B2 /* ComboCell.swift in Sources */,
 				9942998A1D4769BF00D053B2 /* SlideNetwork.swift in Sources */,
+				186CEE091D731C180015CFF7 /* MessageController.swift in Sources */,
 				E8A056101D54A0A200112F11 /* ListSalonsViewController.swift in Sources */,
 				18A29F2F1D6AE40200AA452D /* AdviseMenuController.swift in Sources */,
 				186A11881D5C727500BDB3B3 /* CustomerInfoController.swift in Sources */,
@@ -1023,6 +1030,7 @@
 				E8F7B6D91D57A6080094ADE4 /* SalonImageCell.swift in Sources */,
 				994299781D4769BF00D053B2 /* MenuCell.swift in Sources */,
 				99876EFF1D4A58030094EF12 /* UIDropDown.swift in Sources */,
+				186CEE0B1D731E240015CFF7 /* MessageCell.swift in Sources */,
 				994299751D4769BF00D053B2 /* ListSalonView.swift in Sources */,
 				99876F0E1D4A5FC10094EF12 /* StylistNetwork.swift in Sources */,
 				E800B99F1D4E5C0D003A7031 /* Extensions.swift in Sources */,
