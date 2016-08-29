@@ -27,15 +27,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
         UINavigationBar.appearance().barTintColor = UIColor.blackColor()
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
-        
-       
 
-        // [START register_for_notifications]
-        let settings: UIUserNotificationSettings =
-            UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
-        application.registerUserNotificationSettings(settings)
-        application.registerForRemoteNotifications()
-        // [END register_for_notifications]
+        if #available(iOS 8.0, *) {
+            // [START register_for_notifications]
+            let settings: UIUserNotificationSettings =
+                UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+            application.registerUserNotificationSettings(settings)
+            application.registerForRemoteNotifications()
+            // [END register_for_notifications]
+        } else {
+            // Fallback
+            let types: UIRemoteNotificationType = [.Alert, .Badge, .Sound]
+            application.registerForRemoteNotificationTypes(types)
+        }
         
         FIRApp.configure()
         
@@ -54,16 +58,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // NOTE: Need to use this when swizzling is disabled
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        let tokenChars = UnsafePointer<CChar>(deviceToken.bytes)
-        var tokenString = ""
         
-        for i in 0..<deviceToken.length {
-            tokenString += String(format: "%02.2hhx", arguments: [tokenChars[i]])
-        }
-        
-        //Tricky line
         FIRInstanceID.instanceID().setAPNSToken(deviceToken, type: FIRInstanceIDAPNSTokenType.Sandbox)
-        print("Device Token:", tokenString)
     }
     
     func tokenRefreshNotification(notification: NSNotification) {
@@ -96,7 +92,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
      func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        print(userInfo)
+        //print(userInfo)
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject],
@@ -203,8 +199,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-//        FIRMessaging.messaging().disconnect()
-//        print("Disconnected from FCM.")
+        FIRMessaging.messaging().disconnect()
+        print("Disconnected from FCM.")
     }
     
     func applicationWillEnterForeground(application: UIApplication) {
