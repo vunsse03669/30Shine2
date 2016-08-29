@@ -53,6 +53,9 @@ class MessageController: UIViewController {
             if !(data.message?.isRead)! {
                 cell.lblNote.hidden = false
             }
+            else {
+                cell.lblNote.hidden = true
+            }
         }
         
         _ = self.tbvMessage.rx_itemSelected.subscribeNext {
@@ -65,6 +68,7 @@ class MessageController: UIViewController {
             msgView.delegate = self
             self.view.backgroundColor = UIColor(netHex: 0x9E9E9E)
             ContentMessage.hadRead(self.messagesVar.value[indexPath.row].message!)
+            self.tbvMessage.userInteractionEnabled = false
         }
     }
     
@@ -79,5 +83,9 @@ class MessageController: UIViewController {
 extension MessageController : MessageAlertProtocol {
     func changeColor() {
         self.view.backgroundColor = UIColor.whiteColor()
+        self.tbvMessage.userInteractionEnabled = true
+        self.tbvMessage.reloadData()
+//        self.messagesVar.value = []
+//        self.initData()
     }
 }
