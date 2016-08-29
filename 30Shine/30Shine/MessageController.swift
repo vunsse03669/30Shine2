@@ -50,6 +50,9 @@ class MessageController: UIViewController {
             row,data,cell in
             cell.lblTitle.text = data.message?.title
             cell.imvIcon.image = UIImage(named: "img-customer")
+            if !(data.message?.isRead)! {
+                cell.lblNote.hidden = false
+            }
         }
         
         _ = self.tbvMessage.rx_itemSelected.subscribeNext {
