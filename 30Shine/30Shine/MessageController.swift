@@ -89,10 +89,10 @@ class MessageController: UIViewController {
                 imagePath = "img-calendar"
             }
             
-            if ((self.messagesVar.value[indexPath.row].message?.body.containsString("<#name#")) != nil) {
+            if ((self.messagesVar.value[indexPath.row].message?.body.containsString("<#customername#")) != nil) {
                 let name = Login.getLogin().fullName
                 body = (self.messagesVar.value[indexPath.row].message?.body)!
-                body = body.stringByReplacingOccurrencesOfString("<#name", withString: name).stringByReplacingOccurrencesOfString(">", withString: "").stringByReplacingOccurrencesOfString("#", withString: "")
+                body = body.stringByReplacingOccurrencesOfString("<#customername", withString: name).stringByReplacingOccurrencesOfString(">", withString: "").stringByReplacingOccurrencesOfString("#", withString: "")
             }
             
             self.tbvMessage.deselectRowAtIndexPath(indexPath, animated: false)
