@@ -62,7 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         //Tricky line
-        FIRInstanceID.instanceID().setAPNSToken(deviceToken, type: FIRInstanceIDAPNSTokenType.Unknown)
+        FIRInstanceID.instanceID().setAPNSToken(deviceToken, type: FIRInstanceIDAPNSTokenType.Sandbox)
         print("Device Token:", tokenString)
     }
     
