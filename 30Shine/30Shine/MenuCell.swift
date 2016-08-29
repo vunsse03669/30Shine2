@@ -10,11 +10,13 @@ import UIKit
 
 class MenuCell: UICollectionViewCell {
     
+    @IBOutlet weak var lblNote: UILabel!
     @IBOutlet weak var imvMenu: UIImageView!
     
     override func awakeFromNib() {
-        
-//        imvMenu.layer.cornerRadius = 13.0
-//        self.imvMenu.clipsToBounds = true
+        super.awakeFromNib()
+        self.lblNote.layer.cornerRadius = self.lblNote.frame.size.height/2
+        self.lblNote.clipsToBounds = true
+        self.lblNote.hidden = true
     }
 }

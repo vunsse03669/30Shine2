@@ -46,6 +46,7 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationItem.setHidesBackButton(true, animated: animated)
+        self.clvMenu.reloadData()
     }
     
     //MARK: UI
@@ -90,6 +91,14 @@ class HomeViewController: UIViewController {
                 }
                 else {
                     cell.imvMenu.image = UIImage(contentsOfFile: self.getImagePathFromDisk("\(data.title).png"))
+                }
+                
+                if data.title == "Video tóc ấn tượng" {
+                    cell.lblNote.text = "\(YoutubeVideo.getNumberVideoNotSeen())"
+                    cell.lblNote.hidden = false
+                }
+                else {
+                    cell.lblNote.hidden = true
                 }
             }
         }

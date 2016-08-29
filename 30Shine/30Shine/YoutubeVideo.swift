@@ -17,6 +17,7 @@ class YoutubeVideo: Object {
     dynamic var viewCount : Int = 0
     dynamic var publishDate: String = ""
     dynamic var videoId : String = ""
+    dynamic var isSeen : Bool = false
     
     static func create(id : Int, title : String,link : String,thumb: String, viewCount : Int, publistDate : String, videoId : String) -> YoutubeVideo! {
         let video = YoutubeVideo()
@@ -27,7 +28,7 @@ class YoutubeVideo: Object {
         video.viewCount = viewCount
         video.publishDate = publistDate
         video.videoId = videoId
-        print("\(video.title)")
+        video.isSeen = false
         self.createVideo(video)
         return video
     }
@@ -44,5 +45,21 @@ extension YoutubeVideo {
     static func getVideoById(id : Int) -> YoutubeVideo! {
         let predicate = NSPredicate(format: "id = %d", id)
         return sDB.realm.objects(YoutubeVideo).filter(predicate).first
+    }
+    
+    static func hadSeen(video : YoutubeVideo) {
+        try! sDB.realm.write {
+            video.isSeen = true
+        }
+    }
+    
+    static func getNumberVideoNotSeen() -> Int! {
+        var count = 0
+        for video in sDB.realm.objects(YoutubeVideo) {
+            if !video.isSeen {
+                count += 1
+            }
+        }
+        return count
     }
 }

@@ -66,6 +66,12 @@ class VideoViewController: UIViewController, UITableViewDelegate, UIAlertViewDel
             cell.lblTitle.text = "\(data.title)"
             cell.lblViewCount.text = "\(data.viewCount) views"
             cell.lblTime.text = "• \(cell.caculateTime(data.publishDate))"
+            if data.isSeen {
+                 cell.lblNote.hidden = true
+            }
+            else {
+                cell.lblNote.hidden = false
+            }
             LazyImage.showForImageView(cell.imvThumnail, url: data.thumb)
         }
         
@@ -73,6 +79,8 @@ class VideoViewController: UIViewController, UITableViewDelegate, UIAlertViewDel
             indexPath in
             self.tbvVideo.deselectRowAtIndexPath(indexPath, animated: false)
             let videoId = self.videoVariable.value[indexPath.row].videoId
+            YoutubeVideo.hadSeen(self.videoVariable.value[indexPath.row])
+            self.tbvVideo.reloadData()
             self.playVideo(videoId)
         }
     }
