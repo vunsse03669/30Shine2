@@ -61,7 +61,7 @@ class MessageController: UIViewController {
             let msgView = MessageAlertView.createView(self.view, title: title, time: time, imagePath: "img-customer", content: body)
             msgView.delegate = self
             self.view.backgroundColor = UIColor(netHex: 0x9E9E9E)
-            
+            ContentMessage.hadRead(self.messagesVar.value[indexPath.row].message!)
         }
     }
     

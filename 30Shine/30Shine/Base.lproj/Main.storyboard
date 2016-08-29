@@ -800,18 +800,32 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5eX-Dx-0Zu">
+                                                    <rect key="frame" x="564" y="17" width="20" height="20"/>
+                                                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="SHr-zu-9LD"/>
+                                                        <constraint firstAttribute="width" constant="20" id="biI-cQ-U6d"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="mot-CT-mcF" secondAttribute="trailing" constant="8" id="4Qo-bB-YR6"/>
                                                 <constraint firstItem="toK-rq-gcW" firstAttribute="leading" secondItem="jcH-2y-A1a" secondAttribute="leadingMargin" constant="20" id="DOB-fS-aJh"/>
+                                                <constraint firstItem="mot-CT-mcF" firstAttribute="top" secondItem="5eX-Dx-0Zu" secondAttribute="bottom" constant="-25" id="JX1-u0-j1T"/>
                                                 <constraint firstItem="mot-CT-mcF" firstAttribute="height" secondItem="jcH-2y-A1a" secondAttribute="height" multiplier="0.8" id="K8p-pT-but"/>
                                                 <constraint firstItem="toK-rq-gcW" firstAttribute="centerY" secondItem="jcH-2y-A1a" secondAttribute="centerY" id="XDV-dG-90E"/>
                                                 <constraint firstItem="mot-CT-mcF" firstAttribute="centerY" secondItem="jcH-2y-A1a" secondAttribute="centerY" id="dPq-13-RgP"/>
                                                 <constraint firstItem="mot-CT-mcF" firstAttribute="leading" secondItem="toK-rq-gcW" secondAttribute="trailing" constant="8" id="fIN-ng-56e"/>
+                                                <constraint firstItem="5eX-Dx-0Zu" firstAttribute="leading" secondItem="mot-CT-mcF" secondAttribute="trailing" constant="-20" id="zBt-wa-B0Y"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="imvImage" destination="mot-CT-mcF" id="jZC-uM-Zpy"/>
+                                            <outlet property="lblNumberMessage" destination="5eX-Dx-0Zu" id="lVD-wR-MPq"/>
                                             <outlet property="lblTitle" destination="toK-rq-gcW" id="KZK-x7-O0Y"/>
                                         </connections>
                                     </tableViewCell>

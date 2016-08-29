@@ -14,12 +14,18 @@ class SelectProfileController: UIViewController {
 
     @IBOutlet weak var tbvItem: UITableView!
     var itemVariable : Variable<[ProfileItem]> = Variable([])
+    let kMessage = "Tin nhắn"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configUI()
         self.initData()
         self.configTableView()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tbvItem.reloadData()
     }
     
     func configUI() {
@@ -45,6 +51,10 @@ class SelectProfileController: UIViewController {
         _ = self.itemVariable.asObservable().bindTo(self.tbvItem.rx_itemsWithCellIdentifier("ProfileItemCell", cellType: ProfileItemCell.self)) { row,data,cell in
             cell.imvImage.image = UIImage(named: data.imagePath)
             cell.lblTitle.text = data.title
+            if data.title == self.kMessage && Message.getAllMessage() != [] {
+                cell.lblNumberMessage.hidden = false
+                cell.lblNumberMessage.text = "\(ContentMessage.getNumberMessageNotRead())"
+            }
         }
             
         _ = self.tbvItem.rx_itemSelected.subscribeNext { indexPath in
