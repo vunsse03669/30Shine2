@@ -36,9 +36,11 @@ class MessageAlertView: UIView {
         
         let frame1 = CGRectMake(0, 600, superView.frame.size.width, superView.frame.size.height)
         messageView.frame = frame1
-        
+        messageView.lblText.sizeToFit()
+        messageView.lblTime.sizeToFit()
+        messageView.lblTime.sizeToFit()
         UIView.animateWithDuration(0.3) { 
-            let height = messageView.lblTitle.frame.size.height + messageView.btnClose.frame.size.height + messageView.lblText.frame.height + messageView.lblTime.frame.size.height + 60
+            let height = messageView.lblTitle.frame.size.height + messageView.btnClose.frame.size.height + messageView.lblText.frame.height + messageView.lblTime.frame.size.height + 100
             let width = 4*superView.frame.width/5
             let dx = (superView.frame.size.width - width)/2
             let dy = superView.frame.size.height/2 - height
