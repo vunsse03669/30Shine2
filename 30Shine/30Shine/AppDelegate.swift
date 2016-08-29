@@ -112,6 +112,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var title = ""
         var body = ""
         var time = ""
+        var icon = ""
         if Login.getLogin() != nil {
             userId = Login.getLogin().id
         }
@@ -126,7 +127,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let ti = userInfo["send_time"] {
             time = String(ti)
         }
-        let ctm = ContentMessage.create(title, body: body, time: time)
+        if let ic = userInfo["icon"] {
+            icon = String(ic)
+        }
+        let ctm = ContentMessage.create(title, body: body, time: time, icon: icon)
 
         Message.create(userId, message: ctm)
         print("\(Message.getAllMessage())")
