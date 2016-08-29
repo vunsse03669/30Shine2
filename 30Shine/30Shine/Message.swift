@@ -51,14 +51,12 @@ class ContentMessage : Object {
     dynamic var title : String = ""
     dynamic var time : String = ""
     dynamic var body : String = ""
-    dynamic var isRead : Bool = false
     
     static func create(title : String,body : String, time : String) -> ContentMessage! {
         let ctm = ContentMessage()
         ctm.title = title
         ctm.time = time
         ctm.body = body
-        ctm.isRead = false
         self.createContentMessage(ctm)
         return ctm
     }
@@ -72,21 +70,5 @@ class ContentMessage : Object {
     static func getContentMessageByTitle(title : String) -> ContentMessage!{
         let predicate = NSPredicate(format: "title = %@", title)
         return sDB.realm.objects(ContentMessage).filter(predicate).first
-    }
-    
-    static func hadRead(ctm : ContentMessage) {
-        try! sDB.realm.write {
-            ctm.isRead = true
-        }
-    }
-    
-    static func getNumberMessageNotRead() -> Int {
-        var count = 0
-        for msg in sDB.realm.objects(ContentMessage) {
-            if !msg.isRead {
-                count += 1
-            }
-        }
-        return count
     }
 }

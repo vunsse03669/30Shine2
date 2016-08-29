@@ -39,6 +39,8 @@ class BookingViewController: UIViewController {
                                 "82 Trần Đại Nghĩa",
                                 "235 Đội Cấn",
                                 "702 Đường Láng"]
+    var stringBookingTime = ""
+    
     var salontCount   = 0
     var dateCount     = 0
     var stylistCount  = 0
@@ -119,6 +121,7 @@ class BookingViewController: UIViewController {
                     if(Bool){
                         print("DONE")
                         self.alertMessage("Thông báo", msg: "Đặt lịch thành công")
+                        self.createLocalAlert()
                     }
                     else{
                         self.alertMessage("Cảnh báo", msg: "Đặt lịch thất bại. Quý khách vui lòng kiểm tra lại thông tin")
@@ -131,6 +134,18 @@ class BookingViewController: UIViewController {
                 self.alertMessage("Cảnh báo", msg: "Đã xảy ra sự cố trong quá trình đặt lịch.Quý khách vui lòng thực hiện lại!")
             }
         }
+    }
+    
+    func createLocalAlert(){
+        let notification = UILocalNotification()
+        
+        notification.fireDate = NSDate(timeIntervalSinceNow: timeDate(dateFromString(self.stringBookingTime)))
+        
+        notification.alertBody = "Bạn có lịch hẹn cắt tóc ở \(self.dropSalon.options[self.dropSalon.selectedIndex!]) trong vòng 15' nữa"
+        notification.soundName = UILocalNotificationDefaultSoundName
+        
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+
     }
     
     //Validate
@@ -344,6 +359,10 @@ class BookingViewController: UIViewController {
                     }
                 }
                 self.clvBooking.cellForItemAtIndexPath(indexPath)?.backgroundColor = UIColor(netHex: 0x1AD6FD)
+           
+                self.stringBookingTime = "\(self.toDate(self.statusDate.value)) \(cell.hour.stringByReplacingOccurrencesOfString("h", withString: ":"))";
+                print("\(self.stringBookingTime)")
+                print(timeDate( dateFromString(self.stringBookingTime)))
             }
             
         }
@@ -448,7 +467,23 @@ extension BookingViewController : UIDropDownTimeDelegate {
             }
         }
         self.dateCount += 1
+        
     }
+}
+
+func dateFromString(string : String) -> NSDate{
+    let dateFormatter = NSDateFormatter()
+    dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
+//    dateFormatter.calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierISO8601)
+//    dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+//    dateFormatter.timeZone = NSTimeZone(forSecondsFromGMT: 0)
+   let dateFromString = dateFormatter.dateFromString(string)
+    return dateFromString!
+}
+
+func timeDate(date : NSDate) -> NSTimeInterval{
+    let timeCount = date.timeIntervalSinceDate(NSDate())
+    return timeCount - 15*60
 }
 
 extension BookingViewController : UIDropDownStylistDelegate {
