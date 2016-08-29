@@ -50,6 +50,9 @@ class MessageController: UIViewController {
             row,data,cell in
             cell.lblTitle.text = data.message?.title
             cell.imvIcon.image = UIImage(named: "img-customer")
+            if !(data.message?.isRead)! {
+                cell.lblNote.hidden = false
+            }
         }
         
         _ = self.tbvMessage.rx_itemSelected.subscribeNext {
@@ -61,7 +64,7 @@ class MessageController: UIViewController {
             let msgView = MessageAlertView.createView(self.view, title: title, time: time, imagePath: "img-customer", content: body)
             msgView.delegate = self
             self.view.backgroundColor = UIColor(netHex: 0x9E9E9E)
-            
+            ContentMessage.hadRead(self.messagesVar.value[indexPath.row].message!)
         }
     }
     
@@ -76,6 +79,5 @@ class MessageController: UIViewController {
 extension MessageController : MessageAlertProtocol {
     func changeColor() {
         self.view.backgroundColor = UIColor.whiteColor()
-        self.tbvMessage.reloadData()
     }
 }

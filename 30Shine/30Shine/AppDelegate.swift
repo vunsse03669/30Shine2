@@ -13,7 +13,6 @@ import ReachabilitySwift
 import Firebase
 import FirebaseInstanceID
 import FirebaseMessaging
-import AVFoundation
 
 
 @UIApplicationMain
@@ -28,11 +27,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().barTintColor = UIColor.blackColor()
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         
-        
+       
+
         // [START register_for_notifications]
         let settings: UIUserNotificationSettings =
             UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
-        
         application.registerUserNotificationSettings(settings)
         application.registerForRemoteNotifications()
         // [END register_for_notifications]
@@ -77,9 +76,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let notificationToken = NotificationToken.getToken()
                 NotificationToken.updateToken(notificationToken, newToken: refreshedToken)
             }
-            
+            FIRMessaging.messaging().subscribeToTopic("/topics/all-users")
+            print("Subscribe to topics")
             SendTokenNotification.shareInstance.sendTokenNotification({ 
-                
             })
         }
         connectToFcm()
@@ -126,28 +125,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Message.create(userId, message: ctm)
         print("\(Message.getAllMessage())")
         
-        let snackbar = TTGSnackbar.init(message: "You have a new message", duration: .Middle, actionText: "Action")
+        let snackbar = TTGSnackbar.init(message: "You have a new message", duration: .Middle, actionText: "Xem tinh nhắn")
         { (snackbar) -> Void in
-            NSLog("Click action!")
+            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let loginPageView = mainStoryboard.instantiateViewControllerWithIdentifier("MessageController") as! MessageController
+            let rootViewController = self.window!.rootViewController as! UINavigationController
+            rootViewController.pushViewController(loginPageView, animated: true)
         }
         snackbar.show()
-    }
-    
-    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
-        
-
-        do {
-            var audioPlayer : AVAudioPlayer!
-            try audioPlayer = AVAudioPlayer(contentsOfURL: NSURL.fileURLWithPath(NSBundle.mainBundle().pathForResource("alertSound", ofType: "mp3")!))
-            audioPlayer.play();
-            
-        } catch {
-            print("NO SOUND")
-        }
-        
-        let alert = UIAlertView(title: "Thông Báo", message: notification.alertBody, delegate: nil, cancelButtonTitle: "OK");
-        self.window?.rootViewController?.view .addSubview(alert)
-        alert.show()
     }
     
     func applicationWillResignActive(application: UIApplication) {
