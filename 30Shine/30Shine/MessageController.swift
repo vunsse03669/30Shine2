@@ -57,7 +57,9 @@ class MessageController: UIViewController {
             else if data.message?.icon == "ic_read_message_status_bar" {
                 cell.imvIcon.image = UIImage(named: "img-messageNote")
             }
-            
+            else if data.message?.icon == "img-calendar" {
+                cell.imvIcon.image = UIImage(named: "img-calendar")
+            }
             
             if !(data.message?.isRead)! {
                 cell.lblNote.hidden = false
@@ -69,6 +71,7 @@ class MessageController: UIViewController {
         
         _ = self.tbvMessage.rx_itemSelected.subscribeNext {
             indexPath in
+            var body = ""
             let icon = self.messagesVar.value[indexPath.row].message!.icon
             var imagePath = ""
             if icon == "ic_info_status_bar" {
@@ -77,10 +80,20 @@ class MessageController: UIViewController {
             else if icon == "ic_read_message_status_bar" {
                 imagePath = "img-messageNote"
             }
+            else if icon == "img-calendar" {
+                imagePath = "img-calendar"
+            }
+            
+            if ((self.messagesVar.value[indexPath.row].message?.body.containsString("<#name#")) != nil) {
+                let name = Login.getLogin().fullName
+                body = (self.messagesVar.value[indexPath.row].message?.body)!
+                body = body.stringByReplacingOccurrencesOfString("<#name", withString: name).stringByReplacingOccurrencesOfString(">", withString: "").stringByReplacingOccurrencesOfString("#", withString: "")
+            }
+            
             self.tbvMessage.deselectRowAtIndexPath(indexPath, animated: false)
             let title = self.messagesVar.value[indexPath.row].message!.title
             let time = self.messagesVar.value[indexPath.row].message!.time
-            let body = self.messagesVar.value[indexPath.row].message!.body
+            
             let msgView = MessageAlertView.createView(self.view, title: title, time: time, imagePath: imagePath, content: body)
             msgView.delegate = self
             self.view.backgroundColor = UIColor(netHex: 0x9E9E9E)
