@@ -54,6 +54,9 @@ class SelectProfileController: UIViewController {
             if data.title == self.kMessage && Message.getAllMessage() != [] {
                 cell.lblNumberMessage.hidden = false
                 cell.lblNumberMessage.text = "\(ContentMessage.getNumberMessageNotRead())"
+                if ContentMessage.getNumberMessageNotRead() == 0 {
+                    cell.lblNumberMessage.hidden = true
+                }
             }
         }
             

@@ -96,6 +96,9 @@ class HomeViewController: UIViewController {
                 if data.title == "Video tóc ấn tượng" {
                     cell.lblNote.text = "\(YoutubeVideo.getNumberVideoNotSeen())"
                     cell.lblNote.hidden = false
+                    if YoutubeVideo.getNumberVideoNotSeen() == 0 {
+                        cell.lblNote.hidden = true
+                    }
                 }
                 else {
                     cell.lblNote.hidden = true
