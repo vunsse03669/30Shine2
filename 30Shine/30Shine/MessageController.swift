@@ -79,5 +79,6 @@ class MessageController: UIViewController {
 extension MessageController : MessageAlertProtocol {
     func changeColor() {
         self.view.backgroundColor = UIColor.whiteColor()
+        self.tbvMessage.reloadData()
     }
 }
