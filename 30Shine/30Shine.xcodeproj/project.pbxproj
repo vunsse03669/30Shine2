@@ -117,6 +117,7 @@
 		E8031EE81D587F570085DCA7 /* ServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8031EE71D587F570085DCA7 /* ServicesViewController.swift */; };
 		E8031EED1D587F930085DCA7 /* ServiceMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8031EEB1D587F930085DCA7 /* ServiceMenuCell.swift */; };
 		E8043B251D5DADE500853948 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8043B241D5DADE500853948 /* RegisterViewController.swift */; };
+		E805CEF81D740DEE0069AC5A /* alertSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E805CEF71D740DEE0069AC5A /* alertSound.mp3 */; };
 		E840B0E71D6C00AA006052D7 /* AdviseSkinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E840B0E61D6C00AA006052D7 /* AdviseSkinView.swift */; };
 		E840B0E91D6C00BF006052D7 /* AdviseSkinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E840B0E81D6C00BF006052D7 /* AdviseSkinView.xib */; };
 		E840B0EB1D6C03F8006052D7 /* AdviseSkinController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E840B0EA1D6C03F8006052D7 /* AdviseSkinController.swift */; };
@@ -242,6 +243,7 @@
 		E8031EE71D587F570085DCA7 /* ServicesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesViewController.swift; sourceTree = "<group>"; };
 		E8031EEB1D587F930085DCA7 /* ServiceMenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceMenuCell.swift; sourceTree = "<group>"; };
 		E8043B241D5DADE500853948 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		E805CEF71D740DEE0069AC5A /* alertSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = alertSound.mp3; sourceTree = "<group>"; };
 		E840B0E61D6C00AA006052D7 /* AdviseSkinView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdviseSkinView.swift; sourceTree = "<group>"; };
 		E840B0E81D6C00BF006052D7 /* AdviseSkinView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdviseSkinView.xib; sourceTree = "<group>"; };
 		E840B0EA1D6C03F8006052D7 /* AdviseSkinController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdviseSkinController.swift; sourceTree = "<group>"; };
@@ -566,6 +568,7 @@
 		994299931D476BBC00D053B2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E805CEF71D740DEE0069AC5A /* alertSound.mp3 */,
 				9942989E1D4769BF00D053B2 /* Assets.xcassets */,
 				9942989F1D4769BF00D053B2 /* LaunchScreen.storyboard */,
 				994298A11D4769BF00D053B2 /* Main.storyboard */,
@@ -873,6 +876,7 @@
 			files = (
 				18A29F361D6AF6FD00AA452D /* AdviseHairView.xib in Resources */,
 				994299641D4769BF00D053B2 /* CustomerHistoryCell.xib in Resources */,
+				E805CEF81D740DEE0069AC5A /* alertSound.mp3 in Resources */,
 				994299201D4769BF00D053B2 /* Main.storyboard in Resources */,
 				994299711D4769BF00D053B2 /* Info.plist in Resources */,
 				994299761D4769BF00D053B2 /* ListSalonView.xib in Resources */,

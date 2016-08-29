@@ -13,6 +13,7 @@ import ReachabilitySwift
 import Firebase
 import FirebaseInstanceID
 import FirebaseMessaging
+import AVFoundation
 
 
 @UIApplicationMain
@@ -31,6 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // [START register_for_notifications]
         let settings: UIUserNotificationSettings =
             UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+        
         application.registerUserNotificationSettings(settings)
         application.registerForRemoteNotifications()
         // [END register_for_notifications]
@@ -129,6 +131,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NSLog("Click action!")
         }
         snackbar.show()
+    }
+    
+    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+        
+
+        do {
+            var audioPlayer : AVAudioPlayer!
+            try audioPlayer = AVAudioPlayer(contentsOfURL: NSURL.fileURLWithPath(NSBundle.mainBundle().pathForResource("alertSound", ofType: "mp3")!))
+            audioPlayer.play();
+            
+        } catch {
+            print("NO SOUND")
+        }
+        
+        let alert = UIAlertView(title: "Thông Báo", message: notification.alertBody, delegate: nil, cancelButtonTitle: "OK");
+        self.window?.rootViewController?.view .addSubview(alert)
+        alert.show()
     }
     
     func applicationWillResignActive(application: UIApplication) {
