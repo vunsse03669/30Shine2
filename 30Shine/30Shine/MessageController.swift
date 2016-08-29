@@ -49,7 +49,16 @@ class MessageController: UIViewController {
         _ = self.messagesVar.asObservable().bindTo(self.tbvMessage.rx_itemsWithCellIdentifier("MessageCell", cellType: MessageCell.self)) {
             row,data,cell in
             cell.lblTitle.text = data.message?.title
-            cell.imvIcon.image = UIImage(named: "img-customer")
+            cell.lblTime.text = data.message?.time
+            
+            if data.message?.icon == "ic_info_status_bar" {
+                cell.imvIcon.image = UIImage(named: "img-info")
+            }
+            else if data.message?.icon == "ic_read_message_status_bar" {
+                cell.imvIcon.image = UIImage(named: "img-messageNote")
+            }
+            
+            
             if !(data.message?.isRead)! {
                 cell.lblNote.hidden = false
             }
@@ -60,11 +69,19 @@ class MessageController: UIViewController {
         
         _ = self.tbvMessage.rx_itemSelected.subscribeNext {
             indexPath in
+            let icon = self.messagesVar.value[indexPath.row].message!.icon
+            var imagePath = ""
+            if icon == "ic_info_status_bar" {
+                imagePath = "img-info"
+            }
+            else if icon == "ic_read_message_status_bar" {
+                imagePath = "img-messageNote"
+            }
             self.tbvMessage.deselectRowAtIndexPath(indexPath, animated: false)
             let title = self.messagesVar.value[indexPath.row].message!.title
             let time = self.messagesVar.value[indexPath.row].message!.time
             let body = self.messagesVar.value[indexPath.row].message!.body
-            let msgView = MessageAlertView.createView(self.view, title: title, time: time, imagePath: "img-customer", content: body)
+            let msgView = MessageAlertView.createView(self.view, title: title, time: time, imagePath: imagePath, content: body)
             msgView.delegate = self
             self.view.backgroundColor = UIColor(netHex: 0x9E9E9E)
             ContentMessage.hadRead(self.messagesVar.value[indexPath.row].message!)
