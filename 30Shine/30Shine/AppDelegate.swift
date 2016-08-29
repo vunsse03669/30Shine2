@@ -110,17 +110,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var userId = 0
         var title = ""
         var body = ""
+        var time = ""
         if Login.getLogin() != nil {
             userId = Login.getLogin().id
         }
         
+        print("xxxxxxxxxxxxxxxxx: \(userInfo)")
         if let tit = userInfo["aps"]!["alert"]!!["title"]! {
             title = String(tit)
         }
         if let bod = userInfo["aps"]!["alert"]!!["body"]! {
             body = String(bod)
         }
-        let ctm = ContentMessage.create(title, body: body, time: "")
+        if let ti = userInfo["send_time"] {
+            time = String(ti)
+        }
+        let ctm = ContentMessage.create(title, body: body, time: time)
 
         Message.create(userId, message: ctm)
         print("\(Message.getAllMessage())")

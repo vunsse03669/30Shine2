@@ -50,6 +50,7 @@ class MessageController: UIViewController {
             row,data,cell in
             cell.lblTitle.text = data.message?.title
             cell.imvIcon.image = UIImage(named: "img-customer")
+            cell.lblTime.text = data.message?.time
             if !(data.message?.isRead)! {
                 cell.lblNote.hidden = false
             }
