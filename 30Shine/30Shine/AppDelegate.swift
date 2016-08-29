@@ -27,7 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().barTintColor = UIColor.blackColor()
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         
-        
+       
+
         // [START register_for_notifications]
         let settings: UIUserNotificationSettings =
             UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
@@ -75,9 +76,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let notificationToken = NotificationToken.getToken()
                 NotificationToken.updateToken(notificationToken, newToken: refreshedToken)
             }
-            
+            FIRMessaging.messaging().subscribeToTopic("/topics/all-users")
+            print("Subscribe to topics")
             SendTokenNotification.shareInstance.sendTokenNotification({ 
-                
             })
         }
         connectToFcm()

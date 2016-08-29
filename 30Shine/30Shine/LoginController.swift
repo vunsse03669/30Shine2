@@ -124,7 +124,8 @@ class LoginController: UIViewController, UIAlertViewDelegate {
                 let notificationToken = NotificationToken.getToken()
                 NotificationToken.updateToken(notificationToken, newToken: refreshedToken)
             }
-            
+            FIRMessaging.messaging().subscribeToTopic("/topics/all-users")
+            print("Subscribe to topics")
         }
         
         connectToFcm()
