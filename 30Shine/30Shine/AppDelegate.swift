@@ -13,6 +13,7 @@ import ReachabilitySwift
 import Firebase
 import FirebaseInstanceID
 import FirebaseMessaging
+import AVFoundation
 
 
 @UIApplicationMain
@@ -138,6 +139,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             rootViewController.pushViewController(loginPageView, animated: true)
         }
         snackbar.show()
+    }
+    
+    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+        
+        //let alert = UIAlertView(title: "Thông Báo", message: notification.alertBody, delegate: nil, cancelButtonTitle: "OK");
+        
+        let dateformatter = NSDateFormatter()
+        
+        dateformatter.dateFormat = "HH:mm dd/MM/yyyy"
+    
+        let now = dateformatter.stringFromDate(NSDate()).stringByReplacingOccurrencesOfString(":", withString: "h")
+        
+        if #available(iOS 8.2, *) {
+            _ = MessageAlertView.createView((self.window?.rootViewController?.view)!, title: notification.alertTitle!, time:now, imagePath: "img-calendar", content:  notification.alertBody!)
+        } else {
+             _ = MessageAlertView.createView((self.window?.rootViewController?.view)!, title: "", time: now , imagePath: "img-calendar", content:  notification.alertBody!)
+        }
+       
+        UIApplication .topViewController()?.view.backgroundColor = UIColor(netHex: 0x9E9E9E)
     }
     
     func applicationWillResignActive(application: UIApplication) {
