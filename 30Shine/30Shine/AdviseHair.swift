@@ -9,12 +9,14 @@
 import RealmSwift
 
 class AdviseHair: Object {
+    dynamic var hairAttribute : String = ""
     dynamic var descriptionn : String = ""
     dynamic var dateConsultant : String = ""
     var product : List<Product> = List<Product>()
     
-    static func create(description : String, date : String, product : List<Product>) -> AdviseHair {
+    static func create(description : String, date : String, product : List<Product>, hairAttribute : String) -> AdviseHair {
         let adviseHair = AdviseHair()
+        adviseHair.hairAttribute = hairAttribute
         adviseHair.descriptionn = description
         adviseHair.dateConsultant = date
         adviseHair.product = product

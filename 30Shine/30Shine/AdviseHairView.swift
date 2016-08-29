@@ -81,7 +81,7 @@ class AdviseHairView: UIView {
                 let cId = Login.getLogin().id
                 self.parseJson(cId) {
                     // have data
-                    if self.advise.value[0].dateConsultant != "" {
+                    if self.advise.value[0].descriptionn != "" {
                         self.bindingData()
                     }
                     // not have data
@@ -100,7 +100,7 @@ class AdviseHairView: UIView {
                 if AdviseHair.getAdviseHair() != nil {
                     self.advise.value.append(AdviseHair.getAdviseHair())
                     // have data
-                    if self.advise.value[0].dateConsultant != "" {
+                    if self.advise.value[0].descriptionn != "" {
                         self.bindingData()
                     }
                         // not have data
@@ -121,6 +121,14 @@ class AdviseHairView: UIView {
     
     func bindingData() {
         self.lblNote.text = self.advise.value[0].descriptionn
+        let hairDict = self.convertStringToDictionary(self.advise.value[0].hairAttribute)
+        
+        let attrStr = try! NSAttributedString(
+            data: "Bạn có tóc <b>\(hairDict!["DoCung"]!)</b>, mật độ <b>\(hairDict!["MatDo"]!)</b>, da đầu <b>\(hairDict!["DaDau"]!)</b>".dataUsingEncoding(NSUnicodeStringEncoding, allowLossyConversion: true)!,
+            options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
+            documentAttributes: nil)
+        self.lblDescription.attributedText = attrStr
+        self.lblDescription.textAlignment = .Center
     }
     
     func checkData() {
@@ -158,7 +166,7 @@ class AdviseHairView: UIView {
                 }
                 
                 if AdviseHair.getAdviseHairByDate(advise.dateConsultant) == nil {
-                    let adviseHair = AdviseHair.create(advise.description, date: advise.dateConsultant, product: products)
+                    let adviseHair = AdviseHair.create(advise.description, date: advise.dateConsultant, product: products, hairAttribute: advise.hairAttribute)
                     self.advise.value.append(adviseHair)
                 }
                 else {
@@ -175,6 +183,17 @@ class AdviseHairView: UIView {
     func alert(title : String, msg : String) {
         let alert = UIAlertView(title: title, message: msg, delegate: nil, cancelButtonTitle: "Xác nhận")
         alert.show()
+    }
+    
+    func convertStringToDictionary(text: String) -> [String:AnyObject]? {
+        if let data = text.dataUsingEncoding(NSUTF8StringEncoding) {
+            do {
+                return try NSJSONSerialization.JSONObjectWithData(data, options: []) as? [String:AnyObject]
+            } catch let error as NSError {
+                print(error)
+            }
+        }
+        return nil
     }
 }
 

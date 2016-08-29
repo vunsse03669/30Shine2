@@ -18,7 +18,7 @@ class AdviseSkinView: UIView {
     @IBOutlet weak var lblNote: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
     
-    var advise : Variable<[AdviseHair]> = Variable([])
+    var advise : Variable<[AdviseSkin]> = Variable([])
     var product : Variable<[Product]> = Variable([])
     var reachability : Reachability?
     var isConnectInternet = true
@@ -80,7 +80,7 @@ class AdviseSkinView: UIView {
                 let cId = Login.getLogin().id
                 self.parseJson(cId) {
                     // have data
-                    if self.advise.value[0].dateConsultant != "" {
+                    if self.advise.value[0].descriptionn != "" {
                         self.bindingData()
                     }
                         // not have data
@@ -96,10 +96,10 @@ class AdviseSkinView: UIView {
             dispatch_async(dispatch_get_main_queue()) {
                 self.advise.value = []
                 self.product.value = []
-                if AdviseHair.getAdviseHair() != nil {
-                    self.advise.value.append(AdviseHair.getAdviseHair())
+                if AdviseSkin.getAdviseSkin() != nil {
+                    self.advise.value.append(AdviseSkin.getAdviseSkin())
                     // have data
-                    if self.advise.value[0].dateConsultant != "" {
+                    if self.advise.value[0].descriptionn != "" {
                         self.bindingData()
                     }
                         // not have data
@@ -120,6 +120,15 @@ class AdviseSkinView: UIView {
     
     func bindingData() {
         self.lblNote.text = self.advise.value[0].descriptionn
+    
+        let skinDict = self.convertStringToDictionary(self.advise.value[0].hairAttribute)
+        
+        let attrStr = try! NSAttributedString(
+            data: "Bạn có <b>\(skinDict!["LoaiDa"]!)</b>".dataUsingEncoding(NSUnicodeStringEncoding, allowLossyConversion: true)!,
+            options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
+            documentAttributes: nil)
+        self.lblDescription.attributedText = attrStr
+        self.lblDescription.textAlignment = .Center
     }
     
     func checkData() {
@@ -140,7 +149,7 @@ class AdviseSkinView: UIView {
         Alamofire.request(.POST, dApi, parameters: parameter, encoding: .JSON).responseJASON {
             response in
             if let json = response.result.value {
-                let advise = AdviseHairNetwork.init(json["d"])
+                let advise = AdviseSkinNetwork.init(json["d"])
                 let products = List<Product>()
                 
                 for product in advise.products {
@@ -156,13 +165,13 @@ class AdviseSkinView: UIView {
                     }
                 }
                 
-                if AdviseHair.getAdviseHairByDate(advise.dateConsultant) == nil {
-                    let adviseHair = AdviseHair.create(advise.description, date: advise.dateConsultant, product: products)
-                    self.advise.value.append(adviseHair)
+                if AdviseSkin.getadviseSkinByDate(advise.dateConsultant) == nil {
+                    let adviseSkin = AdviseSkin.create(advise.description, date: advise.dateConsultant, product: products,skinAttribute: advise.skinAttribute)
+                    self.advise.value.append(adviseSkin)
                 }
                 else {
-                    let adviseHair = AdviseHair.getAdviseHairByDate(advise.dateConsultant)
-                    self.advise.value.append(adviseHair)
+                    let adviseSkin = AdviseSkin.getadviseSkinByDate(advise.dateConsultant)
+                    self.advise.value.append(adviseSkin)
                 }
                 
                 completion()
@@ -174,6 +183,17 @@ class AdviseSkinView: UIView {
     func alert(title : String, msg : String) {
         let alert = UIAlertView(title: title, message: msg, delegate: nil, cancelButtonTitle: "Xác nhận")
         alert.show()
+    }
+    
+    func convertStringToDictionary(text: String) -> [String:AnyObject]? {
+        if let data = text.dataUsingEncoding(NSUTF8StringEncoding) {
+            do {
+                return try NSJSONSerialization.JSONObjectWithData(data, options: []) as? [String:AnyObject]
+            } catch let error as NSError {
+                print(error)
+            }
+        }
+        return nil
     }
 }
 

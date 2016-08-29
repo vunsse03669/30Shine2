@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		183162CD1D74992F00981221 /* AdviseSkinNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183162CC1D74992F00981221 /* AdviseSkinNetwork.swift */; };
+		183162CF1D74999600981221 /* AdviseSkin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183162CE1D74999600981221 /* AdviseSkin.swift */; };
 		184E020E1D6B5CD400C2C636 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184E020D1D6B5CD400C2C636 /* ProductCell.swift */; };
 		184E02101D6B5CEF00C2C636 /* ProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184E020F1D6B5CEF00C2C636 /* ProductCell.xib */; };
 		184E02121D6B60F000C2C636 /* AdviseHairNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184E02111D6B60F000C2C636 /* AdviseHairNetwork.swift */; };
@@ -130,6 +132,8 @@
 
 /* Begin PBXFileReference section */
 		07F489400F76D4BC5F1DC920 /* Pods-30Shine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-30Shine.release.xcconfig"; path = "Pods/Target Support Files/Pods-30Shine/Pods-30Shine.release.xcconfig"; sourceTree = "<group>"; };
+		183162CC1D74992F00981221 /* AdviseSkinNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdviseSkinNetwork.swift; sourceTree = "<group>"; };
+		183162CE1D74999600981221 /* AdviseSkin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdviseSkin.swift; sourceTree = "<group>"; };
 		184E020D1D6B5CD400C2C636 /* ProductCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		184E020F1D6B5CEF00C2C636 /* ProductCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductCell.xib; sourceTree = "<group>"; };
 		184E02111D6B60F000C2C636 /* AdviseHairNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdviseHairNetwork.swift; sourceTree = "<group>"; };
@@ -355,6 +359,8 @@
 				18A29F2C1D6AE23600AA452D /* AdviseMenu.swift */,
 				184E02111D6B60F000C2C636 /* AdviseHairNetwork.swift */,
 				184E02131D6B64BF00C2C636 /* AdviseHair.swift */,
+				183162CC1D74992F00981221 /* AdviseSkinNetwork.swift */,
+				183162CE1D74999600981221 /* AdviseSkin.swift */,
 			);
 			name = Advise;
 			sourceTree = "<group>";
@@ -372,8 +378,8 @@
 		18A29F291D6AE1E800AA452D /* Advise */ = {
 			isa = PBXGroup;
 			children = (
-				18A29F2A1D6AE21500AA452D /* AdviseHairController.swift */,
 				18A29F2E1D6AE40200AA452D /* AdviseMenuController.swift */,
+				18A29F2A1D6AE21500AA452D /* AdviseHairController.swift */,
 				E840B0EA1D6C03F8006052D7 /* AdviseSkinController.swift */,
 			);
 			name = Advise;
@@ -997,6 +1003,7 @@
 				9942998E1D4769BF00D053B2 /* Video.swift in Sources */,
 				18A29F341D6AF6EA00AA452D /* AdviseHairView.swift in Sources */,
 				9942999E1D476FB100D053B2 /* OtherService.swift in Sources */,
+				183162CF1D74999600981221 /* AdviseSkin.swift in Sources */,
 				9917A8961D4E33F400D9D82B /* BookingNotificatioView.swift in Sources */,
 				994299831D4769BF00D053B2 /* SalonNetwork.swift in Sources */,
 				18D86E781D71E4350002D6D4 /* ForgetAlertView.swift in Sources */,
@@ -1011,6 +1018,7 @@
 				99876F001D4A58030094EF12 /* UIDropDownStylist.swift in Sources */,
 				186A11941D5C8CD800BDB3B3 /* HomeNavigation.swift in Sources */,
 				E8043B251D5DADE500853948 /* RegisterViewController.swift in Sources */,
+				183162CD1D74992F00981221 /* AdviseSkinNetwork.swift in Sources */,
 				994299621D4769BF00D053B2 /* CustomerHistory.swift in Sources */,
 				99876F0C1D4A5FAB0094EF12 /* Booking.swift in Sources */,
 				994299721D4769BF00D053B2 /* JASON+Alamofire.swift in Sources */,
