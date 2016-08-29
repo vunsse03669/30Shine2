@@ -39,6 +39,8 @@ class BookingViewController: UIViewController {
                                 "82 Trần Đại Nghĩa",
                                 "235 Đội Cấn",
                                 "702 Đường Láng"]
+    var stringBookingTime = ""
+    
     var salontCount   = 0
     var dateCount     = 0
     var stylistCount  = 0
@@ -119,6 +121,8 @@ class BookingViewController: UIViewController {
                     if(Bool){
                         print("DONE")
                         self.alertMessage("Thông báo", msg: "Đặt lịch thành công")
+                        
+                        self .createLocalAlert()
                     }
                     else{
                         self.alertMessage("Cảnh báo", msg: "Đặt lịch thất bại. Quý khách vui lòng kiểm tra lại thông tin")
@@ -132,6 +136,44 @@ class BookingViewController: UIViewController {
             }
         }
     }
+    func createLocalAlert(){
+        let notification = UILocalNotification()
+        
+        notification.fireDate = NSDate(timeIntervalSinceNow: timeDate(dateFromString("29-8-2016 14:00")))//self.stringBookingTime)))
+        
+        //let cell = self.dataVar.value[indexPath.row]
+        let indexPaths : NSArray = self.clvBooking!.indexPathsForSelectedItems()!
+        let indexPath : NSIndexPath = indexPaths[0] as! NSIndexPath
+        let time = self.dataVar.value[indexPath.row].hour;
+        
+        if #available(iOS 8.2, *) {
+            notification.alertTitle = "Lịch cắt tóc lúc \(time)"
+        } else {
+            // Fallback on earlier versions
+        }
+        notification.alertBody = " Anh \(Login.getLogin().fullName) ơi, anh có hẹn cắt tóc lúc \(time) tại salon \(self.dropSalon.options[self.dropSalon.selectedIndex!]), anh nhớ đến đúng giờ nha!"
+        notification.soundName = UILocalNotificationDefaultSoundName
+        
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        
+    }
+    
+    func dateFromString(string : String) -> NSDate{
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
+        //    dateFormatter.calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierISO8601)
+        //    dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        //    dateFormatter.timeZone = NSTimeZone(forSecondsFromGMT: 0)
+        let dateFromString = dateFormatter.dateFromString(string)
+        return dateFromString!
+    }
+    
+    func timeDate(date : NSDate) -> NSTimeInterval{
+        let timeCount = date.timeIntervalSinceDate(NSDate())
+        return timeCount - 15*60
+    }
+
+
     
     //Validate
     func validate(name : String, phone: String, date : String, hourId : String) -> Bool {
@@ -344,8 +386,10 @@ class BookingViewController: UIViewController {
                     }
                 }
                 self.clvBooking.cellForItemAtIndexPath(indexPath)?.backgroundColor = UIColor(netHex: 0x1AD6FD)
+                self.stringBookingTime = "\(self.toDate(self.statusDate.value)) \(cell.hour.stringByReplacingOccurrencesOfString("h", withString: ":"))";
+                print("\(self.stringBookingTime)")
+                print(self.timeDate( self.dateFromString(self.stringBookingTime)))
             }
-            
         }
     }
     
