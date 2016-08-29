@@ -33,12 +33,18 @@ class MessageAlertView: UIView {
     static func createView(superView : UIView, title : String, time : String, imagePath : String, content : String) -> MessageAlertView!  {
         let messageView = NSBundle.mainBundle().loadNibNamed("MessageAlertView", owner: self, options: nil) [0] as! MessageAlertView
         messageView.lblTitle.sizeToFit()
-        let height = messageView.lblTitle.frame.size.height + messageView.btnClose.frame.size.height + messageView.lblText.frame.height + messageView.lblTime.frame.size.height + 60
-        let width = 4*superView.frame.width/5
-        let dx = (superView.frame.size.width - width)/2
-        let dy = superView.frame.size.height/2 - height
-        let frame = CGRectMake(dx, dy, width, height)
-        messageView.frame = frame
+        
+        let frame1 = CGRectMake(0, 600, superView.frame.size.width, superView.frame.size.height)
+        messageView.frame = frame1
+        
+        UIView.animateWithDuration(0.3) { 
+            let height = messageView.lblTitle.frame.size.height + messageView.btnClose.frame.size.height + messageView.lblText.frame.height + messageView.lblTime.frame.size.height + 60
+            let width = 4*superView.frame.width/5
+            let dx = (superView.frame.size.width - width)/2
+            let dy = superView.frame.size.height/2 - height
+            let frame = CGRectMake(dx, dy, width, height)
+            messageView.frame = frame
+        }
         
         messageView.lblTitle.text = title
         messageView.lblTime.text = time

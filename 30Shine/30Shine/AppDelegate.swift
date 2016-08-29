@@ -125,9 +125,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Message.create(userId, message: ctm)
         print("\(Message.getAllMessage())")
         
-        let snackbar = TTGSnackbar.init(message: "You have a new message", duration: .Middle, actionText: "Action")
+        let snackbar = TTGSnackbar.init(message: "You have a new message", duration: .Middle, actionText: "Xem tinh nhắn")
         { (snackbar) -> Void in
-            NSLog("Click action!")
+            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let loginPageView = mainStoryboard.instantiateViewControllerWithIdentifier("MessageController") as! MessageController
+            let rootViewController = self.window!.rootViewController as! UINavigationController
+            rootViewController.pushViewController(loginPageView, animated: true)
         }
         snackbar.show()
     }
