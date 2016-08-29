@@ -46,6 +46,11 @@ class MessageController: UIViewController {
     
     //MARK: Config Tableview
     func configTableView() {
+        
+        self.messagesVar.value.sortInPlace {
+            return ($0).message?.time > ($1).message?.time
+        }
+        
         _ = self.messagesVar.asObservable().bindTo(self.tbvMessage.rx_itemsWithCellIdentifier("MessageCell", cellType: MessageCell.self)) {
             row,data,cell in
             cell.lblTitle.text = data.message?.title
