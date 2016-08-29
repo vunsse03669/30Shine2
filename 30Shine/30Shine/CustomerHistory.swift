@@ -40,6 +40,10 @@ extension CustomerHistory {
         return sDB.realm.objects(CustomerHistory).filter(predicate).first
     }
     
+    static func getFirstHistory() -> CustomerHistory! {
+        return sDB.realm.objects(CustomerHistory).first
+    }
+    
     static func getAllHistory() -> [CustomerHistory] {
         var historys = [CustomerHistory]()
         for history in sDB.realm.objects(CustomerHistory) {
