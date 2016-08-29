@@ -138,7 +138,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
         
-        //let alert = UIAlertView(title: "Thông Báo", message: notification.alertBody, delegate: nil, cancelButtonTitle: "OK");
+      
         
         let dateformatter = NSDateFormatter()
         
@@ -146,13 +146,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
         let now = dateformatter.stringFromDate(NSDate()).stringByReplacingOccurrencesOfString(":", withString: "h")
         
+
+        var userId = 0
+        var title = ""
         if #available(iOS 8.2, *) {
-            _ = MessageAlertView.createView((self.window?.rootViewController?.view)!, title: notification.alertTitle!, time:now, imagePath: "img-calendar", content:  notification.alertBody!)
+             title = notification.alertTitle!
         } else {
-             _ = MessageAlertView.createView((self.window?.rootViewController?.view)!, title: "", time: now , imagePath: "img-calendar", content:  notification.alertBody!)
+            // Fallback on earlier versions
         }
-       
-        UIApplication .topViewController()?.view.backgroundColor = UIColor(netHex: 0x9E9E9E)
+        let body = notification.alertBody
+        
+        if Login.getLogin() != nil {
+            userId = Login.getLogin().id
+        }
+        
+        let ctm = ContentMessage.create(title, body: body!, time: now)
+        
+        Message.create(userId, message: ctm)
+        print("\(Message.getAllMessage())")
+        
+        
+        let snackbar = TTGSnackbar.init(message: "Bạn có tin nhắn mới", duration: .Middle, actionText: "Xem tinh nhắn")
+        { (snackbar) -> Void in
+            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let loginPageView = mainStoryboard.instantiateViewControllerWithIdentifier("MessageController") as! MessageController
+            let rootViewController = self.window!.rootViewController as! UINavigationController
+            rootViewController.pushViewController(loginPageView, animated: true)
+        }
+        snackbar.show()
+        
     }
     
     func applicationWillResignActive(application: UIApplication) {
