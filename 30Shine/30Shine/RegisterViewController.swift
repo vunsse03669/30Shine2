@@ -27,7 +27,6 @@ class RegisterViewController: UIViewController , UITextFieldDelegate, CalendarDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("CHƯa CHECK EAMAIL")
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
         configUI()
@@ -127,6 +126,14 @@ class RegisterViewController: UIViewController , UITextFieldDelegate, CalendarDe
         //check empty
         if(!self.checkNoEmptyTextFieldIn(self.view)){
             self.showAlert("Cảnh báo", msg: "Vui lòng điền đầy đủ thông tin")
+            return false
+        }
+        
+        //valid name
+        
+        let characterset = NSCharacterSet(charactersInString: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLKMNOPQRSTUVWXY ")
+        if self.textName.text!.rangeOfCharacterFromSet(characterset.invertedSet) != nil {
+            self.showAlert("Cảnh báo", msg: "Tên người chỉ bảo gồm chữ cái và dấu cách");
             return false
         }
         

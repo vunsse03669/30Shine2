@@ -139,7 +139,9 @@ class BookingViewController: UIViewController {
     func createLocalAlert(){
         let notification = UILocalNotification()
         
-        notification.fireDate = NSDate(timeIntervalSinceNow: timeDate(dateFromString("29-8-2016 14:00")))//self.stringBookingTime)))
+        notification.fireDate = NSDate(timeIntervalSinceNow: 5)
+        
+        //notification.fireDate = NSDate(timeIntervalSinceNow: timeDate(dateFromString(self.stringBookingTime)))
         
         //let cell = self.dataVar.value[indexPath.row]
         let indexPaths : NSArray = self.clvBooking!.indexPathsForSelectedItems()!
@@ -153,7 +155,6 @@ class BookingViewController: UIViewController {
         }
         notification.alertBody = " Anh \(Login.getLogin().fullName) ơi, anh có hẹn cắt tóc lúc \(time) tại salon \(self.dropSalon.options[self.dropSalon.selectedIndex!]), anh nhớ đến đúng giờ nha!"
         notification.soundName = UILocalNotificationDefaultSoundName
-        
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
         
     }

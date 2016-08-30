@@ -17,7 +17,7 @@ import AVFoundation
 
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
     
     var window: UIWindow?
     var reachability : Reachability?
@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
         UINavigationBar.appearance().barTintColor = UIColor.blackColor()
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
-
+        
         if #available(iOS 8.0, *) {
             // [START register_for_notifications]
             let settings: UIUserNotificationSettings =
@@ -75,7 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             FIRMessaging.messaging().subscribeToTopic("/topics/all-users")
             print("Subscribe to topics")
-            SendTokenNotification.shareInstance.sendTokenNotification({ 
+            SendTokenNotification.shareInstance.sendTokenNotification({
             })
         }
         connectToFcm()
@@ -91,7 +91,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         //print(userInfo)
     }
     
@@ -127,7 +127,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             icon = String(ic)
         }
         let ctm = ContentMessage.create(title, body: body, time: time, icon: icon)
-
+        
         Message.create(userId, message: ctm)
         print("\(Message.getAllMessage())")
         
@@ -143,22 +143,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
         
-        //let alert = UIAlertView(title: "Thông Báo", message: notification.alertBody, delegate: nil, cancelButtonTitle: "OK");
+        application.applicationIconBadgeNumber = application.applicationIconBadgeNumber + 1;
         
         let dateformatter = NSDateFormatter()
         
         dateformatter.dateFormat = "HH:mm dd/MM/yyyy"
-    
+        
         let now = dateformatter.stringFromDate(NSDate()).stringByReplacingOccurrencesOfString(":", withString: "h")
         
-//        if #available(iOS 8.2, *) {
-//            _ = MessageAlertView.createView((self.window?.rootViewController?.view)!, title: notification.alertTitle!, time:now, imagePath: "img-calendar", content:  notification.alertBody!)
-//        } else {
-//             _ = MessageAlertView.createView((self.window?.rootViewController?.view)!, title: "", time: now , imagePath: "img-calendar", content:  notification.alertBody!)
-//        }
-//       
-//        UIApplication .topViewController()?.view.backgroundColor = UIColor(netHex: 0x9E9E9E)
-    
         var userId = 0
         var title = ""
         if #available(iOS 8.2, *) {
@@ -180,15 +172,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Message.create(userId, message: ctm)
         print("\(Message.getAllMessage())")
         
-        let snackbar = TTGSnackbar.init(message: "You have a new message", duration: .Middle, actionText: "Xem tinh nhắn")
-        { (snackbar) -> Void in
-            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let loginPageView = mainStoryboard.instantiateViewControllerWithIdentifier("MessageController") as! MessageController
-            let rootViewController = self.window!.rootViewController as! UINavigationController
-            rootViewController.pushViewController(loginPageView, animated: true)
-        }
-        snackbar.show()
+        let alert = UIAlertView(title: title, message: body, delegate: nil, cancelButtonTitle: "OK")
+        self.window?.rootViewController?.view.addSubview(alert)
+        alert.show()
         
+//        let snackbar = TTGSnackbar.init(message: "You have a new message", duration: .Middle, actionText: "Xem tinh nhắn")
+//        { (snackbar) -> Void in
+//            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//            let loginPageView = mainStoryboard.instantiateViewControllerWithIdentifier("MessageController") as! MessageController
+//            let rootViewController = self.window!.rootViewController as! UINavigationController
+//            rootViewController.pushViewController(loginPageView, animated: true)
+//        }
+        //self.window?.rootViewController?.view .addSubview(snackbar)
     }
     
     func applicationWillResignActive(application: UIApplication) {
