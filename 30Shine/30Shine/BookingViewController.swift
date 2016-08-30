@@ -139,9 +139,9 @@ class BookingViewController: UIViewController {
     func createLocalAlert(){
         let notification = UILocalNotification()
         
-        notification.fireDate = NSDate(timeIntervalSinceNow: 5)
+       // notification.fireDate = NSDate(timeIntervalSinceNow: 5)
         
-        //notification.fireDate = NSDate(timeIntervalSinceNow: timeDate(dateFromString(self.stringBookingTime)))
+        notification.fireDate = NSDate(timeIntervalSinceNow: timeDate(dateFromString(self.stringBookingTime)))
         
         //let cell = self.dataVar.value[indexPath.row]
         let indexPaths : NSArray = self.clvBooking!.indexPathsForSelectedItems()!
