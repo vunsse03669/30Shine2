@@ -122,6 +122,14 @@ class RegisterViewController: UIViewController , UITextFieldDelegate, CalendarDe
         textEmail.delegate = self
     }
     
+     func convertUnicodeToASCII(s:String) -> String{
+        var newString:String = s.lowercaseString
+        newString = newString.stringByReplacingOccurrencesOfString("đ", withString: "d")
+        let data = newString.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: true)
+        newString = String.init(data: data!, encoding: NSASCIIStringEncoding)!
+        return newString
+    }
+    
     func validate() -> Bool{
         //check empty
         if(!self.checkNoEmptyTextFieldIn(self.view)){
@@ -132,7 +140,8 @@ class RegisterViewController: UIViewController , UITextFieldDelegate, CalendarDe
         //valid name
         
         let characterset = NSCharacterSet(charactersInString: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLKMNOPQRSTUVWXY ")
-        if self.textName.text!.rangeOfCharacterFromSet(characterset.invertedSet) != nil {
+        
+        if self.convertUnicodeToASCII(self.textName.text!).rangeOfCharacterFromSet(characterset.invertedSet) != nil {
             self.showAlert("Cảnh báo", msg: "Tên người chỉ bảo gồm chữ cái và dấu cách");
             return false
         }
