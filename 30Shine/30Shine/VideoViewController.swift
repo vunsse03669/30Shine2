@@ -25,6 +25,7 @@ class VideoViewController: UIViewController, UITableViewDelegate, UIAlertViewDel
     var videoVariable : Variable<[YoutubeVideo]> = Variable([])
     var videoPlayerViewController : XCDYouTubeVideoPlayerViewController!
     var reachability : Reachability?
+    var time : NSTimer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,18 +88,33 @@ class VideoViewController: UIViewController, UITableViewDelegate, UIAlertViewDel
     
     func playVideo(videoId : String) {
         if videoId != "" {
+            self.btnHome.userInteractionEnabled = false
+            self.btnHome.hidden = true
             videoPlayerViewController = XCDYouTubeVideoPlayerViewController(videoIdentifier: videoId)
             videoPlayerViewController.presentInView(self.view)
+            videoPlayerViewController.moviePlayer.prepareToPlay()
             videoPlayerViewController.moviePlayer.play()
-            videoPlayerViewController.moviePlayer.fullscreen = true
-            
             do{
                 try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
             } catch {
                 //Didn't work
             }
             
-             NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(VideoViewController.doneButtonClick(_:)), name: MPMoviePlayerWillExitFullscreenNotification, object: nil)
+            if videoPlayerViewController.moviePlayer.playbackState != .Playing {
+                 time = NSTimer.scheduledTimerWithTimeInterval(0.3, target: self, selector: #selector(playVideoFullScreen), userInfo: nil, repeats: true)
+            }
+            
+        }
+    }
+    
+    func playVideoFullScreen() {
+        
+         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(VideoViewController.doneButtonClick(_:)), name: MPMoviePlayerWillExitFullscreenNotification, object: nil)
+        if videoPlayerViewController.moviePlayer.playbackState == .Playing {
+            videoPlayerViewController.moviePlayer.fullscreen = true
+            time.invalidate()
+            self.btnHome.userInteractionEnabled = true
+            self.btnHome.hidden = false
         }
     }
     
@@ -109,16 +125,21 @@ class VideoViewController: UIViewController, UITableViewDelegate, UIAlertViewDel
     }
     
     func doneButtonClick(sender:NSNotification?){
+        
+        self.videoPlayerViewController.view.removeFromSuperview()
+        self.videoPlayerViewController.moviePlayer.stop()
+        self.videoPlayerViewController = nil
+        
         let value = UIInterfaceOrientation.Portrait.rawValue
         UIDevice.currentDevice().setValue(value, forKey: "orientation")
         NSNotificationCenter.defaultCenter().removeObserver(self, name: MPMoviePlayerWillExitFullscreenNotification, object: nil)
-        self.videoPlayerViewController.moviePlayer.stop()
-        UIView.animateWithDuration(0.3, animations: {
-            }) { (animate) in
-                self.videoPlayerViewController.view.removeFromSuperview()
-                self.videoPlayerViewController.moviePlayer.stop()
-                self.videoPlayerViewController = nil
-        }
+        print("ccc")
+//        UIView.animateWithDuration(0.3, animations: {
+//            }) { (animate) in
+//                self.videoPlayerViewController.view.removeFromSuperview()
+//                self.videoPlayerViewController.moviePlayer.stop()
+//                self.videoPlayerViewController = nil
+//        }
     }
 
 
