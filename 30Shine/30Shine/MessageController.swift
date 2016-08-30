@@ -19,7 +19,10 @@ class MessageController: UIViewController {
         super.viewDidLoad()
         self.configUI()
         self.initData()
-        self.configTableView()
+        self.tbvMessage.delegate = self
+        self.sortedTableView { 
+            self.configTableView()
+        }
     }
     
     //MARK: UI
@@ -45,11 +48,14 @@ class MessageController: UIViewController {
     }
     
     //MARK: Config Tableview
-    func configTableView() {
-        
+    func sortedTableView(completion : ()->()) {
         self.messagesVar.value.sortInPlace {
             return ($0).message?.time > ($1).message?.time
         }
+        completion()
+    }
+    
+    func configTableView() {
         
         _ = self.messagesVar.asObservable().bindTo(self.tbvMessage.rx_itemsWithCellIdentifier("MessageCell", cellType: MessageCell.self)) {
             row,data,cell in
@@ -115,12 +121,15 @@ class MessageController: UIViewController {
 
 }
 
-extension MessageController : MessageAlertProtocol {
+extension MessageController : MessageAlertProtocol, UITableViewDelegate {
     func changeColor() {
         self.view.backgroundColor = UIColor.whiteColor()
         self.tbvMessage.userInteractionEnabled = true
         self.tbvMessage.reloadData()
-//        self.messagesVar.value = []
-//        self.initData()
+    }
+    
+     func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+        if self.tbvMessage.editing {return .Delete}
+        return .None
     }
 }
