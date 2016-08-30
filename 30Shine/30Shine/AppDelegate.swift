@@ -143,7 +143,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
     
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
         
-        application.applicationIconBadgeNumber = application.applicationIconBadgeNumber + 1;
+       // application.applicationIconBadgeNumber = application.applicationIconBadgeNumber + 1;
         
         let dateformatter = NSDateFormatter()
         
