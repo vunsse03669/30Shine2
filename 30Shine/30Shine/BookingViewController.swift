@@ -120,12 +120,12 @@ class BookingViewController: UIViewController {
                     Bool in
                     if(Bool){
                         print("DONE")
-                        self.alertMessage("Thông báo", msg: "Đặt lịch thành công")
+                        self.alertMessage("Đặt lịch thành công", msg: "Hẹn gặp quý khách tại 30Shine!")
                         
                         self .createLocalAlert()
                     }
                     else{
-                        self.alertMessage("Cảnh báo", msg: "Đặt lịch thất bại. Quý khách vui lòng kiểm tra lại thông tin")
+                        self.alertMessage("Lỗi đặt lịch", msg: "Đã có lỗi trong quá trình đặt lịch, quý khách vui lòng đặt lại")
                         print("ERROR")
                     }
                     return Bool
