@@ -93,7 +93,7 @@ class RegisterViewController: UIViewController , UITextFieldDelegate, CalendarDe
                     })
                 })
             }else{
-                 self.showAlert("Thông báo", msg: "Vui lòng kiểm tra lại thông tin đăng kí")
+                // self.showAlert("Cảnh báo", msg: "Vui lòng kiểm tra lại thông tin đăng kí")
             }
         }
     }
@@ -122,25 +122,34 @@ class RegisterViewController: UIViewController , UITextFieldDelegate, CalendarDe
         textEmail.delegate = self
     }
     
+     func convertUnicodeToASCII(s:String) -> String{
+        var newString:String = s.lowercaseString
+        newString = newString.stringByReplacingOccurrencesOfString("đ", withString: "d")
+        let data = newString.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: true)
+        newString = String.init(data: data!, encoding: NSASCIIStringEncoding)!
+        return newString
+    }
+    
     func validate() -> Bool{
         //check empty
         if(!self.checkNoEmptyTextFieldIn(self.view)){
-            self.showAlert("Thông báo", msg: "Vui lòng điền đầy đủ thông tin")
+            self.showAlert("Cảnh báo", msg: "Vui lòng điền đầy đủ thông tin")
             return false
         }
         
         //valid name
         
         let characterset = NSCharacterSet(charactersInString: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLKMNOPQRSTUVWXY ")
-        if self.textName.text!.rangeOfCharacterFromSet(characterset.invertedSet) != nil {
-            self.showAlert("Thông báo", msg: "Tên người chỉ bảo gồm chữ cái và dấu cách");
+        
+        if self.convertUnicodeToASCII(self.textName.text!).rangeOfCharacterFromSet(characterset.invertedSet) != nil {
+            self.showAlert("Cảnh báo", msg: "Tên người chỉ bảo gồm chữ cái và dấu cách");
             return false
         }
         
         //valid phone number
         print("leng phone : \(self.textPhone.text?.length)")
         if(self.textPhone.text?.length < RANGE_AFTER || self.textPhone.text?.length>RANGE_BEFORE){
-            self.showAlert("Thông báo", msg: "Số điện thoại chỉ bao gồm 10 hoặc 11 số");
+            self.showAlert("Cảnh báo", msg: "Số điện thoại chỉ bao gồm 10 hoặc 11 số");
             return false
         }
         
@@ -148,27 +157,27 @@ class RegisterViewController: UIViewController , UITextFieldDelegate, CalendarDe
         if(self.textPhone.text?.length>0){
             print(self.textPhone.text?.hasPrefix("0"))
             if((self.textPhone.text?.hasPrefix("0")) == false){
-                self.showAlert("Thông báo", msg: "Số điện thoại phải bắt đầu với số 0");
+                self.showAlert("Cảnh báo", msg: "Số điện thoại phải bắt đầu với số 0");
                 return false;
             }
         }
         
         if(self.textEmail.text?.length>0){
             if(!self.isValidEmail(self.textEmail.text!)){
-                self.showAlert("Thông báo", msg: "Email không hợp lệ");
+                self.showAlert("Cảnh báo", msg: "Email không hợp lệ");
                 return false;
             }
         }
         
         //minimum leter of pass
         if(self.textPassword.text?.length < PASSWORD_MINLETTER){
-            self.showAlert("Thông báo", msg: "Mật khẩu phải có ít nhất \(PASSWORD_MINLETTER) kí tự");
+            self.showAlert("Cảnh báo", msg: "Mật khẩu phải có ít nhất \(PASSWORD_MINLETTER) kí tự");
             return false
         }
         
         //compare confirm password
         if(self.textPassword.text != self.textConfirmPass.text){
-            self.showAlert("Thông báo", msg: "Mật khẩu và xác nhận mật khẩu không trùng khớp")
+            self.showAlert("Cảnh báo", msg: "Mật khẩu và xác nhận mật khẩu không trùng khớp")
             return false
         }
         
