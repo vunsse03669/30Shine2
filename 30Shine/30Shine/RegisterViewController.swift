@@ -93,7 +93,7 @@ class RegisterViewController: UIViewController , UITextFieldDelegate, CalendarDe
                     })
                 })
             }else{
-                // self.showAlert("Cảnh báo", msg: "Vui lòng kiểm tra lại thông tin đăng kí")
+                 self.showAlert("Thông báo", msg: "Vui lòng kiểm tra lại thông tin đăng kí")
             }
         }
     }
@@ -133,7 +133,7 @@ class RegisterViewController: UIViewController , UITextFieldDelegate, CalendarDe
     func validate() -> Bool{
         //check empty
         if(!self.checkNoEmptyTextFieldIn(self.view)){
-            self.showAlert("Cảnh báo", msg: "Vui lòng điền đầy đủ thông tin")
+            self.showAlert("Thông báo", msg: "Vui lòng điền đầy đủ thông tin")
             return false
         }
         
@@ -142,14 +142,14 @@ class RegisterViewController: UIViewController , UITextFieldDelegate, CalendarDe
         let characterset = NSCharacterSet(charactersInString: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLKMNOPQRSTUVWXY ")
         
         if self.convertUnicodeToASCII(self.textName.text!).rangeOfCharacterFromSet(characterset.invertedSet) != nil {
-            self.showAlert("Cảnh báo", msg: "Tên người chỉ bảo gồm chữ cái và dấu cách");
+            self.showAlert("Thông báo", msg: "Tên người chỉ bảo gồm chữ cái và dấu cách");
             return false
         }
         
         //valid phone number
         print("leng phone : \(self.textPhone.text?.length)")
         if(self.textPhone.text?.length < RANGE_AFTER || self.textPhone.text?.length>RANGE_BEFORE){
-            self.showAlert("Cảnh báo", msg: "Số điện thoại chỉ bao gồm 10 hoặc 11 số");
+            self.showAlert("Thông báo", msg: "Số điện thoại chỉ bao gồm 10 hoặc 11 số");
             return false
         }
         
@@ -157,27 +157,27 @@ class RegisterViewController: UIViewController , UITextFieldDelegate, CalendarDe
         if(self.textPhone.text?.length>0){
             print(self.textPhone.text?.hasPrefix("0"))
             if((self.textPhone.text?.hasPrefix("0")) == false){
-                self.showAlert("Cảnh báo", msg: "Số điện thoại phải bắt đầu với số 0");
+                self.showAlert("Thông báo", msg: "Số điện thoại phải bắt đầu với số 0");
                 return false;
             }
         }
         
         if(self.textEmail.text?.length>0){
             if(!self.isValidEmail(self.textEmail.text!)){
-                self.showAlert("Cảnh báo", msg: "Email không hợp lệ");
+                self.showAlert("Thông báo", msg: "Email không hợp lệ");
                 return false;
             }
         }
         
         //minimum leter of pass
         if(self.textPassword.text?.length < PASSWORD_MINLETTER){
-            self.showAlert("Cảnh báo", msg: "Mật khẩu phải có ít nhất \(PASSWORD_MINLETTER) kí tự");
+            self.showAlert("Thông báo", msg: "Mật khẩu phải có ít nhất \(PASSWORD_MINLETTER) kí tự");
             return false
         }
         
         //compare confirm password
         if(self.textPassword.text != self.textConfirmPass.text){
-            self.showAlert("Cảnh báo", msg: "Mật khẩu và xác nhận mật khẩu không trùng khớp")
+            self.showAlert("Thông báo", msg: "Mật khẩu và xác nhận mật khẩu không trùng khớp")
             return false
         }
         
