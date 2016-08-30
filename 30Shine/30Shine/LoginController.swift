@@ -155,11 +155,11 @@ class LoginController: UIViewController, UIAlertViewDelegate {
             return false
         }
         else if phone.characters.first != "0" {
-            self.showAlert("Cảnh báo",msg:"Số điện thoại phải bắt đầu băng số 0")
+            self.showAlert("Thông báo",msg:"Số điện thoại phải bắt đầu băng số 0")
             return false
         }
         else if phone.characters.count < 10 && phone.characters.count > 11 {
-            self.showAlert("Cảnh báo",msg:"Số điện thoải phải bao gồm 10 hoặc 11 chữ số")
+            self.showAlert("Thông báo",msg:"Số điện thoải phải bao gồm 10 hoặc 11 chữ số")
             return false
         }
         

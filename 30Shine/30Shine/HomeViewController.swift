@@ -93,7 +93,7 @@ class HomeViewController: UIViewController {
                     cell.imvMenu.image = UIImage(contentsOfFile: self.getImagePathFromDisk("\(data.title).png"))
                 }
                 
-                if data.title == "Video tóc ấn tượng" {
+                if data.title == "Video tóc ấn tượng" && YoutubeVideo.getAllVideo() != []  {
                     cell.lblNote.text = "\(YoutubeVideo.getNumberVideoNotSeen())"
                     cell.lblNote.hidden = false
                     if YoutubeVideo.getNumberVideoNotSeen() == 0 {

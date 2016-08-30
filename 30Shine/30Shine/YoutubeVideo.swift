@@ -47,6 +47,14 @@ extension YoutubeVideo {
         return sDB.realm.objects(YoutubeVideo).filter(predicate).first
     }
     
+    static func getAllVideo() -> [YoutubeVideo] {
+        var videos = [YoutubeVideo]()
+        for video in sDB.realm.objects(YoutubeVideo) {
+            videos.append(video)
+        }
+        return videos
+    }
+    
     static func hadSeen(video : YoutubeVideo) {
         try! sDB.realm.write {
             video.isSeen = true

@@ -28,6 +28,7 @@ class ModificationCustomerInfoController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configUI()
+        self.bindingData()
         self.update()
         
         //Add hide keyboard observer
@@ -119,6 +120,26 @@ class ModificationCustomerInfoController: UIViewController {
         textField.layer.sublayerTransform = CATransform3DMakeTranslation(padding, 0, 0)
     }
     
+    //MARK: Binding data
+    func bindingData() {
+        if Login.getLogin() != nil {
+            let name  = Login.getLogin().fullName
+            let phone = Login.getLogin().phone
+            let email = Login.getLogin().email
+            let dob   = Login.getLogin().dayOfbirth
+            let mob   = Login.getLogin().monthOfBirth
+            let yob   = Login.getLogin().yearOfBirth
+            
+            self.txtName.text  = name
+            self.txtEmail.text = email
+            self.txtPhone.text = phone
+            self.txtDob.text   = "\(dob)"
+            self.txtMob.text   = "\(mob)"
+            self.txtYob.text   = "\(yob)"
+        }
+        
+    }
+    
     //MARK: Update
     func isValidEmail(testStr:String) -> Bool {
         // print("validate calendar: \(testStr)")
@@ -131,26 +152,26 @@ class ModificationCustomerInfoController: UIViewController {
     func update() {
         _ = self.btnUpdate.rx_tap.subscribeNext {
             guard let phone = self.txtPhone.text, name = self.txtName.text, dob = Int(self.txtDob.text!), mob = Int(self.txtMob.text!), yob = Int(self.txtYob.text!), mail = self.txtEmail.text else {
-                self.showAlert("Cảnh báo",msg: "Quá trình cập nhật thông tin xảy ra sự cố. Quý khách vui lòng kiểm tra lại thông tin")
+                self.showAlert("Thông báo",msg: "Quá trình cập nhật thông tin xảy ra sự cố. Quý khách vui lòng kiểm tra lại thông tin")
                 return
             }
             let id    = Login.getLogin().id
             let token = Login.getLogin().acessToken
             
             if id == 0 || token == "" || phone == "" || name == "" {
-                self.showAlert("Cảnh báo",msg: "Quá trình cập nhật thông tin xảy ra sự cố. Quý khách vui lòng kiểm tra lại thông tin")
+                self.showAlert("Thông báo",msg: "Quá trình cập nhật thông tin xảy ra sự cố. Quý khách vui lòng kiểm tra lại thông tin")
                 return
             }
             if phone.characters.first != "0" {
-                self.showAlert("Cảnh báo",msg: "Số điện thoại phải bắt đầu băng số 0")
+                self.showAlert("Thông báo",msg: "Số điện thoại phải bắt đầu băng số 0")
                 return
             }
             if phone.characters.count < 10 && phone.characters.count > 11 {
-                self.showAlert("Cảnh báo",msg: "Số điện thoại phải bao gồm 10 hoặc 11 chữ số")
+                self.showAlert("Thông báo",msg: "Số điện thoại phải bao gồm 10 hoặc 11 chữ số")
                 return
             }
             if !self.isValidEmail(mail) {
-                self.showAlert("Cảnh báo",msg: "Quý khách chưa nhập mail đúng định dạng! Quý khác vui lòng nhập lại")
+                self.showAlert("Thông báo",msg: "Quý khách chưa nhập mail đúng định dạng! Quý khác vui lòng nhập lại")
                 return
             }
             
@@ -162,13 +183,13 @@ class ModificationCustomerInfoController: UIViewController {
                     SVProgressHUD.popActivity()
                 })
                 if self.updateSuccess {
-                    Login.deleteLogin()
-                    Login.create(id, phone: phone, fullName: name, email: mail, token: token, dob: dob, mob: mob, yob: yob)
-                    self.showAlert("Cảnh báo",msg: "Cập nhật thông tin thành công")
+                    Login.updateLogin(Login.getLogin(), name: name, phone: phone, email: mail, dob: dob, mob: mob, yob: yob)
+                    self.showAlert("Thông báo",msg: "Cập nhật thông tin thành công")
                     self.navigationController?.popViewControllerAnimated(true)
+                    print("............ :\(Login.getLogin())")
                 }
                 else {
-                    self.showAlert("Cảnh báo",msg: "Quá trình cập nhật thông tin xảy ra sự cố. Quý khách vui lòng kiểm tra lại thông tin")
+                    self.showAlert("Thông báo",msg: "Quá trình cập nhật thông tin xảy ra sự cố. Quý khách vui lòng kiểm tra lại thông tin")
                 }
             }
         }
@@ -206,6 +227,8 @@ class ModificationCustomerInfoController: UIViewController {
         alert.show()
     }
 }
+
+
 
 //MARK: Calendar delegate
 extension ModificationCustomerInfoController : CalendarDelegate {

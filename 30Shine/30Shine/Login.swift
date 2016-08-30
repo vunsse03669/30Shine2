@@ -50,6 +50,17 @@ extension Login {
         return sDB.realm.objects(Login).first
     }
     
+    static func updateLogin(login : Login, name : String, phone : String, email: String, dob : Int, mob : Int, yob : Int) {
+        try! sDB.realm.write {
+            login.fullName = name
+            login.phone = phone
+            login.email = email
+            login.dayOfbirth = dob
+            login.monthOfBirth = mob
+            login.yearOfBirth = yob
+        }
+    }
+    
     static func updateToken(login: Login,  token : String) {
         try! sDB.realm.write {
             login.acessToken = token

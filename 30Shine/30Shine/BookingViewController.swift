@@ -132,7 +132,7 @@ class BookingViewController: UIViewController {
                 })
             }
             else {
-                self.alertMessage("Cảnh báo", msg: "Đã xảy ra sự cố trong quá trình đặt lịch.Quý khách vui lòng thực hiện lại!")
+                self.alertMessage("Thông báo", msg: "Đã xảy ra sự cố trong quá trình đặt lịch.Quý khách vui lòng thực hiện lại!")
             }
         }
     }
