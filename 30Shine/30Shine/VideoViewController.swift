@@ -42,8 +42,13 @@ class VideoViewController: UIViewController, UITableViewDelegate, UIAlertViewDel
         }
         //Click btnProfile
         _ = btnProfile.rx_tap.subscribeNext {
-            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("SelectProfileController") as! SelectProfileController
-            self.navigationController?.push(vc, animated: true)
+            if self.isLogin() {
+                let vc = self.storyboard?.instantiateViewControllerWithIdentifier("SelectProfileController") as! SelectProfileController
+                self.navigationController?.push(vc, animated: true)
+            }
+            else {
+                self.showAlert("Bạn chưa đăng nhập", message: "Mời quý khách đăng nhập/đăng ký tài khoản để sử dụng đầy đủ chức năng của ứng dụng!")
+            }
         }
     }
     
@@ -209,7 +214,15 @@ class VideoViewController: UIViewController, UITableViewDelegate, UIAlertViewDel
         if buttonIndex == 0 {
             self.navigationController?.popViewControllerAnimated(true)
         }
+        if buttonIndex == 1 {
+            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("LoginController") as! LoginController
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
         
     }
     
+    func showAlert(title : String, message : String) {
+        let alert = UIAlertView(title: title, message: message, delegate: self, cancelButtonTitle: "Để sau", otherButtonTitles: "Đăng nhập")
+        alert.show()
+    }
 }

@@ -131,14 +131,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         Message.create(userId, message: ctm)
         print("\(Message.getAllMessage())")
         
-        let snackbar = TTGSnackbar.init(message: "You have a new message", duration: .Middle, actionText: "Xem tinh nhắn")
-        { (snackbar) -> Void in
-            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let loginPageView = mainStoryboard.instantiateViewControllerWithIdentifier("MessageController") as! MessageController
-            let rootViewController = self.window!.rootViewController as! UINavigationController
-            rootViewController.pushViewController(loginPageView, animated: true)
+        if Login.getLogin() != nil {
+            let snackbar = TTGSnackbar.init(message: "You have a new message", duration: .Middle, actionText: "Xem tinh nhắn")
+            { (snackbar) -> Void in
+                let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let loginPageView = mainStoryboard.instantiateViewControllerWithIdentifier("MessageController") as! MessageController
+                let rootViewController = self.window!.rootViewController as! UINavigationController
+                rootViewController.pushViewController(loginPageView, animated: true)
+            }
+            snackbar.show()
         }
-        snackbar.show()
     }
     
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {

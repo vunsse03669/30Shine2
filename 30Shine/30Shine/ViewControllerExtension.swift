@@ -19,4 +19,8 @@ extension UIViewController {
     func dismissKeyboard() {
         view.endEditing(true)
     }
+    
+    func isLogin() -> Bool {
+        return Login.getLogin() != nil
+    }
 }

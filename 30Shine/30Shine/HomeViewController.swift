@@ -38,8 +38,14 @@ class HomeViewController: UIViewController {
         
         //Click btnProfile
         _ = btnProfile.rx_tap.subscribeNext {
-            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("SelectProfileController") as! SelectProfileController
-            self.navigationController?.push(vc, animated: true)
+            if self.isLogin() {
+                let vc = self.storyboard?.instantiateViewControllerWithIdentifier("SelectProfileController") as! SelectProfileController
+                self.navigationController?.push(vc, animated: true)
+            }
+            else {
+                self.showAlert("Bạn chưa đăng nhập", message: "Mời quý khách đăng nhập/đăng ký tài khoản để sử dụng đầy đủ chức năng của ứng dụng!")
+            }
+            
         }
     }
     
@@ -114,24 +120,26 @@ class HomeViewController: UIViewController {
             
             selectedCell.bounceAction({
                 var vc : UIViewController!
+                var canGo = true
                 switch indexPath.row {
                 case 0 :
                     vc = self.storyboard?.instantiateViewControllerWithIdentifier("AdviseMenuController") as? AdviseMenuController
-                    
+                    canGo = Login.getLogin() == nil ? false : true
                 case 1 :
                     vc = self.storyboard?.instantiateViewControllerWithIdentifier("HairCollectionViewController") as? HairCollectionViewController
+                    canGo = true
                 case 2 :
                     vc = self.storyboard?.instantiateViewControllerWithIdentifier("BookingViewController") as? BookingViewController
-                    
+                    canGo = true
                 case 3:
                     vc = self.storyboard?.instantiateViewControllerWithIdentifier("VideoViewController") as? VideoViewController
-                    
+                    canGo = true
                 case 4:
                      vc = self.storyboard?.instantiateViewControllerWithIdentifier("CosmeticViewController") as? CosmeticViewController
-                    
+                    canGo = true
                 case 5:
                     vc = self.storyboard?.instantiateViewControllerWithIdentifier("ListSalonsViewController") as? ListSalonsViewController
-                    
+                    canGo = true
                 case 6:
                     vc = self.storyboard?.instantiateViewControllerWithIdentifier("ServicesViewController") as? ServicesViewController
                     
@@ -139,8 +147,11 @@ class HomeViewController: UIViewController {
                     print("Tap Failed!!!")
                 }
                 
-                if vc != nil {
+                if vc != nil && canGo {
                     self.navigationController?.pushViewController(vc, animated: true)
+                }
+                else{
+                    self.showAlert("Bạn chưa đăng nhập", message: "Mời quý khách đăng nhập/đăng ký tài khoản để sử dụng đầy đủ chức năng của ứng dụng!")
                 }
             })
         }
@@ -301,4 +312,18 @@ extension HomeViewController {
         return documentsDirectory
     }
  
+}
+
+extension HomeViewController : UIAlertViewDelegate {
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        if buttonIndex == 1 {
+            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("LoginController") as! LoginController
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func showAlert(title : String, message : String) {
+        let alert = UIAlertView(title: title, message: message, delegate: self, cancelButtonTitle: "Để sau", otherButtonTitles: "Đăng nhập")
+        alert.show()
+    }
 }

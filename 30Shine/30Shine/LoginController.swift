@@ -77,8 +77,15 @@ class LoginController: UIViewController, UIAlertViewDelegate {
         self.txtPassword.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
         self.txtPassword.secureTextEntry = true
         
-        self.txtPhone.text = "01669808868"
-        self.txtPassword.text = "api123"
+        //back image
+        var backImage = UIImage(named: "img-home")
+        backImage = backImage?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: backImage, style: UIBarButtonItemStyle.Plain, target: self, action: #selector(handleHomeButton))
+    }
+    
+    func handleHomeButton() {
+        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     //MARK: Login
     func login() {

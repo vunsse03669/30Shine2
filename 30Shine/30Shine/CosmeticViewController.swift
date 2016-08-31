@@ -30,7 +30,23 @@ class CosmeticViewController: UIViewController, UIWebViewDelegate {
         imageView.contentMode = .ScaleAspectFit
         self.navigationItem.titleView = imageView
         self.navigationController?.navigationBar.translucent = false
+        
+        //profile image
+        var profileImage = UIImage(named: "img-people")
+        profileImage = profileImage?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: profileImage, style: UIBarButtonItemStyle.Plain, target: self, action: #selector(handleProfile))
     }
+    
+    func handleProfile() {
+        if self.isLogin() {
+            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("SelectProfileController") as! SelectProfileController
+            self.navigationController?.push(vc, animated: true)
+        }
+        else {
+            self.showAlert("Bạn chưa đăng nhập", message: "Mời quý khách đăng nhập/đăng ký tài khoản để sử dụng đầy đủ chức năng của ứng dụng!")
+        }
+    }
+
     
     //MARK: Webview delegate
     func webViewDidStartLoad(webView: UIWebView) {
@@ -48,4 +64,18 @@ class CosmeticViewController: UIViewController, UIWebViewDelegate {
 
 
 
+}
+
+extension CosmeticViewController : UIAlertViewDelegate {
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        if buttonIndex == 1 {
+            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("LoginController") as! LoginController
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func showAlert(title : String, message : String) {
+        let alert = UIAlertView(title: title, message: message, delegate: self, cancelButtonTitle: "Để sau", otherButtonTitles: "Đăng nhập")
+        alert.show()
+    }
 }
