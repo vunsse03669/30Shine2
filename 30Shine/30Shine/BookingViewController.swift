@@ -139,23 +139,31 @@ class BookingViewController: UIViewController {
     func createLocalAlert(){
         let notification = UILocalNotification()
         
-       // notification.fireDate = NSDate(timeIntervalSinceNow: 5)
+        // notification.fireDate = NSDate(timeIntervalSinceNow: 5)
         
-        notification.fireDate = NSDate(timeIntervalSinceNow: timeDate(dateFromString(self.stringBookingTime)))
+        let timeCountDown = timeDate(dateFromString(self.stringBookingTime))
         
-        //let cell = self.dataVar.value[indexPath.row]
-        let indexPaths : NSArray = self.clvBooking!.indexPathsForSelectedItems()!
-        let indexPath : NSIndexPath = indexPaths[0] as! NSIndexPath
-        let time = self.dataVar.value[indexPath.row].hour;
-        
-        if #available(iOS 8.2, *) {
-            notification.alertTitle = "Lịch cắt tóc lúc \(time)"
-        } else {
-            // Fallback on earlier versions
+        if(timeCountDown > 0){
+            
+            notification.fireDate = NSDate(timeIntervalSinceNow: timeCountDown)
+            
+            //let cell = self.dataVar.value[indexPath.row]
+            let indexPaths : NSArray = self.clvBooking!.indexPathsForSelectedItems()!
+            let indexPath : NSIndexPath = indexPaths[0] as! NSIndexPath
+            let time = self.dataVar.value[indexPath.row].hour;
+            
+            if #available(iOS 8.2, *) {
+                notification.alertTitle = "Lịch cắt tóc lúc \(time)"
+            } else {
+                // Fallback on earlier versions
+            }
+            notification.alertBody = " Anh \(Login.getLogin().fullName) ơi, anh có hẹn cắt tóc lúc \(time) tại salon \(self.dropSalon.options[self.dropSalon.selectedIndex!]), anh nhớ đến đúng giờ nha!"
+            notification.soundName = UILocalNotificationDefaultSoundName
+            UIApplication.sharedApplication().scheduleLocalNotification(notification)
         }
-        notification.alertBody = " Anh \(Login.getLogin().fullName) ơi, anh có hẹn cắt tóc lúc \(time) tại salon \(self.dropSalon.options[self.dropSalon.selectedIndex!]), anh nhớ đến đúng giờ nha!"
-        notification.soundName = UILocalNotificationDefaultSoundName
-        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        else{
+            print("TIME REMIND < \(TIME_BOOKING_REMINDER)'. Do nothing")
+        }
         
     }
     
@@ -171,11 +179,9 @@ class BookingViewController: UIViewController {
     
     func timeDate(date : NSDate) -> NSTimeInterval{
         let timeCount = date.timeIntervalSinceDate(NSDate())
-        return timeCount - 15*60
+        return timeCount - TIME_BOOKING_REMINDER*60
     }
 
-
-    
     //Validate
     func validate(name : String, phone: String, date : String, hourId : String) -> Bool {
         if name == "" || phone == "" || date == "" || hourId == "0" {
@@ -197,7 +203,7 @@ class BookingViewController: UIViewController {
             view.removeGestureRecognizer(recognizer)
         }
     }
-
+    
     //MARK: UI
     func configUI() {
         let logo        = UIImage(named: "logo")
@@ -310,12 +316,12 @@ class BookingViewController: UIViewController {
         _ = self.isClickOnTime.asObservable().subscribeNext { isClick in
             if isClick > 0 {
                 if self.dropSalon.selected {
-                     self.dropSalon.hideTable()
+                    self.dropSalon.hideTable()
                 }
                 if self.dropStylist.selected {
                     self.dropStylist.hideTable()
                 }
-            
+                
             }
         }
     }
@@ -353,7 +359,7 @@ class BookingViewController: UIViewController {
                         self.fullSlot(cell)
                         data.canBooking = false
                     }
-
+                    
                 }
                 else {
                     switch data.statusBooking {
@@ -424,7 +430,7 @@ class BookingViewController: UIViewController {
         cell.lblStatus.textColor = UIColor.whiteColor()
         cell.lblStatus.text      = "Hết chỗ"
         cell.canBooking = false
-
+        
     }
     
     func desist(cell : BookingCell) {
@@ -443,7 +449,7 @@ extension BookingViewController : UIDropDownDelegate {
     func dropDown(dropDown: UIDropDown, didSelectOption option: String, atIndex index: Int) {
         self.statusSalonId.value = self.salonIds[index]
         
-        self.parseStaffAttendace(self.statusSalonId.value, workDate: self.toDate(self.statusDate.value)) { 
+        self.parseStaffAttendace(self.statusSalonId.value, workDate: self.toDate(self.statusDate.value)) {
             () in
             self.parseStylist(self.salonIds[index]) {
                 () in
@@ -468,7 +474,7 @@ extension BookingViewController : UIDropDownDelegate {
         
         if self.salonCount > 0 {
             self.parseSchedule(self.statusSalonId.value, workDate: self.toDate(self.statusDate.value), stylistId: 0) {
-    
+                
                 print(self.statusDate.value)
                 print("salonId \(self.statusSalonId.value)")
                 print("workDate \(self.toDate(self.statusDate.value))")
@@ -498,7 +504,7 @@ extension BookingViewController : UIDropDownTimeDelegate {
 
 extension BookingViewController : UIDropDownStylistDelegate {
     func dropDownStylist(dropDown: UIDropDownStylist, didSelectOption option: String, atIndex index: Int){
-
+        
         self.stylistID.value = self.stylistId[index]
         self.parseSchedule(self.statusSalonId.value, workDate: self.toDate(self.statusDate.value), stylistId: self.stylistID.value) {
             
@@ -513,7 +519,7 @@ extension BookingViewController : UIDropDownStylistDelegate {
 //MARK: Parse Json
 extension BookingViewController {
     func parseSchedule(salonId : Int, workDate : String, stylistId : Int, compeletion : () ->()) {
-
+        
         let BOOKING_API = "http://api.30shine.com/booking/dsbookhour/stylist"
         let parameter = ["SalonId":salonId,"WorkDate":workDate,"Stylist":stylistId]
         self.dataVar.value = []
@@ -558,7 +564,7 @@ extension BookingViewController {
         
         let API = "http://api.30shine.com/staff/stylisttoworkdate"
         let parameters = ["SalonId" : salonId, "WorkDate" : workDate]
-        dispatch_async(dispatch_get_global_queue(0, 0)) { 
+        dispatch_async(dispatch_get_global_queue(0, 0)) {
             Alamofire.request(.POST, API, parameters: parameters as? [String : AnyObject], encoding: .JSON)
                 .responseJASON {
                     response in
