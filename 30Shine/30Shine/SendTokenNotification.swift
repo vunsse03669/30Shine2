@@ -22,7 +22,7 @@ class SendTokenNotification: NSObject {
             userID = Login.getLogin().id
         }
         else {
-            return
+            userID = 0
         }
         
         if NotificationToken.getToken() != nil {
@@ -37,6 +37,33 @@ class SendTokenNotification: NSObject {
         let kUpdateNotificationToken = "http://api.30shine.com/device/update"
         
         dispatch_async(dispatch_get_global_queue(0, 0)) { 
+            Alamofire.request(.POST, kUpdateNotificationToken, parameters: parameters as? [String : AnyObject], encoding: .JSON).responseJASON {
+                response in
+                if let json = response.result.value {
+                    print(json)
+                }
+            }
+        }
+    }
+    
+    func sendTokenNotificationLogout(completion:()->()) {
+        
+        var oldToken : String!
+        var currentToken : String!
+        
+
+        if NotificationToken.getToken() != nil {
+            oldToken = NotificationToken.getToken().oldToken
+            currentToken = NotificationToken.getToken().currentToken
+        }
+        else {
+            return
+        }
+        
+        let parameters = ["UserId" : 0, "OldToken" : oldToken, "CurrentToken" : currentToken]
+        let kUpdateNotificationToken = "http://api.30shine.com/device/update"
+        
+        dispatch_async(dispatch_get_global_queue(0, 0)) {
             Alamofire.request(.POST, kUpdateNotificationToken, parameters: parameters as? [String : AnyObject], encoding: .JSON).responseJASON {
                 response in
                 if let json = response.result.value {

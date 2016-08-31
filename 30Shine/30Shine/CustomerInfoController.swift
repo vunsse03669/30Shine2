@@ -112,9 +112,7 @@ class CustomerInfoController: UIViewController {
                 NotificationToken.updateToken(notificationToken, newToken: refreshedToken)
             }
             
-            SendTokenNotification.shareInstance.sendTokenNotification({
-                
-            })
+            SendTokenNotification.shareInstance.sendTokenNotificationLogout({})
         }
         connectToFcm()
     }
@@ -145,7 +143,6 @@ extension CustomerInfoController : UIAlertViewDelegate {
         if buttonIndex == 1 {
             
             self.tokenRefreshNotification()
-            
             Login.deleteLogin()
 
             let vc = self.storyboard?.instantiateViewControllerWithIdentifier("LoginController") as! LoginController
