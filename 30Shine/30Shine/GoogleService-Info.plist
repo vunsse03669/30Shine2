@@ -7,9 +7,9 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>556554538523-a7p4r3j1qcjubvpa821v4kenc5tcf6f5.apps.googleusercontent.com</string>
+	<string>556554538523-1mgmp3jbtbi3pgq046ideq5n6skm7h00.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.556554538523-a7p4r3j1qcjubvpa821v4kenc5tcf6f5</string>
+	<string>com.googleusercontent.apps.556554538523-1mgmp3jbtbi3pgq046ideq5n6skm7h00</string>
 	<key>API_KEY</key>
 	<string>AIzaSyCy2PZSEbVshZM10MjA3ixux3rhWt6z5jk</string>
 	<key>GCM_SENDER_ID</key>
@@ -17,7 +17,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.30Shine</string>
+	<string>com.30shine.customercare</string>
 	<key>PROJECT_ID</key>
 	<string>shineapp-6a33d</string>
 	<key>STORAGE_BUCKET</key>
@@ -33,7 +33,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:556554538523:ios:2c46393baaeb59b7</string>
+	<string>1:556554538523:ios:023c4d42bc6ff769</string>
 	<key>DATABASE_URL</key>
 	<string>https://shineapp-6a33d.firebaseio.com</string>
 </dict>
