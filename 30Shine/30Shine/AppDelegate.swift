@@ -128,7 +128,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         if let tit = userInfo["aps"]!["alert"]!!["title"]! {
             title = String(tit)
         }
-        if let bod = userInfo["aps"]!["alert"]!!["body"]! {
+//        if let bod = userInfo["aps"]!["alert"]!!["body"]! {
+//            body = String(bod)
+//        }
+        if let bod = userInfo["text"] {
             body = String(bod)
         }
         if let ti = userInfo["send_time"] {
