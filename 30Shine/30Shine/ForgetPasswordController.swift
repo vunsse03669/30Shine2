@@ -31,8 +31,8 @@ class ForgetPasswordController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
         
-        txtPhone.text = "01663234748"
-        txtMail.text = "mrnguyensonvuads@gmail.com"
+        txtPhone.text = ""
+        txtMail.text = ""
     }
     
     
