@@ -119,6 +119,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         var body = ""
         var time = ""
         var icon = ""
+        var image = ""
         if Login.getLogin() != nil {
             userId = Login.getLogin().id
         }
@@ -136,7 +137,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         if let ic = userInfo["icon"] {
             icon = String(ic)
         }
-        let ctm = ContentMessage.create(title, body: body, time: time, icon: icon)
+        if let im = userInfo["image"] {
+            image = String(im)
+        }
+        let ctm = ContentMessage.create(title, body: body, time: time, icon: icon, image: image)
         
         Message.create(userId, message: ctm)
         print("\(Message.getAllMessage())")
@@ -174,12 +178,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         let time = now
         let icon = "img-calendar"
         
+        
         if Login.getLogin() != nil {
             userId = Login.getLogin().id
         }
         
         
-        let ctm = ContentMessage.create(title, body: body, time: time, icon: icon)
+        let ctm = ContentMessage.create(title, body: body, time: time, icon: icon, image:  "")
         
         Message.create(userId, message: ctm)
         print("\(Message.getAllMessage())")

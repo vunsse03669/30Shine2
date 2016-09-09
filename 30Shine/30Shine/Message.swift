@@ -53,14 +53,16 @@ class ContentMessage : Object {
     dynamic var body : String = ""
     dynamic var isRead : Bool = false
     dynamic var icon : String = ""
+    dynamic var image : String = ""
     
-    static func create(title : String,body : String, time : String, icon : String) -> ContentMessage! {
+    static func create(title : String,body : String, time : String, icon : String, image: String) -> ContentMessage! {
         let ctm = ContentMessage()
         ctm.title = title
         ctm.time = time
         ctm.body = body
         ctm.isRead = false
         ctm.icon = icon
+        ctm.image = image
         self.createContentMessage(ctm)
         return ctm
     }

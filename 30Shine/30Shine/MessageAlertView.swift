@@ -22,6 +22,7 @@ class MessageAlertView: UIView {
     @IBOutlet weak var lblTime: UILabel!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var imvIcon: UIImageView!
+    @IBOutlet weak var imvImage: UIImageView!
     
     var delegate : MessageAlertProtocol!
     
@@ -30,29 +31,43 @@ class MessageAlertView: UIView {
         self.tappedBtnClose()
     }
     
-    static func createView(superView : UIView, title : String, time : String, imagePath : String, content : String) -> MessageAlertView!  {
+    static func createView(superView : UIView, title : String, time : String,iconPath: String, imagePath : String, content : String) -> MessageAlertView!  {
         let messageView = NSBundle.mainBundle().loadNibNamed("MessageAlertView", owner: self, options: nil) [0] as! MessageAlertView
         messageView.lblTitle.sizeToFit()
         
         let frame1 = CGRectMake(0, 600, superView.frame.size.width, superView.frame.size.height)
         messageView.frame = frame1
-        messageView.lblText.sizeToFit()
-        messageView.lblTime.sizeToFit()
-        messageView.lblTime.sizeToFit()
-        UIView.animateWithDuration(0.3) { 
-            let height = messageView.lblTitle.frame.size.height + messageView.btnClose.frame.size.height + messageView.lblText.frame.height + messageView.lblTime.frame.size.height + 100
-            let width = 4*superView.frame.width/5
-            let dx = (superView.frame.size.width - width)/2
-            let dy = superView.frame.size.height/2 - height
-            let frame = CGRectMake(dx, dy, width, height)
-            messageView.frame = frame
-        }
         
         messageView.lblTitle.text = title
         messageView.lblTime.text = time
         messageView.lblText.text = content
-        messageView.imvIcon.image = UIImage(named: imagePath)
         
+        
+       // messageView.lblText.sizeToFit()
+        messageView.lblTime.sizeToFit()
+        messageView.lblTime.sizeToFit()
+        
+        var sizeImage = CGFloat(230)
+    
+        if imagePath.isEmpty {
+            
+            sizeImage = 100
+        }
+        
+        UIView.animateWithDuration(0.3) { 
+            let height = messageView.lblTitle.frame.size.height + messageView.btnClose.frame.size.height + messageView.lblText.frame.height + messageView.lblTime.frame.size.height + sizeImage
+            let width = 4*superView.frame.width/5
+            let dx = (superView.frame.size.width - width)/2
+            let dy = CGFloat(100.0) //superView.frame.size.height/2 - height/2
+            let frame = CGRectMake(dx, dy, width, height)
+            messageView.frame = frame
+        }
+        
+        LazyImage.showForImageView(messageView.imvImage, url: imagePath, defaultImage: "")
+        if !imagePath.isEmpty {
+            messageView.imvImage.frame = CGRectMake(0, 0, 0, 0)
+        }
+        messageView.imvIcon.image = UIImage(named: iconPath)
         superView.addSubview(messageView)
         
         return messageView

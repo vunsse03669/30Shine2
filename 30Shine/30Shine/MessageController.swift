@@ -84,16 +84,20 @@ class MessageController: UIViewController {
             indexPath in
             var body = ""
             let icon = self.messagesVar.value[indexPath.row].message!.icon
-            var imagePath = ""
+            var iconPath = ""
             if icon == "ic_info_status_bar" {
-                imagePath = "img-info"
+                iconPath = "img-info"
             }
             else if icon == "ic_read_message_status_bar" {
-                imagePath = "img-messageNote"
+                iconPath = "img-messageNote"
             }
             else if icon == "img-calendar" {
-                imagePath = "img-calendar"
+                iconPath = "img-calendar"
             }
+            
+            var imagePath = ""
+            let message = self.messagesVar.value[indexPath.row].message!
+            imagePath = message.image
             
             if ((self.messagesVar.value[indexPath.row].message?.body.containsString("<#customername#")) != nil) {
                 let name = Login.getLogin().fullName
@@ -105,7 +109,7 @@ class MessageController: UIViewController {
             let title = self.messagesVar.value[indexPath.row].message!.title
             let time = self.messagesVar.value[indexPath.row].message!.time
             
-            let msgView = MessageAlertView.createView(self.view, title: title, time: time, imagePath: imagePath, content: body)
+            let msgView = MessageAlertView.createView(self.view, title: title, time: time, iconPath: iconPath,imagePath: imagePath, content: body)
             msgView.delegate = self
             self.view.backgroundColor = UIColor(netHex: 0x9E9E9E)
             ContentMessage.hadRead(self.messagesVar.value[indexPath.row].message!)
