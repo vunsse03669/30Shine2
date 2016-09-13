@@ -40,8 +40,7 @@ class VideoViewController: UIViewController, UITableViewDelegate, UIAlertViewDel
                 //let vc = self.storyboard?.instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
                 self.navigationController?.popViewControllerAnimated(true)
         }
-        //Click btnProfile
-        _ = btnProfile.rx_tap.subscribeNext {
+        self.addRightButton {
             if self.isLogin() {
                 let vc = self.storyboard?.instantiateViewControllerWithIdentifier("SelectProfileController") as! SelectProfileController
                 self.navigationController?.push(vc, animated: true)
@@ -50,6 +49,7 @@ class VideoViewController: UIViewController, UITableViewDelegate, UIAlertViewDel
                 self.showAlert("Bạn chưa đăng nhập", message: "Mời quý khách đăng nhập/đăng ký tài khoản để sử dụng đầy đủ chức năng của ứng dụng!")
             }
         }
+        
     }
     
     //MARK: UI

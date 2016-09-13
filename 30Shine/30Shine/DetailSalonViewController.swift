@@ -36,8 +36,7 @@ class DetailSalonViewController: UIViewController,UIScrollViewDelegate, UIGestur
             .subscribeNext {
                 self.navigationController?.popViewControllerAnimated(true)
         }
-        //Click btnProfile
-        _ = btnProfile.rx_tap.subscribeNext {
+        self.addRightButton {
             if self.isLogin() {
                 let vc = self.storyboard?.instantiateViewControllerWithIdentifier("SelectProfileController") as! SelectProfileController
                 self.navigationController?.push(vc, animated: true)
@@ -46,6 +45,7 @@ class DetailSalonViewController: UIViewController,UIScrollViewDelegate, UIGestur
                 self.showAlert("Bạn chưa đăng nhập", message: "Mời quý khách đăng nhập/đăng ký tài khoản để sử dụng đầy đủ chức năng của ứng dụng!")
             }
         }
+        
         
         let logo = UIImage(named: "logo")
         let imageView = UIImageView(image:logo)

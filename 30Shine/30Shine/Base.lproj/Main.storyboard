@@ -2115,19 +2115,11 @@
                                 <state key="normal" image="img-back"/>
                             </button>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="YP7-Y8-lFz">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5D1-py-5qP">
-                                <rect key="frame" x="550" y="7" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="img-people"/>
-                            </button>
-                        </barButtonItem>
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="750"/>
                     <connections>
                         <outlet property="btnHome" destination="yoS-AF-PEx" id="vkm-9C-juC"/>
-                        <outlet property="btnProfile" destination="5D1-py-5qP" id="bJ3-Q4-ffQ"/>
                         <outlet property="clvOtherHair" destination="A0q-M8-jzX" id="NJ8-B1-mFd"/>
                         <outlet property="imvBigImage" destination="4RJ-ge-EbK" id="NtD-Fa-QJx"/>
                         <outlet property="imvSmallImage1" destination="rgu-5z-x0e" id="XDY-YN-HGx"/>
@@ -2350,20 +2342,12 @@
                                 <state key="normal" image="img-back"/>
                             </button>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="HnQ-qp-hPj">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="I7x-FM-Can">
-                                <rect key="frame" x="550" y="7" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="img-people"/>
-                            </button>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="btnBack" destination="qsg-O1-Kz1" id="7nK-aV-XMJ"/>
                         <outlet property="btnBooking" destination="24b-J5-69V" id="ifJ-lu-d8V"/>
                         <outlet property="btnFacebook" destination="dCa-74-IMF" id="Snp-O2-MoI"/>
                         <outlet property="btnHotline" destination="T2c-UI-6pI" id="bWG-Sy-RPC"/>
-                        <outlet property="btnProfile" destination="I7x-FM-Can" id="wX3-6A-K2B"/>
                         <outlet property="clvImagesList" destination="RTx-3y-UkG" id="uTd-eB-Z74"/>
                         <outlet property="imvSelected" destination="9Pm-KY-Cs8" id="BHZ-Js-ohH"/>
                         <outlet property="lblAddress" destination="9cL-4g-Igo" id="8Pe-vT-Jmc"/>

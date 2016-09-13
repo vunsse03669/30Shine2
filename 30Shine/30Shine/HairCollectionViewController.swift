@@ -41,8 +41,8 @@ class HairCollectionViewController: UIViewController, UITableViewDelegate {
             .subscribeNext {
                 self.navigationController?.popViewControllerAnimated(true)
         }
-        //Click btnProfile
-        _ = btnProfile.rx_tap.subscribeNext {
+        
+        self.addRightButton {
             if self.isLogin() {
                 let vc = self.storyboard?.instantiateViewControllerWithIdentifier("SelectProfileController") as! SelectProfileController
                 self.navigationController?.push(vc, animated: true)

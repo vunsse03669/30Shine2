@@ -48,10 +48,11 @@ class AdviseMenuController: UIViewController {
         var backImage = UIImage(named: "img-back")
         backImage = backImage?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: backImage, style: UIBarButtonItemStyle.Plain, target: self, action: #selector(handleBackButton))
+        self.addRightButton(self.handleProfile)
         //profile image
-        var profileImage = UIImage(named: "img-people")
-        profileImage = profileImage?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: profileImage, style: UIBarButtonItemStyle.Plain, target: self, action: #selector(handleProfile))
+//        var profileImage = UIImage(named: "img-people")
+//        profileImage = profileImage?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: profileImage, style: UIBarButtonItemStyle.Plain, target: self, action: #selector(handleProfile))
         
         //Consultant date
         if CustomerHistory.getFirstHistory() != nil {

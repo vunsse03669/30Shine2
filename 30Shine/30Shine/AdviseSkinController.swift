@@ -43,10 +43,7 @@ class AdviseSkinController: UIViewController {
         var backImage = UIImage(named: "img-back")
         backImage = backImage?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: backImage, style: UIBarButtonItemStyle.Plain, target: self, action: #selector(handleBackButton))
-        //profile image
-        var profileImage = UIImage(named: "img-people")
-        profileImage = profileImage?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: profileImage, style: UIBarButtonItemStyle.Plain, target: self, action: #selector(handleProfile))
+        self.addRightButton(self.handleProfile)
         
         //create advise hair view
         AdviseSkinView.createView(self.containerView)

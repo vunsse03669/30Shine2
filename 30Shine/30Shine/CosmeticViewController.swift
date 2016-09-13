@@ -31,10 +31,7 @@ class CosmeticViewController: UIViewController, UIWebViewDelegate {
         self.navigationItem.titleView = imageView
         self.navigationController?.navigationBar.translucent = false
         
-        //profile image
-        var profileImage = UIImage(named: "img-people")
-        profileImage = profileImage?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: profileImage, style: UIBarButtonItemStyle.Plain, target: self, action: #selector(handleProfile))
+        self.addRightButton(self.handleProfile)
     }
     
     func handleProfile() {

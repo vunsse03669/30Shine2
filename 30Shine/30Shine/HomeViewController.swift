@@ -49,7 +49,7 @@ class HomeViewController: UIViewController {
     
     //MARK: UI
     func configUI() {
-        self.setupRightBarButton()
+        self.addRightButton(self.openProfileView)
         self.pageControl.userInteractionEnabled = false
         self.imvSlide.userInteractionEnabled = true
         
@@ -60,31 +60,6 @@ class HomeViewController: UIViewController {
         self.navigationItem.titleView = imageView
         self.navigationController?.navigationBar.translucent = false
         self.configColletionLayout()
-    }
-    
-    func setupRightBarButton() {
-        let image = UIImage(named: "img-people")
-        
-        let button = UIButton(type: .Custom)
-        button.frame = CGRectMake(0.0, 0.0, 30, 30)
-        button.setBackgroundImage(image, forState: UIControlState.Normal)
-        button.imageView!.contentMode = .ScaleAspectFill
-        
-        let _ = button.rx_tap.subscribeNext {
-            self.openProfileView()
-        }
-        
-        let rightBarButton = ENMBadgedBarButtonItem(customView: button, value: "0")
-        rightBarButton.badgeBackgroundColor = UIColor.redColor()
-        rightBarButton.badgeTextColor = UIColor.whiteColor()
-        navigationItem.rightBarButtonItem = rightBarButton
-        // Listen to message count, update when it is changed
-        let _ = ContentMessage.messageCountVar.asObservable().subscribeNext {
-            count in
-            rightBarButton.badgeValue = "\(count)"
-        }
-        // Trigger message count update
-        ContentMessage.updateNumberMessageNotRead()
     }
     
     func configColletionLayout() {
@@ -359,5 +334,32 @@ extension HomeViewController : UIAlertViewDelegate {
     func showAlert(title : String, message : String) {
         let alert = UIAlertView(title: title, message: message, delegate: self, cancelButtonTitle: "Để sau", otherButtonTitles: "Đăng nhập")
         alert.show()
+    }
+}
+
+extension UIViewController {
+    func addRightButton(didTap : (() -> Void)) {
+        let image = UIImage(named: "img-people")
+        
+        let button = UIButton(type: .Custom)
+        button.frame = CGRectMake(0.0, 0.0, 30, 30)
+        button.setBackgroundImage(image, forState: UIControlState.Normal)
+        button.imageView!.contentMode = .ScaleAspectFill
+        
+        let _ = button.rx_tap.subscribeNext {
+            didTap()
+        }
+        
+        let rightBarButton = ENMBadgedBarButtonItem(customView: button, value: "0")
+        rightBarButton.badgeBackgroundColor = UIColor.redColor()
+        rightBarButton.badgeTextColor = UIColor.whiteColor()
+        navigationItem.rightBarButtonItem = rightBarButton
+        // Listen to message count, update when it is changed
+        let _ = ContentMessage.messageCountVar.asObservable().subscribeNext {
+            count in
+            rightBarButton.badgeValue = "\(count)"
+        }
+        // Trigger message count update
+        ContentMessage.updateNumberMessageNotRead()
     }
 }
