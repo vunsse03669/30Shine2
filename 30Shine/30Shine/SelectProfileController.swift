@@ -53,9 +53,14 @@ class SelectProfileController: UIViewController {
             cell.lblTitle.text = data.title
             if data.title == self.kMessage && Message.getAllMessage() != [] {
                 cell.lblNumberMessage.hidden = false
-                cell.lblNumberMessage.text = "\(ContentMessage.getNumberMessageNotRead())"
-                if ContentMessage.getNumberMessageNotRead() == 0 {
-                    cell.lblNumberMessage.hidden = true
+                let _ = ContentMessage.messageCountVar.asObservable().subscribeNext {
+                    count in
+                    if count == 0 {
+                        cell.lblNumberMessage.hidden = true
+                    } else {
+                        cell.lblNumberMessage.hidden = false
+                        cell.lblNumberMessage.text = "\(count)"
+                    }
                 }
             }
         }

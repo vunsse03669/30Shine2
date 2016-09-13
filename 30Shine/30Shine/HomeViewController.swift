@@ -16,7 +16,6 @@ import SVProgressHUD
 
 class HomeViewController: UIViewController {
     
-    @IBOutlet weak var btnProfile: UIButton!
     @IBOutlet weak var clvMenu: UICollectionView!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var imvSlide: SpringImageView!
@@ -36,24 +35,12 @@ class HomeViewController: UIViewController {
         self.configUI()
         self.configSilder()
         
-        //Click btnProfile
-        _ = btnProfile.rx_tap.subscribeNext {
-            if self.isLogin() {
-                let vc = self.storyboard?.instantiateViewControllerWithIdentifier("SelectProfileController") as! SelectProfileController
-                self.navigationController?.push(vc, animated: true)
-            }
-            else {
-                self.showAlert("Bạn chưa đăng nhập", message: "Mời quý khách đăng nhập/đăng ký tài khoản để sử dụng đầy đủ chức năng của ứng dụng!")
-            }
-            
-        }
-        
         // If notitication received, open message view immediately
         if Message.messageReceived {
             self.openMessageView()
         }
     }
-    
+        
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationItem.setHidesBackButton(true, animated: animated)
@@ -62,6 +49,7 @@ class HomeViewController: UIViewController {
     
     //MARK: UI
     func configUI() {
+        self.setupRightBarButton()
         self.pageControl.userInteractionEnabled = false
         self.imvSlide.userInteractionEnabled = true
         
@@ -72,6 +60,31 @@ class HomeViewController: UIViewController {
         self.navigationItem.titleView = imageView
         self.navigationController?.navigationBar.translucent = false
         self.configColletionLayout()
+    }
+    
+    func setupRightBarButton() {
+        let image = UIImage(named: "img-people")
+        
+        let button = UIButton(type: .Custom)
+        button.frame = CGRectMake(0.0, 0.0, 30, 30)
+        button.setBackgroundImage(image, forState: UIControlState.Normal)
+        button.imageView!.contentMode = .ScaleAspectFill
+        
+        let _ = button.rx_tap.subscribeNext {
+            self.openProfileView()
+        }
+        
+        let rightBarButton = ENMBadgedBarButtonItem(customView: button, value: "0")
+        rightBarButton.badgeBackgroundColor = UIColor.redColor()
+        rightBarButton.badgeTextColor = UIColor.whiteColor()
+        navigationItem.rightBarButtonItem = rightBarButton
+        // Listen to message count, update when it is changed
+        let _ = ContentMessage.messageCountVar.asObservable().subscribeNext {
+            count in
+            rightBarButton.badgeValue = "\(count)"
+        }
+        // Trigger message count update
+        ContentMessage.updateNumberMessageNotRead()
     }
     
     func configColletionLayout() {
@@ -98,7 +111,6 @@ class HomeViewController: UIViewController {
                             
                         }
                     })
-
                 }
                 else {
                     cell.imvMenu.image = UIImage(contentsOfFile: self.getImagePathFromDisk("\(data.title).png"))
@@ -165,6 +177,16 @@ class HomeViewController: UIViewController {
     private func openMessageView() {
         if let vc = self.storyboard?.instantiateViewControllerWithIdentifier("MessageController") as? MessageController {
             self.navigationController?.pushViewController(vc, animated: false)
+        }
+    }
+    
+    private func openProfileView() {
+        if self.isLogin() {
+            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("SelectProfileController") as! SelectProfileController
+            self.navigationController?.push(vc, animated: true)
+        }
+        else {
+            self.showAlert("Bạn chưa đăng nhập", message: "Mời quý khách đăng nhập/đăng ký tài khoản để sử dụng đầy đủ chức năng của ứng dụng!")
         }
     }
     

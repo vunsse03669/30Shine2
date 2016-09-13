@@ -56,6 +56,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         if launchOptions != nil && launchOptions![UIApplicationLaunchOptionsRemoteNotificationKey] != nil {
             Message.messageReceived = true
         }
+        
+        ContentMessage.updateNumberMessageNotRead()
 
         return true
     }

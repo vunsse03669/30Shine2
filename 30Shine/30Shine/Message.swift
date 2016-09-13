@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import RxSwift
 
 class Message: Object {
     dynamic var userId : Int = 0
@@ -62,7 +63,7 @@ class ContentMessage : Object {
     dynamic var icon : String = ""
     dynamic var image : String = ""
     
-    
+    static var messageCountVar : Variable<Int> = Variable(0)
     
     static func create(title : String,body : String, time : String, icon : String, image: String) -> ContentMessage! {
         let ctm = ContentMessage()
@@ -91,16 +92,28 @@ class ContentMessage : Object {
         try! sDB.realm.write {
             ctm.isRead = true
         }
+        updateNumberMessageNotRead()
     }
     
-    static func getNumberMessageNotRead() -> Int {
+    static func updateNumberMessageNotRead() {
         var count = 0
         for msg in sDB.realm.objects(ContentMessage) {
             if !msg.isRead {
                 count += 1
             }
         }
-        return count
+        messageCountVar.value = count
     }
     
+//    static func getNumberMessageNotRead() -> Int {
+//        var count = 0
+//        for msg in sDB.realm.objects(ContentMessage) {
+//            if !msg.isRead {
+//                count += 1
+//            }
+//        }
+//        return count
+//    }
+    
+    override class func ignoredProperties() -> [String] { return ["messageCountVar"] }
 }
