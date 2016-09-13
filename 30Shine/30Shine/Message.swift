@@ -14,6 +14,7 @@ class Message: Object {
     dynamic var userId : Int = 0
     dynamic var message : ContentMessage?
     static var messageReceived = false
+    static var messageReceiveComplettion : (() -> Void)!
     
     static func create(id : Int, message : ContentMessage) -> Message! {
         let msg = Message()
@@ -40,6 +41,7 @@ class Message: Object {
         // Since the stupid time format ís hh:mm yyy:mm:dd, it must be splitted to be able to compare
         return messages.sort {
             message1, message2 in
+            // Split the two arrays
             let timeArray1 = message1.message?.time.componentsSeparatedByString(" ")
             let timeArray2 = message2.message?.time.componentsSeparatedByString(" ")
             print("\(message1.message?.time) vs \(message2.message?.time)")
@@ -76,7 +78,7 @@ class Message: Object {
         return messages
     }
     
-    override class func ignoredProperties() -> [String] { return ["messageReceived"] }
+    override class func ignoredProperties() -> [String] { return ["messageReceived", "messageReceiveComplettion"] }
 }
 
 class ContentMessage : Object {

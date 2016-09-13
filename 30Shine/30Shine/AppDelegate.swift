@@ -181,16 +181,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
             
             //print("\(Message.getAllMessage())")
             
-            if Login.getLogin() != nil {
-//                let snackbar = TTGSnackbar.init(message: "You have a new message", duration: .Middle, actionText: "Xem tinh nhắn")
-//                { (snackbar) -> Void in
-//                    let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//                    let loginPageView = mainStoryboard.instantiateViewControllerWithIdentifier("MessageController") as! MessageController
-//                    let rootViewController = self.window!.rootViewController as! UINavigationController
-//                    rootViewController.pushViewController(loginPageView, animated: true)
-//                }
-//                snackbar.show()
-            }
+//            if Login.getLogin() != nil {
+////                let snackbar = TTGSnackbar.init(message: "You have a new message", duration: .Middle, actionText: "Xem tinh nhắn")
+////                { (snackbar) -> Void in
+////                    let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+////                    let loginPageView = mainStoryboard.instantiateViewControllerWithIdentifier("MessageController") as! MessageController
+////                    let rootViewController = self.window!.rootViewController as! UINavigationController
+////                    rootViewController.pushViewController(loginPageView, animated: true)
+////                }
+////                snackbar.show()
+//            }
+        if Message.messageReceiveComplettion != nil{
+            Message.messageReceiveComplettion()
+        }
             completionHandler(.NewData)
         //}
     }

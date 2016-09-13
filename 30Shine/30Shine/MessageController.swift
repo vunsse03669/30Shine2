@@ -21,6 +21,9 @@ class MessageController: UIViewController {
         self.initData()
         self.tbvMessage.delegate = self
         self.configTableView()
+        Message.messageReceiveComplettion = {
+            self.initData()
+        }
     }
     
     //MARK: UI
