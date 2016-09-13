@@ -16,6 +16,7 @@ import FirebaseMessaging
 import AVFoundation
 
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
     
@@ -122,52 +123,64 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         // TODO: Handle data of notification
         
         // Print message ID.
-        print("Message ID: \(userInfo["gcm.message_id"]!)")
-        print(".........: \(userInfo["aps"]!["alert"]!!["title"])")
-        var userId = 0
-        var title = ""
-        var body = ""
-        var time = ""
-        var icon = ""
-        var image = ""
-        if Login.getLogin() != nil {
-            userId = Login.getLogin().id
-        }
-        
-        print("xxxxxxxxxxxxxxxxx: \(userInfo)")
-        if let tit = userInfo["aps"]!["alert"]!!["title"]! {
-            title = String(tit)
-        }
-//        if let bod = userInfo["aps"]!["alert"]!!["body"]! {
-//            body = String(bod)
-//        }
-        if let bod = userInfo["text"] {
-            body = String(bod)
-        }
-        if let ti = userInfo["send_time"] {
-            time = String(ti)
-        }
-        if let ic = userInfo["icon"] {
-            icon = String(ic)
-        }
-        if let im = userInfo["image"] {
-            image = String(im)
-        }
-        let ctm = ContentMessage.create(title, body: body, time: time, icon: icon, image: image)
-        
-        Message.create(userId, message: ctm)
-        print("\(Message.getAllMessage())")
-        
-        if Login.getLogin() != nil {
-            let snackbar = TTGSnackbar.init(message: "You have a new message", duration: .Middle, actionText: "Xem tinh nhắn")
-            { (snackbar) -> Void in
-                let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let loginPageView = mainStoryboard.instantiateViewControllerWithIdentifier("MessageController") as! MessageController
-                let rootViewController = self.window!.rootViewController as! UINavigationController
-                rootViewController.pushViewController(loginPageView, animated: true)
+        //let state = UIApplication.sharedApplication().applicationState
+        //if state == .Background {
+            
+        //} else if state == .Inactive {
+            
+
+        //} else if state == .Active {
+            print("Message ID: \(userInfo["gcm.message_id"]!)")
+            print(".........: \(userInfo["aps"]!["alert"]!!["title"])")
+            var userId = 0
+            var title = ""
+            var body = ""
+            var time = ""
+            var icon = ""
+            var image = ""
+            if Login.getLogin() != nil {
+                userId = Login.getLogin().id
             }
-            snackbar.show()
-        }
+            
+            print("xxxxxxxxxxxxxxxxx: \(userInfo)")
+            if let tit = userInfo["aps"]!["alert"]!!["title"]! {
+                title = String(tit)
+            }
+            //        if let bod = userInfo["aps"]!["alert"]!!["body"]! {
+            //            body = String(bod)
+            //        }
+            if let bod = userInfo["text"] {
+                body = String(bod)
+            }
+            if let ti = userInfo["send_time"] {
+                time = String(ti)
+            }
+            if let ic = userInfo["icon"] {
+                icon = String(ic)
+            }
+            if let im = userInfo["image"] {
+                image = String(im)
+            }
+            let ctm = ContentMessage.create(title, body: body, time: time, icon: icon, image: image)
+            
+            Message.create(userId, message: ctm)
+            
+            ContentMessage.updateNumberMessageNotRead()
+            
+            print("\(Message.getAllMessage())")
+            
+            if Login.getLogin() != nil {
+//                let snackbar = TTGSnackbar.init(message: "You have a new message", duration: .Middle, actionText: "Xem tinh nhắn")
+//                { (snackbar) -> Void in
+//                    let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//                    let loginPageView = mainStoryboard.instantiateViewControllerWithIdentifier("MessageController") as! MessageController
+//                    let rootViewController = self.window!.rootViewController as! UINavigationController
+//                    rootViewController.pushViewController(loginPageView, animated: true)
+//                }
+//                snackbar.show()
+            }
+            completionHandler(.NewData)
+        //}
     }
     
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {

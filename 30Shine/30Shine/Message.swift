@@ -97,7 +97,7 @@ class ContentMessage : Object {
         ctm.isRead = false
         ctm.icon = icon
         ctm.image = image
-        self.createContentMessage(ctm)
+//        self.createContentMessage(ctm)
         return ctm
     }
     
