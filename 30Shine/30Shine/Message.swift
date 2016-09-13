@@ -35,7 +35,11 @@ class Message: Object {
                 messages.append(msg)
             }
         }
-        return messages
+        // Sort the messages so that the latest will appear first
+        return messages.sort {
+            message1, message2 in
+            return message1.message?.time > message2.message?.time
+        }
     }
     
     static func getAllMessage() -> [Message] {
