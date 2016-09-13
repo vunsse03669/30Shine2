@@ -37,9 +37,26 @@ class Message: Object {
             }
         }
         // Sort the messages so that the latest will appear first
+        // Since the stupid time format ís hh:mm yyy:mm:dd, it must be splitted to be able to compare
         return messages.sort {
             message1, message2 in
-            return message1.message?.time > message2.message?.time
+            let timeArray1 = message1.message?.time.componentsSeparatedByString(" ")
+            let timeArray2 = message1.message?.time.componentsSeparatedByString(" ")
+            if timeArray1 == nil || timeArray1?.count < 2 {
+                return false
+            }
+            else if timeArray2 == nil || timeArray2?.count < 2 {
+                return true
+            }
+            else {
+                if timeArray1![1] > timeArray2![1] {
+                    return true
+                } else if timeArray1![1] < timeArray2![1] {
+                    return false
+                } else {
+                    return timeArray1![0] > timeArray2![0]
+                }
+            }
         }
     }
     
