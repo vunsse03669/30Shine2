@@ -51,6 +51,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         self.window!.backgroundColor = .whiteColor();
         self.checkInternet()
         self.checkLogin()
+        
+        // Raise messageRecevied flag when app is launched by Notification
+        if launchOptions != nil && launchOptions![UIApplicationLaunchOptionsRemoteNotificationKey] != nil {
+            Message.messageReceived = true
+        }
+
         return true
     }
     
@@ -99,8 +105,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        //print(userInfo)
+        print("didReceiveRemoteNotification")
+        Message.messageReceived = true
     }
+    
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
         print("[ERROR remote] \(error)")
     }

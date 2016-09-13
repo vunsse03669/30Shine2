@@ -12,6 +12,7 @@ import RealmSwift
 class Message: Object {
     dynamic var userId : Int = 0
     dynamic var message : ContentMessage?
+    static var messageReceived = false
     
     static func create(id : Int, message : ContentMessage) -> Message! {
         let msg = Message()
@@ -45,6 +46,8 @@ class Message: Object {
         
         return messages
     }
+    
+    override class func ignoredProperties() -> [String] { return ["messageReceived"] }
 }
 
 class ContentMessage : Object {
@@ -54,6 +57,8 @@ class ContentMessage : Object {
     dynamic var isRead : Bool = false
     dynamic var icon : String = ""
     dynamic var image : String = ""
+    
+    
     
     static func create(title : String,body : String, time : String, icon : String, image: String) -> ContentMessage! {
         let ctm = ContentMessage()
@@ -93,4 +98,5 @@ class ContentMessage : Object {
         }
         return count
     }
+    
 }

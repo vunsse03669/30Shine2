@@ -47,6 +47,11 @@ class HomeViewController: UIViewController {
             }
             
         }
+        
+        // If notitication received, open message view immediately
+        if Message.messageReceived {
+            self.openMessageView()
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -156,6 +161,13 @@ class HomeViewController: UIViewController {
             })
         }
     }
+    
+    private func openMessageView() {
+        if let vc = self.storyboard?.instantiateViewControllerWithIdentifier("MessageController") as? MessageController {
+            self.navigationController?.pushViewController(vc, animated: false)
+        }
+    }
+    
     
     //MARK: Silder banner
     func configSilder() {
