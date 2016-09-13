@@ -20,9 +20,10 @@ class MessageController: UIViewController {
         self.configUI()
         self.initData()
         self.tbvMessage.delegate = self
-        self.sortedTableView { 
-            self.configTableView()
-        }
+        self.configTableView()
+//        self.sortedTableView { 
+//            self.configTableView()
+//        }
     }
     
     //MARK: UI
@@ -47,13 +48,13 @@ class MessageController: UIViewController {
         self.navigationController?.popViewControllerAnimated(true)
     }
     
-    //MARK: Config Tableview
-    func sortedTableView(completion : ()->()) {
-        self.messagesVar.value.sortInPlace {
-            return ($0).message?.time > ($1).message?.time
-        }
-        completion()
-    }
+//    //MARK: Config Tableview
+//    func sortedTableView(completion : ()->()) {
+//        self.messagesVar.value.sortInPlace {
+//            return ($0).message?.time > ($1).message?.time
+//        }
+//        completion()
+//    }
     
     func configTableView() {
         

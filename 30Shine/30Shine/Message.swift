@@ -41,7 +41,8 @@ class Message: Object {
         return messages.sort {
             message1, message2 in
             let timeArray1 = message1.message?.time.componentsSeparatedByString(" ")
-            let timeArray2 = message1.message?.time.componentsSeparatedByString(" ")
+            let timeArray2 = message2.message?.time.componentsSeparatedByString(" ")
+            print("\(message1.message?.time) vs \(message2.message?.time)")
             if timeArray1 == nil || timeArray1?.count < 2 {
                 return false
             }
@@ -49,13 +50,19 @@ class Message: Object {
                 return true
             }
             else {
-                if timeArray1![1] > timeArray2![1] {
-                    return true
-                } else if timeArray1![1] < timeArray2![1] {
-                    return false
-                } else {
-                    return timeArray1![0] > timeArray2![0]
+                if let date1 = timeArray1![1].toDate() {
+                    if let date2 = timeArray2![1].toDate() {
+                        if date1.compare(date2) == .OrderedDescending {
+                            return true
+                        }
+                        else if date1.compare(date2) == .OrderedAscending {
+                            return false
+                        } else {
+                            return timeArray1![0] > timeArray2![0]
+                        }
+                    }
                 }
+                return true
             }
         }
     }
