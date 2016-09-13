@@ -80,6 +80,7 @@ class Message: Object {
 }
 
 class ContentMessage : Object {
+    dynamic var messageId : String = ""
     dynamic var title : String = ""
     dynamic var time : String = ""
     dynamic var body : String = ""
@@ -89,8 +90,9 @@ class ContentMessage : Object {
     
     static var messageCountVar : Variable<Int> = Variable(0)
     
-    static func create(title : String,body : String, time : String, icon : String, image: String) -> ContentMessage! {
+    static func create(messageId: String, title : String,body : String, time : String, icon : String, image: String) -> ContentMessage! {
         let ctm = ContentMessage()
+        ctm.messageId = messageId
         ctm.title = title
         ctm.time = time
         ctm.body = body
@@ -127,6 +129,10 @@ class ContentMessage : Object {
             }
         }
         messageCountVar.value = count
+    }
+    
+    static func exists(messageId: String) -> Bool {
+        return sDB.realm.objects(ContentMessage).filter("messageId == '\(messageId)'").count > 0
     }
     
 //    static func getNumberMessageNotRead() -> Int {

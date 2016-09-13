@@ -107,11 +107,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         }
     }
     
-    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        print("didReceiveRemoteNotification")
-        Message.messageReceived = true
-    }
-    
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
         print("[ERROR remote] \(error)")
     }
@@ -121,6 +116,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         // If you are receiving a notification message while your app is in the background,
         // this callback will not be fired till the user taps on the notification launching the application.
         // TODO: Handle data of notification
+        
+        let state = UIApplication.sharedApplication().applicationState
+        if state == .Background {
+            print("Background")
+        } else if state == .Inactive {
+            print("Inactive")
+        
+        } else if state == .Active {
+            print("Active")
+        }
         
         // Print message ID.
         //let state = UIApplication.sharedApplication().applicationState
@@ -138,6 +143,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
             var time = ""
             var icon = ""
             var image = ""
+            var messageId = String(userInfo["gcm.message_id"]!)
+        
+            if ContentMessage.exists(messageId) {
+                completionHandler(.NoData)
+                return
+            }
+        
             if Login.getLogin() != nil {
                 userId = Login.getLogin().id
             }
@@ -161,13 +173,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
             if let im = userInfo["image"] {
                 image = String(im)
             }
-            let ctm = ContentMessage.create(title, body: body, time: time, icon: icon, image: image)
+            let ctm = ContentMessage.create(messageId, title: title, body: body, time: time, icon: icon, image: image)
             
             Message.create(userId, message: ctm)
             
             ContentMessage.updateNumberMessageNotRead()
             
-            print("\(Message.getAllMessage())")
+            //print("\(Message.getAllMessage())")
             
             if Login.getLogin() != nil {
 //                let snackbar = TTGSnackbar.init(message: "You have a new message", duration: .Middle, actionText: "Xem tinh nhắn")
@@ -185,49 +197,53 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
     
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
         
-       // application.applicationIconBadgeNumber = application.applicationIconBadgeNumber + 1;
-        
-        let dateformatter = NSDateFormatter()
-        
-        dateformatter.dateFormat = "HH:mm dd/MM/yyyy"
-        
-        let now = dateformatter.stringFromDate(NSDate()).stringByReplacingOccurrencesOfString(":", withString: "h")
-        
-        var userId = 0
-        var title = ""
-        if #available(iOS 8.2, *) {
-            title = notification.alertTitle!
-        } else {
-            // Fallback on earlier versions
-        }
-        let body = notification.alertBody!
-        let time = now
-        let icon = "img-calendar"
-        
-        
-        if Login.getLogin() != nil {
-            userId = Login.getLogin().id
-        }
-        
-        
-        let ctm = ContentMessage.create(title, body: body, time: time, icon: icon, image:  "")
-        
-        Message.create(userId, message: ctm)
-        print("\(Message.getAllMessage())")
-        
-        let alert = UIAlertView(title: title, message: body, delegate: nil, cancelButtonTitle: "OK")
-        self.window?.rootViewController?.view.addSubview(alert)
-        alert.show()
-        
-//        let snackbar = TTGSnackbar.init(message: "You have a new message", duration: .Middle, actionText: "Xem tinh nhắn")
-//        { (snackbar) -> Void in
-//            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//            let loginPageView = mainStoryboard.instantiateViewControllerWithIdentifier("MessageController") as! MessageController
-//            let rootViewController = self.window!.rootViewController as! UINavigationController
-//            rootViewController.pushViewController(loginPageView, animated: true)
-//        }
-        //self.window?.rootViewController?.view .addSubview(snackbar)
     }
+    
+//    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+//        
+//       // application.applicationIconBadgeNumber = application.applicationIconBadgeNumber + 1;
+//        
+//        let dateformatter = NSDateFormatter()
+//        
+//        dateformatter.dateFormat = "HH:mm dd/MM/yyyy"
+//        
+//        let now = dateformatter.stringFromDate(NSDate()).stringByReplacingOccurrencesOfString(":", withString: "h")
+//        
+//        var userId = 0
+//        var title = ""
+//        if #available(iOS 8.2, *) {
+//            title = notification.alertTitle!
+//        } else {
+//            // Fallback on earlier versions
+//        }
+//        let body = notification.alertBody!
+//        let time = now
+//        let icon = "img-calendar"
+//        
+//        
+//        if Login.getLogin() != nil {
+//            userId = Login.getLogin().id
+//        }
+//        
+//        
+//        let ctm = ContentMessage.create(title, body: body, time: time, icon: icon, image:  "")
+//        
+//        Message.create(userId, message: ctm)
+//        print("\(Message.getAllMessage())")
+//        
+//        let alert = UIAlertView(title: title, message: body, delegate: nil, cancelButtonTitle: "OK")
+//        self.window?.rootViewController?.view.addSubview(alert)
+//        alert.show()
+//        
+////        let snackbar = TTGSnackbar.init(message: "You have a new message", duration: .Middle, actionText: "Xem tinh nhắn")
+////        { (snackbar) -> Void in
+////            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+////            let loginPageView = mainStoryboard.instantiateViewControllerWithIdentifier("MessageController") as! MessageController
+////            let rootViewController = self.window!.rootViewController as! UINavigationController
+////            rootViewController.pushViewController(loginPageView, animated: true)
+////        }
+//        //self.window?.rootViewController?.view .addSubview(snackbar)
+//    }
     
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
