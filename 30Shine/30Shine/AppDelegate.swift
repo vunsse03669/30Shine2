@@ -173,24 +173,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
             if let im = userInfo["image"] {
                 image = String(im)
             }
+            print("time : \(time)")
             let ctm = ContentMessage.create(messageId, title: title, body: body, time: time, icon: icon, image: image)
             
             Message.create(userId, message: ctm)
             
             ContentMessage.updateNumberMessageNotRead()
-            
-            //print("\(Message.getAllMessage())")
-            
-//            if Login.getLogin() != nil {
-////                let snackbar = TTGSnackbar.init(message: "You have a new message", duration: .Middle, actionText: "Xem tinh nhắn")
-////                { (snackbar) -> Void in
-////                    let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-////                    let loginPageView = mainStoryboard.instantiateViewControllerWithIdentifier("MessageController") as! MessageController
-////                    let rootViewController = self.window!.rootViewController as! UINavigationController
-////                    rootViewController.pushViewController(loginPageView, animated: true)
-////                }
-////                snackbar.show()
-//            }
+        
         if Message.messageReceiveComplettion != nil{
             Message.messageReceiveComplettion()
         }
