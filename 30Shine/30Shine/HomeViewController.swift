@@ -31,23 +31,22 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.initData()
-        self.configUI()
-        self.configSilder()
         
+        if Message.messageReceived {
+            self.openMessageView(false)
+        } else {
+            Message.openMessageRequest = { self.openMessageView(false) }
+            self.initData()
+            self.configUI()
+            self.configSilder()
+        }
     }
     
-        
     override func viewWillAppear(animated: Bool) {
         // If notitication received, open message view immediately
-        if Message.messageReceived {
-            self.openMessageView()
-        }
-        else {
-            super.viewWillAppear(animated)
-            self.navigationItem.setHidesBackButton(true, animated: animated)
-            self.clvMenu.reloadData()
-        }
+        super.viewWillAppear(animated)
+        self.navigationItem.setHidesBackButton(true, animated: true)
+        self.clvMenu.reloadData()
     }
     
     //MARK: UI
@@ -152,9 +151,9 @@ class HomeViewController: UIViewController {
         }
     }
     
-    private func openMessageView() {
+    private func openMessageView(animated : Bool) -> Void {
         if let vc = self.storyboard?.instantiateViewControllerWithIdentifier("MessageController") as? MessageController {
-            self.navigationController?.pushViewController(vc, animated: false)
+            self.navigationController?.pushViewController(vc, animated: animated)
         }
     }
     

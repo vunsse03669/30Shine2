@@ -117,15 +117,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         // this callback will not be fired till the user taps on the notification launching the application.
         // TODO: Handle data of notification
         
-        let state = UIApplication.sharedApplication().applicationState
-        if state == .Background {
-            print("Background")
-        } else if state == .Inactive {
-            print("Inactive")
-            Message.messageReceived = true
-        } else if state == .Active {
-            print("Active")
-        }
+        
         
         // Print message ID.
         //let state = UIApplication.sharedApplication().applicationState
@@ -180,9 +172,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
             
             ContentMessage.updateNumberMessageNotRead()
         
-        if Message.messageReceiveComplettion != nil{
-            Message.messageReceiveComplettion()
-        }
+            if Message.messageReceiveComplettion != nil{
+                Message.messageReceiveComplettion()
+            }
+        
+            let state = UIApplication.sharedApplication().applicationState
+            if state == .Background {
+                print("Background")
+            } else if state == .Inactive {
+                print("Inactive")
+                Message.messageReceived = true
+                if Message.openMessageRequest != nil {
+                    Message.openMessageRequest()
+                }
+            } else if state == .Active {
+                print("Active")
+            }
+        
             completionHandler(.NewData)
         //}
     }

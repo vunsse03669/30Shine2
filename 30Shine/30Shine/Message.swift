@@ -15,6 +15,7 @@ class Message: Object {
     dynamic var message : ContentMessage?
     static var messageReceived = false
     static var messageReceiveComplettion : (() -> Void)!
+    static var openMessageRequest : (() -> Void)!
     
     static func create(id : Int, message : ContentMessage) -> Message! {
         let msg = Message()
