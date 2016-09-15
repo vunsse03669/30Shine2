@@ -66,10 +66,10 @@ class MessageController: UIViewController {
             }
             
             if !(data.message?.isRead)! {
-                cell.lblNote.hidden = false
+                cell.imvNewIcon.hidden = false
             }
             else {
-                cell.lblNote.hidden = true
+                cell.imvNewIcon.hidden = true
             }
         }
         

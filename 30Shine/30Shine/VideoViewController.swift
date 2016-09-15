@@ -73,10 +73,10 @@ class VideoViewController: UIViewController, UITableViewDelegate, UIAlertViewDel
             cell.lblViewCount.text = "\(data.viewCount) views"
             cell.lblTime.text = "• \(cell.caculateTime(data.publishDate))"
             if data.isSeen {
-                 cell.lblNote.hidden = true
+                 cell.imvNewIcon.hidden = true
             }
             else {
-                cell.lblNote.hidden = false
+                cell.imvNewIcon.hidden = false
             }
             LazyImage.showForImageView(cell.imvThumnail, url: data.thumb)
         }

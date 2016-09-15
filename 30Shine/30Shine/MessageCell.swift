@@ -9,7 +9,8 @@
 import UIKit
 
 class MessageCell: UITableViewCell {
-    @IBOutlet weak var lblNote: UILabel!
+    
+    @IBOutlet weak var imvNewIcon: UIImageView!
     @IBOutlet weak var lblTime: UILabel!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var imvIcon: UIImageView!
@@ -20,7 +21,7 @@ class MessageCell: UITableViewCell {
         self.contentView.layer.borderWidth = 1.0
         self.contentView.layer.cornerRadius = 5.0
         self.contentView.clipsToBounds = true
-        self.lblNote.hidden = true
+        self.imvNewIcon.hidden = true
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

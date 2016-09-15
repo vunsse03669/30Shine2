@@ -10,7 +10,7 @@ import UIKit
 
 class VideoCell: UITableViewCell {
     
-    @IBOutlet weak var lblNote: UILabel!
+    @IBOutlet weak var imvNewIcon: UIImageView!
     @IBOutlet weak var lblTime: UILabel!
     @IBOutlet weak var lblViewCount: UILabel!
     @IBOutlet weak var imvThumnail: UIImageView!
