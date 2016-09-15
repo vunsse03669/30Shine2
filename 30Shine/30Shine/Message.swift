@@ -64,6 +64,7 @@ class Message: Object {
                         }
                     }
                 }
+                print("Could not convert datetime : \(timeArray1![1])  - \(timeArray2![1])")
                 return true
             }
         }
