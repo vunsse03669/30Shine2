@@ -55,7 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         
         // Raise messageRecevied flag when app is launched by Notification
         if launchOptions != nil && launchOptions![UIApplicationLaunchOptionsRemoteNotificationKey] != nil {
-            Message.messageReceived = true
+            //Message.messageReceived = true
         }
         
         ContentMessage.updateNumberMessageNotRead()
@@ -122,7 +122,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
             print("Background")
         } else if state == .Inactive {
             print("Inactive")
-        
+            Message.messageReceived = true
         } else if state == .Active {
             print("Active")
         }
@@ -245,8 +245,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-        FIRMessaging.messaging().disconnect()
-        print("Disconnected from FCM.")
+        //FIRMessaging.messaging().disconnect()
+        //print("Disconnected from FCM.")
     }
     
     func applicationWillEnterForeground(application: UIApplication) {
@@ -261,7 +261,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
     
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        FIRMessaging.messaging().disconnect()
+        print("Disconnected from FCM.")
     }
+    
     func application(application: UIApplication, supportedInterfaceOrientationsForWindow window: UIWindow?) -> UIInterfaceOrientationMask {
         
         let vc = self.window?.rootViewController?.presentedViewController

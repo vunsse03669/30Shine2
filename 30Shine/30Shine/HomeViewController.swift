@@ -35,16 +35,19 @@ class HomeViewController: UIViewController {
         self.configUI()
         self.configSilder()
         
+    }
+    
+        
+    override func viewWillAppear(animated: Bool) {
         // If notitication received, open message view immediately
         if Message.messageReceived {
             self.openMessageView()
         }
-    }
-        
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationItem.setHidesBackButton(true, animated: animated)
-        self.clvMenu.reloadData()
+        else {
+            super.viewWillAppear(animated)
+            self.navigationItem.setHidesBackButton(true, animated: animated)
+            self.clvMenu.reloadData()
+        }
     }
     
     //MARK: UI
