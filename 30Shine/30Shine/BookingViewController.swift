@@ -718,11 +718,11 @@ extension BookingViewController {
         let h = NSCalendar.currentCalendar().component(NSCalendarUnit.Hour, fromDate: NSDate())
         let m = NSCalendar.currentCalendar().component(NSCalendarUnit.Minute, fromDate: NSDate())
         
-        if hour > h + 1 || (hour == h + 1 && 60 - m + minute >= 15) {
+        if hour > h + 1 || (hour == h + 1 && 60 - m + minute >= BOOKING_TIME_MARGIN) {
             return true
         }
         else if h == hour {
-            if minute - m >= 15 {
+            if minute - m >= BOOKING_TIME_MARGIN {
                 return true
             }
         }

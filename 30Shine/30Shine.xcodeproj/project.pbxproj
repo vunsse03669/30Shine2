@@ -40,6 +40,7 @@
 		18A4A97D1D6451ED00C4E413 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A4A97C1D6451ED00C4E413 /* CalendarView.swift */; };
 		18A4A97F1D6451FC00C4E413 /* CalendarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A4A97E1D6451FC00C4E413 /* CalendarView.xib */; };
 		18CFFE941D71C74E0034EBE4 /* ForgetPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CFFE931D71C74E0034EBE4 /* ForgetPasswordController.swift */; };
+		18D6A19C1D926FD80011F0F6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D6A19B1D926FD80011F0F6 /* Constants.swift */; };
 		18D86E781D71E4350002D6D4 /* ForgetAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D86E771D71E4350002D6D4 /* ForgetAlertView.swift */; };
 		18D86E7A1D71E46E0002D6D4 /* ForgetAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D86E791D71E46E0002D6D4 /* ForgetAlertView.xib */; };
 		18DD16F41D5C3B4200837986 /* SelectProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD16F31D5C3B4200837986 /* SelectProfileController.swift */; };
@@ -167,6 +168,7 @@
 		18A4A97C1D6451ED00C4E413 /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		18A4A97E1D6451FC00C4E413 /* CalendarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalendarView.xib; sourceTree = "<group>"; };
 		18CFFE931D71C74E0034EBE4 /* ForgetPasswordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetPasswordController.swift; sourceTree = "<group>"; };
+		18D6A19B1D926FD80011F0F6 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		18D86E771D71E4350002D6D4 /* ForgetAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetAlertView.swift; sourceTree = "<group>"; };
 		18D86E791D71E46E0002D6D4 /* ForgetAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgetAlertView.xib; sourceTree = "<group>"; };
 		18DD16F31D5C3B4200837986 /* SelectProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectProfileController.swift; sourceTree = "<group>"; };
@@ -434,6 +436,14 @@
 			name = LazyImage;
 			sourceTree = "<group>";
 		};
+		18D6A19A1D926FC20011F0F6 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				18D6A19B1D926FD80011F0F6 /* Constants.swift */,
+			);
+			name = Constants;
+			sourceTree = "<group>";
+		};
 		18D86E761D71E3B40002D6D4 /* AlertView */ = {
 			isa = PBXGroup;
 			children = (
@@ -530,6 +540,7 @@
 		9942989B1D4769BF00D053B2 /* 30Shine */ = {
 			isa = PBXGroup;
 			children = (
+				18D6A19A1D926FC20011F0F6 /* Constants */,
 				9942989D1D4769BF00D053B2 /* AppDelegate.swift */,
 				9942989C1D4769BF00D053B2 /* AppConstant.swift */,
 				E800B99E1D4E5C0D003A7031 /* Extensions.swift */,
@@ -1061,6 +1072,7 @@
 				9942999F1D476FB100D053B2 /* OtherServiceNetwork.swift in Sources */,
 				E8F7B6D91D57A6080094ADE4 /* SalonImageCell.swift in Sources */,
 				994299781D4769BF00D053B2 /* MenuCell.swift in Sources */,
+				18D6A19C1D926FD80011F0F6 /* Constants.swift in Sources */,
 				99876EFF1D4A58030094EF12 /* UIDropDown.swift in Sources */,
 				186CEE0B1D731E240015CFF7 /* MessageCell.swift in Sources */,
 				994299751D4769BF00D053B2 /* ListSalonView.swift in Sources */,
