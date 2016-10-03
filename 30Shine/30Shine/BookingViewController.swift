@@ -28,6 +28,8 @@ class BookingViewController: UIViewController {
     @IBOutlet weak var lblDate: UILabel!
     @IBOutlet weak var lblBookTime: UILabel!
     
+    @IBOutlet weak var clvBookingHeightConstraint: NSLayoutConstraint!
+    
     var dropSalon   : UIDropDown!
     var dropTime    : UIDropDownTime!
     var dropStylist : UIDropDownStylist!
@@ -58,6 +60,11 @@ class BookingViewController: UIViewController {
     var isClickOnSalon   = Variable(0)
     var isClickOnTime    = Variable(0)
     var isClickOnStylist = Variable(0)
+    
+    func resetStylistAndWorkTime() -> Void {
+        stylistID.value = -1
+        bookingTimeId.value = -1
+    }
     
     func checkInternet() {
         do {
@@ -115,6 +122,11 @@ class BookingViewController: UIViewController {
             print("Date : \(self.toDate(self.statusDate.value))")
             print("Stylist id : \(self.stylistID.value)")
             print("HourId : \(self.bookingTimeId.value)")
+            
+            if (self.bookingTimeId.value == -1) {
+                self.alertMessage("", msg: "Quí khách làm ơn chọn khung giờ sử dụng dịch vụ")
+                return
+            }
             
             let name      = self.txtName.text!
             let phone     = self.txtPhone.text!
@@ -284,6 +296,7 @@ class BookingViewController: UIViewController {
         dropSalon.delegate = self
         dropTime.delegate = self
         
+        
         dropTime.setSelectedIndex(0)
         let index = self.salonIds.indexOf(self.salonId)
         dropSalon.setSelectedIndex(index!)
@@ -347,6 +360,11 @@ class BookingViewController: UIViewController {
     
     //MARK: CollectionView
     func configCollectionView() {
+        
+//        [self.collectionView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionOld context:NULL
+        
+        self.clvBooking.addObserver(self, forKeyPath: "contentSize", options:.Old, context: nil)
+        
         _ = self.dataVar.asObservable().bindTo(self.clvBooking.rx_itemsWithCellIdentifier("BookingCell", cellType: BookingCell.self)) {
             row,data,cell in
             cell.lblTime.text = "\(data.hour)"
@@ -389,6 +407,7 @@ class BookingViewController: UIViewController {
             
             cell.layer.cornerRadius = 5.0
             cell.clipsToBounds = true
+            
         }
         
         _ = self.clvBooking.rx_itemSelected.subscribeNext {
@@ -407,6 +426,10 @@ class BookingViewController: UIViewController {
                 print(self.timeDate( self.dateFromString(self.stringBookingTime)))
             }
         }
+    }
+    
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        self.clvBookingHeightConstraint.constant = self.clvBooking.contentSize.height
     }
     
     func configCollectionViewLayout() {
@@ -456,6 +479,7 @@ class BookingViewController: UIViewController {
 //MARK : Change text field value
 extension BookingViewController : UIDropDownDelegate {
     func dropDown(dropDown: UIDropDown, didSelectOption option: String, atIndex index: Int) {
+        self.resetStylistAndWorkTime()
         self.statusSalonId.value = self.salonIds[index]
         
         self.parseStaffAttendace(self.statusSalonId.value, workDate: self.toDate(self.statusDate.value)) {
@@ -497,6 +521,7 @@ extension BookingViewController : UIDropDownDelegate {
 
 extension BookingViewController : UIDropDownTimeDelegate {
     func dropDownTime(dropDown: UIDropDownTime, didSelectOption option: String, atIndex index: Int){
+        self.resetStylistAndWorkTime()
         if self.dateCount > 0 {
             self.statusDate.value = Double(index)
             self.parseSchedule(self.statusSalonId.value, workDate: self.toDate(self.statusDate.value), stylistId: self.stylistID.value) {
@@ -512,7 +537,8 @@ extension BookingViewController : UIDropDownTimeDelegate {
 }
 
 extension BookingViewController : UIDropDownStylistDelegate {
-    func dropDownStylist(dropDown: UIDropDownStylist, didSelectOption option: String, atIndex index: Int){
+    func dropDownStylist(dropDown: UIDropDownStylist, didSelectOption option: String, atIndex index: Int) {
+        self.bookingTimeId.value = -1
         
         self.stylistID.value = self.stylistId[index]
         self.parseSchedule(self.statusSalonId.value, workDate: self.toDate(self.statusDate.value), stylistId: self.stylistID.value) {
@@ -542,6 +568,7 @@ extension BookingViewController {
                         print(data.statusBooking)
                         self.dataVar.value.append(data)
                     }
+                    
                     compeletion()
                 }
             }
